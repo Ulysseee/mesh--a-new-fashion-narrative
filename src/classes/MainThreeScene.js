@@ -1,12 +1,14 @@
-import { WebGLRenderer, Scene } from 'three'
+import { WebGLRenderer, Scene, Raycaster } from 'three'
 
 import RAF from '@utils/RAF'
 import config from '@utils/config'
 import MyGUI from '@utils/MyGUI'
+import Mouse from '@utils/Mouse'
 
 import Camera from '@classes/Camera'
 import Floor from '@classes/Floor'
 import Spline from '@classes/Spline'
+import Cube from '@classes/Cube'
 
 class MainThreeScene {
 	constructor() {
@@ -15,6 +17,7 @@ class MainThreeScene {
 		this.cube
 		this.renderer
 		this.controls
+		this.mouse
 		this.y = 0
 		this.position = 0
 		this.tick = 0
@@ -35,17 +38,37 @@ class MainThreeScene {
 		this.camera = Camera.camera
 		Floor.init(this.scene)
 		Spline.init(this.scene)
+		Cube.init(this.scene)
+
+		this.cube = Cube.mesh
 
 		MyGUI.hide()
 		if (config.myGui) MyGUI.show()
 
+		this.mouse = Mouse.mouse
+		console.log(this.mouse)
+
+		this.raycaster = new Raycaster()
+
 		//RENDER LOOP AND WINDOW SIZE UPDATER SETUP
 		window.addEventListener('resize', this.resizeCanvas)
+		window.addEventListener('mousemove', Mouse.getMousePos)
 		RAF.subscribe('threeSceneUpdate', this.update)
 	}
 
 	update() {
 		Spline.update()
+
+		this.raycaster.setFromCamera(this.mouse, this.camera)
+
+		const objectsToRaycast = [this.cube]
+		const intersect = this.raycaster.intersectObjects(objectsToRaycast)
+
+		if (intersect.length > 0) {
+			document.querySelector('html, body').style.cursor = 'pointer'
+		} else {
+			document.querySelector('html, body').style.cursor = 'default'
+		}
 
 		this.renderer.render(this.scene, this.camera)
 	}
