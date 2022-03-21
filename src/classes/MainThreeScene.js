@@ -7,6 +7,7 @@ import config from '../utils/config'
 import MyGUI from '../utils/MyGUI'
 
 import Floor from '../classes/Floor'
+import Spline from '../classes/Spline'
 
 import simpleFrag from '../shaders/simple.frag'
 import simpleVert from '../shaders/simple.vert'
@@ -14,13 +15,15 @@ import simpleVert from '../shaders/simple.vert'
 class MainThreeScene {
 	constructor() {
 		this.bind()
-		this.camera
 		this.scene
+		this.camera
 		this.cube
 		this.renderer
 		this.controls
 		this.y = 0
 		this.position = 0
+		this.tick = 0
+		this.spline
 	}
 
 	init(container) {
@@ -35,42 +38,74 @@ class MainThreeScene {
 
 		//CAMERA AND ORBIT CONTROLLER
 		this.camera = new THREE.PerspectiveCamera(
-			75,
+			100,
 			window.innerWidth / window.innerHeight,
-			0.1,
-			1000
+			1,
+			100000
 		)
-		this.camera.position.set(0, 0, 5)
+		// this.camera.position.set(0, 0, 5)
+		this.camera.position.set(0, 400, -200)
+		// this.camera.position.z = -200;
+		// this.camera.position.y = 400;
+		// this.camera.position.copy(new THREE.Vector3(0, 0, 60))
 		this.controls = new OrbitControls(this.camera, this.renderer.domElement)
 		this.controls.enabled = config.controls
 		this.controls.maxDistance = 1500
 		this.controls.minDistance = 0
 
 		//DUMMY CUBE + SIMPLE GLSL SHADER LINKAGE
-		const shaderMat = new THREE.ShaderMaterial({
+		this.shaderMat = new THREE.ShaderMaterial({
 			vertexShader: simpleVert,
 			fragmentShader: simpleFrag
 		})
-		this.cube = new THREE.Mesh(new THREE.BoxGeometry(), shaderMat)
-		this.scene.add(this.cube)
+		this.cube = new THREE.Mesh(new THREE.BoxGeometry(), this.shaderMat)
+		// this.scene.add(this.cube)
 
-		// Floor.init(this.scene)
+		Floor.init(this.scene)
+		Spline.init(this.scene)
+		this.spline = Spline.spline
+
+		// console.log('CURVES', Spline.curve)
 
 		MyGUI.hide()
 		if (config.myGui) MyGUI.show()
 
 		//RENDER LOOP AND WINDOW SIZE UPDATER SETUP
 		window.addEventListener('resize', this.resizeCanvas)
-		window.addEventListener('wheel', this.scrollCanvas)
+		// window.addEventListener('wheel', this.scrollCanvas)
 		RAF.subscribe('threeSceneUpdate', this.update)
 	}
 
 	update() {
+		this.tick += 0.001
+
 		this.renderer.render(this.scene, this.camera)
-		this.cube.rotation.x += 0.01
-		this.cube.rotation.z += 0.01
+		// this.cube.rotation.x += 0.01
+		// this.cube.rotation.z += 0.01
 
 		// this.camera.position.z += 0.08
+
+		// let camPos = Spline.curve.getPoint(this.tick)
+
+		// this.camera.position.z = camPos.z
+		// this.camera.position.x = camPos.x
+		// this.camera.position.y = camPos.y + 50
+
+		// if (
+		// 	this.camera.position.z <=
+		// 	Spline.curve.points[Spline.curve.points.length - 1].z + 100
+		// ) {
+		// 	console.log('HERE?')
+
+		// 	this.tick = 0
+		// 	this.camera.position.z = 0
+		// }
+
+		// let tangent = Spline.curve.getTangent(this.tick)
+		// // console.log(tangent)
+		// this.camera.rotation.y = -tangent.x
+
+		Spline.update()
 	}
 
 	scrollCanvas(e) {
@@ -91,7 +126,7 @@ class MainThreeScene {
 		this.resizeCanvas = this.resizeCanvas.bind(this)
 		this.update = this.update.bind(this)
 		this.init = this.init.bind(this)
-		this.scrollCanvas = this.scrollCanvas.bind(this)
+		// this.scrollCanvas = this.scrollCanvas.bind(this)
 	}
 }
 
