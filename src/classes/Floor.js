@@ -1,8 +1,6 @@
-import * as THREE from 'three'
+import { PlaneGeometry, MeshBasicMaterial, Mesh } from 'three'
 
-// import MyGUI from '../utils/MyGUI'
-
-import { DoubleSide } from 'three'
+// import MyGUI from '@utils/MyGUI'
 
 class Floor {
 	constructor() {
@@ -18,14 +16,13 @@ class Floor {
 		this.height = 5000
 		this.width = 10000
 
-		this.geometry = new THREE.PlaneGeometry(this.height, this.width, 30, 30)
-		this.material = new THREE.MeshBasicMaterial({
+		this.geometry = new PlaneGeometry(this.height, this.width, 30, 30)
+		this.material = new MeshBasicMaterial({
 			wireframe: false,
-			side: DoubleSide,
 			color: 0x536dfe
 		})
 
-		this.floor = new THREE.Mesh(this.geometry, this.material)
+		this.floor = new Mesh(this.geometry, this.material)
 		this.floor.rotation.x = -Math.PI / 2
 		this.floor.position.y = -100
 

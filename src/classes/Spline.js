@@ -1,58 +1,71 @@
-import * as THREE from 'three'
-import MainThreeScene from './MainThreeScene'
+import {
+	CatmullRomCurve3,
+	Vector3,
+	BufferGeometry,
+	LineBasicMaterial,
+	Line
+} from 'three'
+
+import gsap from 'gsap'
+
+import MainThreeScene from '@classes/MainThreeScene'
 
 class Spline {
 	constructor() {
 		this.bind()
 		this.scene
-		this.tick = 0
-		this.y = 0
-		this.position = 0
+		this.scroll = {
+			current: 0,
+			target: 0,
+			last: 0,
+			limit: 0
+		}
 	}
 
 	init(scene) {
 		this.scene = scene
 
-		this.curve = new THREE.CatmullRomCurve3([
-			new THREE.Vector3(1000, 100, 0),
-			new THREE.Vector3(-1000, 0, -1000),
-			new THREE.Vector3(1000, 1000, -2000),
-			new THREE.Vector3(-1000, 0, -3000),
-			new THREE.Vector3(1000, 400, -4000)
+		this.curve = new CatmullRomCurve3([
+			new Vector3(1000, 100, 0),
+			new Vector3(-1000, 0, -1000),
+			new Vector3(1000, 1000, -2000),
+			new Vector3(-1000, 0, -3000),
+			new Vector3(1000, 400, -4000)
 		])
 
 		const points = this.curve.getPoints(50)
-		this.curveGeometry = new THREE.BufferGeometry().setFromPoints(points)
-		this.curveMaterial = new THREE.LineBasicMaterial({
+		this.curveGeometry = new BufferGeometry().setFromPoints(points)
+		this.curveMaterial = new LineBasicMaterial({
 			color: 0xffffff
 		})
-		this.splineObject = new THREE.Line(
-			this.curveGeometry,
-			this.curveMaterial
-		)
+		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
 		this.scene.add(this.splineObject)
 
 		window.addEventListener('wheel', this.scrollCanvas)
 	}
 
-	scrollCanvas(e) {
-		this.y = -e.deltaY * 0.00009
-		this.position += this.y
-		this.y *= 0.9
+	scrollCanvas({ deltaY }) {
+		this.scroll.target += deltaY * 0.00009
 
-		let camPos = this.curve.getPoint(this.position)
+		this.scroll.current = gsap.utils.interpolate(
+			this.scroll.current,
+			this.scroll.target,
+			0.9
+		)
+
+		const camPos = this.curve.getPoint(this.scroll.current)
 		MainThreeScene.camera.position.set(camPos.x, camPos.y + 50, camPos.z)
 
 		if (
 			MainThreeScene.camera.position.z <=
 			this.curve.points[this.curve.points.length - 1].z + 100
 		) {
-			this.position = 0
+			this.scroll.current = 0
 			MainThreeScene.camera.position.z = 0
 		}
 
-		const tangent = this.curve.getTangent(this.position)
+		const tangent = this.curve.getTangent(this.scroll.current)
 		MainThreeScene.camera.rotation.y = -tangent.x
 	}
 

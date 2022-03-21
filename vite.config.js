@@ -15,7 +15,8 @@ export default defineConfig({
 	resolve: {
 		alias: [
 			{ find: '@classes', replacement: '/src/classes' },
-			{ find: '@shaders', replacement: '/src/shaders' }
+			{ find: '@shaders', replacement: '/src/shaders' },
+			{ find: '@utils', replacement: '/src/utils' }
 		]
 	}
 })
