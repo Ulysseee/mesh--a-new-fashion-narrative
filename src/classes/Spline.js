@@ -67,9 +67,10 @@ class Spline {
 
 		if (
 			MainThreeScene.camera.position.z <=
-			this.curve.points[this.curve.points.length - 1].z
+			this.curve.points[this.curve.points.length - 1].z + 200
 		) {
 			this.scroll.current = 0
+			this.scroll.target = 0
 			MainThreeScene.camera.position.z = 0
 		}
 
