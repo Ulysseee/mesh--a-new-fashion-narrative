@@ -6,7 +6,7 @@ import RAF from '../utils/RAF'
 import config from '../utils/config'
 import MyGUI from '../utils/MyGUI'
 
-import Floor from '../classes/Floor'
+// import Floor from '../classes/Floor'
 
 import simpleFrag from '../shaders/simple.frag'
 import simpleVert from '../shaders/simple.vert'

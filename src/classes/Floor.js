@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-import MyGUI from '../utils/MyGUI'
+// import MyGUI from '../utils/MyGUI'
 
 import simpleFrag from '../shaders/simple.frag'
 import simpleVert from '../shaders/simple.vert'
