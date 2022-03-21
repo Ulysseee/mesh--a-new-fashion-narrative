@@ -18,7 +18,7 @@ class Spline {
 			current: 0,
 			target: 0,
 			last: 0,
-			limit: 0
+			limit: 2
 		}
 	}
 
@@ -47,11 +47,19 @@ class Spline {
 
 	scrollCanvas({ deltaY }) {
 		this.scroll.target += deltaY * 0.00009
+	}
+
+	update() {
+		this.scroll.target = gsap.utils.clamp(
+			0,
+			this.scroll.limit,
+			this.scroll.target
+		)
 
 		this.scroll.current = gsap.utils.interpolate(
 			this.scroll.current,
 			this.scroll.target,
-			0.9
+			0.05
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)
@@ -59,7 +67,7 @@ class Spline {
 
 		if (
 			MainThreeScene.camera.position.z <=
-			this.curve.points[this.curve.points.length - 1].z + 100
+			this.curve.points[this.curve.points.length - 1].z
 		) {
 			this.scroll.current = 0
 			MainThreeScene.camera.position.z = 0
@@ -68,8 +76,6 @@ class Spline {
 		const tangent = this.curve.getTangent(this.scroll.current)
 		MainThreeScene.camera.rotation.y = -tangent.x
 	}
-
-	update() {}
 
 	bind() {
 		this.scrollCanvas = this.scrollCanvas.bind(this)

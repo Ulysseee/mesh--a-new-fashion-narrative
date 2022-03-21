@@ -45,8 +45,6 @@ class MainThreeScene {
 	}
 
 	update() {
-		this.tick += 0.001
-
 		Spline.update()
 
 		this.renderer.render(this.scene, this.camera)
