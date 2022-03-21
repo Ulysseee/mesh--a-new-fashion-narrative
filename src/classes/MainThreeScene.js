@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import RAF from '../utils/RAF'
 import config from '../utils/config'
@@ -43,15 +43,13 @@ class MainThreeScene {
 			1,
 			100000
 		)
-		// this.camera.position.set(0, 0, 5)
 		this.camera.position.set(0, 400, -200)
-		// this.camera.position.z = -200;
-		// this.camera.position.y = 400;
+
 		// this.camera.position.copy(new THREE.Vector3(0, 0, 60))
-		this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-		this.controls.enabled = config.controls
-		this.controls.maxDistance = 1500
-		this.controls.minDistance = 0
+		// this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+		// this.controls.enabled = config.controls
+		// this.controls.maxDistance = 1500
+		// this.controls.minDistance = 0
 
 		//DUMMY CUBE + SIMPLE GLSL SHADER LINKAGE
 		this.shaderMat = new THREE.ShaderMaterial({
@@ -75,6 +73,8 @@ class MainThreeScene {
 
 	update() {
 		this.tick += 0.001
+
+		Spline.update()
 
 		this.renderer.render(this.scene, this.camera)
 		// this.cube.rotation.x += 0.01
@@ -101,8 +101,6 @@ class MainThreeScene {
 		// let tangent = Spline.curve.getTangent(this.tick)
 		// // console.log(tangent)
 		// this.camera.rotation.y = -tangent.x
-
-		Spline.update()
 	}
 
 	scrollCanvas(e) {

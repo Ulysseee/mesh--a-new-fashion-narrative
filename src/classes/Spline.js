@@ -5,7 +5,6 @@ class Spline {
 	constructor() {
 		this.bind()
 		this.scene
-		this.spline
 		this.tick = 0
 	}
 
@@ -20,32 +19,29 @@ class Spline {
 			new THREE.Vector3(1000, 400, -4000)
 		])
 
-		this.curveGeometry = new THREE.BufferGeometry()
-		this.curveGeometry.vertices = this.curve.getPoints(50)
-		const curveMaterial = new THREE.LineBasicMaterial({
+		const points = this.curve.getPoints(50)
+		this.curveGeometry = new THREE.BufferGeometry().setFromPoints(points)
+		this.curveMaterial = new THREE.LineBasicMaterial({
 			color: 0xffffff
 		})
-		this.splineObject = new THREE.Line(this.curveGeometry, curveMaterial)
+		this.splineObject = new THREE.Line(
+			this.curveGeometry,
+			this.curveMaterial
+		)
 
-		this.scene.add(this.spline)
+		this.scene.add(this.splineObject)
 	}
 
 	update() {
-		// console.log('update')
 		this.tick += 0.001
 
 		let camPos = this.curve.getPoint(this.tick)
 
-		MainThreeScene.camera.position.set(camPos.x, camPos.y, camPos.z)
-		// console.log(MainThreeScene.camera.position)
+		MainThreeScene.camera.position.set(camPos.x, camPos.y + 50, camPos.z)
 
-		// const tangent = this.curve.getTangent(this.tick)
-		// console.log(tangent)
-		// MainThreeScene.camera.rotation.y = -tangent.x
-
-		// let tangent = this.curve.getTangent(this.tick)
-		// // console.log(tangent)
-		// this.camera.rotation.y = -tangent.x
+		const tangent = this.curve.getTangent(this.tick)
+		console.log(tangent)
+		MainThreeScene.camera.rotation.y = -tangent.x
 	}
 
 	bind() {}

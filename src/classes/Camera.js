@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-
+import config from '../utils/config'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 class Camera {

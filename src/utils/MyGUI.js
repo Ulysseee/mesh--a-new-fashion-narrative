@@ -1,4 +1,4 @@
-import GUI from "lil-gui";
+import GUI from 'lil-gui'
 
-const _instance = new GUI({ width: 400 });
-export default _instance;
+const _instance = new GUI({ width: 200 })
+export default _instance
