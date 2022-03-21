@@ -1,20 +1,20 @@
 <template>
 	<div class="threeScene">
-		<div class="container" ref="container"></div>
+		<div ref="container" class="container" />
 	</div>
 </template>
 
 <script>
-import MainThreeScene from "../classes/MainThreeScene";
+import MainThreeScene from '../classes/MainThreeScene'
 export default {
-	name: "ThreeScene",
+	name: 'ThreeScene',
 	props: {
-		msg: String,
+		msg: String
 	},
 	mounted() {
-		MainThreeScene.init(this.$refs.container);
-	},
-};
+		MainThreeScene.init(this.$refs.container)
+	}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -63,9 +63,6 @@ class MainThreeScene {
 
 		Floor.init(this.scene)
 		Spline.init(this.scene)
-		this.spline = Spline.spline
-
-		// console.log('CURVES', Spline.curve)
 
 		MyGUI.hide()
 		if (config.myGui) MyGUI.show()

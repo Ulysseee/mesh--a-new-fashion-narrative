@@ -20,29 +20,28 @@ class Spline {
 			new THREE.Vector3(1000, 400, -4000)
 		])
 
-		this.geometry = new THREE.BufferGeometry()
-		this.geometry.vertices = this.curve.getPoints(50)
-		this.material = new THREE.LineBasicMaterial({
-			color: 0xffffff,
-			linewidth: 1,
-			linecap: 'round',
-			linejoin: 'round'
+		this.curveGeometry = new THREE.BufferGeometry()
+		this.curveGeometry.vertices = this.curve.getPoints(50)
+		const curveMaterial = new THREE.LineBasicMaterial({
+			color: 0xffffff
 		})
-
-		this.spline = new THREE.Line(this.geometry, this.material)
+		this.splineObject = new THREE.Line(this.curveGeometry, curveMaterial)
 
 		this.scene.add(this.spline)
 	}
 
 	update() {
 		// console.log('update')
-		this.tick += 0.0001
+		this.tick += 0.001
 
 		let camPos = this.curve.getPoint(this.tick)
-		// console.log(camPos)
 
+		MainThreeScene.camera.position.set(camPos.x, camPos.y, camPos.z)
 		// console.log(MainThreeScene.camera.position)
-		// MainThreeScene.camera.position.set(camPos.x, camPos.y, camPos.z)
+
+		// const tangent = this.curve.getTangent(this.tick)
+		// console.log(tangent)
+		// MainThreeScene.camera.rotation.y = -tangent.x
 
 		// let tangent = this.curve.getTangent(this.tick)
 		// // console.log(tangent)
