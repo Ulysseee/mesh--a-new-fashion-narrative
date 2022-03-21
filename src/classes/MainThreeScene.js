@@ -67,7 +67,6 @@ class MainThreeScene {
 
 		//RENDER LOOP AND WINDOW SIZE UPDATER SETUP
 		window.addEventListener('resize', this.resizeCanvas)
-		// window.addEventListener('wheel', this.scrollCanvas)
 		RAF.subscribe('threeSceneUpdate', this.update)
 	}
 
@@ -77,38 +76,6 @@ class MainThreeScene {
 		Spline.update()
 
 		this.renderer.render(this.scene, this.camera)
-		// this.cube.rotation.x += 0.01
-		// this.cube.rotation.z += 0.01
-
-		// this.camera.position.z += 0.08
-
-		// let camPos = Spline.curve.getPoint(this.tick)
-
-		// this.camera.position.z = camPos.z
-		// this.camera.position.x = camPos.x
-		// this.camera.position.y = camPos.y + 50
-
-		// if (
-		// 	this.camera.position.z <=
-		// 	Spline.curve.points[Spline.curve.points.length - 1].z + 100
-		// ) {
-		// 	console.log('HERE?')
-
-		// 	this.tick = 0
-		// 	this.camera.position.z = 0
-		// }
-
-		// let tangent = Spline.curve.getTangent(this.tick)
-		// // console.log(tangent)
-		// this.camera.rotation.y = -tangent.x
-	}
-
-	scrollCanvas(e) {
-		this.y = -e.deltaY * 0.0009
-		this.position += this.y
-		this.y *= 0.9
-
-		this.camera.position.y = this.position
 	}
 
 	resizeCanvas() {
@@ -121,7 +88,6 @@ class MainThreeScene {
 		this.resizeCanvas = this.resizeCanvas.bind(this)
 		this.update = this.update.bind(this)
 		this.init = this.init.bind(this)
-		// this.scrollCanvas = this.scrollCanvas.bind(this)
 	}
 }
 

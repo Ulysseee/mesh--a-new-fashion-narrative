@@ -6,6 +6,8 @@ class Spline {
 		this.bind()
 		this.scene
 		this.tick = 0
+		this.y = 0
+		this.position = 0
 	}
 
 	init(scene) {
@@ -30,21 +32,35 @@ class Spline {
 		)
 
 		this.scene.add(this.splineObject)
+
+		window.addEventListener('wheel', this.scrollCanvas)
 	}
 
-	update() {
-		this.tick += 0.001
+	scrollCanvas(e) {
+		this.y = -e.deltaY * 0.00009
+		this.position += this.y
+		this.y *= 0.9
 
-		let camPos = this.curve.getPoint(this.tick)
-
+		let camPos = this.curve.getPoint(this.position)
 		MainThreeScene.camera.position.set(camPos.x, camPos.y + 50, camPos.z)
 
-		const tangent = this.curve.getTangent(this.tick)
-		console.log(tangent)
+		if (
+			MainThreeScene.camera.position.z <=
+			this.curve.points[this.curve.points.length - 1].z + 100
+		) {
+			this.position = 0
+			MainThreeScene.camera.position.z = 0
+		}
+
+		const tangent = this.curve.getTangent(this.position)
 		MainThreeScene.camera.rotation.y = -tangent.x
 	}
 
-	bind() {}
+	update() {}
+
+	bind() {
+		this.scrollCanvas = this.scrollCanvas.bind(this)
+	}
 }
 
 const _instance = new Spline()
