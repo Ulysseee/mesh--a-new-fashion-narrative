@@ -8,12 +8,15 @@ import {
 
 import gsap from 'gsap'
 
+import MyGUI from '@utils/MyGUI'
+
 import MainThreeScene from '@classes/MainThreeScene'
 
 class Spline {
 	constructor() {
 		this.bind()
 		this.scene
+		this.intensity = 0.00005
 		this.scroll = {
 			current: 0,
 			target: 0,
@@ -26,11 +29,11 @@ class Spline {
 		this.scene = scene
 
 		this.curve = new CatmullRomCurve3([
-			new Vector3(1000, 100, 0),
-			new Vector3(-1000, 0, -1000),
-			new Vector3(1000, 1000, -2000),
-			new Vector3(-1000, 0, -3000),
-			new Vector3(1000, 400, -4000)
+			new Vector3(10, 1, 0),
+			new Vector3(-10, 0, -10),
+			new Vector3(10, 10, -20),
+			new Vector3(-10, 0, -30),
+			new Vector3(10, 4, -40)
 		])
 
 		const points = this.curve.getPoints(50)
@@ -42,14 +45,23 @@ class Spline {
 
 		this.scene.add(this.splineObject)
 
+		const scrollFolder = MyGUI.addFolder('Scroll')
+		scrollFolder
+			.add(this, 'intensity')
+			.min(0.00001)
+			.max(0.00009)
+			.step(0.00001)
+			.name('Scroll strength')
+
 		window.addEventListener('wheel', this.scrollCanvas)
 	}
 
 	scrollCanvas({ deltaY }) {
-		this.scroll.target += deltaY * 0.00009
+		this.scroll.target += deltaY * this.intensity
 	}
 
 	update() {
+		// console.log(MainThreeScene.camera.rotation)
 		this.scroll.target = gsap.utils.clamp(
 			0,
 			this.scroll.limit,
@@ -63,11 +75,11 @@ class Spline {
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)
-		MainThreeScene.camera.position.set(camPos.x, camPos.y + 50, camPos.z)
+		MainThreeScene.camera.position.set(camPos.x, camPos.y + 2, camPos.z)
 
 		if (
 			MainThreeScene.camera.position.z <=
-			this.curve.points[this.curve.points.length - 1].z + 200
+			this.curve.points[this.curve.points.length - 1].z + 2
 		) {
 			this.scroll.current = 0
 			this.scroll.target = 0

@@ -13,8 +13,8 @@ class Floor {
 	init(scene) {
 		this.scene = scene
 
-		this.height = 5000
-		this.width = 10000
+		this.height = 50
+		this.width = 100
 
 		this.geometry = new PlaneGeometry(this.height, this.width, 30, 30)
 		this.material = new MeshBasicMaterial({
@@ -24,7 +24,7 @@ class Floor {
 
 		this.floor = new Mesh(this.geometry, this.material)
 		this.floor.rotation.x = -Math.PI / 2
-		this.floor.position.y = -100
+		this.floor.position.y = -2
 
 		this.scene.add(this.floor)
 	}
