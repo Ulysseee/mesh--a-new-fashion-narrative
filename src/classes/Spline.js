@@ -26,11 +26,11 @@ class Spline {
 		this.scene = scene
 
 		this.curve = new CatmullRomCurve3([
-			new Vector3(1000, 100, 0),
-			new Vector3(-1000, 0, -1000),
-			new Vector3(1000, 1000, -2000),
-			new Vector3(-1000, 0, -3000),
-			new Vector3(1000, 400, -4000)
+			new Vector3(10, 1, 0),
+			new Vector3(-10, 0, -10),
+			new Vector3(10, 10, -20),
+			new Vector3(-10, 0, -30),
+			new Vector3(10, 4, -40)
 		])
 
 		const points = this.curve.getPoints(50)
@@ -50,6 +50,7 @@ class Spline {
 	}
 
 	update() {
+		// console.log(MainThreeScene.camera.rotation)
 		this.scroll.target = gsap.utils.clamp(
 			0,
 			this.scroll.limit,
@@ -63,11 +64,11 @@ class Spline {
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)
-		MainThreeScene.camera.position.set(camPos.x, camPos.y + 50, camPos.z)
+		MainThreeScene.camera.position.set(camPos.x, camPos.y + 2, camPos.z)
 
 		if (
 			MainThreeScene.camera.position.z <=
-			this.curve.points[this.curve.points.length - 1].z + 200
+			this.curve.points[this.curve.points.length - 1].z + 2
 		) {
 			this.scroll.current = 0
 			this.scroll.target = 0

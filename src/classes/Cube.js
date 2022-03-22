@@ -16,7 +16,8 @@ class Example {
 			vertexShader: simpleVert,
 			fragmentShader: simpleFrag
 		})
-		this.mesh = new Mesh(new BoxGeometry(64, 64, 64), shaderMat)
+		this.mesh = new Mesh(new BoxGeometry(3, 3, 3), shaderMat)
+		this.mesh.position.set(-4, 0, 2)
 		this.scene.add(this.mesh)
 	}
 
