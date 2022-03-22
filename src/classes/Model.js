@@ -16,11 +16,10 @@ class Model {
 			gltf.scene.traverse((child) => {
 				console.log(child)
 				if (child instanceof Mesh) {
-					child.scale.multiplyScalar(10.7)
-					child.position.set(2, 2, 4)
+					gltf.scene.scale.set(0.025, 0.025, 0.025)
 				}
 			})
-
+			gltf.scene.position.set(2, 2, -4)
 			this.scene.add(gltf.scene)
 		})
 	}

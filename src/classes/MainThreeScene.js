@@ -43,11 +43,7 @@ class MainThreeScene {
 		Floor.init(this.scene)
 		Spline.init(this.scene)
 		Cube.init(this.scene)
-
 		Model.init(this.scene)
-
-		this.modell = Model.mesh
-		// this.model.position.set(3, 10, 20)
 
 		this.cube = Cube.mesh
 
