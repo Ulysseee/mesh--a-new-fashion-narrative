@@ -1,4 +1,4 @@
-import { WebGLRenderer, Scene, Raycaster } from 'three'
+import { WebGLRenderer, Scene, Raycaster, AmbientLight } from 'three'
 
 import RAF from '@utils/RAF'
 import config from '@utils/config'
@@ -6,6 +6,7 @@ import MyGUI from '@utils/MyGUI'
 import Mouse from '@utils/Mouse'
 
 import Camera from '@classes/Camera'
+import Model from '@classes/Model'
 import Floor from '@classes/Floor'
 import Spline from '@classes/Spline'
 import Cube from '@classes/Cube'
@@ -34,11 +35,19 @@ class MainThreeScene {
 
 		this.scene = new Scene()
 
-		Camera.init(this.scene)
+		const ambientLight = new AmbientLight(0xffffff, 0.8)
+		this.scene.add(ambientLight)
+
+		Camera.init(this.renderer)
 		this.camera = Camera.camera
 		Floor.init(this.scene)
 		Spline.init(this.scene)
 		Cube.init(this.scene)
+
+		Model.init(this.scene)
+
+		this.modell = Model.mesh
+		// this.model.position.set(3, 10, 20)
 
 		this.cube = Cube.mesh
 
@@ -46,7 +55,6 @@ class MainThreeScene {
 		if (config.myGui) MyGUI.show()
 
 		this.mouse = Mouse.mouse
-		console.log(this.mouse)
 
 		this.raycaster = new Raycaster()
 

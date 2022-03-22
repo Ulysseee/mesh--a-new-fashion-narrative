@@ -3,7 +3,7 @@ import { ShaderMaterial, Mesh, BoxGeometry } from 'three'
 import simpleFrag from '@shaders/simple.frag'
 import simpleVert from '@shaders/simple.vert'
 
-class Example {
+class Cube {
 	constructor() {
 		this.bind()
 		this.mesh
@@ -25,5 +25,5 @@ class Example {
 	bind() {}
 }
 
-const _instance = new Example()
+const _instance = new Cube()
 export default _instance

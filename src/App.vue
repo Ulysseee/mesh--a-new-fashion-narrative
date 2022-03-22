@@ -1,13 +1,17 @@
 <template>
 	<ThreeScene />
+	<LoadingScreen />
 </template>
 
 <script>
 import ThreeScene from './components/ThreeScene.vue'
+import LoadingScreen from './components/LoadingScreen.vue'
+
 export default {
 	name: 'App',
 	components: {
-		ThreeScene
+		ThreeScene,
+		LoadingScreen
 	}
 }
 </script>
