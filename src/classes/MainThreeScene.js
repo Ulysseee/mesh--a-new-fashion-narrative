@@ -9,12 +9,19 @@ import Camera from '@classes/Camera'
 import Model from '@classes/Model'
 import Floor from '@classes/Floor'
 import Spline from '@classes/Spline'
-// import Cube from '@classes/Cube'
-// import Parallax from '@classes/ParallaxClass'
-
+import Infos from '@classes/Infos'
 class MainThreeScene {
 	constructor() {
 		this.bind()
+		this.scene
+		this.cube
+		this.renderer
+		this.raycaster
+		this.currentIntersect
+		this.mouse
+		this.y = 0
+		this.position = 0
+		this.tick = 0
 	}
 
 	init(container) {
@@ -36,10 +43,8 @@ class MainThreeScene {
 		// Parallax.init(this.camera)
 		Floor.init(this.scene)
 		Spline.init(this.scene)
-		// Cube.init(this.scene)
 		Model.init(this.scene)
-
-		// this.cube = Cube.mesh
+		Infos.init(this.scene)
 
 		MyGUI.hide()
 		if (config.myGui) MyGUI.show()
@@ -60,13 +65,18 @@ class MainThreeScene {
 
 		this.raycaster.setFromCamera(this.mouse, this.camera)
 
-		const objectsToRaycast = Model.scene.children
+		let objectsToRaycast = []
+
+		if (Model.fox) objectsToRaycast.push(...Model.fox.children)
+
 		const intersect = this.raycaster.intersectObjects(objectsToRaycast)
 
 		if (intersect.length > 0) {
 			document.querySelector('html, body').style.cursor = 'pointer'
+			this.currentIntersect = intersect[0]
 		} else {
 			document.querySelector('html, body').style.cursor = 'default'
+			this.currentIntersect = null
 		}
 
 		this.renderer.render(this.scene, this.camera)
