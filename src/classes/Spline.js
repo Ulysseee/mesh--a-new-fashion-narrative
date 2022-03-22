@@ -29,11 +29,11 @@ class Spline {
 		this.scene = scene
 
 		this.curve = new CatmullRomCurve3([
-			new Vector3(10, 1, 0),
+			new Vector3(10, 0, 0),
 			new Vector3(-10, 0, -10),
-			new Vector3(10, 10, -20),
+			new Vector3(10, 0, -20),
 			new Vector3(-10, 0, -30),
-			new Vector3(10, 4, -40)
+			new Vector3(10, 0, -40)
 		])
 
 		const points = this.curve.getPoints(50)

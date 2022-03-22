@@ -5,21 +5,20 @@ import LoadingManager from './LoadingClass'
 class Model {
 	constructor() {
 		this.bind()
-		this.mesh
 		this.modelLoader = new GLTFLoader(LoadingManager)
 	}
 
 	init(scene) {
 		this.scene = scene
 
-		this.modelLoader.load('/Fox/glTF/Fox.gltf', (gltf) => {
+		this.modelLoader.load('/models/Fox/glTF/Fox.gltf', (gltf) => {
 			gltf.scene.traverse((child) => {
-				console.log(child)
 				if (child instanceof Mesh) {
 					gltf.scene.scale.set(0.025, 0.025, 0.025)
 				}
 			})
-			gltf.scene.position.set(2, 2, -4)
+			gltf.scene.position.set(-4, 0, 2)
+			gltf.scene.rotateY(1.9)
 			this.scene.add(gltf.scene)
 		})
 	}
