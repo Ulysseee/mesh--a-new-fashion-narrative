@@ -8,12 +8,15 @@ import {
 
 import gsap from 'gsap'
 
+import MyGUI from '@utils/MyGUI'
+
 import MainThreeScene from '@classes/MainThreeScene'
 
 class Spline {
 	constructor() {
 		this.bind()
 		this.scene
+		this.intensity = 0.00005
 		this.scroll = {
 			current: 0,
 			target: 0,
@@ -42,11 +45,19 @@ class Spline {
 
 		this.scene.add(this.splineObject)
 
+		const scrollFolder = MyGUI.addFolder('Scroll')
+		scrollFolder
+			.add(this, 'intensity')
+			.min(0.00001)
+			.max(0.00009)
+			.step(0.00001)
+			.name('Scroll strength')
+
 		window.addEventListener('wheel', this.scrollCanvas)
 	}
 
 	scrollCanvas({ deltaY }) {
-		this.scroll.target += deltaY * 0.00009
+		this.scroll.target += deltaY * this.intensity
 	}
 
 	update() {
