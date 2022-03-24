@@ -43,9 +43,18 @@ export default {
 	left: 0;
 	z-index: 2;
 	color: white;
+	margin: 15px;
 
 	h4 {
 		margin: 15px 0;
+		font-family: 'Desolator Bold';
+		text-transform: uppercase;
+	}
+
+	p {
+		font-family: 'MonumentExtended Light';
+		font-size: 0.725rem;
+		line-height: 1.5;
 	}
 }
 </style>

@@ -8,7 +8,6 @@ import Mouse from '@utils/Mouse'
 import Camera from '@classes/Camera'
 import Model from '@classes/Model'
 import Spline from '@classes/Spline'
-import Infos from '@classes/Infos'
 class MainThreeScene {
 	constructor() {
 		this.bind()
@@ -60,7 +59,6 @@ class MainThreeScene {
 		// Floor.init(this.scene)
 		Spline.init(this.scene)
 		Model.init(this.scene)
-		Infos.init(this.scene)
 
 		MyGUI.hide()
 		if (config.myGui) MyGUI.show()

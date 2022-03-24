@@ -25,11 +25,4 @@ body {
 	height: 100vh;
 	overflow: hidden;
 }
-*,
-*:after,
-*:before {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
 </style>

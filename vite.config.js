@@ -12,24 +12,20 @@ export default defineConfig({
 	assetsInclude: ['**/*.gltf'],
 	plugins: [glsl(), vue()],
 
-	// css: {
-	// 	preprocessorOptions: {
-	// 		scss: {
-	// 			additionalData: `
-	//           @import "./src/styles/_animations.scss";
-	//           @import "./src/styles/_variables.scss";
-	//           @import "./src/styles/_mixins.scss";
-	//           @import "./src/styles/_helpers.scss";
-	//         `
-	// 		}
-	// 	}
-	// },
-
 	resolve: {
 		alias: [
 			{ find: '@classes', replacement: '/src/classes' },
+			{ find: '@scss', replacement: '/src/scss' },
 			{ find: '@shaders', replacement: '/src/shaders' },
 			{ find: '@utils', replacement: '/src/utils' }
 		]
+	},
+
+	preprocessorOptions: {
+		scss: {
+			sassOptions: {
+				outputStyle: 'compressed'
+			}
+		}
 	}
 })
