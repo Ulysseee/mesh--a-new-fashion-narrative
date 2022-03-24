@@ -16,7 +16,7 @@ class Spline {
 	constructor() {
 		this.bind()
 		this.scene
-		this.intensity = 0.00005
+		this.intensity = 0.00008
 		this.scroll = {
 			current: 0,
 			target: 0,
