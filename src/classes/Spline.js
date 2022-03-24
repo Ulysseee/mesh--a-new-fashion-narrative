@@ -30,7 +30,15 @@ class Spline {
 
 		this.curve = new CatmullRomCurve3([
 			new Vector3(0, 0, -0),
-			new Vector3(0, 0, -50)
+			new Vector3(-3, 0, -20),
+			new Vector3(-7, 0, -25),
+			new Vector3(-11, 0, -34),
+			new Vector3(-8, 0, -40),
+			new Vector3(0, 0, -45),
+			new Vector3(8, 0, -40),
+			new Vector3(11, 0, -34),
+			new Vector3(7, 0, -25),
+			new Vector3(3, 0, -20)
 		])
 
 		const points = this.curve.getPoints(50)
@@ -72,16 +80,18 @@ class Spline {
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)
-		MainThreeScene.camera.position.set(camPos.x, camPos.y + 2, camPos.z)
+		MainThreeScene.camera.position.set(camPos.x, camPos.y + 2.5, camPos.z)
 
-		if (
-			MainThreeScene.camera.position.z <=
-			this.curve.points[this.curve.points.length - 1].z + 2
-		) {
-			this.scroll.current = 0
-			this.scroll.target = 0
-			MainThreeScene.camera.position.z = 0
-		}
+		// if (
+		// 	MainThreeScene.camera.position.z <=
+		// 		this.curve.points[this.curve.points.length - 1].z &&
+		// ) {
+		// 	console.log(MainThreeScene.camera.position.z)
+		// 	console.log(this.curve.points[this.curve.points.length - 1].z)
+		// 	this.scroll.current = 0
+		// 	this.scroll.target = 0
+		// 	MainThreeScene.camera.position.z = 0
+		// }
 
 		const tangent = this.curve.getTangent(this.scroll.current)
 		MainThreeScene.camera.rotation.y = -tangent.x

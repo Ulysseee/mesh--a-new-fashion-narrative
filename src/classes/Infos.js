@@ -3,8 +3,6 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import LoadingManager from './LoadingClass'
 
-import MainThreeScene from '@classes/MainThreeScene'
-
 class Infos {
 	constructor() {
 		this.bind()
@@ -34,23 +32,13 @@ class Infos {
 				this.text = new Mesh(textGeometry, this.textMaterial)
 				this.text.position.set(-1, 0, 1)
 				this.text.rotateY((3 * Math.PI) / 4)
-
-				window.addEventListener('click', this.handleClick)
 			}
 		)
 	}
 
-	handleClick() {
-		if (MainThreeScene.currentIntersect) {
-			this.scene.add(this.text)
-		}
-	}
-
 	update() {}
 
-	bind() {
-		this.handleClick = this.handleClick.bind(this)
-	}
+	bind() {}
 }
 
 const _instance = new Infos()

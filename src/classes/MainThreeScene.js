@@ -21,6 +21,7 @@ class MainThreeScene {
 		this.mouse
 		this.y = 0
 		this.tick = 0
+		this.isInfosActive = false
 	}
 
 	init(container) {
@@ -38,9 +39,9 @@ class MainThreeScene {
 
 		this.scene = new Scene()
 
-		const ambientLight = new AmbientLight(0xffffff, 1.5)
+		const ambientLight = new AmbientLight(0xffffff, 0.5)
 		const spotLight = new SpotLight(0xffffff)
-		spotLight.position.set(10, 10, 10)
+		spotLight.position.set(10, 80, 10)
 
 		spotLight.castShadow = true
 
@@ -77,13 +78,12 @@ class MainThreeScene {
 
 	update() {
 		Spline.update()
-		// Parallax.update();
 
 		this.raycaster.setFromCamera(this.mouse, this.camera)
 
 		let objectsToRaycast = []
 
-		if (Model.fox) objectsToRaycast.push(...Model.fox.children)
+		if (Model.cloth) objectsToRaycast.push(...Model.cloth.children)
 
 		const intersect = this.raycaster.intersectObjects(objectsToRaycast)
 
