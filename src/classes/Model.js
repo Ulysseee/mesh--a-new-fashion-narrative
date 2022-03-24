@@ -3,8 +3,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import LoadingManager from './LoadingClass'
 
-import MainThreeScene from '@classes/MainThreeScene'
-
 class Model {
 	constructor() {
 		this.bind()
@@ -45,19 +43,6 @@ class Model {
 			})
 		} catch (error) {
 			console.log(error)
-		}
-
-		window.addEventListener('click', this.handleClick)
-	}
-
-	handleClick() {
-		if (MainThreeScene.currentIntersect) {
-			console.log(MainThreeScene.isInfosActive)
-			MainThreeScene.isInfosActive = true
-			// MainThreeScene.isInfosActive
-			// 	? (MainThreeScene.isInfosActive = false)
-			// 	: (MainThreeScene.isInfosActive = true)
-			console.log(MainThreeScene.isInfosActive)
 		}
 	}
 

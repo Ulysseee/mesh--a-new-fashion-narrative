@@ -14,14 +14,21 @@ import MainThreeScene from '@classes/MainThreeScene'
 export default {
 	name: 'InfosArea',
 	data() {
-		console.log(MainThreeScene.isInfosActive)
 		return {
-			isVisble: MainThreeScene.isInfosActive ? true : false
+			isVisble: false
 		}
+	},
+
+	mounted() {
+		MainThreeScene.handleClick = this.handleClick
 	},
 	methods: {
 		handleClick() {
-			console.log(this.isVisble)
+			if (MainThreeScene.currentIntersect) {
+				this.isVisble = true
+			} else {
+				this.isVisble = false
+			}
 		}
 	}
 }

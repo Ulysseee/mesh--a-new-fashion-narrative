@@ -7,7 +7,6 @@ import Mouse from '@utils/Mouse'
 
 import Camera from '@classes/Camera'
 import Model from '@classes/Model'
-import Floor from '@classes/Floor'
 import Spline from '@classes/Spline'
 import Infos from '@classes/Infos'
 class MainThreeScene {
@@ -57,7 +56,7 @@ class MainThreeScene {
 
 		Camera.init(this.renderer)
 		this.camera = Camera.camera
-		// Parallax.init(this.camera)
+
 		// Floor.init(this.scene)
 		Spline.init(this.scene)
 		Model.init(this.scene)
@@ -73,6 +72,8 @@ class MainThreeScene {
 		//RENDER LOOP AND WINDOW SIZE UPDATER SETUP
 		window.addEventListener('resize', this.resizeCanvas)
 		window.addEventListener('mousemove', Mouse.getMousePos)
+		window.addEventListener('click', this.handleClick)
+
 		RAF.subscribe('threeSceneUpdate', this.update)
 	}
 
@@ -89,6 +90,7 @@ class MainThreeScene {
 
 		if (intersect.length > 0) {
 			document.querySelector('html, body').style.cursor = 'pointer'
+
 			this.currentIntersect = intersect[0]
 		} else {
 			document.querySelector('html, body').style.cursor = 'default'
