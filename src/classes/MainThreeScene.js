@@ -1,4 +1,4 @@
-import { WebGLRenderer, Scene, Raycaster, AmbientLight } from 'three'
+import { WebGLRenderer, Scene, Raycaster, AmbientLight, SpotLight } from 'three'
 
 import RAF from '@utils/RAF'
 import config from '@utils/config'
@@ -20,28 +20,44 @@ class MainThreeScene {
 		this.currentIntersect
 		this.mouse
 		this.y = 0
-		this.position = 0
 		this.tick = 0
 	}
 
 	init(container) {
 		//RENDERER SETUP
-		this.renderer = new WebGLRenderer({ antialias: true })
+		this.renderer = new WebGLRenderer({
+			antialias: true,
+			logarithmicDepthBuffer: true
+		})
 		this.renderer.setSize(window.innerWidth, window.innerHeight)
 		this.renderer.debug.checkShaderErrors = true
+
 		container.appendChild(this.renderer.domElement)
 
 		//MAIN SCENE INSTANCE
 
 		this.scene = new Scene()
 
-		const ambientLight = new AmbientLight(0xffffff, 0.8)
+		const ambientLight = new AmbientLight(0xffffff, 1.5)
+		const spotLight = new SpotLight(0xffffff)
+		spotLight.position.set(10, 10, 10)
+
+		spotLight.castShadow = true
+
+		spotLight.shadow.mapSize.width = 1024
+		spotLight.shadow.mapSize.height = 1024
+
+		spotLight.shadow.camera.near = 500
+		spotLight.shadow.camera.far = 4000
+		spotLight.shadow.camera.fov = 30
+
+		this.scene.add(spotLight)
 		this.scene.add(ambientLight)
 
 		Camera.init(this.renderer)
 		this.camera = Camera.camera
 		// Parallax.init(this.camera)
-		Floor.init(this.scene)
+		// Floor.init(this.scene)
 		Spline.init(this.scene)
 		Model.init(this.scene)
 		Infos.init(this.scene)

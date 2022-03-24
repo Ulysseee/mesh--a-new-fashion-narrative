@@ -14,9 +14,9 @@ class Camera {
 
 		//CAMERA AND ORBIT CONTROLLER
 		this.camera = new PerspectiveCamera(
-			100,
+			75,
 			window.innerWidth / window.innerHeight,
-			1,
+			0.01,
 			10000
 		)
 
