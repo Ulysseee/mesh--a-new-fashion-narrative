@@ -93,8 +93,9 @@ class Spline {
 		// 	MainThreeScene.camera.position.z = 0
 		// }
 
-		const tangent = this.curve.getTangent(this.scroll.current)
-		MainThreeScene.camera.rotation.y = -tangent.x
+		// const tangent = this.curve.getTangent(this.scroll.current)
+		// MainThreeScene.camera.rotation.y = -tangent.x
+		MainThreeScene.camera.lookAt(0, 0, -32)
 	}
 
 	bind() {

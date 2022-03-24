@@ -24,11 +24,9 @@ export default {
 	},
 	methods: {
 		handleClick() {
-			if (MainThreeScene.currentIntersect) {
-				this.isVisble = true
-			} else {
-				this.isVisble = false
-			}
+			MainThreeScene.currentIntersect
+				? (this.isVisble = true)
+				: (this.isVisble = false)
 		}
 	}
 }
