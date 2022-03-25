@@ -1,21 +1,54 @@
 <template>
 	<div class="threeScene">
-		<div ref="container" class="container" />
+		<canvas ref="container" class="container"></canvas>
 	</div>
+
+	<div class="music" @click="togglePlay">MUSIC ON/OFF</div>
 </template>
 
 <script>
-import MainThreeScene from '../classes/MainThreeScene'
+import Experience from '@classes/Experience'
+import Audio from '@classes/Audio'
 export default {
 	name: 'ThreeScene',
 	props: {
 		msg: String
 	},
+
+	data() {
+		return {
+			initFlag: false,
+			playFlag: false
+		}
+	},
 	mounted() {
-		MainThreeScene.init(this.$refs.container)
+		new Experience(this.$refs.container)
+	},
+
+	methods: {
+		togglePlay() {
+			if (!this.initFlag) {
+				Audio.init()
+				this.initFlag = true
+			}
+			if (!this.playFlag) {
+				Audio.play()
+				this.playFlag = true
+			} else {
+				Audio.pause()
+				this.playFlag = false
+			}
+		}
 	}
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped lang="scss">
+.music {
+	z-index: 2;
+	background-color: red;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+</style>

@@ -1,0 +1,19 @@
+@import '@scss/utils/_mixins';
+
+@include font-face('Desolator', fonts/Desolator, null, null, woff);
+@include font-face('Desolator Bold', fonts/Desolator-Bold, null, null, woff);
+
+@include font-face(
+	'MonumentExtended Light',
+	fonts/MonumentExtended-Light,
+	light,
+	null,
+	woff
+);
+@include font-face(
+	'MonumentExtended Regular',
+	fonts/MonumentExtended-Regular,
+	Regular,
+	null,
+	woff
+);

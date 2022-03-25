@@ -1,13 +1,20 @@
 <template>
 	<ThreeScene />
+	<InfosArea />
+	<LoadingScreen />
 </template>
 
 <script>
 import ThreeScene from './components/ThreeScene.vue'
+import LoadingScreen from './components/LoadingScreen.vue'
+import InfosArea from './components/Infos.vue'
+
 export default {
 	name: 'App',
 	components: {
-		ThreeScene
+		ThreeScene,
+		LoadingScreen,
+		InfosArea
 	}
 }
 </script>
@@ -17,10 +24,5 @@ body {
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
-}
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
 }
 </style>

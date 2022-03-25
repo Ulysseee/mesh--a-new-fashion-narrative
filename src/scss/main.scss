@@ -1,0 +1,13 @@
+@import '@scss/utils/_fonts';
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+}

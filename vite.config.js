@@ -14,8 +14,18 @@ export default defineConfig({
 
 	resolve: {
 		alias: [
-			{ find: '@classes', replacement: '/src/classes' },
-			{ find: '@shaders', replacement: '/src/shaders' }
+			{ find: '@classes', replacement: '/src/Experience' },
+			{ find: '@scss', replacement: '/src/scss' },
+			{ find: '@shaders', replacement: '/src/Experience/shaders' },
+			{ find: '@utils', replacement: '/src/Experience/utils' }
 		]
+	},
+
+	preprocessorOptions: {
+		scss: {
+			sassOptions: {
+				outputStyle: 'compressed'
+			}
+		}
 	}
 })
