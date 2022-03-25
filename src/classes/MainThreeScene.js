@@ -1,4 +1,11 @@
-import { WebGLRenderer, Scene, Raycaster, AmbientLight, SpotLight } from 'three'
+import {
+	WebGLRenderer,
+	Scene,
+	Raycaster,
+	AmbientLight,
+	SpotLight,
+	GridHelper
+} from 'three'
 
 import RAF from '@utils/RAF'
 import config from '@utils/config'
@@ -43,6 +50,10 @@ class MainThreeScene {
 
 		spotLight.castShadow = true
 
+		this.grid = new GridHelper(48, 18)
+		this.grid.position.set(0, 0, -30)
+		this.scene.add(this.grid)
+
 		this.scene.add(spotLight)
 		this.scene.add(ambientLight)
 
@@ -68,6 +79,7 @@ class MainThreeScene {
 
 	update() {
 		Spline.update()
+		Debug.stats.update()
 
 		this.raycaster.setFromCamera(this.mouse, this.camera)
 
