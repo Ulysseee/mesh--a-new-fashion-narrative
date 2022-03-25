@@ -3,7 +3,7 @@ import {
 	Scene,
 	Raycaster,
 	AmbientLight,
-	SpotLight,
+	PointLight,
 	GridHelper
 } from 'three'
 
@@ -44,17 +44,17 @@ class MainThreeScene {
 
 		this.scene = new Scene()
 
-		const ambientLight = new AmbientLight(0xffffff, 0.5)
-		const spotLight = new SpotLight(0xffffff)
-		spotLight.position.set(10, 80, 10)
-
-		spotLight.castShadow = true
-
 		this.grid = new GridHelper(48, 18)
 		this.grid.position.set(0, 0, -30)
 		this.scene.add(this.grid)
 
-		this.scene.add(spotLight)
+		const ambientLight = new AmbientLight(0xffffff, 0.6)
+		const pointLight = new PointLight(0xffffff, 0.35)
+
+		pointLight.position.set(0, 10, -35)
+		pointLight.castShadow = true
+
+		this.scene.add(pointLight)
 		this.scene.add(ambientLight)
 
 		if (config.myGui) this.debug = Debug.initGui()
