@@ -13,6 +13,7 @@
     "gsap": "^3.9.1",
     "lil-gui": "^0.16.1",
     "three": "^0.138.0",
+    "tweakpane": "^3.0.7",
     "vue": "^3.2.25"
   },
   "devDependencies": {

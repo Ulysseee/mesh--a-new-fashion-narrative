@@ -2,7 +2,7 @@ import { WebGLRenderer, Scene, Raycaster, AmbientLight, SpotLight } from 'three'
 
 import RAF from '@utils/RAF'
 import config from '@utils/config'
-import MyGUI from '@utils/MyGUI'
+import Debug from '@utils/Debug'
 import Mouse from '@utils/Mouse'
 
 import Camera from '@classes/Camera'
@@ -43,25 +43,16 @@ class MainThreeScene {
 
 		spotLight.castShadow = true
 
-		spotLight.shadow.mapSize.width = 1024
-		spotLight.shadow.mapSize.height = 1024
-
-		spotLight.shadow.camera.near = 500
-		spotLight.shadow.camera.far = 4000
-		spotLight.shadow.camera.fov = 30
-
 		this.scene.add(spotLight)
 		this.scene.add(ambientLight)
+
+		if (config.myGui) this.debug = Debug.initGui()
 
 		Camera.init(this.renderer)
 		this.camera = Camera.camera
 
-		// Floor.init(this.scene)
 		Spline.init(this.scene)
 		Model.init(this.scene)
-
-		MyGUI.hide()
-		if (config.myGui) MyGUI.show()
 
 		this.mouse = Mouse.mouse
 
