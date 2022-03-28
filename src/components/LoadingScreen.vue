@@ -8,7 +8,7 @@
 			<div class="progressBar">
 				<div
 					class="progressFill"
-					:style="{ width: progress + '%' }"
+					:style="{ maxWidth: `${progress}%`, width: `${progress}%` }"
 				></div>
 			</div>
 			<div class="progressUrl">{{ progressUrl }}</div>
@@ -88,7 +88,7 @@ export default {
 		height: 25px;
 	}
 	.progressFill {
-		width: 50%;
+		width: 0%;
 		height: 100%;
 		background: #bc13fe;
 		transition: all 0.3s;

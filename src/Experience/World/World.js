@@ -35,10 +35,6 @@ export default class World {
 		})
 	}
 
-	handleClick() {
-		console.log(this.currentIntersect)
-	}
-
 	// setSounds() {
 	// 	this.sounds = new Sounds({
 	// 		debug: this.debugFolder,

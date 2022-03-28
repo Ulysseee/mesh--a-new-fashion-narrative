@@ -48,7 +48,7 @@ export default class Resources extends EventEmitter {
 		this.items[source.name] = file
 
 		this.loaded++
-
+		console.log('percent', this.loaded / this.toLoad)
 		this.trigger('progress', [this.loaded / this.toLoad, source.path])
 
 		if (this.loaded === this.toLoad) {
