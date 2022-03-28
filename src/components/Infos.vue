@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import MainThreeScene from '@classes/MainThreeScene'
+import Experience from '@classes/Experience'
 export default {
 	name: 'InfosArea',
 	data() {
@@ -20,11 +20,12 @@ export default {
 	},
 
 	mounted() {
-		MainThreeScene.handleClick = this.handleClick
+		this.experience = new Experience()
+		this.experience.world.handleClick = this.handleClick
 	},
 	methods: {
 		handleClick() {
-			MainThreeScene.currentIntersect
+			this.experience.world.currentIntersect
 				? (this.isVisble = true)
 				: (this.isVisble = false)
 		}
@@ -34,7 +35,8 @@ export default {
 
 <style scoped lang="scss">
 .hidden {
-	display: none;
+	opacity: 0;
+	pointer-events: none;
 }
 .infos {
 	width: 400px;
@@ -44,6 +46,7 @@ export default {
 	z-index: 2;
 	color: white;
 	margin: 15px;
+	transition: opacity 0.4s ease-in-out;
 
 	h4 {
 		margin: 15px 0;

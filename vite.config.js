@@ -14,10 +14,10 @@ export default defineConfig({
 
 	resolve: {
 		alias: [
-			{ find: '@classes', replacement: '/src/classes' },
+			{ find: '@classes', replacement: '/src/Experience' },
 			{ find: '@scss', replacement: '/src/scss' },
-			{ find: '@shaders', replacement: '/src/shaders' },
-			{ find: '@utils', replacement: '/src/utils' }
+			{ find: '@shaders', replacement: '/src/Experience/shaders' },
+			{ find: '@utils', replacement: '/src/Experience/utils' }
 		]
 	},
 

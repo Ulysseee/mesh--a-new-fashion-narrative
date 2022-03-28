@@ -1,6 +1,4 @@
-import RAF from '../utils/RAF'
-
-class SoundClass {
+export default class SoundClass {
 	constructor(audioUrl) {
 		this.ctx
 		this.audio
@@ -29,14 +27,14 @@ class SoundClass {
 		this.audio.play()
 
 		this.flag = true
-		RAF.subscribe('audioUpdate', this.update)
+		// RAF.subscribe('audioUpdate', this.update)
 	}
 
 	pause() {
 		this.audio.pause()
 
 		this.flag = false
-		RAF.unsubscribe('audioUpdate')
+		// RAF.unsubscribe('audioUpdate')
 	}
 
 	update() {
@@ -49,5 +47,4 @@ class SoundClass {
 	}
 }
 
-const _instance = new SoundClass('/assets/music.mp3')
-export default _instance
+// const _instance = new SoundClass('/assets/music.mp3')

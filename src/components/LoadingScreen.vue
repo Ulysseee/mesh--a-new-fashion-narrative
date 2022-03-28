@@ -8,7 +8,7 @@
 			<div class="progressBar">
 				<div
 					class="progressFill"
-					:style="{ width: progress + '%' }"
+					:style="{ maxWidth: `${progress}%`, width: `${progress}%` }"
 				></div>
 			</div>
 			<div class="progressUrl">{{ progressUrl }}</div>
@@ -19,7 +19,8 @@
 </template>
 
 <script>
-import LoadingClass from '../classes/LoadingClass'
+import Experience from '../Experience/Experience'
+
 export default {
 	name: 'LoadingScreen',
 	data() {
@@ -28,20 +29,20 @@ export default {
 			progressUrl: ''
 		}
 	},
+
 	mounted() {
-		LoadingClass.onProgress = this.onProgress
-		LoadingClass.onLoad = this.onLoad
-	},
-	methods: {
-		onProgress(url, loaded, total) {
-			this.progressUrl = url
-			this.progress = (loaded / total) * 100
-		},
-		onLoad() {
+		this.experience = new Experience()
+
+		this.experience.resources.on('progress', (percent, path) => {
+			this.progress = percent * 100
+			this.progressUrl = path
+		})
+
+		this.experience.resources.on('ready', () => {
 			setTimeout(() => {
 				this.$refs.loadingScreen.classList.add('finished')
-			}, 900)
-		}
+			}, 1000)
+		})
 	}
 }
 </script>
@@ -60,6 +61,7 @@ export default {
 	transition: opacity 0.5s;
 	display: flex;
 	align-items: center;
+
 	.wrapper {
 		display: flex;
 		flex-direction: column;
@@ -86,10 +88,10 @@ export default {
 		height: 25px;
 	}
 	.progressFill {
-		width: 50%;
+		width: 0%;
 		height: 100%;
 		background: #bc13fe;
-		transition: all 0.2s;
+		transition: all 0.3s;
 		border-radius: 30px;
 	}
 	.percent {

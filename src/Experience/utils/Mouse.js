@@ -1,6 +1,6 @@
 import { Vector2 } from 'three'
 
-class Mouse {
+export default class Mouse {
 	constructor() {
 		this.bind()
 		this.mouse = new Vector2()
@@ -15,6 +15,3 @@ class Mouse {
 		this.getMousePos = this.getMousePos.bind(this)
 	}
 }
-
-const _instance = new Mouse()
-export default _instance

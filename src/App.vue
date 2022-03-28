@@ -1,6 +1,6 @@
 <template>
-	<InfosArea />
 	<ThreeScene />
+	<InfosArea />
 	<LoadingScreen />
 </template>
 

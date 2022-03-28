@@ -1,13 +1,13 @@
 <template>
 	<div class="threeScene">
-		<div ref="container" class="container" />
+		<canvas ref="container" class="container"></canvas>
 	</div>
 
 	<div class="music" @click="togglePlay">MUSIC ON/OFF</div>
 </template>
 
 <script>
-import MainThreeScene from '@classes/MainThreeScene'
+import Experience from '@classes/Experience'
 import Audio from '@classes/Audio'
 export default {
 	name: 'ThreeScene',
@@ -22,8 +22,7 @@ export default {
 		}
 	},
 	mounted() {
-		Audio.init()
-		MainThreeScene.init(this.$refs.container)
+		new Experience(this.$refs.container)
 	},
 
 	methods: {

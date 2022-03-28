@@ -1,21 +1,26 @@
 import {
-	CatmullRomCurve3,
 	Vector3,
 	BufferGeometry,
 	LineBasicMaterial,
-	Line
+	Line,
+	CatmullRomCurve3
 } from 'three'
 
 import gsap from 'gsap'
 
 import Debug from '@utils/Debug'
+import Experience from '../Experience'
 
-import MainThreeScene from '@classes/MainThreeScene'
-
-class Spline {
+export default class Spline {
 	constructor() {
 		this.bind()
-		this.scene
+
+		this.experience = new Experience()
+		this.canvas = this.experience.canvas
+		this.sizes = this.experience.sizes
+		this.scene = this.experience.scene
+		this.camera = this.experience.camera
+
 		this.intensity = 0.00006
 		this.scroll = {
 			current: 0,
@@ -23,11 +28,12 @@ class Spline {
 			last: 0,
 			limit: 2
 		}
+
+		this.setSpline()
+		window.addEventListener('wheel', this.scrollCanvas)
 	}
 
-	init(scene) {
-		this.scene = scene
-
+	setSpline() {
 		this.curve = new CatmullRomCurve3([
 			new Vector3(0, 0, -0),
 			new Vector3(-3, 0, -20),
@@ -50,7 +56,9 @@ class Spline {
 
 		this.scene.add(this.splineObject)
 
-		const f = Debug.gui.addFolder({
+		this.debug = new Debug()
+
+		const f = this.debug.gui.addFolder({
 			title: 'Scroll',
 			expanded: true
 		})
@@ -60,8 +68,6 @@ class Spline {
 			max: 0.00009,
 			step: 0.00001
 		})
-
-		window.addEventListener('wheel', this.scrollCanvas)
 	}
 
 	scrollCanvas({ deltaY }) {
@@ -82,28 +88,25 @@ class Spline {
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)
-		MainThreeScene.camera.position.set(camPos.x, camPos.y + 2.5, camPos.z)
+		this.camera.instance.position.set(camPos.x, camPos.y + 2.5, camPos.z)
 
 		// if (
-		// 	MainThreeScene.camera.position.z <=
+		// 	this.camera.instance.position.z <=
 		// 		this.curve.points[this.curve.points.length - 1].z &&
 		// ) {
-		// 	console.log(MainThreeScene.camera.position.z)
+		// 	console.log(this.camera.instance.position.z)
 		// 	console.log(this.curve.points[this.curve.points.length - 1].z)
 		// 	this.scroll.current = 0
 		// 	this.scroll.target = 0
-		// 	MainThreeScene.camera.position.z = 0
+		// 	this.camera.instance.position.z = 0
 		// }
 
 		// const tangent = this.curve.getTangent(this.scroll.current)
-		// MainThreeScene.camera.rotation.y = -tangent.x
-		MainThreeScene.camera.lookAt(0, 0, -32)
+		// this.camera.instance.rotation.y = -tangent.x
+		this.camera.instance.lookAt(0, 0, -32)
 	}
 
 	bind() {
 		this.scrollCanvas = this.scrollCanvas.bind(this)
 	}
 }
-
-const _instance = new Spline()
-export default _instance
