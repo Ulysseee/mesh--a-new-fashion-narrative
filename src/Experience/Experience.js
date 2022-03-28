@@ -1,5 +1,5 @@
 import { Scene } from 'three'
-// import Debug from '@utils/Debug.js'
+import Debug from '@utils/Debug.js'
 import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Camera from './Camera.js'
@@ -8,6 +8,7 @@ import World from './World/World.js'
 import Resources from '@utils/Resources.js'
 
 import sources from './sources.js'
+import config from '@utils/config'
 
 export default class Experience {
 	constructor(_canvas) {
@@ -21,7 +22,6 @@ export default class Experience {
 		this.canvas = _canvas
 
 		// Setup
-		// this.debug = new Debug()
 		this.sizes = new Sizes()
 		this.time = new Time()
 		this.scene = new Scene()
@@ -29,6 +29,7 @@ export default class Experience {
 		this.camera = new Camera()
 		this.renderer = new Renderer()
 		this.world = new World()
+		this.setDebug()
 
 		// Resize event
 		this.sizes.on('resize', () => {
@@ -39,17 +40,11 @@ export default class Experience {
 		this.update()
 	}
 
-	// setDebug() {
-	// 	if (this.config.debug) {
-	// 		this.debug = new GUI()
-	// 	}
-	// }
-
-	// setStats() {
-	// 	if (this.config.debug) {
-	// 		this.stats = new Stats(true)
-	// 	}
-	// }
+	setDebug() {
+		if (config.gui) {
+			this.debug = new Debug()
+		}
+	}
 
 	update() {
 		this.camera.update()
@@ -57,6 +52,8 @@ export default class Experience {
 		if (this.world) this.world.update()
 
 		if (this.renderer) this.renderer.update()
+
+		if (this.debug) this.debug.stats.update()
 
 		window.requestAnimationFrame(() => {
 			this.update()

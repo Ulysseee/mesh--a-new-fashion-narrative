@@ -58,10 +58,8 @@ export default class World {
 
 		let objectsToRaycast = []
 
-		// console.log(this.experience.scene.children[5].childre)
-
 		if (this.cloth)
-			objectsToRaycast.push(...this.experience.scene.children[7].children)
+			objectsToRaycast.push(...this.experience.scene.children[6].children)
 
 		const intersect = this.raycaster.intersectObjects(objectsToRaycast)
 

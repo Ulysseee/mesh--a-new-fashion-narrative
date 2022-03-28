@@ -1,17 +1,19 @@
-// import { Pane } from 'tweakpane'
+import { Pane } from 'tweakpane'
 
-// import StatsJs from '@utils/Stats'
-// export default class Debug {
-// 	constructor() {
-// 		this.gui
+import Stats from '@utils/Stats'
+export default class Debug {
+	constructor() {
+		if (Debug._instance) {
+			return Debug._instance
+		}
 
-// 		this.stats = new StatsJs()
-// 	}
+		Debug._instance = this
 
-// 	initGui() {
-// 		this.gui = new Pane({
-// 			title: 'Settings',
-// 			expanded: true
-// 		})
-// 	}
-// }
+		this.gui = new Pane({
+			title: 'Settings',
+			expanded: true
+		})
+
+		this.stats = new Stats(true)
+	}
+}

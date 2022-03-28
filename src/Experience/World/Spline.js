@@ -8,7 +8,7 @@ import {
 
 import gsap from 'gsap'
 
-// import Debug from '@utils/Debug'
+import Debug from '@utils/Debug'
 import Experience from '../Experience'
 
 export default class Spline {
@@ -56,18 +56,18 @@ export default class Spline {
 
 		this.scene.add(this.splineObject)
 
-		// console.log(Debug)
+		this.debug = new Debug()
 
-		// const f = Debug.gui.addFolder({
-		// 	title: 'Scroll',
-		// 	expanded: true
-		// })
+		const f = this.debug.gui.addFolder({
+			title: 'Scroll',
+			expanded: true
+		})
 
-		// f.addInput(this, 'intensity', {
-		// 	min: 0.00001,
-		// 	max: 0.00009,
-		// 	step: 0.00001
-		// })
+		f.addInput(this, 'intensity', {
+			min: 0.00001,
+			max: 0.00009,
+			step: 0.00001
+		})
 	}
 
 	scrollCanvas({ deltaY }) {
