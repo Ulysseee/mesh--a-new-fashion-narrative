@@ -15,6 +15,7 @@ export default class Cloth {
 
 	setModel() {
 		this.resource.position.set(0, 0, -32)
+		this.experience.items.push(this.resource)
 		this.scene.add(this.resource)
 
 		this.resource.traverse((child) => {

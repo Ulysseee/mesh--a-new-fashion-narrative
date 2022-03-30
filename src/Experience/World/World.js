@@ -52,12 +52,7 @@ export default class World {
 	update() {
 		this.raycaster.setFromCamera(this.mouse.mouse, this.camera.instance)
 
-		let objectsToRaycast = []
-
-		if (this.cloth)
-			objectsToRaycast.push(...this.experience.scene.children[6].children)
-
-		const intersect = this.raycaster.intersectObjects(objectsToRaycast)
+		const intersect = this.raycaster.intersectObjects(this.experience.items)
 
 		if (intersect.length > 0) {
 			document.querySelector('html, body').style.cursor = 'pointer'

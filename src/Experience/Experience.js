@@ -20,6 +20,7 @@ export default class Experience {
 
 		// Options
 		this.canvas = _canvas
+		this.items = []
 
 		// Setup
 		this.sizes = new Sizes()
