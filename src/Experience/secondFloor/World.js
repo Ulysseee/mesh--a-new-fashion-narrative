@@ -2,9 +2,9 @@
 
 import Experience from '../Experience.js'
 import Sky from './Sky.js'
-import Floor from './Floor.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
+import Grass from './Grass.js'
 
 export default class World {
 	constructor() {
@@ -28,7 +28,7 @@ export default class World {
 		this.resources.on('ready', () => {
 			// Setup
 			this.environment = new Environment()
-			this.floor = new Floor()
+			this.grass = new Grass()
 			this.sky = new Sky()
 		})
 	}

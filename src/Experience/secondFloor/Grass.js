@@ -13,7 +13,7 @@ export default class Grass {
 
 		this.t = 0
 		this.params = {
-			instanceNumber: 7000
+			instanceNumber: 200000
 		}
 
 		this.setGrass()
@@ -48,9 +48,9 @@ export default class Grass {
 
 		for (let i = 0; i < this.params.instanceNumber; i++) {
 			dummy.position.set(
-				(Math.random() - 0.5) * 10,
+				(Math.random() - 0.5) * 100,
 				0,
-				(Math.random() - 0.5) * 10
+				(Math.random() - 0.5) * 100
 			)
 
 			dummy.scale.setScalar(0.5 + Math.random() * 0.5)

@@ -4,8 +4,8 @@ import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
-// import SecondFloor from './secondFloor/World.js'
-import World from './World/World.js'
+import SecondFloor from './secondFloor/World.js'
+// import World from './World/World.js'
 import Resources from '@utils/Resources.js'
 
 import sources from './sources.js'
@@ -30,8 +30,8 @@ export default class Experience {
 		this.resources = new Resources(sources)
 		this.camera = new Camera()
 		this.renderer = new Renderer()
-		this.world = new World()
-		// this.secondFloor = new SecondFloor()
+		// this.world = new World()
+		this.secondFloor = new SecondFloor()
 		this.setDebug()
 
 		// Resize event
