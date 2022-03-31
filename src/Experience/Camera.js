@@ -1,7 +1,8 @@
 import { PerspectiveCamera, Vector3 } from 'three'
 import Experience from './Experience'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import config from '@utils/config.js'
+
+import config from '@utils/config'
 
 export default class Camera {
 	constructor() {

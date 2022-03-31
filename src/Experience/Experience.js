@@ -4,7 +4,7 @@ import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
-import SecondFloor from './secondFloor/World.js'
+// import SecondFloor from './secondFloor/World.js'
 import World from './World/World.js'
 import Resources from '@utils/Resources.js'
 
