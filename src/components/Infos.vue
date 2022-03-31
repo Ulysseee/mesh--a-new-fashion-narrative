@@ -21,7 +21,9 @@ export default {
 
 	mounted() {
 		this.experience = new Experience()
-		this.experience.world.handleClick = this.handleClick
+
+		if (this.experience.world)
+			this.experience.world.handleClick = this.handleClick
 	},
 	methods: {
 		handleClick() {
