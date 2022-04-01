@@ -4,7 +4,6 @@ import Experience from '../Experience.js'
 import Rdc from './Rdc.js'
 import Cloth from './Cloth.js'
 import Spline from './Spline.js'
-import Grass from './Grass.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
 
@@ -34,7 +33,6 @@ export default class World {
 			// Setup
 			this.spline = new Spline()
 			this.rdc = new Rdc()
-			this.grass = new Grass()
 			this.environment = new Environment()
 			this.cloth = new Cloth()
 		})
@@ -69,7 +67,6 @@ export default class World {
 		}
 
 		if (this.spline) this.spline.update()
-		if (this.grass) this.grass.update()
 	}
 
 	destroy() {}

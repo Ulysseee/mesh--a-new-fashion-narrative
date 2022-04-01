@@ -3,6 +3,12 @@
 		<canvas ref="container" class="container"></canvas>
 	</div>
 
+	<div class="loading-container">
+		<div class="loading-wrapper">
+			<div class="loading-bar"></div>
+		</div>
+	</div>
+
 	<div class="music" @click="togglePlay">MUSIC ON/OFF</div>
 </template>
 
