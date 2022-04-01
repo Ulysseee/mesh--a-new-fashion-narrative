@@ -1,5 +1,4 @@
-// import { Raycaster } from 'three'
-
+import * as THREE from 'three'
 import Experience from '../Experience.js'
 import Sky from './Sky.js'
 import Environment from './Environment.js'
@@ -13,6 +12,10 @@ export default class World {
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
 
+		// this.scene.fog = new THREE.Fog('lightblue', 1, 3)
+		this.scene.fog = new THREE.FogExp2(0x2f3640, 0.08)
+
+		console.log(this.scene.fog)
 		// this.raycaster = new Raycaster()
 		// this.currentIntersect = null
 		// this.isInfosActive = false
