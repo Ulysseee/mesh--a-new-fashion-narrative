@@ -45,8 +45,6 @@ void main() {
 	float displacement = noise * ( 0.3 * dispPower );
 	mvPosition.z -= displacement;
 
-	//
-
 	vec4 modelViewPosition = modelViewMatrix * mvPosition;
 	gl_Position = projectionMatrix * modelViewPosition;
 

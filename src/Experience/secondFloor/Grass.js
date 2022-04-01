@@ -1,4 +1,13 @@
-import { ShaderMaterial, Object3D, PlaneGeometry, InstancedMesh } from 'three'
+import {
+	ShaderMaterial,
+	MeshBasicMaterial,
+	Object3D,
+	PlaneGeometry,
+	ConeGeometry,
+	BufferGeometry,
+	BufferAttribute,
+	InstancedMesh
+} from 'three'
 
 import Experience from '../Experience'
 
@@ -13,7 +22,7 @@ export default class Grass {
 
 		this.t = 0
 		this.params = {
-			instanceNumber: 200000
+			instanceNumber: 100000
 		}
 
 		this.setGrass()
@@ -33,8 +42,10 @@ export default class Grass {
 		})
 
 		const dummy = new Object3D()
-		const geometry = new PlaneGeometry(0.06, 0.5, 1, 4)
-		geometry.translate(0, 0.5, 0) // move grass blade geometry lowest point at 0.
+		const geometry = new PlaneGeometry(0.04, 0.3, 1, 4)
+		// const geometry = new ConeGeometry(0.04, 0.5, 6, 4)
+
+		geometry.translate(0, 0, 0) // move grass blade geometry lowest point at 0.
 
 		this.instancedMesh = new InstancedMesh(
 			geometry,
@@ -48,9 +59,9 @@ export default class Grass {
 
 		for (let i = 0; i < this.params.instanceNumber; i++) {
 			dummy.position.set(
-				(Math.random() - 0.5) * 100,
+				(Math.random() - 0.5) * 48,
 				0,
-				(Math.random() - 0.5) * 100
+				(Math.random() - 0.5) * 48
 			)
 
 			dummy.scale.setScalar(0.5 + Math.random() * 0.5)

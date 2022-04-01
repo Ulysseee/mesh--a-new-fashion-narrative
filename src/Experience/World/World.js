@@ -1,10 +1,9 @@
-import { Raycaster, AxesHelper } from 'three'
+import { Raycaster } from 'three'
 
 import Experience from '../Experience.js'
 import Rdc from './Rdc.js'
 import Cloth from './Cloth.js'
 import Spline from './Spline.js'
-import Grass from './Grass.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
 
@@ -21,9 +20,6 @@ export default class World {
 
 		this.mouse = new Mouse()
 
-		const axesHelper = new AxesHelper(5)
-		this.scene.add(axesHelper)
-
 		window.addEventListener('mousemove', this.mouse.getMousePos)
 		window.addEventListener('click', () => {
 			this.handleClick()
@@ -34,7 +30,6 @@ export default class World {
 			// Setup
 			this.spline = new Spline()
 			this.rdc = new Rdc()
-			this.grass = new Grass()
 			this.environment = new Environment()
 			this.cloth = new Cloth()
 		})
@@ -44,13 +39,6 @@ export default class World {
 	// 	this.sounds = new Sounds({
 	// 		debug: this.debugFolder,
 	// 		time: this.time
-	// 	})
-	// }
-
-	// setReveal() {
-	// 	// Progress
-	// 	this.resources.on('progress', (_progress) => {
-	// 		// Update area
 	// 	})
 	// }
 
@@ -69,7 +57,6 @@ export default class World {
 		}
 
 		if (this.spline) this.spline.update()
-		if (this.grass) this.grass.update()
 	}
 
 	destroy() {}

@@ -15,25 +15,11 @@ export default class World {
 		// this.scene.fog = new THREE.Fog('lightblue', 1, 3)
 		this.scene.fog = new THREE.FogExp2(0x2f3640, 0.08)
 
-		console.log(this.scene.fog)
-		// this.raycaster = new Raycaster()
-		// this.currentIntersect = null
-		// this.isInfosActive = false
-
 		this.mouse = new Mouse()
 
-		// window.addEventListener('mousemove', this.mouse.getMousePos)
-		// window.addEventListener('click', () => {
-		// 	this.handleClick()
-		// })
-
-		// Wait for resources
-		this.resources.on('ready', () => {
-			// Setup
-			this.environment = new Environment()
-			this.grass = new Grass()
-			this.sky = new Sky()
-		})
+		this.environment = new Environment()
+		this.grass = new Grass()
+		this.sky = new Sky()
 	}
 
 	update() {
