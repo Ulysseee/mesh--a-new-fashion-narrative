@@ -36,7 +36,9 @@ export default class World {
 		})
 	}
 
-	update() {}
+	update() {
+		if (this.grass) this.grass.update()
+	}
 
 	destroy() {}
 }

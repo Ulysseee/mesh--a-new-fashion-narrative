@@ -62,7 +62,8 @@ export default class Experience {
 	update() {
 		this.camera.update()
 
-		if (this.world) this.world.update()
+		// if (this.world) this.world.update()
+		if (this.secondFloor) this.secondFloor.update()
 
 		if (this.renderer) this.renderer.update()
 
