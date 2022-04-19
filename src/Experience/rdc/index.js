@@ -29,7 +29,7 @@ export default class World {
 		this.resources.on('ready', () => {
 			// Setup
 			this.spline = new Spline()
-			this.rdc = new Rdc()
+			// this.rdc = new Rdc()
 			this.environment = new Environment()
 			this.cloth = new Cloth()
 		})
@@ -41,6 +41,8 @@ export default class World {
 	// 		time: this.time
 	// 	})
 	// }
+
+	handleClick() {}
 
 	update() {
 		this.raycaster.setFromCamera(this.mouse.mouse, this.camera.instance)

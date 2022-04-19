@@ -4,13 +4,14 @@ import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
-import SecondFloor from './secondFloor/World.js'
-import World from './World/World.js'
+import SecondFloor from './secondFloor/index.js'
+import RDC from './rdc/index.js'
+import World from './rdc/index.js'
 import Resources from '@utils/Resources.js'
 
 import gsap from 'gsap'
 
-import { rdc, first } from './sources.js'
+import { rdc, firstFloor } from './sources.js'
 import config from '@utils/config'
 
 export default class Experience {
@@ -30,7 +31,7 @@ export default class Experience {
 		this.time = new Time()
 		this.scene = new THREE.Scene()
 
-		this.resources = new Resources(first)
+		this.resources = new Resources(rdc)
 		this.camera = new Camera()
 		this.renderer = new Renderer()
 		// this.world = new World()
