@@ -5,7 +5,7 @@ import Mouse from '@utils/Mouse'
 import Grass from './Grass.js'
 import Portal from './Portal.js'
 
-export default class World {
+export default class SecondFloor {
 	constructor() {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
@@ -38,5 +38,15 @@ export default class World {
 
 	update() {
 		if (this.grass) this.grass.update()
+	}
+
+	destroy(obj) {
+		for (let i = this.scene.children.length - 1; i >= 0; i--) {
+			let child = this.scene.children[i]
+			if (child.name !== 'loader') {
+				this.scene.remove(child)
+			}
+		}
+		// console.log('HERE', obj)
 	}
 }

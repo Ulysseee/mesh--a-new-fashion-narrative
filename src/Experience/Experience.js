@@ -4,14 +4,13 @@ import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
-import SecondFloor from './secondFloor/index.js'
-import RDC from './rdc/index.js'
-import World from './rdc/index.js'
+import SecondFloor from './secondFloor/SecondFloor.js'
+import GroundFloor from './groundFloor/GroundFloor.js'
 import Resources from '@utils/Resources.js'
 
-import gsap from 'gsap'
+import gsap, { Power3 } from 'gsap'
 
-import { rdc, firstFloor } from './sources.js'
+import { rdc, firstFloor, secondFloor } from './sources.js'
 import config from '@utils/config'
 
 export default class Experience {
@@ -31,11 +30,11 @@ export default class Experience {
 		this.time = new Time()
 		this.scene = new THREE.Scene()
 
-		this.resources = new Resources(rdc)
+		this.resources = new Resources(secondFloor)
 		this.camera = new Camera()
 		this.renderer = new Renderer()
-		// this.world = new World()
 		this.secondFloor = new SecondFloor()
+		// this.groundFloor = new GroundFloor()
 		this.setDebug()
 
 		// Resize event
@@ -44,7 +43,9 @@ export default class Experience {
 		})
 
 		window.addEventListener('keydown', (e) => {
-			this.logKey(e)
+			if (`${e.code}` === 'Space') {
+				this.switch()
+			}
 		})
 
 		this.overlayGeometry = new THREE.PlaneGeometry(10, 10, 5, 5)
@@ -54,19 +55,19 @@ export default class Experience {
 				uAlpha: { value: 0 }
 			},
 			vertexShader: `
-        void main()
-        {
-            gl_Position = vec4(position, 1.0);
-        }
-    `,
+				void main()
+				{
+					gl_Position = vec4(position, 1.0);
+				}
+			`,
 			fragmentShader: `
-        uniform float uAlpha;
+				uniform float uAlpha;
 
-        void main()
-        {
-            gl_FragColor = vec4(1.0, 1.0, 1.0, uAlpha);
-        }
-    `
+				void main()
+				{
+					gl_FragColor = vec4(1.0, 1.0, 1.0, uAlpha);
+				}
+			`
 		})
 
 		this.overlayMaterial.needsUpdate = true
@@ -99,7 +100,7 @@ export default class Experience {
 	update() {
 		this.camera.update()
 
-		if (this.world) this.world.update()
+		if (this.groundFloor) this.groundFloor.update()
 		if (this.secondFloor) this.secondFloor.update()
 
 		if (this.renderer) this.renderer.update()
@@ -116,16 +117,29 @@ export default class Experience {
 		this.renderer.resize()
 	}
 
-	logKey(e) {
-		if (`${e.code}` === 'Space') {
-			this.destroy()
-		}
+	switch() {
+		gsap.to(this.overlayMaterial.uniforms.uAlpha, {
+			duration: 1,
+			value: 1,
+			ease: Power3.easeInOut
+		})
+
+		this.secondFloor.destroy(this.scene, this.overlay.uuid)
+		console.log(this.scene)
+		this.resources = new Resources(rdc)
+		this.groundFloor = new GroundFloor()
+
+		gsap.to(this.overlayMaterial.uniforms.uAlpha, {
+			duration: 1,
+			value: 0,
+			delay: 2,
+			ease: Power3.easeInOut
+		})
 	}
 
 	destroy() {
 		const loadingBarElement = document.querySelector('.loading-bar')
 		const loadingBarContainer = document.querySelector('.loading-container')
-
 		loadingBarContainer.style.opacity = 1
 
 		// Traverse the whole scene
@@ -149,7 +163,7 @@ export default class Experience {
 			loadingBarElement.style.width = `${percent * 100}%`
 		})
 
-		this.world = new World()
+		this.world = new GroundFloor()
 
 		this.resources.on('ready', () => {
 			setTimeout(() => {

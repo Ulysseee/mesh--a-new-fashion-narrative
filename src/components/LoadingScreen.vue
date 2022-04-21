@@ -55,9 +55,6 @@ export default {
 		})
 
 		this.experience.resources.on('ready', () => {
-			const spans = gsap.utils.selector(this.$refs.letters)
-			console.log(spans('.letter'))
-
 			gsap.timeline()
 				.to([this.$refs.progressUrl, this.$refs.percent], {
 					y: -85,

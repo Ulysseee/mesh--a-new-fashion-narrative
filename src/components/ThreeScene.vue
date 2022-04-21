@@ -3,11 +3,7 @@
 		<canvas ref="container" class="container"></canvas>
 	</div>
 
-	<div class="loading-container">
-		<div class="loading-wrapper">
-			<div class="loading-bar"></div>
-		</div>
-	</div>
+	<div class="loading"></div>
 
 	<div class="music" @click="togglePlay">MUSIC ON/OFF</div>
 </template>
@@ -56,5 +52,16 @@ export default {
 	position: absolute;
 	bottom: 0;
 	right: 0;
+}
+.loading {
+	width: 100vw;
+	height: 100vh;
+	opacity: 0;
+	position: absolute;
+	background: white;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	pointer-events: none;
 }
 </style>
