@@ -1,15 +1,16 @@
 import {
-	PlaneGeometry,
+	Color,
 	Mesh,
-	TextureLoader,
-	PlaneBufferGeometry,
-	MeshStandardMaterial,
-	ShaderMaterial,
-	InstancedBufferGeometry,
-	InstancedBufferAttribute,
+	Group,
 	Vector3,
 	Vector4,
-	Color,
+	TextureLoader,
+	PlaneGeometry,
+	PlaneBufferGeometry,
+	InstancedBufferGeometry,
+	InstancedBufferAttribute,
+	MeshStandardMaterial,
+	ShaderMaterial,
 	DoubleSide
 } from 'three'
 import SimplexNoise from 'simplex-noise'
@@ -30,6 +31,7 @@ export default class Grass {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.debug = this.experience.debug
+		this.group = new Group()
 
 		this.t = 0
 		this.params = {
@@ -115,15 +117,18 @@ export default class Grass {
 			v.y = this.getYPosition(v.x, v.z)
 		}
 		groundGeometry.computeVertexNormals()
-		groundGeometry.toBufferGeometry()
+		console.log(groundGeometry)
 		const groundMaterial = new MeshStandardMaterial({ color: 0x000f00 })
-		this.groundGeometry = new Mesh(
+		this.ground = new Mesh(
 			groundGeometry.toBufferGeometry(),
 			groundMaterial
 		)
+		this.ground.position.set(0, 0, 0)
 
-		// this.scene.add(this.ground)
-		// this.ground.position.set(0, -1, 0)
+		this.group.add(this.ground)
+		this.group.add(this.grass)
+
+		this.scene.add(this.group)
 	}
 
 	setDebug() {
@@ -166,6 +171,7 @@ export default class Grass {
 			const offsetX = Math.random() * width - width / 2
 			const offsetZ = Math.random() * width - width / 2
 			const offsetY = this.getYPosition(offsetX, offsetZ)
+			// const offsetY = 0
 			offsets.push(offsetX, offsetY, offsetZ)
 
 			//Define random growth directions
@@ -239,7 +245,7 @@ export default class Grass {
 
 	getYPosition(x, z) {
 		var y = 2 * simplex.noise2D(x / 50, z / 50)
-		y += 4 * simplex.noise2D(x / 100, z / 100)
+		y += 1 * simplex.noise2D(x / 100, z / 100)
 		y += 0.2 * simplex.noise2D(x / 10, z / 10)
 		return y
 	}
