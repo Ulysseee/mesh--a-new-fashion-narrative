@@ -34,5 +34,16 @@ export const secondFloor = [
 		name: 'clothModel',
 		type: 'objModel',
 		path: 'models/cloth.obj'
+	},
+	{
+		name: 'flower',
+		type: 'gltfModel',
+		path: 'models/flower.glb'
+	},
+
+	{
+		name: 'butterfly',
+		type: 'gltfModel',
+		path: 'models/butterfly.glb'
 	}
 ]

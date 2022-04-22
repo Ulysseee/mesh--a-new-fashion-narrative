@@ -4,7 +4,9 @@ import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
 import Grass from './Grass.js'
 import Portal from './Portal.js'
-
+import Butterfly from './Butterfly.js'
+import Flower from './Flower.js'
+import Particles from './Particles.js'
 export default class World {
 	constructor() {
 		this.experience = new Experience()
@@ -32,11 +34,16 @@ export default class World {
 			this.environment = new Environment()
 			this.grass = new Grass()
 			this.sky = new Sky()
+			this.butterfly = new Butterfly()
+			this.flower = new Flower()
 			this.portal = new Portal()
+			this.particles = new Particles()
 		})
 	}
 
 	update() {
 		if (this.grass) this.grass.update()
+		if (this.butterfly) this.butterfly.update()
+		if (this.flower) this.flower.update()
 	}
 }

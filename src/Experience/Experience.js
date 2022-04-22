@@ -5,13 +5,12 @@ import Time from '@utils/Time.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import SecondFloor from './secondFloor/index.js'
-import RDC from './rdc/index.js'
 import World from './rdc/index.js'
 import Resources from '@utils/Resources.js'
 
 import gsap from 'gsap'
 
-import { rdc, firstFloor } from './sources.js'
+import { rdc, firstFloor, secondFloor } from './sources.js'
 import config from '@utils/config'
 
 export default class Experience {
@@ -31,7 +30,7 @@ export default class Experience {
 		this.time = new Time()
 		this.scene = new THREE.Scene()
 
-		this.resources = new Resources(rdc)
+		this.resources = new Resources(secondFloor)
 		this.camera = new Camera()
 		this.renderer = new Renderer()
 		// this.world = new World()

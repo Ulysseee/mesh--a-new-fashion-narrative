@@ -14,7 +14,7 @@ export default class Environment {
 		this.grid.position.set(0, 0, -30)
 		this.scene.add(this.grid)
 
-		const ambientLight = new AmbientLight(0xffffff, 0.6)
+		const ambientLight = new AmbientLight(0xffffff, 1.1)
 		const pointLight = new PointLight(0xffffff, 0.35)
 
 		pointLight.position.set(0, 10, -35)
