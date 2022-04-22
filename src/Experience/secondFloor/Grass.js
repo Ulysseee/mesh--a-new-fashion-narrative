@@ -18,8 +18,8 @@ import { Geometry } from 'three/examples/jsm/deprecated/Geometry'
 
 import Experience from '../Experience'
 
-import grassFrag from '@shaders/newGrass.frag'
-import grassVert from '@shaders/newGrass.vert'
+import grassFrag from '@shaders/grass/newGrass.frag'
+import grassVert from '@shaders/grass/newGrass.vert'
 
 import bladeDiffuse from '/assets/blade_diffuse.jpg'
 import bladeAlpha from '/assets/blade_alpha.jpg'

@@ -27,9 +27,9 @@ export default class Butterfly {
 		for (let i = 0; i < 15; i++) {
 			let butterfly
 			butterfly = SkeletonUtils.clone(this.resource.scene)
-			butterfly.scale.multiplyScalar(0.45)
-			butterfly.position.y = MathUtils.randFloat(0, 3)
-			butterfly.position.x = MathUtils.randFloat(2.1, 0.8)
+			butterfly.scale.multiplyScalar(3)
+			butterfly.position.y = MathUtils.randFloat(10, 15)
+			butterfly.position.x = MathUtils.randFloat(-10, 10)
 			butterfly.rotation.y = this.offset
 
 			butterfly.rotation.y = Math.PI / 4

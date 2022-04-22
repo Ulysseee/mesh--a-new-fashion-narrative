@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
-import { patchShaders } from 'gl-noise'
+import firefliesFragmentShader from '@shaders/fireflies/fragment.glsl'
+import firefliesVertexShader from '@shaders/fireflies/vertex.glsl'
 
 export default class Particles {
 	constructor() {
@@ -8,101 +9,61 @@ export default class Particles {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.time = this.experience.time
-		// Resource
-		this.number = 1000
 
-		this.uniforms = {
-			pointTexture: {
-				value: new THREE.TextureLoader().load('/textures/parti.png')
-			}
-		}
 		this.setModel()
 	}
 
 	setModel() {
-		const radius = 200
+		this.firefliesGeometry = new THREE.BufferGeometry()
+		this.firefliesCount = 500
+		this.positionArray = new Float32Array(this.firefliesCount * 3)
+		this.scaleArray = new Float32Array(this.firefliesCount)
 
-		const geometry = new THREE.BufferGeometry()
+		for (let i = 0; i < this.firefliesCount; i++) {
+			this.positionArray[i * 3 + 0] = (Math.random() - 0.5) * 100
+			this.positionArray[i * 3 + 1] = Math.random() * 7
+			this.positionArray[i * 3 + 2] = (Math.random() - 0.5) * 100
 
-		const positions = []
-		const colors = []
-		const sizes = []
-
-		const color = new THREE.Color()
-
-		for (let i = 0; i < this.number; i++) {
-			positions.push((Math.random() * 2 - 1) * radius)
-			positions.push((Math.random() * 2 - 1) * radius)
-			positions.push((Math.random() * 2 - 1) * radius)
-
-			color.setHSL(i / this.number, 1.0, 0.5)
-
-			colors.push(color.r, color.g, color.b)
-
-			sizes.push(20)
+			this.scaleArray[i] = Math.random()
 		}
 
-		geometry.setAttribute(
+		this.firefliesGeometry.setAttribute(
 			'position',
-			new THREE.Float32BufferAttribute(positions, 3)
+			new THREE.BufferAttribute(this.positionArray, 3)
 		)
-		geometry.setAttribute(
-			'color',
-			new THREE.Float32BufferAttribute(colors, 3)
-		)
-		geometry.setAttribute(
-			'size',
-			new THREE.Float32BufferAttribute(sizes, 1).setUsage(
-				THREE.DynamicDrawUsage
-			)
+		this.firefliesGeometry.setAttribute(
+			'aScale',
+			new THREE.BufferAttribute(this.scaleArray, 1)
 		)
 
-		const particlesMaterial = new THREE.ShaderMaterial({
-			uniforms: this.uniforms,
-			vertexShader: `attribute float size;
-
-			varying vec3 vColor;
-
-			void main() {
-
-				vColor = color;
-
-				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-
-				gl_PointSize = size * ( 300.0 / -mvPosition.z );
-
-				gl_Position = projectionMatrix * mvPosition;
-
-			}`,
-			fragmentShader: `
-			uniform sampler2D pointTexture;
-
-			varying vec3 vColor;
-
-			void main() {
-
-				gl_FragColor = vec4( vColor, 1.0 );
-
-				gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
-
-			}
-
-`,
-
-			transparent: true,
-			size: 4,
+		// Material
+		this.firefliesMaterial = new THREE.ShaderMaterial({
+			uniforms: {
+				uSize: { value: 500 },
+				uTime: { value: 0 },
+				uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) }
+			},
+			vertexShader: firefliesVertexShader,
+			fragmentShader: firefliesFragmentShader,
+			// transparent: true
 			blending: THREE.AdditiveBlending,
-			depthTest: false,
-			vertexColors: true
+			depthWrite: false
 		})
 
-		const particleSystem = new THREE.Points(geometry, particlesMaterial)
+		// this.firefliesMaterial = new THREE.PointsMaterial({
+		// 	size: 1,
+		// 	sizeAttenuation: true
+		// })
 
-		this.scene.add(particleSystem)
+		this.particleSystem = new THREE.Points(
+			this.firefliesGeometry,
+			this.firefliesMaterial
+		)
+
+		this.scene.add(this.particleSystem)
 	}
 
 	update() {
-		//  // Update particles
-		// current.uniforms.u_time.value = clock.elapsedTime
+		this.firefliesMaterial.uniforms.uTime.value = this.time.elapsed * 0.001
 	}
 }

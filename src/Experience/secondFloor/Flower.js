@@ -24,7 +24,7 @@ export default class Flower {
 
 		this.flower.traverse((child) => {
 			if (child instanceof Mesh) {
-				child.scale.set(0.0525, 0.0525, 0.0525)
+				child.scale.set(0.15, 0.15, 0.15)
 			}
 		})
 		this.scene.add(this.flower)

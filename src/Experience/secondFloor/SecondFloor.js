@@ -36,8 +36,9 @@ export default class SecondFloor {
 			this.sky = new Sky()
 			this.butterfly = new Butterfly()
 			this.flower = new Flower()
-			this.portal = new Portal()
 			this.particles = new Particles()
+
+			this.portal = new Portal()
 		})
 	}
 
@@ -45,6 +46,8 @@ export default class SecondFloor {
 		if (this.grass) this.grass.update()
 		if (this.butterfly) this.butterfly.update()
 		if (this.flower) this.flower.update()
+		if (this.particles) this.particles.update()
+		if (this.portal) this.portal.update()
 	}
 
 	destroy(obj) {
