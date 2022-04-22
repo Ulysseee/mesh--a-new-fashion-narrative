@@ -7,7 +7,7 @@ import Portal from './Portal.js'
 import Butterfly from './Butterfly.js'
 import Flower from './Flower.js'
 import Particles from './Particles.js'
-export default class World {
+export default class SecondFloor {
 	constructor() {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
@@ -45,5 +45,15 @@ export default class World {
 		if (this.grass) this.grass.update()
 		if (this.butterfly) this.butterfly.update()
 		if (this.flower) this.flower.update()
+	}
+
+	destroy(obj) {
+		for (let i = this.scene.children.length - 1; i >= 0; i--) {
+			let child = this.scene.children[i]
+			if (child.name !== 'loader') {
+				this.scene.remove(child)
+			}
+		}
+		// console.log('HERE', obj)
 	}
 }

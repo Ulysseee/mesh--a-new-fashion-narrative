@@ -15,8 +15,7 @@ export default class Renderer {
 	setInstance() {
 		this.instance = new WebGLRenderer({
 			canvas: this.canvas,
-			antialias: true,
-			logarithmicDepthBuffer: true
+			antialias: true
 		})
 
 		this.instance.setClearColor('#211d20')

@@ -10,9 +10,9 @@ export default class Environment {
 	}
 
 	setEnvironment() {
-		this.grid = new GridHelper(48, 18)
-		this.grid.position.set(0, 0, -30)
-		this.scene.add(this.grid)
+		// this.grid = new GridHelper(48, 18)
+		// this.grid.position.set(0, 0, -30)
+		// this.scene.add(this.grid)
 
 		const ambientLight = new AmbientLight(0xffffff, 1.1)
 		const pointLight = new PointLight(0xffffff, 0.35)

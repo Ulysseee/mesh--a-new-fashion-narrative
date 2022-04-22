@@ -1,13 +1,13 @@
 import { Raycaster } from 'three'
 
 import Experience from '../Experience.js'
-import Rdc from './Rdc.js'
+import Building from './Building.js'
 import Cloth from './Cloth.js'
 import Spline from './Spline.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
 
-export default class World {
+export default class GroundFloor {
 	constructor() {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
@@ -29,9 +29,9 @@ export default class World {
 		this.resources.on('ready', () => {
 			// Setup
 			this.spline = new Spline()
-			// this.rdc = new Rdc()
+			this.rdc = new Building()
 			this.environment = new Environment()
-			this.cloth = new Cloth()
+			// this.cloth = new Cloth()
 		})
 	}
 
