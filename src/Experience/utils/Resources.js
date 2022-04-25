@@ -1,7 +1,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-
+import { TextureLoader } from 'three'
 import EventEmitter from './EventEmitter.js'
 
 export default class Resources extends EventEmitter {
@@ -25,6 +25,7 @@ export default class Resources extends EventEmitter {
 		this.dracoLoader.setDecoderConfig({ type: 'js' })
 		this.loaders.gltfLoader = new GLTFLoader()
 		this.loaders.gltfLoader.setDRACOLoader(this.dracoLoader)
+		this.loaders.textureLoader = new TextureLoader()
 
 		this.loaders.objLoader = new OBJLoader()
 	}
@@ -38,6 +39,10 @@ export default class Resources extends EventEmitter {
 				})
 			} else if (source.type === 'objModel') {
 				this.loaders.objLoader.load(source.path, (file) => {
+					this.sourceLoaded(source, file)
+				})
+			} else if (source.type === 'texture') {
+				this.loaders.textureLoader.load(source.path, (file) => {
 					this.sourceLoaded(source, file)
 				})
 			}
