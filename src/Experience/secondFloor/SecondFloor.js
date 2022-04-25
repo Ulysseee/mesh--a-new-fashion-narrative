@@ -57,6 +57,5 @@ export default class SecondFloor {
 				this.scene.remove(child)
 			}
 		}
-		// console.log('HERE', obj)
 	}
 }

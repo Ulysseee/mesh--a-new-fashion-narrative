@@ -33,7 +33,6 @@ export default class Experience {
 		this.scene = new THREE.Scene()
 
 		this.resources = new Resources(secondFloor)
-		console.log(this.resources.items)
 		this.camera = new Camera()
 		this.renderer = new Renderer()
 		this.secondFloor = new SecondFloor()
@@ -128,7 +127,6 @@ export default class Experience {
 		})
 
 		this.secondFloor.destroy(this.scene, this.overlay.uuid)
-		console.log(this.scene)
 		this.resources = new Resources(rdc)
 		this.groundFloor = new GroundFloor()
 

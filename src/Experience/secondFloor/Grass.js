@@ -38,13 +38,8 @@ export default class Grass {
 		this.alphaMap = this.resources.items.bladeAlpha
 
 		this.t = 0
-		this.params = {
-			instanceNumber: 100000
-		}
 
 		this.setGrass()
-
-		console.log(this)
 
 		if (this.debug) this.setDebug()
 	}
@@ -137,12 +132,6 @@ export default class Grass {
 		const f = this.debug.gui.addFolder({
 			title: 'Grass',
 			expanded: true
-		})
-
-		f.addInput(this.params, 'instanceNumber', {
-			min: 1000,
-			max: 20000,
-			step: 100
 		})
 	}
 

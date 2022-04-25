@@ -66,8 +66,6 @@ export default {
 			this.progressUrl = path
 		})
 
-		console.log(this.$refs.warning)
-
 		this.experience.resources.on('ready', () => {
 			const tl = gsap.timeline()
 			tl.to(this.$refs.warning, {
