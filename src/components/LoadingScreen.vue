@@ -4,10 +4,14 @@
 			<h3 ref="progressUrl" class="progressUrl">
 				{{ progressUrl }}
 			</h3>
+			<button ref="button" class="enterButton" @click="launch">
+				ENTER
+			</button>
 		</div>
 
 		<div class="percent-wrapper">
 			<p ref="percent">{{ progress.toFixed(0) }}%</p>
+			<p>Experience is loading</p>
 		</div>
 
 		<svg
@@ -34,6 +38,8 @@
 </template>
 
 <script>
+import SoundClass from '@classes/SoundClass'
+
 import Experience from '../Experience/Experience'
 import gsap, { Power3 } from 'gsap'
 
@@ -42,12 +48,15 @@ export default {
 	data() {
 		return {
 			progress: 0,
-			progressUrl: ''
+			progressUrl: '',
+			ready: false,
+			initFlag: false
 		}
 	},
 
 	mounted() {
 		this.experience = new Experience()
+		this.audio = new SoundClass('/assets/music.mp3')
 
 		this.experience.resources.on('progress', (percent, path) => {
 			this.progress = percent * 100
@@ -55,12 +64,30 @@ export default {
 		})
 
 		this.experience.resources.on('ready', () => {
+			this.ready = true
+
+			gsap.to(this.$refs.button, {
+				duration: 1,
+				opacity: 1
+			})
+		})
+	},
+
+	methods: {
+		launch() {
 			gsap.timeline()
-				.to([this.$refs.progressUrl, this.$refs.percent], {
-					y: -85,
-					duration: 1.2,
-					ease: Power3.easeInOut
-				})
+				.to(
+					[
+						this.$refs.progressUrl,
+						this.$refs.percent,
+						this.$refs.button
+					],
+					{
+						y: -85,
+						duration: 1.2,
+						ease: Power3.easeInOut
+					}
+				)
 				.to(this.$refs.overlay__top, {
 					duration: 0.9,
 					ease: Power3.easeInOut,
@@ -76,12 +103,31 @@ export default {
 					css: { opacity: '0', pointerEvents: 'none' },
 					ease: Power3.easeOut
 				})
-		})
+				.to(this.$refs.header, {
+					duration: 2,
+					y: '0%'
+				})
+
+			if (!this.initFlag) {
+				this.audio.init()
+				this.initFlag = true
+				this.audio.play()
+			}
+		}
 	}
 }
 </script>
 
 <style scoped lang="scss">
+.enterButton {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	opacity: 0;
+	z-index: 90000;
+}
+
 .loadingScreen {
 	width: 100vw;
 	height: 100vh;
@@ -132,7 +178,9 @@ export default {
 		color: gray;
 		bottom: 30px;
 		font-size: 16px;
-		right: 30px;
+		text-align: center;
+		transform: translateX(-50%);
+		left: 50%;
 		margin: 0;
 		letter-spacing: 0.5px;
 		z-index: 2;

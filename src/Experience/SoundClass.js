@@ -1,5 +1,11 @@
 export default class SoundClass {
 	constructor(audioUrl) {
+		if (SoundClass._instance) {
+			return SoundClass._instance
+		}
+
+		SoundClass._instance = this
+
 		this.ctx
 		this.audio
 		this.audioSource
@@ -7,8 +13,6 @@ export default class SoundClass {
 		this.fdata
 		this.url = audioUrl
 		this.flag
-
-		this.bind()
 	}
 
 	init() {
@@ -40,11 +44,4 @@ export default class SoundClass {
 	update() {
 		this.analyser.getByteFrequencyData(this.fdata)
 	}
-
-	bind() {
-		this.update = this.update.bind(this)
-		this.init = this.init.bind(this)
-	}
 }
-
-// const _instance = new SoundClass('/assets/music.mp3')

@@ -1,106 +1,249 @@
-uniform float uTime;
-uniform vec3 uColorStart;
-uniform vec3 uColorEnd;
+shader_type spatial;
+render_mode depth_draw_alpha_prepass, cull_front, specular_schlick_ggx, depth_test_disable, ensure_correct_normals, shadows_disabled, ambient_light_disabled;
 
-varying vec2 vUv;
+uniform sampler2D tex_frg_32;
+uniform sampler2D tex_frg_3;
+uniform vec4 MainColor : hint_color;
+uniform vec4 BackColor1 : hint_color;
+uniform vec4 BackColor2 : hint_color;
+uniform float Brightness;
 
-//    Classic Perlin 3D Noise 
-//    by Stefan Gustavson
-//
-vec4 permute(vec4 x){ return mod(((x*34.0)+1.0)*x, 289.0); }
-vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }
-vec3 fade(vec3 t) { return t*t*t*(t*(t*6.0-15.0)+10.0); }
 
-float cnoise(vec3 P)
-{
-    vec3 Pi0 = floor(P); // Integer part for indexing
-    vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1
-    Pi0 = mod(Pi0, 289.0);
-    Pi1 = mod(Pi1, 289.0);
-    vec3 Pf0 = fract(P); // Fractional part for interpolation
-    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0
-    vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
-    vec4 iy = vec4(Pi0.yy, Pi1.yy);
-    vec4 iz0 = Pi0.zzzz;
-    vec4 iz1 = Pi1.zzzz;
 
-    vec4 ixy = permute(permute(ix) + iy);
-    vec4 ixy0 = permute(ixy + iz0);
-    vec4 ixy1 = permute(ixy + iz1);
+void vertex() {
+// Input:8
+	float n_out8p0 = TIME;
 
-    vec4 gx0 = ixy0 / 7.0;
-    vec4 gy0 = fract(floor(gx0) / 7.0) - 0.5;
-    gx0 = fract(gx0);
-    vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);
-    vec4 sz0 = step(gz0, vec4(0.0));
-    gx0 -= sz0 * (step(0.0, gx0) - 0.5);
-    gy0 -= sz0 * (step(0.0, gy0) - 0.5);
+// Input:2
+	vec3 n_out2p0 = VERTEX;
 
-    vec4 gx1 = ixy1 / 7.0;
-    vec4 gy1 = fract(floor(gx1) / 7.0) - 0.5;
-    gx1 = fract(gx1);
-    vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);
-    vec4 sz1 = step(gz1, vec4(0.0));
-    gx1 -= sz1 * (step(0.0, gx1) - 0.5);
-    gy1 -= sz1 * (step(0.0, gy1) - 0.5);
+// VectorDecompose:3
+	float n_out3p0 = n_out2p0.x;
+	float n_out3p1 = n_out2p0.y;
+	float n_out3p2 = n_out2p0.z;
 
-    vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);
-    vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);
-    vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);
-    vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);
-    vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);
-    vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);
-    vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);
-    vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);
+// ScalarOp:7
+	float n_out7p0 = n_out8p0 + n_out3p1;
 
-    vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));
-    g000 *= norm0.x;
-    g010 *= norm0.y;
-    g100 *= norm0.z;
-    g110 *= norm0.w;
-    vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));
-    g001 *= norm1.x;
-    g011 *= norm1.y;
-    g101 *= norm1.z;
-    g111 *= norm1.w;
+// ScalarOp:14
+	float n_in14p1 = 3.00000;
+	float n_out14p0 = n_out7p0 * n_in14p1;
 
-    float n000 = dot(g000, Pf0);
-    float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));
-    float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));
-    float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));
-    float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));
-    float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));
-    float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));
-    float n111 = dot(g111, Pf1);
+// ScalarFunc:5
+	float n_out5p0 = sin(n_out14p0);
 
-    vec3 fade_xyz = fade(Pf0);
-    vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);
-    vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
-    float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); 
+// ScalarOp:13
+	float n_in13p1 = 0.10000;
+	float n_out13p0 = n_out5p0 * n_in13p1;
 
-    return 2.2 * n_xyz;
+// ScalarOp:6
+	float n_out6p0 = n_out13p0 + n_out3p0;
+
+// ScalarOp:9
+	float n_out9p0 = n_out8p0 + n_out3p0;
+
+// ScalarOp:15
+	float n_in15p1 = 1.00000;
+	float n_out15p0 = n_out9p0 * n_in15p1;
+
+// ScalarFunc:11
+	float n_out11p0 = cos(n_out15p0);
+
+// ScalarOp:12
+	float n_in12p1 = 0.20000;
+	float n_out12p0 = n_out11p0 * n_in12p1;
+
+// ScalarOp:10
+	float n_out10p0 = n_out12p0 + n_out3p2;
+
+// VectorCompose:4
+	vec3 n_out4p0 = vec3(n_out6p0, n_out3p1, n_out10p0);
+
+// Output:0
+	VERTEX = n_out4p0;
+
 }
 
-void main()
-{
-    // Displace the UV
-    vec2 displacedUv = vUv + cnoise(vec3(vUv * 5.0, uTime * 0.1));
+void fragment() {
+// Input:2
+	vec3 n_out2p0 = vec3(UV, 0.0);
 
-    // Perlin noise
-    float strength = cnoise(vec3(displacedUv * 5.0, uTime * 0.2));
+// VectorDecompose:9
+	float n_out9p0 = n_out2p0.x;
+	float n_out9p1 = n_out2p0.y;
+	float n_out9p2 = n_out2p0.z;
 
-    // Outer glow
-    float outerGlow = distance(vUv, vec2(0.5)) * 5.0 - 1.4;
-    strength += outerGlow;
+// ScalarSmoothStep:20
+	float n_in20p0 = 0.00000;
+	float n_in20p1 = 0.20000;
+	float n_out20p0 = smoothstep(n_in20p0, n_in20p1, n_out9p1);
 
-    // Apply cool step
-    strength += step(- 0.2, strength) * 0.8;
+// Input:34
+	float n_out34p0 = TIME;
 
-    // // Clamp the value from 0 to 1
-    // strength = clamp(strength, 0.0, 1.0);
+// ScalarOp:35
+	float n_in35p1 = -0.20000;
+	float n_out35p0 = n_out34p0 * n_in35p1;
 
-    // Final color
-    vec3 color = mix(uColorStart, uColorEnd, strength);
+// ScalarOp:36
+	float n_in36p1 = -0.30000;
+	float n_out36p0 = n_out34p0 * n_in36p1;
 
-    gl_FragColor = vec4(color, 1.0);
+// VectorCompose:37
+	float n_in37p2 = 0.00000;
+	vec3 n_out37p0 = vec3(n_out35p0, n_out36p0, n_in37p2);
+
+// VectorOp:38
+	vec3 n_out38p0 = n_out37p0 + n_out2p0;
+
+// VectorOp:53
+	vec3 n_in53p1 = vec3(1.00000, 4.00000, 1.00000);
+	vec3 n_out53p0 = n_out38p0 * n_in53p1;
+
+// Texture:32
+	vec4 tex_frg_32_read = texture(tex_frg_32, n_out53p0.xy);
+	vec3 n_out32p0 = tex_frg_32_read.rgb;
+	float n_out32p1 = tex_frg_32_read.a;
+
+// ScalarOp:54
+	float n_out54p0 = n_out20p0 - dot(n_out32p0, vec3(0.333333, 0.333333, 0.333333));
+
+// ScalarOp:56
+	float n_out56p0 = n_out54p0 + n_out9p1;
+
+// ScalarClamp:52
+	float n_in52p1 = 0.00000;
+	float n_in52p2 = 1.00000;
+	float n_out52p0 = clamp(n_out56p0, n_in52p1, n_in52p2);
+
+// Input:60
+	vec3 n_out60p0 = vec3(SCREEN_UV, 0.0);
+
+// Input:6
+	float n_out6p0 = TIME;
+
+// ScalarOp:7
+	float n_in7p1 = 0.10000;
+	float n_out7p0 = n_out6p0 * n_in7p1;
+
+// ScalarOp:8
+	float n_in8p1 = -0.20000;
+	float n_out8p0 = n_out6p0 * n_in8p1;
+
+// VectorCompose:5
+	float n_in5p2 = 0.00000;
+	vec3 n_out5p0 = vec3(n_out7p0, n_out8p0, n_in5p2);
+
+// VectorOp:4
+	vec3 n_out4p0 = n_out5p0 + n_out2p0;
+
+// Texture:3
+	vec4 tex_frg_3_read = texture(tex_frg_3, n_out4p0.xy);
+	vec3 n_out3p0 = tex_frg_3_read.rgb;
+	float n_out3p1 = tex_frg_3_read.a;
+
+// VectorOp:33
+	vec3 n_out33p0 = n_out32p0 * n_out3p0;
+
+// ScalarSmoothStep:70
+	float n_in70p0 = 0.20000;
+	float n_in70p1 = 0.80000;
+	float n_out70p0 = smoothstep(n_in70p0, n_in70p1, n_out9p1);
+
+// VectorOp:66
+	vec3 n_out66p0 = n_out33p0 * vec3(n_out70p0);
+
+// VectorOp:65
+	vec3 n_out65p0 = n_out60p0 + n_out66p0;
+
+// Input:61
+	vec3 n_out61p0 = NORMAL;
+
+// Fresnel:62
+	float n_in62p3 = 1.00000;
+	float n_out62p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in62p3);
+
+// VectorScalarMix:63
+	vec3 n_out63p0 = mix(n_out65p0, n_out61p0, n_out62p0);
+
+// Input:58
+
+// Texture:59
+	vec3 n_out59p0;
+	float n_out59p1;
+	{
+		vec4 SCREEN_TEXTURE_tex_read = texture(SCREEN_TEXTURE, n_out63p0.xy);
+		n_out59p0 = SCREEN_TEXTURE_tex_read.rgb;
+		n_out59p1 = SCREEN_TEXTURE_tex_read.a;
+	}
+
+// ColorUniform:80
+	vec3 n_out80p0 = MainColor.rgb;
+	float n_out80p1 = MainColor.a;
+
+// ColorUniform:78
+	vec3 n_out78p0 = BackColor1.rgb;
+	float n_out78p1 = BackColor1.a;
+
+// ColorUniform:79
+	vec3 n_out79p0 = BackColor2.rgb;
+	float n_out79p1 = BackColor2.a;
+
+// Input:72
+	float n_out72p0 = TIME;
+
+// ScalarFunc:71
+	float n_out71p0 = sin(n_out72p0);
+
+// ScalarOp:74
+	float n_in74p1 = 1.00000;
+	float n_out74p0 = n_out71p0 + n_in74p1;
+
+// ScalarOp:75
+	float n_in75p1 = 2.00000;
+	float n_out75p0 = n_out74p0 / n_in75p1;
+
+// VectorScalarMix:73
+	vec3 n_out73p0 = mix(n_out78p0, n_out79p0, n_out75p0);
+
+// VectorScalarMix:49
+	vec3 n_out49p0 = mix(n_out80p0, n_out73p0, n_out9p1);
+
+// ScalarSmoothStep:46
+	float n_in46p0 = 1.00000;
+	float n_in46p1 = 0.00000;
+	float n_out46p0 = smoothstep(n_in46p0, n_in46p1, n_out9p1);
+
+// VectorScalarMix:27
+	vec3 n_in27p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out27p0 = mix(n_out49p0, n_in27p1, n_out46p0);
+
+// Color:69
+	vec3 n_out69p0 = vec3(0.025314, 0.034936, 0.137276);
+	float n_out69p1 = 1.000000;
+
+// ScalarOp:67
+	float n_out67p0 = dot(n_out33p0, vec3(0.333333, 0.333333, 0.333333)) * n_out46p0;
+
+// VectorScalarMix:68
+	vec3 n_out68p0 = mix(n_out27p0, n_out69p0, n_out67p0);
+
+// ScalarUniform:77
+	float n_out77p0 = Brightness;
+
+// VectorOp:51
+	vec3 n_out51p0 = n_out68p0 * vec3(n_out77p0);
+
+// VectorScalarMix:64
+	vec3 n_out64p0 = mix(n_out59p0, n_out51p0, n_out62p0);
+
+// Output:0
+	ALPHA = n_out52p0;
+	EMISSION = n_out64p0;
+
+}
+
+void light() {
+// Output:0
+
 }

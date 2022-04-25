@@ -22,17 +22,20 @@ export default class Environment {
 
 	setPortal() {
 		this.geometry = new THREE.PlaneGeometry(4, 6)
-		this.material = new THREE.ShaderMaterial({
+		this.portalLightMaterial = new THREE.ShaderMaterial({
+			uniforms: this.uniforms,
 			fragmentShader: frag,
 
 			vertexShader: vert
 		})
-		this.portal = new THREE.Mesh(this.geometry, this.material)
+		this.portal = new THREE.Mesh(this.geometry, this.portalLightMaterial)
 		this.portal.position.set(0, 8, 0)
+
 		this.scene.add(this.portal)
 	}
 
 	update() {
-		this.uniforms.uTime.value += this.time.delta += 0.01
+		this.portalLightMaterial.uniforms.uTime.value =
+			this.time.elapsed * 0.001
 	}
 }

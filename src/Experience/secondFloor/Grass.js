@@ -47,7 +47,7 @@ export default class Grass {
 		const textureLoader = new TextureLoader()
 		const texture = textureLoader.load(bladeDiffuse)
 		const alphaMap = textureLoader.load(bladeAlpha)
-		const attributeData = this.getAttributeData(70000, 100)
+		const attributeData = this.getAttributeData(50000, 150)
 		const bladeGeom = new PlaneBufferGeometry(0.12, 1, 1, 5).translate(
 			0,
 			1 / 2,
@@ -108,7 +108,7 @@ export default class Grass {
 		this.scene.add(this.grass)
 
 		const groundGeometry = new Geometry().fromBufferGeometry(
-			new PlaneGeometry(100, 100, 32, 32)
+			new PlaneGeometry(150, 150, 32, 32)
 		)
 		groundGeometry.verticesNeedUpdate = true
 		groundGeometry.lookAt(new Vector3(0, 1, 0))

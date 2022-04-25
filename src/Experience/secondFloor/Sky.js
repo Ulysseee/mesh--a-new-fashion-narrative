@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import Experience from '../Experience.js'
 import { Sky } from 'three/examples/jsm/objects/Sky'
 import Debug from '@utils/Debug'
+import config from '@utils/config'
 
 export default class Environment {
 	constructor() {
@@ -52,51 +53,53 @@ export default class Environment {
 	}
 
 	debugSky() {
-		this.debug = new Debug()
+		if (config.gui) {
+			this.debug = new Debug()
 
-		const f = this.debug.gui.addFolder({
-			title: 'Sky',
-			expanded: true
-		})
+			const f = this.debug.gui.addFolder({
+				title: 'Sky',
+				expanded: true
+			})
 
-		f.addInput(this.effectController, 'turbidity', {
-			min: 0.00001,
-			max: 20,
-			step: 0.1
-		})
+			f.addInput(this.effectController, 'turbidity', {
+				min: 0.00001,
+				max: 20,
+				step: 0.1
+			})
 
-		f.addInput(this.effectController, 'rayleigh', {
-			min: 0.00001,
-			max: 4,
-			step: 0.001
-		})
+			f.addInput(this.effectController, 'rayleigh', {
+				min: 0.00001,
+				max: 4,
+				step: 0.001
+			})
 
-		f.addInput(this.effectController, 'mieCoefficient', {
-			min: 0.00001,
-			max: 0.1,
-			step: 0.001
-		})
+			f.addInput(this.effectController, 'mieCoefficient', {
+				min: 0.00001,
+				max: 0.1,
+				step: 0.001
+			})
 
-		f.addInput(this.effectController, 'mieDirectionalG', {
-			min: 0.00001,
-			max: 1,
-			step: 0.001
-		})
+			f.addInput(this.effectController, 'mieDirectionalG', {
+				min: 0.00001,
+				max: 1,
+				step: 0.001
+			})
 
-		f.addInput(this.effectController, 'elevation', {
-			min: 0.00001,
-			max: 90,
-			step: 0.1
-		})
+			f.addInput(this.effectController, 'elevation', {
+				min: 0.00001,
+				max: 90,
+				step: 0.1
+			})
 
-		f.addInput(this.effectController, 'azimuth', {
-			min: -180,
-			max: 180,
-			step: 0.1
-		})
+			f.addInput(this.effectController, 'azimuth', {
+				min: -180,
+				max: 180,
+				step: 0.1
+			})
 
-		f.on('change', () => {
-			this.setUniforms()
-		})
+			f.on('change', () => {
+				this.setUniforms()
+			})
+		}
 	}
 }

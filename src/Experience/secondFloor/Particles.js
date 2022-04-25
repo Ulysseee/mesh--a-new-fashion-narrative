@@ -15,14 +15,14 @@ export default class Particles {
 
 	setModel() {
 		this.firefliesGeometry = new THREE.BufferGeometry()
-		this.firefliesCount = 500
+		this.firefliesCount = 75
 		this.positionArray = new Float32Array(this.firefliesCount * 3)
 		this.scaleArray = new Float32Array(this.firefliesCount)
 
 		for (let i = 0; i < this.firefliesCount; i++) {
-			this.positionArray[i * 3 + 0] = (Math.random() - 0.5) * 100
-			this.positionArray[i * 3 + 1] = Math.random() * 7
-			this.positionArray[i * 3 + 2] = (Math.random() - 0.5) * 100
+			this.positionArray[i * 3 + 0] = (Math.random() - 0.5) * 150
+			this.positionArray[i * 3 + 1] = Math.random() * 30
+			this.positionArray[i * 3 + 2] = (Math.random() - 0.5) * 150
 
 			this.scaleArray[i] = Math.random()
 		}
@@ -49,11 +49,6 @@ export default class Particles {
 			blending: THREE.AdditiveBlending,
 			depthWrite: false
 		})
-
-		// this.firefliesMaterial = new THREE.PointsMaterial({
-		// 	size: 1,
-		// 	sizeAttenuation: true
-		// })
 
 		this.particleSystem = new THREE.Points(
 			this.firefliesGeometry,

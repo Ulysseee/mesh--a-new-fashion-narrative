@@ -12,6 +12,28 @@ body {
 	margin: 0;
 }
 
+.sound-button {
+	z-index: 10000000;
+	position: absolute;
+	top: 0%;
+	left: 50%;
+	border: none;
+	background-color: transparent;
+	padding: 2vw 1vw;
+	cursor: pointer;
+	transition: opacity 0.5s ease-out;
+
+	span {
+		animation: svelte-1rw298u-scaleSound 1s ease infinite alternate;
+		animation-delay: calc(var(--i) * 75ms);
+		height: 1px;
+		width: 1px;
+		margin-right: 3px;
+		background-color: #fff;
+		transform: scaleY(2);
+	}
+}
+
 .loading-container {
 	position: absolute;
 	top: 50%;

@@ -24,7 +24,7 @@ export default class Butterfly {
 
 	setModel() {
 		this.group = new THREE.Group()
-		for (let i = 0; i < 15; i++) {
+		for (let i = 0; i < 7; i++) {
 			let butterfly
 			butterfly = SkeletonUtils.clone(this.resource.scene)
 			butterfly.scale.multiplyScalar(3)
