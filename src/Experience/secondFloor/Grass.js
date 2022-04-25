@@ -21,8 +21,8 @@ import Experience from '../Experience'
 import grassFrag from '@shaders/grass/newGrass.frag'
 import grassVert from '@shaders/grass/newGrass.vert'
 
-import bladeDiffuse from '/assets/blade_diffuse.jpg'
-import bladeAlpha from '/assets/blade_alpha.jpg'
+import bladeDiffuse from '/textures/blade_diffuse.jpg'
+import bladeAlpha from '/textures/blade_alpha.jpg'
 
 const simplex = new SimplexNoise(Math.random)
 
@@ -33,6 +33,10 @@ export default class Grass {
 		this.debug = this.experience.debug
 		this.group = new Group()
 
+		this.resources = this.experience.resources
+		this.bladeDiffuse = this.resources.items.bladeDiffuse
+		this.alphaMap = this.resources.items.bladeAlpha
+
 		this.t = 0
 		this.params = {
 			instanceNumber: 100000
@@ -40,13 +44,12 @@ export default class Grass {
 
 		this.setGrass()
 
+		console.log(this)
+
 		if (this.debug) this.setDebug()
 	}
 
 	setGrass() {
-		const textureLoader = new TextureLoader()
-		const texture = textureLoader.load(bladeDiffuse)
-		const alphaMap = textureLoader.load(bladeAlpha)
 		const attributeData = this.getAttributeData(50000, 150)
 		const bladeGeom = new PlaneBufferGeometry(0.12, 1, 1, 5).translate(
 			0,
@@ -89,8 +92,8 @@ export default class Grass {
 		this.grassMaterial = new ShaderMaterial({
 			uniforms: {
 				bladeHeight: { value: 1 },
-				map: { value: texture },
-				alphaMap: { value: alphaMap },
+				map: { value: this.bladeDiffuse },
+				alphaMap: { value: this.alphaMap },
 				time: { value: 0 },
 				tipColor: {
 					value: new Color(0.0, 0.6, 0.0).convertSRGBToLinear()
