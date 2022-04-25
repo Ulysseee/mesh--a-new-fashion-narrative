@@ -8,7 +8,6 @@ import SecondFloor from './secondFloor/SecondFloor.js'
 import GroundFloor from './groundFloor/GroundFloor.js'
 import Resources from '@utils/Resources.js'
 import Anims from './Anims.js'
-import Audio from './SoundClass.js'
 
 import gsap, { Power3 } from 'gsap'
 

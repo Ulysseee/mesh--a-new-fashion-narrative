@@ -117,7 +117,6 @@ export default class Grass {
 			v.y = this.getYPosition(v.x, v.z)
 		}
 		groundGeometry.computeVertexNormals()
-		console.log(groundGeometry)
 		const groundMaterial = new MeshStandardMaterial({ color: 0x000f00 })
 		this.ground = new Mesh(
 			groundGeometry.toBufferGeometry(),

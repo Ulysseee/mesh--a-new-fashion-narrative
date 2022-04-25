@@ -19,7 +19,6 @@ export default class Flower {
 		const vec = new Vector2()
 
 		this.group = new Group()
-		console.log(this.flower)
 		this.flower.position.set(3, 0, -1)
 
 		this.flower.traverse((child) => {

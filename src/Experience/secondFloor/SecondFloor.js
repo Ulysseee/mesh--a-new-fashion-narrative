@@ -38,7 +38,7 @@ export default class SecondFloor {
 			this.flower = new Flower()
 			this.particles = new Particles()
 
-			this.portal = new Portal()
+			// this.portal = new Portal()
 		})
 	}
 

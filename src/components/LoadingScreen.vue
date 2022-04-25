@@ -1,35 +1,37 @@
 <template>
-	<div ref="loadingScreen" class="loadingScreen">
-		<div class="wrapper">
-			<h3 ref="progressUrl" class="progressUrl">
-				{{ progressUrl }}
-			</h3>
-			<button ref="button" class="enterButton" @click="launch">
-				ENTER
-			</button>
+	<div ref="loadingScreen" class="loader">
+		<div class="loader__progressUrl">
+			<span ref="progressUrl">{{ progressUrl }}</span>
 		</div>
 
-		<div class="percent-wrapper">
+		<div class="loader__percent">
 			<p ref="percent">{{ progress.toFixed(0) }}%</p>
-			<p>Experience is loading</p>
 		</div>
+
+		<div class="loader__warning">
+			<span v-for="letter in warning" ref="warning" :key="letter">
+				{{ letter }}
+			</span>
+		</div>
+
+		<button ref="button" class="loader__enterCta" @click="launch">
+			Explore
+		</button>
 
 		<svg
-			class="overlay"
+			class="loader__overlay"
 			width="100%"
 			height="100%"
 			viewBox="0 0 100 100"
 			preserveAspectRatio="none"
 		>
 			<path
-				ref="overlay__top"
-				class="overlay__top"
+				ref="overlayTop"
 				vector-effect="non-scaling-stroke"
 				d="M 0 0 V 51 Q 50 51 100 51 V 0 z"
 			/>
 			<path
-				ref="overlay__bottom"
-				class="overlay__bottom"
+				ref="overlayBottom"
 				vector-effect="non-scaling-stroke"
 				d="M 0 100 V 50 Q 50 50 100 50 V 100 z"
 			/>
@@ -50,7 +52,8 @@ export default {
 			progress: 0,
 			progressUrl: '',
 			ready: false,
-			initFlag: false
+			initFlag: false,
+			warning: ['Experience', 'is', 'loading']
 		}
 	},
 
@@ -63,37 +66,51 @@ export default {
 			this.progressUrl = path
 		})
 
-		this.experience.resources.on('ready', () => {
-			this.ready = true
+		console.log(this.$refs.warning)
 
-			gsap.to(this.$refs.button, {
-				duration: 1,
-				opacity: 1
+		this.experience.resources.on('ready', () => {
+			const tl = gsap.timeline()
+			tl.to(this.$refs.warning, {
+				y: -85,
+				duration: 1.2,
+				stagger: {
+					each: 0.2
+				},
+				ease: Power3.easeInOut
 			})
+			tl.to([this.$refs.progressUrl, this.$refs.percent], {
+				y: -85,
+				duration: 1.2,
+				delay: -0.5,
+				ease: Power3.easeInOut
+			})
+
+			setTimeout(() => {
+				this.ready = true
+
+				tl.to(this.$refs.button, {
+					opacity: 1,
+					duration: 0.8,
+					ease: Power3.easeInOut
+				})
+			}, 1000)
 		})
 	},
 
 	methods: {
 		launch() {
 			gsap.timeline()
-				.to(
-					[
-						this.$refs.progressUrl,
-						this.$refs.percent,
-						this.$refs.button
-					],
-					{
-						y: -85,
-						duration: 1.2,
-						ease: Power3.easeInOut
-					}
-				)
-				.to(this.$refs.overlay__top, {
+				.to(this.$refs.button, {
+					opacity: 0,
+					duration: 0.8,
+					ease: Power3.easeInOut
+				})
+				.to(this.$refs.overlayTop, {
 					duration: 0.9,
 					ease: Power3.easeInOut,
 					attr: { d: 'M 0 0 V 0 Q 50 0 100 0 V 0 z' }
 				})
-				.to(this.$refs.overlay__bottom, {
+				.to(this.$refs.overlayBottom, {
 					duration: 0.9,
 					ease: Power3.easeInOut,
 					delay: -0.9,
@@ -102,10 +119,6 @@ export default {
 				.to(this.$refs.loadingScreen, {
 					css: { opacity: '0', pointerEvents: 'none' },
 					ease: Power3.easeOut
-				})
-				.to(this.$refs.header, {
-					duration: 2,
-					y: '0%'
 				})
 
 			if (!this.initFlag) {
@@ -119,16 +132,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.enterButton {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	display: flex;
-	opacity: 0;
-	z-index: 90000;
-}
-
-.loadingScreen {
+.loader {
 	width: 100vw;
 	height: 100vh;
 	position: absolute;
@@ -139,10 +143,31 @@ export default {
 	font-size: 2em;
 	transition: opacity 0.5s;
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	font-family: 'Mak';
+	font-family: 'Panamera';
 
-	.overlay {
+	.loader__enterCta {
+		opacity: 0;
+		color: #fff;
+		font-family: 'Panamera';
+
+		font-size: 1rem;
+		padding: 10px 18px 12px;
+		background: transparent;
+		border: none;
+		border-radius: px;
+		text-transform: uppercase;
+		text-align: center;
+		z-index: 2;
+		position: absolute;
+		bottom: 50%;
+		left: 50%;
+		transform: translate(-50%, 50%);
+	}
+
+	.loader__overlay {
 		position: absolute;
 		pointer-events: none;
 		width: 100%;
@@ -151,44 +176,47 @@ export default {
 		left: 0;
 	}
 
-	.wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin: auto;
-		overflow: hidden;
-	}
-	h2 {
-		font-size: 30px;
-	}
-	.progressUrl {
+	.loader__progressUrl {
 		color: gray;
 		font-size: 0.5em;
-		letter-spacing: 0.75px;
 		z-index: 2;
 		overflow: hidden;
 		margin: 0;
+		padding: 2px 0;
+
+		span {
+			display: block;
+		}
 	}
-	.letter {
-		display: inline-block;
-		will-change: transform;
-	}
-	.percent-wrapper {
+	.loader__percent,
+	.loader__warning {
+		overflow: hidden;
+		z-index: 2;
 		position: absolute;
+		font-size: 1rem;
 		color: gray;
-		bottom: 30px;
-		font-size: 16px;
-		text-align: center;
-		transform: translateX(-50%);
-		left: 50%;
-		margin: 0;
-		letter-spacing: 0.5px;
-		z-index: 2;
-		overflow: hidden;
+		padding: 4px 0;
+
+		p {
+			margin: 0;
+		}
 	}
-	&.finished {
-		opacity: 0;
-		pointer-events: none;
+	.loader__percent {
+		left: 50%;
+		bottom: 4rem;
+		transform: translateX(-50%);
+	}
+	.loader__warning {
+		left: 50%;
+		bottom: 2rem;
+		transform: translateX(-50%);
+		display: flex;
+
+		span {
+			display: block;
+			padding: 0 2px;
+			will-change: transform;
+		}
 	}
 }
 </style>
