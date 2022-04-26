@@ -4,6 +4,7 @@ import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
+import FirstFloor from './firstFloor/FirstFloor'
 import SecondFloor from './secondFloor/SecondFloor.js'
 import GroundFloor from './groundFloor/GroundFloor.js'
 import Resources from '@utils/Resources.js'
@@ -32,10 +33,11 @@ export default class Experience {
 		this.time = new Time()
 		this.scene = new THREE.Scene()
 
-		this.resources = new Resources(secondFloor)
+		this.resources = new Resources(firstFloor)
 		this.camera = new Camera()
 		this.renderer = new Renderer()
-		this.secondFloor = new SecondFloor()
+		this.firstFloor = new FirstFloor()
+		// this.secondFloor = new SecondFloor()
 		// this.groundFloor = new GroundFloor()
 		this.setDebug()
 
