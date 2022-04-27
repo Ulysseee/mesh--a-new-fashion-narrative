@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { MathUtils } from 'three'
-import { FBM, Perlin } from 'three-noise'
+import { FBM } from 'three-noise'
 
 import Experience from '../Experience.js'
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils'
@@ -15,7 +15,6 @@ export default class Butterfly {
 		this.butterfly = SkeletonUtils.clone(this.resource.scene)
 		this.vec = new THREE.Vector2()
 		this.fbm = new FBM({ seed: Math.random() })
-		this.perlin = new Perlin(Math.random())
 		this.offset = Math.random() * 100
 		this.mixers = []
 
@@ -24,7 +23,7 @@ export default class Butterfly {
 
 	setModel() {
 		this.group = new THREE.Group()
-		for (let i = 0; i < 7; i++) {
+		for (let i = 0; i < 1; i++) {
 			let butterfly
 			butterfly = SkeletonUtils.clone(this.resource.scene)
 			butterfly.scale.multiplyScalar(3)
@@ -49,12 +48,16 @@ export default class Butterfly {
 	}
 
 	update() {
-		this.vec.set(this.time.elapsed, this.time.elapsed)
+		this.vec.x = this.time.elapsed / 1000
+		this.vec.y = this.time.elapsed / 1000
+
 		this.group.rotation.y -= this.time.delta * 0.001
 
-		this.group.position.set(0, this.perlin.get2(this.vec), 0)
+		this.group.position.set(0, this.fbm.get2(this.vec) * 10, 0)
 
 		for (let i = 0; i < this.group.children.length; i++) {
+			// this.group.children[i].position.y = this.offset
+
 			this.mixers[i].update(this.time.delta * 0.0018 * Math.random())
 		}
 	}
