@@ -4,7 +4,6 @@ import {
 	Group,
 	Vector3,
 	Vector4,
-	TextureLoader,
 	PlaneGeometry,
 	PlaneBufferGeometry,
 	InstancedBufferGeometry,
@@ -20,9 +19,6 @@ import Experience from '../Experience'
 
 import grassFrag from '@shaders/grass/newGrass.frag'
 import grassVert from '@shaders/grass/newGrass.vert'
-
-import bladeDiffuse from '/textures/blade_diffuse.jpg'
-import bladeAlpha from '/textures/blade_alpha.jpg'
 
 const simplex = new SimplexNoise(Math.random)
 
