@@ -1,4 +1,4 @@
-export const rdc = [
+export const groundFloor = [
 	{
 		name: 'rdcModel',
 		type: 'gltfModel',
@@ -13,14 +13,9 @@ export const rdc = [
 
 export const firstFloor = [
 	{
-		name: 'rdcModel',
+		name: 'firstFloorModel',
 		type: 'gltfModel',
-		path: 'models/rdc.glb'
-	},
-	{
-		name: 'clothModel',
-		type: 'objModel',
-		path: 'models/cloth.obj'
+		path: 'models/firstFloor.glb'
 	}
 ]
 
