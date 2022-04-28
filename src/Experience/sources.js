@@ -60,5 +60,29 @@ export const secondFloor = [
 		name: 'smoke',
 		type: 'texture',
 		path: 'textures/smoke.png'
+	},
+
+	{
+		name: 'waterNormals',
+		type: 'texture',
+		path: 'textures/waternormals.jpg'
+	},
+
+	{
+		name: 'model',
+		type: 'gltfModel',
+		path: 'models/model.glb'
+	},
+
+	{
+		name: 'cloud',
+		type: 'gltfModel',
+		path: 'models/cloud.glb'
+	},
+
+	{
+		name: 'togo',
+		type: 'gltfModel',
+		path: 'models/togo.glb'
 	}
 ]
