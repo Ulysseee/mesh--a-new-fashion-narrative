@@ -1,5 +1,5 @@
 import Experience from '../Experience'
-import Sky from './Sky'
+import Sky from '@classes/shared/sky'
 import Environment from './Environment'
 import Building from '../firstFloor/Building'
 

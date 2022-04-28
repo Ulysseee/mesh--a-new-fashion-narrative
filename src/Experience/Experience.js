@@ -34,6 +34,8 @@ export default class Experience {
 		this.scene = new THREE.Scene()
 
 		this.resources = new Resources(groundFloor)
+		// this.resources = new Resources(secondFloor)
+
 		this.camera = new Camera()
 		this.renderer = new Renderer()
 		// this.firstFloor = new FirstFloor()

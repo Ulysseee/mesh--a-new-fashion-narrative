@@ -1,5 +1,5 @@
 import Experience from '../Experience.js'
-import Sky from './Sky.js'
+import Sky from '@classes/shared/sky'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
 import Grass from './Grass.js'
