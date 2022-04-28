@@ -5,7 +5,6 @@ export default class Building {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
-		this.time = this.experience.time
 		// Resource
 		console.log(this.resources)
 		this.resource = this.resources.items.firstFloorModel

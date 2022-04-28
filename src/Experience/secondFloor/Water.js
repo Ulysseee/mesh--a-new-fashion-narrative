@@ -16,7 +16,7 @@ export default class WaterClass {
 	}
 
 	setWater() {
-		const waterGeometry = new PlaneGeometry(10000, 10000)
+		const waterGeometry = new PlaneGeometry(150, 150)
 
 		this.water = new Water(waterGeometry, {
 			textureWidth: 512,

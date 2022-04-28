@@ -88,6 +88,8 @@ export default class Experience {
 			success = (button) => {
 				//Success function
 				// button.classList.add('success')
+				button.style.opacity = 0
+
 				this.switch()
 			}
 

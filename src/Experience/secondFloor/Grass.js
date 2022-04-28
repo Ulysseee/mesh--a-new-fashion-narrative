@@ -27,13 +27,12 @@ export default class Grass {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.debug = this.experience.debug
+		this.time = this.experience.time
 		this.group = new Group()
 
 		this.resources = this.experience.resources
 		this.bladeDiffuse = this.resources.items.bladeDiffuse
 		this.alphaMap = this.resources.items.bladeAlpha
-
-		this.t = 0
 
 		this.setGrass()
 
@@ -132,9 +131,7 @@ export default class Grass {
 	}
 
 	update() {
-		this.t += 0.005
-
-		this.grassMaterial.uniforms.time.value = this.t
+		this.grassMaterial.uniforms.time.value = this.time.elapsed * 0.0001
 		this.grassMaterial.uniformsNeedUpdate = true
 	}
 

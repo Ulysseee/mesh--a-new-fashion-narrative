@@ -24,12 +24,10 @@ export default class SecondFloor {
 			this.environment = new Environment()
 			this.grass = new Grass()
 			this.sky = new Sky()
-			// this.water = new WaterClass()
+			this.water = new WaterClass()
 			this.butterfly = new Butterfly()
 			this.flower = new Flower()
 			this.particles = new Particles()
-
-			// this.portal = new Portal()
 		})
 	}
 
