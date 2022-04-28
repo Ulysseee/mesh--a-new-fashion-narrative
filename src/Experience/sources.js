@@ -60,5 +60,11 @@ export const secondFloor = [
 		name: 'smoke',
 		type: 'texture',
 		path: 'textures/smoke.png'
+	},
+
+	{
+		name: 'waterNormals',
+		type: 'texture',
+		path: 'textures/waternormals.jpg'
 	}
 ]

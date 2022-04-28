@@ -7,6 +7,7 @@ import Portal from './Portal.js'
 import Butterfly from './Butterfly.js'
 import Flower from './Flower.js'
 import Particles from './Particles.js'
+import WaterClass from './Water.js'
 export default class SecondFloor {
 	constructor() {
 		this.experience = new Experience()
@@ -32,11 +33,12 @@ export default class SecondFloor {
 		this.resources.on('ready', () => {
 			// Setup
 			this.environment = new Environment()
-			this.grass = new Grass()
+			// this.grass = new Grass()
 			this.sky = new Sky()
-			this.butterfly = new Butterfly()
-			this.flower = new Flower()
-			this.particles = new Particles()
+			this.water = new WaterClass()
+			// this.butterfly = new Butterfly()
+			// this.flower = new Flower()
+			// this.particles = new Particles()
 
 			// this.portal = new Portal()
 		})
@@ -48,6 +50,7 @@ export default class SecondFloor {
 		if (this.flower) this.flower.update()
 		if (this.particles) this.particles.update()
 		if (this.portal) this.portal.update()
+		if (this.water) this.water.update()
 	}
 
 	destroy(obj) {
