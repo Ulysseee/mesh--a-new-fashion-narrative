@@ -3,6 +3,7 @@
 	<MainMenu />
 	<InfosArea />
 	<LoadingScreen />
+	<Controls />
 </template>
 
 <script>
@@ -10,6 +11,7 @@ import ThreeScene from './components/ThreeScene.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
 import InfosArea from './components/Infos.vue'
 import MainMenu from './components/MainMenu.vue'
+import Controls from './components/Controls.vue'
 
 export default {
 	name: 'App',
@@ -17,7 +19,8 @@ export default {
 		ThreeScene,
 		LoadingScreen,
 		InfosArea,
-		MainMenu
+		MainMenu,
+		Controls
 	}
 }
 </script>

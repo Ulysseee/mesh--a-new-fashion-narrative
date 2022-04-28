@@ -2,6 +2,20 @@
 
 @include font-face('Desolator', fonts/Desolator, null, null, woff);
 @include font-face('Desolator Bold', fonts/Desolator-Bold, null, null, woff);
+@include font-face(
+	'Brilliant Cut Pro',
+	fonts/BrilliantCutPro-Bold,
+	null,
+	null,
+	woff
+);
+@include font-face(
+	'Brilliant Cut Pro',
+	fonts/BrilliantCutPro-Bold,
+	null,
+	null,
+	woff2
+);
 
 @include font-face(
 	'MonumentExtended Light',

@@ -15,24 +15,8 @@ export default class Environment {
 	}
 
 	setEnvironment() {
-		this.grid = new GridHelper(48, 18)
-		this.grid.position.set(0, 0, -30)
-
 		const ambientLight = new AmbientLight(0xffffff, 0.6)
-		const directionalLight = new DirectionalLight(0xffffff, 0.35)
-		const directionalLightHelper = new DirectionalLightHelper(
-			directionalLight,
-			1
-		)
 
-		directionalLight.position.set(0, 14, -35)
-		directionalLight.castShadow = true
-
-		this.scene.add(
-			this.grid,
-			ambientLight,
-			directionalLight,
-			directionalLightHelper
-		)
+		this.scene.add(this.grid, ambientLight)
 	}
 }

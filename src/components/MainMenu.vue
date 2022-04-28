@@ -40,6 +40,17 @@
 				close
 			</button>
 		</div> -->
+
+		<button class="button-hold">
+			<div>
+				<svg class="progress" viewBox="0 0 32 32">
+					<circle r="8" cx="16" cy="16" />
+				</svg>
+				<!-- <svg class="tick" viewBox="0 0 24 24">
+					<polyline points="18,7 11,16 6,12" />
+				</svg> -->
+			</div>
+		</button>
 	</header>
 </template>
 
@@ -89,7 +100,7 @@ export default {
 		position: relative;
 		font-size: 10px;
 		color: #fff;
-		font-family: 'Desolator Bold';
+		font-family: 'Brilliant Cut Pro';
 		text-transform: uppercase;
 
 		&__list {
@@ -152,7 +163,7 @@ export default {
 		text-transform: uppercase;
 		height: 50px;
 		font-size: 10px;
-		font-family: 'Desolator Bold';
+		font-family: 'Brilliant Cut Pro';
 		cursor: pointer;
 		border: 1px solid rgba(239, 239, 239, 0.2);
 		border-radius: 50px;
