@@ -15,7 +15,7 @@ export default class Environment {
 	}
 
 	setEnvironment() {
-		const ambientLight = new AmbientLight(0xffffff, 0.6)
+		const ambientLight = new AmbientLight(0xffffff, 1.3)
 
 		this.scene.add(this.grid, ambientLight)
 	}

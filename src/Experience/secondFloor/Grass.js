@@ -40,7 +40,7 @@ export default class Grass {
 	}
 
 	setGrass() {
-		const attributeData = this.getAttributeData(50000, 150)
+		const attributeData = this.getAttributeData(90000, 150)
 		const bladeGeom = new PlaneBufferGeometry(0.12, 1, 1, 5).translate(
 			0,
 			1 / 2,

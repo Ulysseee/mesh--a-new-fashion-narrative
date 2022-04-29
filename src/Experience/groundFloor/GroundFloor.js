@@ -5,7 +5,7 @@ import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
 import Building from './Building.js'
-import Cloth from './Cloth.js'
+// import Cloth from './Cloth.js'
 import Spline from './Spline.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
@@ -98,11 +98,11 @@ export default class GroundFloor {
 		const intersect = this.raycaster.intersectObjects(this.experience.items)
 
 		if (intersect.length > 0) {
-			document.querySelector('html, body').style.cursor = 'pointer'
+			this.experience.cursor.handleMouseEnter()
 
 			this.currentIntersect = intersect[0]
 		} else {
-			document.querySelector('html, body').style.cursor = 'default'
+			this.experience.cursor.handleMouseLeave()
 			this.currentIntersect = null
 		}
 

@@ -22,7 +22,7 @@ export default class Spline {
 		this.camera = this.experience.camera
 		this.debug = this.experience.debug
 
-		this.intensity = 0.00004
+		this.intensity = 0.00006
 		this.scroll = {
 			current: 0,
 			target: 0,
@@ -88,7 +88,7 @@ export default class Spline {
 		this.scroll.current = gsap.utils.interpolate(
 			this.scroll.current,
 			this.scroll.target,
-			0.05
+			0.03
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)

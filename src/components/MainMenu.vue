@@ -123,12 +123,10 @@ export default {
 	}
 
 	.navigation__controls__sound {
-		// padding: 1.5vw 1.5vw;
 		cursor: pointer;
 		transition: opacity 0.5s ease-out;
 		margin-right: 15px;
 		background: transparent;
-		// padding: 10px 10px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -136,6 +134,8 @@ export default {
 		border: 1px solid rgba(239, 239, 239, 0.2);
 		border-radius: 50px;
 		width: 50px;
+		transition: all 0.4s ease;
+
 		height: 50px;
 
 		span {
@@ -148,6 +148,10 @@ export default {
 
 		span:not(:last-child) {
 			margin-right: 3px;
+		}
+
+		&:hover {
+			background: rgba(239, 239, 239, 0.2);
 		}
 	}
 
@@ -168,6 +172,11 @@ export default {
 		border: 1px solid rgba(239, 239, 239, 0.2);
 		border-radius: 50px;
 		padding: 10px 20px;
+		transition: all 0.4s ease;
+
+		&:hover {
+			background: rgba(239, 239, 239, 0.2);
+		}
 	}
 }
 

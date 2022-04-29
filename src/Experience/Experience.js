@@ -14,6 +14,7 @@ import gsap, { Power3 } from 'gsap'
 
 import { groundFloor, firstFloor, secondFloor } from './sources.js'
 import config from '@utils/config'
+import Cursor from '@classes/Cursor.js'
 
 export default class Experience {
 	constructor(_canvas) {
@@ -32,15 +33,16 @@ export default class Experience {
 		this.sizes = new Sizes()
 		this.time = new Time()
 		this.scene = new THREE.Scene()
+		this.cursor = new Cursor()
 
-		this.resources = new Resources(secondFloor)
 		// this.resources = new Resources(secondFloor)
+		this.resources = new Resources(groundFloor)
 
 		this.camera = new Camera()
 		this.renderer = new Renderer()
 		// this.firstFloor = new FirstFloor()
-		this.secondFloor = new SecondFloor()
-		// this.groundFloor = new GroundFloor()
+		// this.secondFloor = new SecondFloor()
+		this.groundFloor = new GroundFloor()
 		this.setDebug()
 
 		// Resize event
@@ -150,6 +152,8 @@ export default class Experience {
 		if (this.renderer) this.renderer.update()
 
 		if (this.debug) this.debug.stats.update()
+
+		if (this.cursor) this.cursor.update()
 
 		window.requestAnimationFrame(() => {
 			this.update()

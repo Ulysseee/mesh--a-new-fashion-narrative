@@ -1,8 +1,8 @@
 export const groundFloor = [
 	{
 		name: 'rdcModel',
-		type: 'gltfModel',
-		path: 'models/rdc.glb'
+		type: 'fbxModel',
+		path: 'models/maison_V2.fbx'
 	},
 	{
 		name: 'clothModel',
