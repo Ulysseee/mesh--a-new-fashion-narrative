@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+import gsap, { Power3 } from 'gsap'
+
 import Debug from '@utils/Debug.js'
 import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
@@ -9,12 +11,10 @@ import SecondFloor from './secondFloor/SecondFloor.js'
 import GroundFloor from './groundFloor/GroundFloor.js'
 import Resources from '@utils/Resources.js'
 import Anims from './Anims.js'
-
-import gsap, { Power3 } from 'gsap'
-
 import { groundFloor, firstFloor, secondFloor } from './sources.js'
 import config from '@utils/config'
 import Cursor from '@classes/Cursor.js'
+import Raycaster from './Raycaster.js'
 
 export default class Experience {
 	constructor(_canvas) {
@@ -26,7 +26,6 @@ export default class Experience {
 
 		// Options
 		this.canvas = _canvas
-		this.items = []
 		this.anims = new Anims()
 
 		// Setup
@@ -34,16 +33,20 @@ export default class Experience {
 		this.time = new Time()
 		this.scene = new THREE.Scene()
 		this.cursor = new Cursor(document.querySelectorAll('.cursor'))
-
 		this.resources = new Resources(groundFloor)
 		// this.resources = new Resources(firstFloor)
 		// this.resources = new Resources(secondFloor)
 
 		this.camera = new Camera()
+
+		this.items = []
+		this.raycaster = new Raycaster()
+
 		this.renderer = new Renderer()
+		this.groundFloor = new GroundFloor()
 		// this.firstFloor = new FirstFloor()
 		// this.secondFloor = new SecondFloor()
-		this.groundFloor = new GroundFloor()
+
 		this.setDebug()
 
 		// Resize event
@@ -146,6 +149,7 @@ export default class Experience {
 
 	update() {
 		this.camera.update()
+		if (this.raycaster) this.raycaster.update()
 
 		if (this.groundFloor) this.groundFloor.update()
 		if (this.firstFloor) this.firstFloor.update()

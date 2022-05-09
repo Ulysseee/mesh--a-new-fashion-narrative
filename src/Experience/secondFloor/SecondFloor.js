@@ -14,8 +14,6 @@ export default class SecondFloor {
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
 
-		// this.raycaster = new Raycaster()
-		// this.currentIntersect = null
 		// this.isInfosActive = false
 
 		// Wait for resources

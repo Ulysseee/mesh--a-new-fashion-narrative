@@ -29,7 +29,7 @@ export default class Cube {
 		this.mesh.rotation.x = 4
 		this.mesh.name = 'portal'
 
-		this.scene.add(this.mesh)
 		this.experience.items.push(this.mesh)
+		this.scene.add(this.mesh)
 	}
 }

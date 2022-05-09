@@ -1,4 +1,3 @@
-import { Raycaster } from 'three'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 import config from '@utils/config'
 import Debug from '@utils/Debug'
@@ -10,7 +9,7 @@ import Spline from './Spline.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
 import Sky from '@classes/shared/sky'
-import Portal from './Portal'
+import Portal from '../shared/Portal'
 
 export default class GroundFloor {
 	constructor() {
@@ -18,10 +17,6 @@ export default class GroundFloor {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
-		this.raycaster = new Raycaster()
-		this.currentIntersect = null
-		this.isInfosActive = false
-		this.onPortal = null
 
 		this.mouse = new Mouse()
 
@@ -38,7 +33,7 @@ export default class GroundFloor {
 			// Setup
 			this.spline = new Spline()
 			this.portal = new Portal()
-			this.rdc = new Building()
+			// this.rdc = new Building()
 			this.environment = new Environment()
 			this.sky = new Sky()
 			// this.cloth = new Cloth()
@@ -88,13 +83,14 @@ export default class GroundFloor {
 
 	handleClick() {
 		if (
-			this.currentIntersect &&
-			this.currentIntersect.object.name === 'portal' &&
-			this.onPortal === true
+			this.experience.raycaster.currentIntersect &&
+			this.experience.raycaster.currentIntersect.object.name ===
+				'portal' &&
+			this.experience.raycaster.onPortal === true
 		) {
 			this.experience.switch('firstFloor')
 			this.experience.cursor.leave()
-			this.currentIntersect = null
+			this.experience.raycaster.currentIntersect = null
 		}
 	}
 
@@ -103,23 +99,6 @@ export default class GroundFloor {
 	}
 
 	update() {
-		this.raycaster.setFromCamera(this.mouse.mouse, this.camera.instance)
-
-		const intersect = this.raycaster.intersectObjects(this.experience.items)
-
-		if (intersect.length > 0) {
-			this.currentIntersect = intersect[0]
-
-			if (this.currentIntersect.object.name === 'portal') {
-				this.onPortal = true
-				this.experience.cursor.enter()
-			}
-		} else {
-			this.experience.cursor.leave()
-			this.currentIntersect = null
-			this.onPortal = null
-		}
-
 		if (this.spline) this.spline.update()
 	}
 }
