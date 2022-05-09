@@ -136,7 +136,7 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 2;
+	z-index: 100;
 	color: white;
 	font-size: 2em;
 	transition: opacity 0.5s;

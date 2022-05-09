@@ -14,7 +14,7 @@ export default class Building {
 
 	setModel() {
 		this.model = this.resource.scene
-		this.model.position.set(0, -3, 0)
+		this.model.position.set(0, -6, 0)
 		this.scene.add(this.model)
 	}
 }

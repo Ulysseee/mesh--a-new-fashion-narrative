@@ -87,8 +87,7 @@ export default {
 	top: 20px;
 	position: absolute;
 	transform: translate(-50%, -0%);
-	// overflow: hidden;
-	z-index: 999;
+	z-index: 10;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

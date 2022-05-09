@@ -98,11 +98,11 @@ export default class GroundFloor {
 		const intersect = this.raycaster.intersectObjects(this.experience.items)
 
 		if (intersect.length > 0) {
-			this.experience.cursor.handleMouseEnter()
+			this.experience.cursor.enter()
 
 			this.currentIntersect = intersect[0]
 		} else {
-			this.experience.cursor.handleMouseLeave()
+			this.experience.cursor.leave()
 			this.currentIntersect = null
 		}
 

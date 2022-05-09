@@ -18,7 +18,7 @@ export default class Environment {
 		const grid = new GridHelper(188, 18)
 		grid.position.set(0, 0, 0)
 
-		const ambientLight = new AmbientLight(0xffffff, 2.9)
+		const ambientLight = new AmbientLight(0xffffff, 0.62)
 		const directionalLight = new DirectionalLight(0xffffff, 0.35)
 		const directionalLightHelper = new DirectionalLightHelper(
 			directionalLight,

@@ -15,8 +15,13 @@ export const firstFloor = [
 	{
 		name: 'firstFloorModel',
 		type: 'gltfModel',
-		path: 'models/firstFloor.glb'
+		path: 'models/gltf/univer14.gltf'
 	}
+	// {
+	// 	name: 'firstFloorModel',
+	// 	type: 'gltfModel',
+	// 	path: 'models/firstFloor.glb'
+	// }
 ]
 
 export const secondFloor = [

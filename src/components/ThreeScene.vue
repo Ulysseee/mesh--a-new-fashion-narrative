@@ -4,8 +4,28 @@
 	</div>
 
 	<div class="loading"></div>
-	<div class="circle-cursor circle-cursor--inner"></div>
-	<div class="circle-cursor circle-cursor--outer"></div>
+
+	<svg
+		class="cursor cursor--1"
+		width="12"
+		height="12"
+		viewBox="0 0 12 12"
+		data-scale-enter="12"
+		data-opacity-enter="1"
+	>
+		<circle class="cursor__inner" cx="6" cy="6" r="3"></circle>
+	</svg>
+	<svg
+		class="cursor cursor--2"
+		width="72"
+		height="72"
+		viewBox="0 0 72 72"
+		data-scale-enter="0.75"
+		data-opacity-enter="0"
+		data-amt="0.15"
+	>
+		<circle class="cursor__inner" cx="36" cy="36" r="16"></circle>
+	</svg>
 </template>
 
 <script>
@@ -42,27 +62,32 @@ export default {
 	pointer-events: none;
 }
 
-.circle-cursor {
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 2000;
-	pointer-events: none;
-	border-radius: 50%;
-	&--outer {
-		width: 30px;
-		height: 30px;
-		border: 1px solid yellow;
-		z-index: 12000;
-		opacity: 0.2;
+.cursor {
+	display: none;
+}
+
+@media (any-pointer: fine) {
+	.cursor {
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: block;
+		pointer-events: none;
+		z-index: 10000;
 	}
-	&--inner {
-		width: 5px;
-		height: 5px;
-		left: -2.5px;
-		top: -2.5px;
-		z-index: 11000;
-		background: yellow;
+
+	.cursor--1 .cursor__inner {
+		fill: #96776e;
+	}
+
+	.cursor--2 .cursor__inner {
+		fill: none;
+		stroke: #96776e;
+		stroke-width: 1px;
+	}
+
+	.no-js .cursor {
+		display: none;
 	}
 }
 </style>

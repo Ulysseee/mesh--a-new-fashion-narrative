@@ -4,7 +4,7 @@ import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
-// import FirstFloor from './firstFloor/FirstFloor'
+import FirstFloor from './firstFloor/FirstFloor'
 import SecondFloor from './secondFloor/SecondFloor.js'
 import GroundFloor from './groundFloor/GroundFloor.js'
 import Resources from '@utils/Resources.js'
@@ -33,16 +33,17 @@ export default class Experience {
 		this.sizes = new Sizes()
 		this.time = new Time()
 		this.scene = new THREE.Scene()
-		this.cursor = new Cursor()
+		this.cursor = new Cursor(document.querySelectorAll('.cursor'))
 
+		// this.resources = new Resources(groundFloor)
+		this.resources = new Resources(firstFloor)
 		// this.resources = new Resources(secondFloor)
-		this.resources = new Resources(groundFloor)
 
 		this.camera = new Camera()
 		this.renderer = new Renderer()
-		// this.firstFloor = new FirstFloor()
+		this.firstFloor = new FirstFloor()
 		// this.secondFloor = new SecondFloor()
-		this.groundFloor = new GroundFloor()
+		// this.groundFloor = new GroundFloor()
 		this.setDebug()
 
 		// Resize event
@@ -146,14 +147,15 @@ export default class Experience {
 	update() {
 		this.camera.update()
 
-		if (this.groundFloor) this.groundFloor.update()
-		if (this.secondFloor) this.secondFloor.update()
+		// if (this.groundFloor) this.groundFloor.update()
+		if (this.firstFloor) this.firstFloor.update()
+		// if (this.secondFloor) this.secondFloor.update()
 
 		if (this.renderer) this.renderer.update()
 
 		if (this.debug) this.debug.stats.update()
 
-		if (this.cursor) this.cursor.update()
+		if (this.cursor) this.cursor.cursorElements.forEach((el) => el.render())
 
 		window.requestAnimationFrame(() => {
 			this.update()

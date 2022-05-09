@@ -1,11 +1,11 @@
 import * as THREE from 'three'
 
 import Experience from '../Experience.js'
-import { Sky } from 'three/examples/jsm/objects/Sky'
+import { Sky as ThreeSky } from 'three/examples/jsm/objects/Sky'
 import Debug from '@utils/Debug'
 import config from '@utils/config'
 
-export default class Environment {
+export default class Sky {
 	constructor() {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
@@ -27,7 +27,7 @@ export default class Environment {
 			// exposure: renderer.toneMappingExposure
 		}
 
-		this.sky = new Sky()
+		this.sky = new ThreeSky()
 		this.sky.scale.setScalar(450000)
 		this.scene.add(this.sky)
 
