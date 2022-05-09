@@ -12,6 +12,8 @@ export default class Raycaster {
 		this.onPortal = null
 		this.currentIntersect = null
 		this.raycaster = new THREE.Raycaster()
+
+		window.addEventListener('mousemove', this.mouse.getMousePos)
 	}
 
 	update() {
@@ -21,7 +23,7 @@ export default class Raycaster {
 			this.experience.items
 		)
 
-		console.log(this.experience.items)
+		// console.log(this.experience.items)
 
 		if (intersects.length > 0) {
 			this.currentIntersect = intersects[0]

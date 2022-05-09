@@ -1,20 +1,22 @@
 import * as THREE from 'three'
 import gsap, { Power3 } from 'gsap'
 
+import config from '@utils/config'
 import Debug from '@utils/Debug.js'
 import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
+import Resources from '@utils/Resources.js'
+import Cursor from '@classes/Cursor.js'
+
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
-import FirstFloor from './firstFloor/FirstFloor'
-import SecondFloor from './secondFloor/SecondFloor.js'
-import GroundFloor from './groundFloor/GroundFloor.js'
-import Resources from '@utils/Resources.js'
+import Raycaster from './Raycaster'
+import FirstFloor from '@classes/firstFloor/FirstFloor'
+import SecondFloor from '@classes/secondFloor/SecondFloor.js'
+import GroundFloor from '@classes/groundFloor/GroundFloor.js'
+
 import Anims from './Anims.js'
 import { groundFloor, firstFloor, secondFloor } from './sources.js'
-import config from '@utils/config'
-import Cursor from '@classes/Cursor.js'
-import Raycaster from './Raycaster.js'
 
 export default class Experience {
 	constructor(_canvas) {
