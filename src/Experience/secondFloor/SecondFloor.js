@@ -24,9 +24,9 @@ export default class SecondFloor {
 			this.environment = new Environment()
 			this.grass = new Grass()
 			this.sky = new Sky()
-			this.water = new WaterClass()
+			// this.water = new WaterClass()
 			this.butterfly = new Butterfly()
-			this.flower = new Flower()
+			// this.flower = new Flower()
 			this.particles = new Particles()
 		})
 	}
@@ -40,12 +40,5 @@ export default class SecondFloor {
 		if (this.water) this.water.update()
 	}
 
-	destroy(obj) {
-		for (let i = this.scene.children.length - 1; i >= 0; i--) {
-			let child = this.scene.children[i]
-			if (child.name !== 'loader') {
-				this.scene.remove(child)
-			}
-		}
-	}
+	destroy() {}
 }

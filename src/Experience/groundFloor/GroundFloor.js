@@ -18,10 +18,10 @@ export default class GroundFloor {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
-
 		this.raycaster = new Raycaster()
 		this.currentIntersect = null
 		this.isInfosActive = false
+		this.onPortal = null
 
 		this.mouse = new Mouse()
 
@@ -86,7 +86,17 @@ export default class GroundFloor {
 		}
 	}
 
-	handleClick() {}
+	handleClick() {
+		if (
+			this.currentIntersect &&
+			this.currentIntersect.object.name === 'portal' &&
+			this.onPortal === true
+		) {
+			this.experience.switch('firstFloor')
+			this.experience.cursor.leave()
+			this.currentIntersect = null
+		}
+	}
 
 	hold() {
 		// Hold button with mouse / select with tab and hold spacebar
@@ -98,16 +108,18 @@ export default class GroundFloor {
 		const intersect = this.raycaster.intersectObjects(this.experience.items)
 
 		if (intersect.length > 0) {
-			this.experience.cursor.enter()
-
 			this.currentIntersect = intersect[0]
+
+			if (this.currentIntersect.object.name === 'portal') {
+				this.onPortal = true
+				this.experience.cursor.enter()
+			}
 		} else {
 			this.experience.cursor.leave()
 			this.currentIntersect = null
+			this.onPortal = null
 		}
 
 		if (this.spline) this.spline.update()
 	}
-
-	destroy() {}
 }

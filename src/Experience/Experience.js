@@ -35,15 +35,15 @@ export default class Experience {
 		this.scene = new THREE.Scene()
 		this.cursor = new Cursor(document.querySelectorAll('.cursor'))
 
-		// this.resources = new Resources(groundFloor)
-		this.resources = new Resources(firstFloor)
+		this.resources = new Resources(groundFloor)
+		// this.resources = new Resources(firstFloor)
 		// this.resources = new Resources(secondFloor)
 
 		this.camera = new Camera()
 		this.renderer = new Renderer()
-		this.firstFloor = new FirstFloor()
+		// this.firstFloor = new FirstFloor()
 		// this.secondFloor = new SecondFloor()
-		// this.groundFloor = new GroundFloor()
+		this.groundFloor = new GroundFloor()
 		this.setDebug()
 
 		// Resize event
@@ -147,9 +147,9 @@ export default class Experience {
 	update() {
 		this.camera.update()
 
-		// if (this.groundFloor) this.groundFloor.update()
+		if (this.groundFloor) this.groundFloor.update()
 		if (this.firstFloor) this.firstFloor.update()
-		// if (this.secondFloor) this.secondFloor.update()
+		if (this.secondFloor) this.secondFloor.update()
 
 		if (this.renderer) this.renderer.update()
 
@@ -167,16 +167,33 @@ export default class Experience {
 		this.renderer.resize()
 	}
 
-	switch() {
+	switch(level) {
 		gsap.to(this.overlayMaterial.uniforms.uAlpha, {
 			duration: 1,
 			value: 1,
 			ease: Power3.easeInOut
 		})
+		this.destroy()
 
-		this.secondFloor.destroy(this.scene, this.overlay.uuid)
-		this.resources = new Resources(groundFloor)
-		this.groundFloor = new GroundFloor()
+		switch (level) {
+			case 'firstFloor':
+				this.groundFloor = null
+				this.resources = new Resources(firstFloor)
+				this.firstFloor = new FirstFloor()
+				break
+
+			case 'secondFloor':
+				this.firstFloor = null
+				this.resources = new Resources(secondFloor)
+				this.secondFloor = new SecondFloor()
+				break
+
+			default:
+				break
+		}
+
+		console.log('toto', groundFloor)
+		console.log('tata', firstFloor)
 
 		gsap.to(this.overlayMaterial.uniforms.uAlpha, {
 			duration: 1,
@@ -184,5 +201,14 @@ export default class Experience {
 			delay: 2,
 			ease: Power3.easeInOut
 		})
+	}
+
+	destroy() {
+		for (let i = this.scene.children.length - 1; i >= 0; i--) {
+			let child = this.scene.children[i]
+			if (child.name !== 'loader') {
+				this.scene.remove(child)
+			}
+		}
 	}
 }
