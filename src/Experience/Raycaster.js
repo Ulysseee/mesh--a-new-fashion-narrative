@@ -12,7 +12,6 @@ export default class Raycaster {
 		this.onPortal = null
 		this.currentIntersect = null
 		this.raycaster = new THREE.Raycaster()
-		this.update()
 	}
 
 	update() {
@@ -22,10 +21,15 @@ export default class Raycaster {
 			this.experience.items
 		)
 
+		console.log(this.experience.items)
+
 		if (intersects.length > 0) {
 			this.currentIntersect = intersects[0]
 
+			console.log('something')
+
 			if (this.currentIntersect.object.name === 'portal') {
+				console.log('portal')
 				this.onPortal = true
 				this.experience.cursor.enter()
 			}
