@@ -18,6 +18,7 @@ export default class FirstFloor {
 			this.sky = new Sky()
 			this.firstFloor = new Building()
 			this.portal = new Portal()
+			this.portal.mesh.name = 'portal2'
 		})
 	}
 

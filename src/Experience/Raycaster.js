@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import { Raycaster as ThreeRaycaster } from 'three'
 import Mouse from './utils/Mouse'
 import Experience from './Experience'
 
@@ -11,7 +11,42 @@ export default class Raycaster {
 		this.mouse = new Mouse()
 		this.onPortal = null
 		this.currentIntersect = null
-		this.raycaster = new THREE.Raycaster()
+		this.raycaster = new ThreeRaycaster()
+
+		window.addEventListener('click', () => {
+			this.handleClick()
+		})
+	}
+
+	handleClick() {
+		if (
+			this.experience.raycaster.currentIntersect &&
+			this.experience.raycaster.currentIntersect.object.name ===
+				'portal1' &&
+			this.experience.raycaster.onPortal === true
+		) {
+			this.experience.switch('firstFloor')
+			this.experience.cursor.leave()
+			this.experience.raycaster.currentIntersect = null
+		} else if (
+			this.experience.raycaster.currentIntersect &&
+			this.experience.raycaster.currentIntersect.object.name ===
+				'portal2' &&
+			this.experience.raycaster.onPortal === true
+		) {
+			this.experience.switch('secondFloor')
+			this.experience.cursor.leave()
+			this.experience.raycaster.currentIntersect = null
+		} else if (
+			this.experience.raycaster.currentIntersect &&
+			this.experience.raycaster.currentIntersect.object.name ===
+				'portal3' &&
+			this.experience.raycaster.onPortal === true
+		) {
+			this.experience.switch('nft')
+			this.experience.cursor.leave()
+			this.experience.raycaster.currentIntersect = null
+		}
 	}
 
 	update() {
@@ -21,15 +56,14 @@ export default class Raycaster {
 			this.experience.items
 		)
 
-		console.log(this.experience.items)
-
 		if (intersects.length > 0) {
 			this.currentIntersect = intersects[0]
 
-			console.log('something')
-
-			if (this.currentIntersect.object.name === 'portal') {
-				console.log('portal')
+			if (
+				this.currentIntersect.object.name === 'portal1' ||
+				this.currentIntersect.object.name === 'portal2' ||
+				this.currentIntersect.object.name === 'portal3'
+			) {
 				this.onPortal = true
 				this.experience.cursor.enter()
 			}

@@ -4,6 +4,8 @@ export default class Mouse {
 	constructor() {
 		this.bind()
 		this.mouse = new Vector2()
+
+		window.addEventListener('mousemove', this.getMousePos)
 	}
 
 	getMousePos(event) {

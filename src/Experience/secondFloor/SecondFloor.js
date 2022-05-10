@@ -2,7 +2,7 @@ import Experience from '../Experience.js'
 import Sky from '@classes/shared/sky'
 import Environment from './Environment.js'
 import Grass from './Grass.js'
-import Portal from './Portal.js'
+import Portal from '../shared/Portal.js'
 import Butterfly from './Butterfly.js'
 import Flower from './Flower.js'
 import Particles from './Particles.js'
@@ -25,8 +25,27 @@ export default class SecondFloor {
 			// this.water = new WaterClass()
 			this.butterfly = new Butterfly()
 			// this.flower = new Flower()
+
+			this.portal = new Portal()
+			this.portal.mesh.name = 'portal3'
+
 			this.particles = new Particles()
 		})
+
+		window.addEventListener('click', () => {
+			this.handleClick()
+		})
+	}
+
+	handleClick() {
+		if (
+			this.experience.raycaster.currentIntersect &&
+			this.experience.raycaster.currentIntersect.object.name ===
+				'portal' &&
+			this.experience.raycaster.onPortal === true
+		) {
+			console.log('nft')
+		}
 	}
 
 	update() {
@@ -34,7 +53,6 @@ export default class SecondFloor {
 		if (this.butterfly) this.butterfly.update()
 		if (this.flower) this.flower.update()
 		if (this.particles) this.particles.update()
-		if (this.portal) this.portal.update()
 		if (this.water) this.water.update()
 	}
 

@@ -1,20 +1,22 @@
 import * as THREE from 'three'
 import gsap, { Power3 } from 'gsap'
 
+import config from '@utils/config'
 import Debug from '@utils/Debug.js'
 import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
+import Resources from '@utils/Resources.js'
+import Cursor from '@classes/Cursor.js'
+
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
-import FirstFloor from './firstFloor/FirstFloor'
-import SecondFloor from './secondFloor/SecondFloor.js'
-import GroundFloor from './groundFloor/GroundFloor.js'
-import Resources from '@utils/Resources.js'
+import Raycaster from './Raycaster'
+import FirstFloor from '@classes/firstFloor/FirstFloor'
+import SecondFloor from '@classes/secondFloor/SecondFloor.js'
+import GroundFloor from '@classes/groundFloor/GroundFloor.js'
+
 import Anims from './Anims.js'
 import { groundFloor, firstFloor, secondFloor } from './sources.js'
-import config from '@utils/config'
-import Cursor from '@classes/Cursor.js'
-import Raycaster from './Raycaster.js'
 
 export default class Experience {
 	constructor(_canvas) {
@@ -43,6 +45,7 @@ export default class Experience {
 		this.raycaster = new Raycaster()
 
 		this.renderer = new Renderer()
+
 		this.groundFloor = new GroundFloor()
 		// this.firstFloor = new FirstFloor()
 		// this.secondFloor = new SecondFloor()
@@ -52,12 +55,6 @@ export default class Experience {
 		// Resize event
 		this.sizes.on('resize', () => {
 			this.resize()
-		})
-
-		window.addEventListener('keydown', (e) => {
-			if (`${e.code}` === 'Space') {
-				this.switch()
-			}
 		})
 
 		this.overlayGeometry = new THREE.PlaneGeometry(10, 10, 5, 5)
@@ -181,12 +178,14 @@ export default class Experience {
 
 		switch (level) {
 			case 'firstFloor':
+				this.items = []
 				this.groundFloor = null
 				this.resources = new Resources(firstFloor)
 				this.firstFloor = new FirstFloor()
 				break
 
 			case 'secondFloor':
+				this.items = []
 				this.firstFloor = null
 				this.resources = new Resources(secondFloor)
 				this.secondFloor = new SecondFloor()
@@ -195,9 +194,6 @@ export default class Experience {
 			default:
 				break
 		}
-
-		console.log('toto', groundFloor)
-		console.log('tata', firstFloor)
 
 		gsap.to(this.overlayMaterial.uniforms.uAlpha, {
 			duration: 1,

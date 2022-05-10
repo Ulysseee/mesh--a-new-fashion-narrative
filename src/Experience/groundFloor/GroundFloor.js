@@ -23,16 +23,12 @@ export default class GroundFloor {
 		this.setPostProcessing()
 		this.debugComposer()
 
-		window.addEventListener('mousemove', this.mouse.getMousePos)
-		window.addEventListener('click', () => {
-			this.handleClick()
-		})
-
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
 			this.spline = new Spline()
 			this.portal = new Portal()
+			this.portal.mesh.name = 'portal1'
 			// this.rdc = new Building()
 			this.environment = new Environment()
 			this.sky = new Sky()
@@ -78,19 +74,6 @@ export default class GroundFloor {
 				max: 1,
 				step: 0.001
 			})
-		}
-	}
-
-	handleClick() {
-		if (
-			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.name ===
-				'portal' &&
-			this.experience.raycaster.onPortal === true
-		) {
-			this.experience.switch('firstFloor')
-			this.experience.cursor.leave()
-			this.experience.raycaster.currentIntersect = null
 		}
 	}
 
