@@ -7,7 +7,11 @@ import Butterfly from './Butterfly.js'
 import Flower from './Flower.js'
 import Particles from './Particles.js'
 import WaterClass from './Water.js'
+
 import Spline from '../shared/Spline.js'
+
+import { secondFloorPath } from '../pathes'
+
 export default class SecondFloor {
 	constructor() {
 		this.experience = new Experience()
@@ -27,7 +31,7 @@ export default class SecondFloor {
 			this.butterfly = new Butterfly()
 			// this.flower = new Flower()
 
-			this.spline = new Spline()
+			this.spline = new Spline(secondFloorPath)
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal3'
