@@ -33,11 +33,7 @@ export default class Raycaster {
 			this.experience.raycaster.currentIntersect &&
 			this.experience.raycaster.currentIntersect.object.name === 'portal3'
 		) {
-			window.open(
-				'https://play.google.com/store/apps/details?id=com.drishya',
-				'_blank',
-				'location=yes,height=570,width=520,scrollbars=yes,status=yes'
-			)
+			window.open('https://opensea.io/', '_blank')
 		}
 	}
 

@@ -168,12 +168,13 @@ export default class Experience {
 		this.renderer.resize()
 	}
 
-	switch(level) {
-		gsap.to(this.overlayMaterial.uniforms.uAlpha, {
+	async switch(level) {
+		await gsap.to(this.overlayMaterial.uniforms.uAlpha, {
 			duration: 1,
 			value: 1,
 			ease: Power3.easeInOut
 		})
+
 		this.destroy()
 
 		switch (level) {
