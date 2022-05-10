@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import glsl from 'vite-plugin-glsl'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,12 +14,12 @@ export default defineConfig({
 	plugins: [glsl(), vue()],
 
 	resolve: {
-		alias: [
-			{ find: '@classes', replacement: '/src/Experience' },
-			{ find: '@scss', replacement: '/src/scss' },
-			{ find: '@shaders', replacement: '/src/Experience/shaders' },
-			{ find: '@utils', replacement: '/src/Experience/utils' }
-		]
+		alias: {
+			'@classes': path.resolve(__dirname, '/src/Experience'),
+			'@scss': path.resolve(__dirname, '/src/scss'),
+			'@shaders': path.resolve(__dirname, '/src/Experience/shaders'),
+			'@utils': path.resolve(__dirname, '/src/Experience/utils')
+		}
 	},
 
 	preprocessorOptions: {
