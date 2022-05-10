@@ -21,27 +21,21 @@ export default class Raycaster {
 	handleClick() {
 		if (
 			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.name ===
-				'portal1' &&
-			this.experience.raycaster.onPortal === true
+			this.experience.raycaster.currentIntersect.object.name === 'portal1'
 		) {
 			this.experience.switch('firstFloor')
 			this.experience.cursor.leave()
 			this.experience.raycaster.currentIntersect = null
 		} else if (
 			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.name ===
-				'portal2' &&
-			this.experience.raycaster.onPortal === true
+			this.experience.raycaster.currentIntersect.object.name === 'portal2'
 		) {
 			this.experience.switch('secondFloor')
 			this.experience.cursor.leave()
 			this.experience.raycaster.currentIntersect = null
 		} else if (
 			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.name ===
-				'portal3' &&
-			this.experience.raycaster.onPortal === true
+			this.experience.raycaster.currentIntersect.object.name === 'portal3'
 		) {
 			this.experience.switch('nft')
 			this.experience.cursor.leave()
@@ -64,12 +58,11 @@ export default class Raycaster {
 				this.currentIntersect.object.name === 'portal2' ||
 				this.currentIntersect.object.name === 'portal3'
 			) {
-				this.onPortal = true
 				this.experience.cursor.enter()
 			}
 		} else {
 			this.experience.cursor.leave()
-			this.onPortal = null
+			this.currentIntersect = null
 		}
 	}
 }
