@@ -24,22 +24,20 @@ export default class Raycaster {
 			this.experience.raycaster.currentIntersect.object.name === 'portal1'
 		) {
 			this.experience.switch('firstFloor')
-			this.experience.cursor.leave()
-			this.experience.raycaster.currentIntersect = null
 		} else if (
 			this.experience.raycaster.currentIntersect &&
 			this.experience.raycaster.currentIntersect.object.name === 'portal2'
 		) {
 			this.experience.switch('secondFloor')
-			this.experience.cursor.leave()
-			this.experience.raycaster.currentIntersect = null
 		} else if (
 			this.experience.raycaster.currentIntersect &&
 			this.experience.raycaster.currentIntersect.object.name === 'portal3'
 		) {
-			this.experience.switch('nft')
-			this.experience.cursor.leave()
-			this.experience.raycaster.currentIntersect = null
+			window.open(
+				'https://play.google.com/store/apps/details?id=com.drishya',
+				'_blank',
+				'location=yes,height=570,width=520,scrollbars=yes,status=yes'
+			)
 		}
 	}
 

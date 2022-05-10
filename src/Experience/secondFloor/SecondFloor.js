@@ -7,6 +7,7 @@ import Butterfly from './Butterfly.js'
 import Flower from './Flower.js'
 import Particles from './Particles.js'
 import WaterClass from './Water.js'
+import Spline from '../shared/Spline.js'
 export default class SecondFloor {
 	constructor() {
 		this.experience = new Experience()
@@ -25,6 +26,8 @@ export default class SecondFloor {
 			// this.water = new WaterClass()
 			this.butterfly = new Butterfly()
 			// this.flower = new Flower()
+
+			this.spline = new Spline()
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal3'
@@ -54,6 +57,7 @@ export default class SecondFloor {
 		if (this.flower) this.flower.update()
 		if (this.particles) this.particles.update()
 		if (this.water) this.water.update()
+		if (this.spline) this.spline.update()
 	}
 
 	destroy() {}

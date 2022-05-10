@@ -29,16 +29,12 @@ export default class SoundClass {
 
 	play() {
 		this.audio.play()
-
 		this.flag = true
-		// RAF.subscribe('audioUpdate', this.update)
 	}
 
 	pause() {
 		this.audio.pause()
-
 		this.flag = false
-		// RAF.unsubscribe('audioUpdate')
 	}
 
 	update() {

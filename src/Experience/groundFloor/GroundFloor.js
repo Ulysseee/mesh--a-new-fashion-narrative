@@ -5,11 +5,11 @@ import Debug from '@utils/Debug'
 import Experience from '../Experience.js'
 import Building from './Building.js'
 // import Cloth from './Cloth.js'
-import Spline from './Spline.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
 import Sky from '@classes/shared/sky'
 import Portal from '../shared/Portal'
+import Spline from '../shared/Spline'
 
 export default class GroundFloor {
 	constructor() {
