@@ -27,7 +27,7 @@ export default class SecondFloor {
 			this.butterfly = new Butterfly()
 			// this.flower = new Flower()
 
-			this.spline = new Spline()
+			// this.spline = new Spline()
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal3'

@@ -1,4 +1,5 @@
 @import '@scss/utils/_fonts';
+@import '@scss/utils/_colors';
 
 *,
 *:after,
@@ -29,7 +30,7 @@ body {
 		height: 1px;
 		width: 1px;
 		margin-right: 3px;
-		background-color: #fff;
+		background-color: var(--c-white);
 		transform: scaleY(2);
 	}
 }
@@ -65,7 +66,7 @@ body {
 	--background: #2b3044;
 	--icon: var(--color);
 	--progress-border: #646b8c;
-	--progress-active: #fff;
+	--progress-active: var(--c-white);
 	--progress-success: #5c86ff;
 	--tick-stroke: var(--progress-active);
 	--shadow: #{rgba(#00093d, 0.2)};
@@ -208,7 +209,7 @@ body {
 	bottom: 0px;
 	left: 50%;
 	z-index: 99;
-	color: white;
+	color: var(--c-white);
 	text-transform: uppercase;
 	transform: translateX(-50%);
 	font-family: 'Brilliant Cut Pro';
@@ -220,7 +221,7 @@ body {
 		width: 1px;
 		height: 4.791666666666667vmax;
 		max-height: 40px;
-		background-color: white;
+		background-color: var(--c-white);
 		opacity: 1;
 	}
 }

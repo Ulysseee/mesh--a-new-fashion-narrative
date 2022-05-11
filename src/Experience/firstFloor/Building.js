@@ -13,7 +13,8 @@ export default class Building {
 
 	setModel() {
 		this.model = this.resource.scene
-		this.model.position.set(0, -6, 0)
+		this.model.position.set(0, -6, 50)
+		this.model.rotation.y = Math.PI / 2
 		this.scene.add(this.model)
 	}
 }

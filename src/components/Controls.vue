@@ -46,7 +46,7 @@
 		bottom: 4px;
 		left: 4px;
 		border-radius: inherit;
-		background-color: #fff;
+		background-color: var(--c-white);
 		background-clip: padding-box;
 	}
 
@@ -55,7 +55,7 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		color: #000;
+		color: var(--c-black);
 		font-size: 1rem;
 		font-weight: 500;
 		text-transform: uppercase;

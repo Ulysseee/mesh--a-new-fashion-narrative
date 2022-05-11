@@ -1,6 +1,6 @@
 <template>
 	<ThreeScene />
-	<MainMenu />
+	<Header />
 	<InfosArea />
 	<LoadingScreen />
 	<Controls />
@@ -10,7 +10,7 @@
 import ThreeScene from './components/ThreeScene.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
 import InfosArea from './components/Infos.vue'
-import MainMenu from './components/MainMenu.vue'
+import Header from './components/Header.vue'
 import Controls from './components/Controls.vue'
 
 export default {
@@ -19,7 +19,7 @@ export default {
 		ThreeScene,
 		LoadingScreen,
 		InfosArea,
-		MainMenu,
+		Header,
 		Controls
 	}
 }

@@ -12,9 +12,8 @@ export default class Building {
 	}
 
 	setModel() {
-		this.resource.scale.set(0.01, 0.01, 0.01)
-
-		this.resource.position.set(0, 1, -32)
+		this.resource.scale.set(0.05, 0.05, 0.05)
+		this.resource.position.set(0, 0, -32)
 		this.scene.add(this.resource)
 	}
 }

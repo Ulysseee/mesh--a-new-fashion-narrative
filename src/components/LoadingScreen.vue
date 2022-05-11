@@ -137,7 +137,7 @@ export default {
 	top: 0;
 	left: 0;
 	z-index: 100;
-	color: white;
+	color: var(--c-white);
 	font-size: 2em;
 	transition: opacity 0.5s;
 	display: flex;
@@ -148,7 +148,7 @@ export default {
 
 	.loader__enterCta {
 		opacity: 0;
-		color: #fff;
+		color: var(--c-white);
 		font-family: 'Panamera';
 
 		font-size: 1rem;

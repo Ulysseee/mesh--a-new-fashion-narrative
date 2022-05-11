@@ -46,7 +46,7 @@ export default {
 	bottom: 0;
 	left: 0;
 	z-index: 2;
-	color: white;
+	color: var(--c-white);
 	margin: 15px;
 	transition: opacity 0.4s ease-in-out;
 
@@ -57,7 +57,6 @@ export default {
 	}
 
 	p {
-		font-family: 'MonumentExtended Light';
 		font-size: 0.725rem;
 		line-height: 1.5;
 	}

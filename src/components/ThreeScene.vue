@@ -55,7 +55,7 @@ export default {
 	height: 100vh;
 	opacity: 0;
 	position: absolute;
-	background: white;
+	background: var(--c-white);
 	top: 0;
 	left: 0;
 	z-index: 100;

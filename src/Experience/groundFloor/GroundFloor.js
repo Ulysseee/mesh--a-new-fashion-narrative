@@ -4,6 +4,7 @@ import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
 import Building from './Building.js'
+import Cube from './Cube.js'
 // import Cloth from './Cloth.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
@@ -20,7 +21,7 @@ export default class GroundFloor {
 
 		this.mouse = new Mouse()
 
-		this.setPostProcessing()
+		// this.setPostProcessing()
 		this.debugComposer()
 
 		// Wait for resources
@@ -29,9 +30,10 @@ export default class GroundFloor {
 			this.spline = new Spline()
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal1'
-			// this.rdc = new Building()
+			this.rdc = new Building()
 			this.environment = new Environment()
 			this.sky = new Sky()
+			this.testCube = new Cube()
 			// this.cloth = new Cloth()
 		})
 	}
