@@ -12,6 +12,8 @@ import Sky from '@classes/shared/sky'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
 
+import { goundFloorPath } from '../pathes'
+
 export default class GroundFloor {
 	constructor() {
 		this.experience = new Experience()
@@ -27,7 +29,8 @@ export default class GroundFloor {
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
-			this.spline = new Spline()
+			this.spline = new Spline(goundFloorPath)
+
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal1'
 			this.rdc = new Building()
