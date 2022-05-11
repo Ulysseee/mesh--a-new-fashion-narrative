@@ -1,8 +1,11 @@
 <template>
-	<div ref="aboutModal" class="about">
-		<div class="about__close" @click="$emit('toggle-about')"></div>
-		<h2 class="about__title">About</h2>
-		<p class="about__description">
+	<div class="information">
+		<div
+			class="information__close"
+			@click="$emit('toggle-information')"
+		></div>
+		<h2 class="information__title">Informations</h2>
+		<p class="information__description">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
 			ipsum voluptatum quas ab odit, ea sed cum rerum id possimus aut
 			aperiam distinctio fugit reiciendis eligendi facilis fuga neque
@@ -13,19 +16,19 @@
 			dolor, perferendis, maxime provident ab cum autem dolorum id
 		</p>
 
-		<p class="about__footer">Thank you</p>
-		<img class="about__starIcon" src="/assets/img/star.svg" alt="" />
+		<p class="information__footer">Fin des informations</p>
+		<img class="information__starIcon" src="/assets/img/star.svg" alt="" />
 	</div>
 </template>
 
 <script>
 export default {
-	emits: ['toggle-about']
+	emits: ['toggle-information']
 }
 </script>
 
 <style scoped lang="scss">
-.about {
+.information {
 	background-color: var(--c-transparent);
 	height: 85vh;
 	position: absolute;
@@ -34,7 +37,7 @@ export default {
 	right: 0px;
 	backdrop-filter: blur(10px);
 
-	width: 35vw;
+	width: 40%;
 	overflow: hidden;
 	padding: 0;
 	margin: 0;

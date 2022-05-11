@@ -1,11 +1,5 @@
-import {
-	DirectionalLight,
-	DirectionalLightHelper,
-	AmbientLight,
-	GridHelper
-} from 'three'
+import { AmbientLight } from 'three'
 import Experience from '../Experience.js'
-
 export default class Environment {
 	constructor() {
 		this.experience = new Experience()

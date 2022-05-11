@@ -1,4 +1,4 @@
-import { AmbientLight, PointLight, GridHelper } from 'three'
+import { AmbientLight, PointLight } from 'three'
 import Experience from '../Experience.js'
 
 export default class Environment {
