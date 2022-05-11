@@ -50,24 +50,6 @@ export const secondFloor = [
 	},
 
 	{
-		name: 'lightning',
-		type: 'texture',
-		path: 'textures/lightning.png'
-	},
-
-	{
-		name: 'particleMask',
-		type: 'texture',
-		path: 'textures/particleMask.png'
-	},
-
-	{
-		name: 'smoke',
-		type: 'texture',
-		path: 'textures/smoke.png'
-	},
-
-	{
 		name: 'waterNormals',
 		type: 'texture',
 		path: 'textures/waternormals.jpg'
