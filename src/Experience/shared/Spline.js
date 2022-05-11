@@ -11,7 +11,7 @@ import gsap from 'gsap'
 import Experience from '../Experience'
 
 export default class Spline {
-	constructor() {
+	constructor(catmullCurve) {
 		this.bind()
 
 		this.experience = new Experience()
@@ -29,26 +29,14 @@ export default class Spline {
 			// limit: 2
 		}
 
-		this.setSpline()
+		this.setSpline(catmullCurve)
 		if (this.debug) this.setDebug()
 
 		window.addEventListener('wheel', this.scrollCanvas)
 	}
 
-	setSpline() {
-		this.curve = new CatmullRomCurve3([
-			new Vector3(0, 0, 10),
-			// new Vector3(0, 0, 0),
-			new Vector3(-3, 0, -10),
-			new Vector3(-10, 0, -25),
-			new Vector3(-14, 0, -34),
-			new Vector3(-12, 0, -40),
-			new Vector3(0, 0, -47),
-			new Vector3(12, 0, -40),
-			new Vector3(14, 0, -34),
-			new Vector3(10, 0, -25),
-			new Vector3(3, 0, -10)
-		])
+	setSpline(catmullCurve) {
+		this.curve = catmullCurve
 
 		const points = this.curve.getPoints(50)
 		this.curveGeometry = new BufferGeometry().setFromPoints(points)

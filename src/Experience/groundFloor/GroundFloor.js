@@ -4,7 +4,6 @@ import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
 import Building from './Building.js'
-// import Cloth from './Cloth.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
 import Sky from '@classes/shared/sky'
@@ -29,12 +28,12 @@ export default class GroundFloor {
 		this.resources.on('ready', () => {
 			// Setup
 			this.spline = new Spline(goundFloorPath)
+
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal1'
 			// this.rdc = new Building()
 			this.environment = new Environment()
 			this.sky = new Sky()
-			// this.cloth = new Cloth()
 		})
 	}
 
