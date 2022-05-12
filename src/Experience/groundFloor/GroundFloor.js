@@ -39,8 +39,6 @@ export default class GroundFloor {
 			this.sky = new Sky()
 			this.testCube = new Cube()
 			// this.cloth = new Cloth()
-
-			console.log(this.spline)
 		})
 	}
 
