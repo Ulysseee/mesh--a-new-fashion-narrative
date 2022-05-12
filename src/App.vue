@@ -1,26 +1,55 @@
 <template>
 	<ThreeScene />
 	<Header />
-	<InfosArea />
 	<LoadingScreen />
 	<Controls />
+	<Information @toggle-information="toggleModal" />
 </template>
 
 <script>
+import gsap from 'gsap'
 import ThreeScene from './components/ThreeScene.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
-import InfosArea from './components/Infos.vue'
 import Header from './components/Header.vue'
 import Controls from './components/Controls.vue'
+import Information from './components/InformationModal.vue'
 
 export default {
 	name: 'App',
+
 	components: {
 		ThreeScene,
 		LoadingScreen,
-		InfosArea,
 		Header,
-		Controls
+		Controls,
+		Information
+	},
+	emits: ['toggle-information'],
+
+	data() {
+		return {
+			isInformationActive: false
+		}
+	},
+
+	methods: {
+		toggleModal() {
+			if (!this.isAboutActive) {
+				gsap.to('.information', {
+					x: 0,
+					duration: 0.5,
+					ease: 'expo.easeInOut'
+				})
+			} else {
+				gsap.to('.information', {
+					x: '100%',
+					duration: 0.5,
+					ease: 'expo.easeInOut'
+				})
+			}
+
+			this.isAboutActive = !this.isAboutActive
+		}
 	}
 }
 </script>

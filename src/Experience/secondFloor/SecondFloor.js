@@ -18,6 +18,7 @@ export default class SecondFloor {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
+		this.timeline = document.querySelector('.header__timeline__3--progress')
 
 		// this.isInfosActive = false
 
@@ -62,7 +63,17 @@ export default class SecondFloor {
 		if (this.flower) this.flower.update()
 		if (this.particles) this.particles.update()
 		if (this.water) this.water.update()
-		if (this.spline) this.spline.update()
+		if (this.spline) {
+			this.percent = this.spline.curve.getUtoTmapping(
+				this.spline.scroll.current
+			)
+
+			this.timeline.style.transform = `scaleX(${this.percent})`
+			// console.log(
+			// 	this.spline.curve.getPointAt(this.spline.scroll.current)
+			// )
+			this.spline.update()
+		}
 	}
 
 	destroy() {}

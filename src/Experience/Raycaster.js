@@ -1,6 +1,7 @@
 import { Raycaster as ThreeRaycaster } from 'three'
 import Mouse from './utils/Mouse'
 import Experience from './Experience'
+import gsap, { Power3 } from 'gsap'
 
 export default class Raycaster {
 	constructor() {
@@ -22,6 +23,23 @@ export default class Raycaster {
 			this.handleClick()
 		})
 	}
+
+	// handleClick() {
+	// 	if (this.currentIntersect) {
+	// 		// console.log('look')
+	// 		// gsap.to('.information', {
+	// 		// 	x: 0,
+	// 		// 	duration: 0.5,
+	// 		// 	ease: 'expo.easeInOut'
+	// 		// })
+	// 		gsap.to(this.camera.instance.position, {
+	// 			duration: 2,
+	// 			x: this.currentIntersect.object.position.x + 3,
+	// 			z: this.currentIntersect.object.position.z,
+	// 			ease: Power3.easeInOut
+	// 		})
+	// 	}
+	// }
 
 	success(cursor) {
 		if (
@@ -91,14 +109,15 @@ export default class Raycaster {
 
 		if (intersects.length > 0) {
 			this.currentIntersect = intersects[0]
+			this.experience.cursor.enter()
 
-			if (
-				this.currentIntersect.object.name === 'portal1' ||
-				this.currentIntersect.object.name === 'portal2' ||
-				this.currentIntersect.object.name === 'portal3'
-			) {
-				this.experience.cursor.enter()
-			}
+			// if (
+			// 	this.currentIntersect.object.name === 'portal1' ||
+			// 	this.currentIntersect.object.name === 'portal2' ||
+			// 	this.currentIntersect.object.name === 'portal3'
+			// ) {
+			// 	this.experience.cursor.enter()
+			// }
 		} else {
 			this.experience.cursor.leave()
 			this.currentIntersect = null

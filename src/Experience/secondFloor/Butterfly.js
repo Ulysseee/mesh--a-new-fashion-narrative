@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { MathUtils } from 'three'
 import { FBM } from 'three-noise'
 
 import Experience from '../Experience.js'
@@ -27,8 +26,8 @@ export default class Butterfly {
 			let butterfly
 			butterfly = SkeletonUtils.clone(this.resource.scene)
 			butterfly.scale.multiplyScalar(3)
-			butterfly.position.y = MathUtils.randFloat(10, 15)
-			butterfly.position.x = MathUtils.randFloat(-10, 10)
+			butterfly.position.y = THREE.MathUtils.randFloat(10, 15)
+			butterfly.position.x = THREE.MathUtils.randFloat(-10, 10)
 			butterfly.rotation.y = this.offset
 
 			butterfly.rotation.y = Math.PI / 4

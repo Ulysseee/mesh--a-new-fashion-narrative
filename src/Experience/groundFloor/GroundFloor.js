@@ -20,6 +20,7 @@ export default class GroundFloor {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
+		this.timeline = document.querySelector('.header__timeline__1--progress')
 
 		this.mouse = new Mouse()
 
@@ -89,6 +90,16 @@ export default class GroundFloor {
 	}
 
 	update() {
-		if (this.spline) this.spline.update()
+		if (this.spline) {
+			this.percent = this.spline.curve.getUtoTmapping(
+				this.spline.scroll.current
+			)
+
+			this.timeline.style.transform = `scaleX(${this.percent})`
+			// console.log(
+			// 	this.spline.curve.getPointAt(this.spline.scroll.current)
+			// )
+			this.spline.update()
+		}
 	}
 }

@@ -42,6 +42,13 @@ export default class Experience {
 		this.camera = new Camera()
 
 		this.items = []
+
+		this.timeline1 = document.querySelector(
+			'.header__timeline__1--progress'
+		)
+		this.timeline2 = document.querySelector(
+			'.header__timeline__2--progress'
+		)
 		this.raycaster = new Raycaster()
 
 		this.renderer = new Renderer()
@@ -184,6 +191,7 @@ export default class Experience {
 		switch (level) {
 			case 'firstFloor':
 				this.items = []
+				this.timeline1.style.transform = 'scale(1)'
 				this.groundFloor = null
 				this.resources = new Resources(firstFloor)
 				this.firstFloor = new FirstFloor()
@@ -191,6 +199,7 @@ export default class Experience {
 
 			case 'secondFloor':
 				this.items = []
+				this.timeline2.style.transform = 'scale(1)'
 				this.firstFloor = null
 				this.resources = new Resources(secondFloor)
 				this.secondFloor = new SecondFloor()
