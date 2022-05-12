@@ -33,6 +33,8 @@ export default class GroundFloor {
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal1'
+			this.portal.mesh.userData.type = 'portail'
+
 			this.rdc = new Building()
 			this.environment = new Environment()
 			this.sky = new Sky()

@@ -7,33 +7,78 @@ export default class Raycaster {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.camera = this.experience.camera
+		console.log(this.experience.cursor.cursorElements[0].DOM.inner)
+		this.cursor = this.experience.cursor.cursorElements[0].DOM.inner
 
 		this.mouse = new Mouse()
 		this.onPortal = null
 		this.currentIntersect = null
 		this.raycaster = new ThreeRaycaster()
 
+		this.container = document.querySelector('#app')
+		this.duration = 1600
+
 		window.addEventListener('click', () => {
 			this.handleClick()
 		})
 	}
 
-	handleClick() {
+	success(cursor) {
 		if (
-			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.name === 'portal1'
+			this.currentIntersect &&
+			this.currentIntersect.object.name === 'portal1'
 		) {
 			this.experience.switch('firstFloor')
 		} else if (
-			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.name === 'portal2'
+			this.currentIntersect &&
+			this.currentIntersect.object.name === 'portal2'
 		) {
 			this.experience.switch('secondFloor')
 		} else if (
-			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.name === 'portal3'
+			this.currentIntersect &&
+			this.currentIntersect.object.name === 'portal3'
 		) {
 			window.open('https://opensea.io/', '_blank')
+		}
+	}
+
+	handleClick() {
+		if (
+			this.experience.raycaster.currentIntersect &&
+			this.experience.raycaster.currentIntersect.object.userData.type ===
+				'portail'
+		) {
+			console.log('here')
+			this.cursor.style.setProperty('--duration', this.duration + 'ms')
+			;['mousedown', 'touchstart', 'keypress'].forEach((e) => {
+				this.container.addEventListener(e, (ev) => {
+					if (
+						e != 'keypress' ||
+						(e == 'keypress' &&
+							ev.which == 32 &&
+							!this.cursor.classList.contains('process'))
+					) {
+						this.cursor.classList.add('process')
+						this.cursor.timeout = setTimeout(
+							this.success,
+							this.duration,
+							this.cursor
+						)
+					}
+				})
+			})
+			;['mouseup', 'mouseout', 'touchend', 'keyup'].forEach((e) => {
+				this.container.addEventListener(
+					e,
+					(ev) => {
+						if (e != 'keyup' || (e == 'keyup' && ev.which == 32)) {
+							this.cursor.classList.remove('process')
+							clearTimeout(this.cursor.timeout)
+						}
+					},
+					false
+				)
+			})
 		}
 	}
 

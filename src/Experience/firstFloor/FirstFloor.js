@@ -21,12 +21,14 @@ export default class FirstFloor {
 			this.environment = new Environment()
 			this.sky = new Sky()
 			this.firstFloor = new Building()
+
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal2'
+			this.portal.mesh.userData.type = 'portail'
 		})
 	}
 
 	update() {
-		if (this.spline) this.spline.update()
+		// if (this.spline) this.spline.update()
 	}
 }

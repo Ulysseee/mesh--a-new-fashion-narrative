@@ -1,10 +1,4 @@
-import {
-	Vector3,
-	BufferGeometry,
-	LineBasicMaterial,
-	LineLoop,
-	CatmullRomCurve3
-} from 'three'
+import { BufferGeometry, LineBasicMaterial, Line } from 'three'
 
 import gsap from 'gsap'
 
@@ -43,9 +37,11 @@ export default class Spline {
 		this.curveMaterial = new LineBasicMaterial({
 			color: 0xffffff
 		})
-		this.splineObject = new LineLoop(this.curveGeometry, this.curveMaterial)
+		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
 		this.scene.add(this.splineObject)
+
+		console.log(this.curve)
 	}
 
 	scrollCanvas({ deltaY }) {
@@ -95,7 +91,7 @@ export default class Spline {
 		// const tangent = this.curve.getTangent(this.scroll.current)
 		// this.camera.instance.rotation.y = -tangent.x
 
-		this.camera.instance.lookAt(0, 0, -32)
+		// this.camera.instance.lookAt(0, 0, -32)
 	}
 
 	bind() {

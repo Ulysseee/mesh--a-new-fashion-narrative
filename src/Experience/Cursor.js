@@ -45,9 +45,14 @@ export default class Cursor {
 			this.cursorElements.push(new CursorElement(el))
 		)
 		;[...document.querySelectorAll(triggerSelector)].forEach((link) => {
-			link.addEventListener('mouseenter', () => this.enter())
-			link.addEventListener('mouseleave', () => this.leave())
+			link.addEventListener('mouseenter', () => {
+				this.enter()
+			})
+			link.addEventListener('mouseleave', () => {
+				this.leave()
+			})
 		})
+		// console.log(this.cursorElements[1].DOM.el)
 	}
 	/**
 	 * Mouseenter event
@@ -57,7 +62,6 @@ export default class Cursor {
 			el.enter()
 		}
 	}
-
 	/**
 	 * Mouseleave event
 	 */

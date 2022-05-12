@@ -13,7 +13,13 @@
 		data-scale-enter="12"
 		data-opacity-enter="1"
 	>
-		<circle class="cursor__inner" cx="6" cy="6" r="3"></circle>
+		<circle
+			class="cursor__inner"
+			pathLength="1"
+			cx="6"
+			cy="6"
+			r="3"
+		></circle>
 	</svg>
 	<svg
 		class="cursor cursor--2"
@@ -78,6 +84,13 @@ export default {
 
 	.cursor--1 .cursor__inner {
 		fill: #96776e;
+
+		stroke: #000;
+		stroke-width: 0.3px;
+		stroke-dasharray: 1;
+		stroke-dashoffset: 0.4;
+		transform: rotate(-90deg);
+		transform-origin: center;
 	}
 
 	.cursor--2 .cursor__inner {
