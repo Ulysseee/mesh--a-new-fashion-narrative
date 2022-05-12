@@ -36,9 +36,6 @@ export default class FirstFloor {
 			)
 
 			this.timeline.style.transform = `scaleX(${this.percent})`
-			// console.log(
-			// 	this.spline.curve.getPointAt(this.spline.scroll.current)
-			// )
 			this.spline.update()
 		}
 	}
