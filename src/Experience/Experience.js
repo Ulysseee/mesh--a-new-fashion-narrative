@@ -136,10 +136,6 @@ export default class Experience {
 		this.update()
 	}
 
-	hold() {
-		console.log('hey')
-	}
-
 	setDebug() {
 		if (config.gui) {
 			this.debug = new Debug()

@@ -8,7 +8,6 @@ export default class Raycaster {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.camera = this.experience.camera
-		console.log(this.experience.cursor.cursorElements[0].DOM.inner)
 		this.cursor = this.experience.cursor.cursorElements[0].DOM.inner
 
 		this.mouse = new Mouse()
@@ -19,8 +18,41 @@ export default class Raycaster {
 		this.container = document.querySelector('#app')
 		this.duration = 1600
 
-		window.addEventListener('click', () => {
-			this.handleClick()
+		this.cursor.style.setProperty('--duration', this.duration + 'ms')
+		;['mousedown', 'touchstart', 'keypress'].forEach((e) => {
+			this.container.addEventListener(e, (ev) => {
+				if (
+					e != 'keypress' ||
+					(e == 'keypress' &&
+						ev.which == 32 &&
+						!this.cursor.classList.contains('process'))
+				) {
+					console.log(this.currentIntersect)
+					if (
+						this.currentIntersect &&
+						this.currentIntersect.object.userData.type === 'portail'
+					) {
+						this.cursor.classList.add('process')
+						this.cursor.timeout = setTimeout(
+							this.success,
+							this.duration,
+							this.currentIntersect
+						)
+					}
+				}
+			})
+		})
+		;['mouseup', 'mouseout', 'touchend', 'keyup'].forEach((e) => {
+			this.container.addEventListener(
+				e,
+				(ev) => {
+					if (e != 'keyup' || (e == 'keyup' && ev.which == 32)) {
+						this.cursor.classList.remove('process')
+						clearTimeout(this.cursor.timeout)
+					}
+				},
+				false
+			)
 		})
 	}
 
@@ -41,63 +73,21 @@ export default class Raycaster {
 	// 	}
 	// }
 
-	success(cursor) {
-		if (
-			this.currentIntersect &&
-			this.currentIntersect.object.name === 'portal1'
-		) {
+	success(intersect) {
+		console.log('here')
+		console.log(this.experience)
+
+		if (intersect && intersect.object.name === 'portal1') {
 			this.experience.switch('firstFloor')
-		} else if (
-			this.currentIntersect &&
-			this.currentIntersect.object.name === 'portal2'
-		) {
+		} else if (intersect && intersect.object.name === 'portal2') {
 			this.experience.switch('secondFloor')
-		} else if (
-			this.currentIntersect &&
-			this.currentIntersect.object.name === 'portal3'
-		) {
+		} else if (intersect && intersect.object.name === 'portal3') {
 			window.open('https://opensea.io/', '_blank')
 		}
 	}
 
 	handleClick() {
-		if (
-			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.userData.type ===
-				'portail'
-		) {
-			console.log('here')
-			this.cursor.style.setProperty('--duration', this.duration + 'ms')
-			;['mousedown', 'touchstart', 'keypress'].forEach((e) => {
-				this.container.addEventListener(e, (ev) => {
-					if (
-						e != 'keypress' ||
-						(e == 'keypress' &&
-							ev.which == 32 &&
-							!this.cursor.classList.contains('process'))
-					) {
-						this.cursor.classList.add('process')
-						this.cursor.timeout = setTimeout(
-							this.success,
-							this.duration,
-							this.cursor
-						)
-					}
-				})
-			})
-			;['mouseup', 'mouseout', 'touchend', 'keyup'].forEach((e) => {
-				this.container.addEventListener(
-					e,
-					(ev) => {
-						if (e != 'keyup' || (e == 'keyup' && ev.which == 32)) {
-							this.cursor.classList.remove('process')
-							clearTimeout(this.cursor.timeout)
-						}
-					},
-					false
-				)
-			})
-		}
+		// console.log('HANDLE CLICK')
 	}
 
 	update() {

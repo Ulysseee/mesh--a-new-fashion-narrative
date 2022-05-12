@@ -91,6 +91,7 @@ export default {
 		stroke-dashoffset: 0.4;
 		transform: rotate(-90deg);
 		transform-origin: center;
+		stroke-linecap: round;
 	}
 
 	.cursor--2 .cursor__inner {
