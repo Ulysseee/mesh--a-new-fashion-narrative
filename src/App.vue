@@ -4,6 +4,7 @@
 	<LoadingScreen />
 	<Controls />
 	<Information @toggle-information="toggleModal" />
+	<CustomCursor />
 </template>
 
 <script>
@@ -13,6 +14,7 @@ import LoadingScreen from './components/LoadingScreen.vue'
 import Header from './components/Header.vue'
 import Controls from './components/Controls.vue'
 import Information from './components/InformationModal.vue'
+import CustomCursor from './components/Cursor.vue'
 
 export default {
 	name: 'App',
@@ -22,7 +24,8 @@ export default {
 		LoadingScreen,
 		Header,
 		Controls,
-		Information
+		Information,
+		CustomCursor
 	},
 	emits: ['toggle-information'],
 

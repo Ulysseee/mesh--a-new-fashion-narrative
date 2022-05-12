@@ -16,9 +16,7 @@ export default class Raycaster {
 		this.raycaster = new ThreeRaycaster()
 
 		this.container = document.querySelector('#app')
-		this.duration = 1600
-
-		this.cursor.style.setProperty('--duration', this.duration + 'ms')
+		this.duration = 1400
 		;['mousedown', 'touchstart', 'keypress'].forEach((e) => {
 			this.container.addEventListener(e, (ev) => {
 				if (
@@ -27,14 +25,13 @@ export default class Raycaster {
 						ev.which == 32 &&
 						!this.cursor.classList.contains('process'))
 				) {
-					console.log(this.currentIntersect)
 					if (
 						this.currentIntersect &&
 						this.currentIntersect.object.userData.type === 'portail'
 					) {
 						this.cursor.classList.add('process')
 						this.cursor.timeout = setTimeout(
-							this.success,
+							this.success.bind(this),
 							this.duration,
 							this.currentIntersect
 						)
@@ -73,15 +70,24 @@ export default class Raycaster {
 	// 	}
 	// }
 
-	success(intersect) {
+	success() {
 		console.log('here')
 		console.log(this.experience)
 
-		if (intersect && intersect.object.name === 'portal1') {
+		if (
+			this.currentIntersect &&
+			this.currentIntersect.object.name === 'portal1'
+		) {
 			this.experience.switch('firstFloor')
-		} else if (intersect && intersect.object.name === 'portal2') {
+		} else if (
+			this.currentIntersect &&
+			this.currentIntersect.object.name === 'portal2'
+		) {
 			this.experience.switch('secondFloor')
-		} else if (intersect && intersect.object.name === 'portal3') {
+		} else if (
+			this.currentIntersect &&
+			this.currentIntersect.object.name === 'portal3'
+		) {
 			window.open('https://opensea.io/', '_blank')
 		}
 	}
