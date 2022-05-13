@@ -21,6 +21,8 @@ export default class GroundFloor {
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
 		this.timeline = document.querySelector('.header__timeline__1--progress')
+		this.dot = document.querySelector('.header__timeline--dot1')
+		this.dot.classList.add('fill')
 
 		this.mouse = new Mouse()
 
@@ -97,7 +99,7 @@ export default class GroundFloor {
 				this.spline.scroll.current
 			)
 
-			this.timeline.style.transform = `scaleX(${this.percent})`
+			this.timeline.style.transform = `scaleY(${this.percent})`
 
 			this.spline.update()
 		}

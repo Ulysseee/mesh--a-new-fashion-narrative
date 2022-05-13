@@ -19,6 +19,8 @@ export default class SecondFloor {
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
 		this.timeline = document.querySelector('.header__timeline__3--progress')
+		this.dot = document.querySelector('.header__timeline--dot3')
+		this.dot.classList.add('fill')
 
 		// this.isInfosActive = false
 
@@ -68,7 +70,7 @@ export default class SecondFloor {
 				this.spline.scroll.current
 			)
 
-			this.timeline.style.transform = `scaleX(${this.percent})`
+			this.timeline.style.transform = `scaleY(${this.percent})`
 			// console.log(
 			// 	this.spline.curve.getPointAt(this.spline.scroll.current)
 			// )

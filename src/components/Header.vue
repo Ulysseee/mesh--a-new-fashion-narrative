@@ -24,18 +24,6 @@
 			<span class="svelte-1rw298u" style="--i: 15"></span>
 			<span class="svelte-1rw298u" style="--i: 6"></span>
 		</button>
-
-		<div class="header__timeline__wrapper">
-			<div class="header__timeline__1">
-				<div class="header__timeline__1--progress"></div>
-			</div>
-			<div class="header__timeline__2">
-				<div class="header__timeline__2--progress"></div>
-			</div>
-			<div class="header__timeline__3">
-				<div class="header__timeline__3--progress"></div>
-			</div>
-		</div>
 	</header>
 	<AboutModal @toggle-about="toggleModal" />
 </template>
@@ -100,7 +88,7 @@ export default {
 	z-index: 10;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	// justify-content: space-between;
 	width: 96vw;
 	left: 50%;
 
@@ -195,33 +183,6 @@ export default {
 	&__sound.is-active span {
 		animation: scaleSound 1s ease infinite alternate;
 		animation-delay: calc(var(--i) * 75ms);
-	}
-
-	&__timeline__wrapper {
-		display: flex;
-		flex: 1;
-		.header__timeline__1,
-		.header__timeline__2,
-		.header__timeline__3 {
-			flex: 1;
-			margin: 0 20px;
-			height: 1px;
-			background: white;
-			position: relative;
-		}
-
-		.header__timeline__1--progress,
-		.header__timeline__2--progress,
-		.header__timeline__3--progress {
-			position: absolute;
-			top: 0;
-			left: 0;
-			background: red;
-			height: 1px;
-			width: 100%;
-			transform: scaleX(0);
-			transform-origin: left center;
-		}
 	}
 }
 

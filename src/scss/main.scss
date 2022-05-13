@@ -64,25 +64,3 @@ button {
 	transition: all 0.3s;
 	border-radius: 30px;
 }
-
-.helper__scroll {
-	position: absolute;
-	bottom: 0px;
-	left: 50%;
-	z-index: 99;
-	color: var(--c-white);
-	text-transform: uppercase;
-	transform: translateX(-50%);
-	font-family: 'Brilliant Cut Pro';
-
-	&__line {
-		position: relative;
-		display: block;
-		margin: auto;
-		width: 1px;
-		height: 4.791666666666667vmax;
-		max-height: 40px;
-		background-color: var(--c-white);
-		opacity: 1;
-	}
-}
