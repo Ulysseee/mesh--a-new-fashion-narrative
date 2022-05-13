@@ -35,10 +35,6 @@ export default class Camera {
 		this.controls.minDistance = 0
 		this.controls.enableZoom = false
 		this.controls.enablePan = false
-
-		this.controls.addEventListener('change', () => {
-			console.log('yes')
-		})
 	}
 
 	resize() {

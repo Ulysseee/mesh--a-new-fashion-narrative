@@ -40,21 +40,6 @@ export default class SecondFloor {
 
 			this.particles = new Particles()
 		})
-
-		window.addEventListener('click', () => {
-			this.handleClick()
-		})
-	}
-
-	handleClick() {
-		if (
-			this.experience.raycaster.currentIntersect &&
-			this.experience.raycaster.currentIntersect.object.name ===
-				'portal' &&
-			this.experience.raycaster.onPortal === true
-		) {
-			console.log('nft')
-		}
 	}
 
 	update() {

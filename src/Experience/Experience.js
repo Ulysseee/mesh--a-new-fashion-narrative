@@ -36,12 +36,12 @@ export default class Experience {
 		this.scene = new THREE.Scene()
 		this.cursor = new Cursor(document.querySelectorAll('.cursor'))
 		this.resources = new Resources(groundFloor)
-		// this.resources = new Resources(firstFloor)
-		// this.resources = new Resources(secondFloor)
 
 		this.camera = new Camera()
 
 		this.items = []
+
+		this.infoOpen = false
 
 		this.timeline1 = document.querySelector(
 			'.header__timeline__1--progress'
@@ -54,8 +54,6 @@ export default class Experience {
 		this.renderer = new Renderer()
 
 		this.groundFloor = new GroundFloor()
-		// this.firstFloor = new FirstFloor()
-		// this.secondFloor = new SecondFloor()
 
 		this.setDebug()
 

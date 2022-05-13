@@ -5,6 +5,7 @@ import Debug from '@utils/Debug'
 import Experience from '../Experience.js'
 import Building from './Building.js'
 import Cube from './Cube.js'
+import Cone from './Cone.js'
 // import Cloth from './Cloth.js'
 import Environment from './Environment.js'
 import Mouse from '@utils/Mouse'
@@ -21,6 +22,7 @@ export default class GroundFloor {
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
 		this.timeline = document.querySelector('.header__timeline__1--progress')
+		this.raycaster = this.experience.raycaster
 
 		this.mouse = new Mouse()
 
@@ -40,10 +42,11 @@ export default class GroundFloor {
 			this.environment = new Environment()
 			this.sky = new Sky()
 			this.testCube = new Cube()
+			this.testCone = new Cone()
 			// this.cloth = new Cloth()
-
-			this.spline.on('wheel', () => {})
 		})
+
+		window.addEventListener('click', this.handle.bind(this))
 	}
 
 	setPostProcessing() {
@@ -87,8 +90,24 @@ export default class GroundFloor {
 		}
 	}
 
-	hold() {
-		// Hold button with mouse / select with tab and hold spacebar
+	handle() {
+		if (
+			this.raycaster.currentIntersect &&
+			this.raycaster.currentIntersect.object.userData.type === 'cloth1'
+		) {
+			this.spline.scroll.target = 0.8
+
+			this.testCube.displayInfo()
+			this.experience.infoOpen = true
+		} else if (
+			this.raycaster.currentIntersect &&
+			this.raycaster.currentIntersect.object.userData.type === 'cloth3'
+		) {
+			this.spline.scroll.target = 0.3
+
+			this.testCone.displayInfo()
+			this.experience.infoOpen = true
+		}
 	}
 
 	update() {

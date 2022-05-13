@@ -29,8 +29,10 @@ export default class Spline extends EventEmitter {
 
 		// Resize event
 		window.addEventListener('wheel', (e) => {
-			this.scrollCanvas(e)
-			this.trigger('wheel')
+			if (!this.experience.infoOpen) {
+				this.scrollCanvas(e)
+				this.trigger('wheel')
+			}
 		})
 	}
 
@@ -97,3 +99,12 @@ export default class Spline extends EventEmitter {
 		// this.camera.instance.lookAt(0, 0, -32)
 	}
 }
+
+// for (let i = 0; i < this.experience.items.length; i++) {
+// 	const element = this.experience.items[i]
+// 	if (element.userData.type === 'cloth') {
+// 		for (let j = 0; j < this.spline.curve.length; j++) {
+// 			const point = array[j]
+// 		}
+// 	}
+// }

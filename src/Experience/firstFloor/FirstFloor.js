@@ -18,7 +18,7 @@ export default class FirstFloor {
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
-			this.spline = new Spline(firstFloorPath)
+			// this.spline = new Spline(firstFloorPath)
 			this.environment = new Environment()
 			this.sky = new Sky()
 			this.firstFloor = new Building()
