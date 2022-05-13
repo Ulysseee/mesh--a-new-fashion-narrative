@@ -11,19 +11,6 @@ export const groundFloor = [
 	}
 ]
 
-export const firstFloor = [
-	{
-		name: 'firstFloorModel',
-		type: 'gltfModel',
-		path: 'models/etageclean.glb'
-	}
-	// {
-	// 	name: 'firstFloorModel',
-	// 	type: 'gltfModel',
-	// 	path: 'models/firstFloor.glb'
-	// }
-]
-
 export const secondFloor = [
 	{
 		name: 'flower',

@@ -37,7 +37,7 @@ export default class SecondFloor {
 			this.spline = new Spline(secondFloorPath)
 
 			this.portal = new Portal()
-			this.portal.mesh.name = 'portal3'
+			this.portal.mesh.name = 'portal2'
 			this.portal.mesh.userData.type = 'portail'
 
 			this.particles = new Particles()

@@ -71,9 +71,6 @@ export default class Raycaster {
 	// }
 
 	success() {
-		console.log('here')
-		console.log(this.experience)
-
 		if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal1'
@@ -82,11 +79,6 @@ export default class Raycaster {
 		} else if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal2'
-		) {
-			this.experience.switch('secondFloor')
-		} else if (
-			this.currentIntersect &&
-			this.currentIntersect.object.name === 'portal3'
 		) {
 			window.open('https://opensea.io/', '_blank')
 		}

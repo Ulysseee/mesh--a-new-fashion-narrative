@@ -12,12 +12,11 @@ import Cursor from '@classes/Cursor.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
-import FirstFloor from '@classes/firstFloor/FirstFloor'
 import SecondFloor from '@classes/secondFloor/SecondFloor.js'
 import GroundFloor from '@classes/groundFloor/GroundFloor.js'
 
 import Anims from './Anims.js'
-import { groundFloor, firstFloor, secondFloor } from './sources.js'
+import { groundFloor, secondFloor } from './sources.js'
 
 export default class Experience {
 	constructor(_canvas) {
@@ -160,7 +159,6 @@ export default class Experience {
 		if (this.raycaster) this.raycaster.update()
 
 		if (this.groundFloor) this.groundFloor.update()
-		if (this.firstFloor) this.firstFloor.update()
 		if (this.secondFloor) this.secondFloor.update()
 
 		if (this.renderer) this.renderer.update()
@@ -191,18 +189,14 @@ export default class Experience {
 		switch (level) {
 			case 'firstFloor':
 				this.items = []
-				this.timeline1.style.transform = 'scale(1)'
+				this.timeline2.style.transform = 'scale(1)'
 				this.groundFloor = null
-				this.resources = new Resources(firstFloor)
-				this.firstFloor = new FirstFloor()
+				this.resources = new Resources(secondFloor)
+				this.secondFloor = await new SecondFloor()
 				break
 
 			case 'secondFloor':
-				this.items = []
-				this.timeline2.style.transform = 'scale(1)'
-				this.firstFloor = null
-				this.resources = new Resources(secondFloor)
-				this.secondFloor = new SecondFloor()
+				console.log('toto')
 				break
 
 			default:
