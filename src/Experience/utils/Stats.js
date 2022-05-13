@@ -5,7 +5,7 @@ export default class Stats {
 		this.instance = new StatsJs()
 		this.instance.showPanel(0)
 
-		this.active = false
+		this.active = true
 		this.max = 40
 		this.ignoreMaxed = true
 

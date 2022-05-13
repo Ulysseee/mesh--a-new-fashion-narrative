@@ -1,27 +1,16 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
+import Cloth from '../shared/Cloth.js'
 
-export default class Cube {
+export default class Cube extends Cloth {
 	constructor() {
+		super()
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.time = this.experience.time
 		this.targetQuaternion = new THREE.Quaternion()
 
 		this.setCube()
-	}
-
-	displayInfo() {
-		this.element = document.querySelector('.information')
-		this.element.classList.toggle('active')
-		document.querySelector('.cloth1').classList.add('active')
-	}
-
-	handleCube() {
-		if (!this.cube.quaternion.equals(this.targetQuaternion)) {
-			const step = 2 * this.time.delta
-			this.cube.quaternion.rotateTowards(this.targetQuaternion, step)
-		}
 	}
 
 	setCube() {

@@ -5,6 +5,7 @@
 	<Controls />
 	<Information @toggle-information="toggleModal" />
 	<CustomCursor />
+	<Timeline />
 </template>
 
 <script>
@@ -15,6 +16,7 @@ import Header from './components/Header.vue'
 import Controls from './components/Controls.vue'
 import Information from './components/InformationModal.vue'
 import CustomCursor from './components/Cursor.vue'
+import Timeline from './components/Timeline.vue'
 
 export default {
 	name: 'App',
@@ -25,7 +27,8 @@ export default {
 		Header,
 		Controls,
 		Information,
-		CustomCursor
+		CustomCursor,
+		Timeline
 	},
 	emits: ['toggle-information'],
 

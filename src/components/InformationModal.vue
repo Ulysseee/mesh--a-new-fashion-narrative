@@ -1,9 +1,11 @@
 <template>
-	<div class="information">
-		<div class="information__close" @click="onClick"></div>
+	<div class="information" data-scroll-container>
+		<div class="information__wrapper" data-scroll-section>
+			<div class="information__close" @click="onClick"></div>
 
-		<Cloth1 />
-		<Cloth3 />
+			<Cloth1 />
+			<Cloth3 />
+		</div>
 	</div>
 </template>
 
@@ -24,11 +26,13 @@ export default {
 
 	methods: {
 		onClick() {
-			let info = document.querySelector('.information')
-			info.classList.remove('active')
+			// CLOSE MODAL
+			document.querySelector('.information').classList.remove('active')
 
-			let cloths = document.querySelectorAll('.cloth')
-			cloths.forEach((cloth) => cloth.classList.remove('active'))
+			document
+				.querySelectorAll('.cloth')
+				.forEach((cloth) => cloth.classList.remove('active'))
+
 			this.experience.infoOpen = false
 		}
 	}
@@ -47,7 +51,6 @@ export default {
 	color: #111111;
 	transform: translateX(100%);
 	transition: transform 0.9s ease;
-	overflow-y: scroll;
 	padding: 20px;
 
 	&.active {
@@ -55,11 +58,20 @@ export default {
 		transform: translateX(0%);
 	}
 
+	&__wrapper {
+		width: 100%;
+		height: 100%;
+		overflow-y: scroll;
+	}
+
 	&__close {
 		width: 30px;
 		height: 30px;
 		padding: 30px;
-		background: black;
+		background: red;
+		display: block;
+		z-index: 2;
+		cursor: pointer;
 	}
 }
 </style>

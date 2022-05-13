@@ -1,5 +1,5 @@
 <template>
-	<div style="display: none" class="helper__scroll">
+	<div class="helper__scroll">
 		<p>Scroll to explore</p>
 		<div class="helper__scroll__line"></div>
 	</div>
@@ -8,57 +8,26 @@
 <script></script>
 
 <style scoped lang="scss">
-.CustomCursor {
-	z-index: 10;
-	position: fixed;
-	top: 50%;
+.helper__scroll {
+	position: absolute;
+	bottom: 0px;
 	left: 50%;
-	width: 0;
-	height: 0;
-	pointer-events: none;
-	visibility: hidden;
-	.Cursor {
+	z-index: 99;
+	color: var(--c-white);
+	text-transform: uppercase;
+	transform: translateX(-50%);
+	font-family: 'Brilliant Cut Pro';
+	font-size: 0.75rem;
+
+	&__line {
 		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 9.875rem;
-		height: 9.875rem;
-		margin-top: -4.9375rem;
-		margin-left: -4.9375rem;
-		border-radius: 50%;
-	}
-
-	.Border {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		border-radius: inherit;
-	}
-
-	.Background {
-		position: absolute;
-		top: 4px;
-		right: 4px;
-		bottom: 4px;
-		left: 4px;
-		border-radius: inherit;
+		display: block;
+		margin: auto;
+		width: 1px;
+		height: 3vmax;
+		max-height: 40px;
 		background-color: var(--c-white);
-		background-clip: padding-box;
-	}
-
-	.Label {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		color: var(--c-black);
-		font-size: 1rem;
-		font-weight: 500;
-		text-transform: uppercase;
-		font-family: 'Brilliant Cut Pro';
+		opacity: 1;
 	}
 }
 </style>

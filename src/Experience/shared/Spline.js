@@ -93,10 +93,10 @@ export default class Spline extends EventEmitter {
 			// this.camera.instance.position.z = 0
 		}
 
-		// const tangent = this.curve.getTangent(this.scroll.current)
+		const tangent = this.curve.getTangent(this.scroll.current)
+		// console.log(Math.abs(-tangent.x))
+		// console.log(-tangent.x)
 		// this.camera.instance.rotation.y = -tangent.x
-
-		// this.camera.instance.lookAt(0, 0, -32)
 	}
 }
 

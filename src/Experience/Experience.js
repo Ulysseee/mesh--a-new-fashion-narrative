@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import gsap, { Power3 } from 'gsap'
+import LocomotiveScroll from 'locomotive-scroll'
 
 import config from '@utils/config'
 import Debug from '@utils/Debug.js'
@@ -42,6 +43,11 @@ export default class Experience {
 		this.items = []
 
 		this.infoOpen = false
+
+		const scroll = new LocomotiveScroll({
+			el: document.querySelector('[data-scroll-container]'),
+			smooth: true
+		})
 
 		this.timeline1 = document.querySelector(
 			'.header__timeline__1--progress'

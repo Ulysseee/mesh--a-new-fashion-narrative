@@ -14,6 +14,8 @@ export default class FirstFloor {
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
 		this.timeline = document.querySelector('.header__timeline__2--progress')
+		this.dot = document.querySelector('.header__timeline--dot2')
+		this.dot.classList.add('fill')
 
 		// Wait for resources
 		this.resources.on('ready', () => {
@@ -35,7 +37,7 @@ export default class FirstFloor {
 				this.spline.scroll.current
 			)
 
-			this.timeline.style.transform = `scaleX(${this.percent})`
+			this.timeline.style.transform = `scaleY(${this.percent})`
 			this.spline.update()
 		}
 	}

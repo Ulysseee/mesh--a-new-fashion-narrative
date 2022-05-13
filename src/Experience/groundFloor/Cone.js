@@ -1,28 +1,16 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
+import Cloth from '../shared/Cloth.js'
 
-export default class Cone {
+export default class Cone extends Cloth {
 	constructor() {
+		super()
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.time = this.experience.time
 		this.targetQuaternion = new THREE.Quaternion()
 
 		this.setCone()
-	}
-
-	displayInfo() {
-		this.element = document.querySelector('.information')
-		this.element.classList.add('active')
-
-		document.querySelector('.cloth3').classList.add('active')
-	}
-
-	handleCone() {
-		if (!this.cone.quaternion.equals(this.targetQuaternion)) {
-			const step = 2 * this.time.delta
-			this.cone.quaternion.rotateTowards(this.targetQuaternion, step)
-		}
 	}
 
 	setCone() {

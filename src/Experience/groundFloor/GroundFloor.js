@@ -23,7 +23,8 @@ export default class GroundFloor {
 		this.camera = this.experience.camera
 		this.timeline = document.querySelector('.header__timeline__1--progress')
 		this.raycaster = this.experience.raycaster
-
+		this.dot = document.querySelector('.header__timeline--dot1')
+		this.dot.classList.add('fill')
 		this.mouse = new Mouse()
 
 		// this.setPostProcessing()
@@ -97,7 +98,7 @@ export default class GroundFloor {
 		) {
 			this.spline.scroll.target = 0.8
 
-			this.testCube.displayInfo()
+			this.testCube.displayInfo('.cloth1')
 			this.experience.infoOpen = true
 		} else if (
 			this.raycaster.currentIntersect &&
@@ -105,7 +106,7 @@ export default class GroundFloor {
 		) {
 			this.spline.scroll.target = 0.3
 
-			this.testCone.displayInfo()
+			this.testCone.displayInfo('.cloth3')
 			this.experience.infoOpen = true
 		}
 	}
@@ -116,7 +117,7 @@ export default class GroundFloor {
 				this.spline.scroll.current
 			)
 
-			this.timeline.style.transform = `scaleX(${this.percent})`
+			this.timeline.style.transform = `scaleY(${this.percent})`
 
 			this.spline.update()
 		}
