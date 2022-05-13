@@ -41,6 +41,8 @@ export default class GroundFloor {
 			this.sky = new Sky()
 			this.testCube = new Cube()
 			// this.cloth = new Cloth()
+
+			this.spline.on('wheel', () => {})
 		})
 	}
 
@@ -96,9 +98,7 @@ export default class GroundFloor {
 			)
 
 			this.timeline.style.transform = `scaleX(${this.percent})`
-			// console.log(
-			// 	this.spline.curve.getPointAt(this.spline.scroll.current)
-			// )
+
 			this.spline.update()
 		}
 	}

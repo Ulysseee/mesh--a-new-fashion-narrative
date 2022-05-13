@@ -1,5 +1,5 @@
 <template>
-	<div class="helper__scroll">
+	<div style="display: none" class="helper__scroll">
 		<p>Scroll to explore</p>
 		<div class="helper__scroll__line"></div>
 	</div>
@@ -17,7 +17,6 @@
 	height: 0;
 	pointer-events: none;
 	visibility: hidden;
-
 	.Cursor {
 		position: relative;
 		display: flex;

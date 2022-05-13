@@ -107,14 +107,16 @@ export default class Raycaster {
 			this.currentIntersect = intersects[0]
 			this.experience.cursor.enter()
 
-			// if (
-			// 	this.currentIntersect.object.name === 'portal1' ||
-			// 	this.currentIntersect.object.name === 'portal2' ||
-			// 	this.currentIntersect.object.name === 'portal3'
-			// ) {
-			// 	this.experience.cursor.enter()
-			// }
+			if (
+				this.currentIntersect.object.name === 'portal1' ||
+				this.currentIntersect.object.name === 'portal2' ||
+				this.currentIntersect.object.name === 'portal3'
+			) {
+				document.querySelector('.hold').classList.add('active')
+			}
 		} else {
+			document.querySelector('.hold').classList.remove('active')
+
 			this.experience.cursor.leave()
 			this.currentIntersect = null
 		}

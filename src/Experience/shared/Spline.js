@@ -1,12 +1,13 @@
 import { BufferGeometry, LineBasicMaterial, Line } from 'three'
+import EventEmitter from '@utils/EventEmitter.js'
 
 import gsap from 'gsap'
 
 import Experience from '../Experience'
 
-export default class Spline {
+export default class Spline extends EventEmitter {
 	constructor(catmullCurve) {
-		this.bind()
+		super()
 
 		this.experience = new Experience()
 		this.canvas = this.experience.canvas
@@ -26,7 +27,11 @@ export default class Spline {
 		this.setSpline(catmullCurve)
 		if (this.debug) this.setDebug()
 
-		window.addEventListener('wheel', this.scrollCanvas)
+		// Resize event
+		window.addEventListener('wheel', (e) => {
+			this.scrollCanvas(e)
+			this.trigger('wheel')
+		})
 	}
 
 	setSpline(catmullCurve) {
@@ -40,8 +45,6 @@ export default class Spline {
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
 		this.scene.add(this.splineObject)
-
-		console.log(this.curve)
 	}
 
 	scrollCanvas({ deltaY }) {
@@ -92,9 +95,5 @@ export default class Spline {
 		// this.camera.instance.rotation.y = -tangent.x
 
 		// this.camera.instance.lookAt(0, 0, -32)
-	}
-
-	bind() {
-		this.scrollCanvas = this.scrollCanvas.bind(this)
 	}
 }
