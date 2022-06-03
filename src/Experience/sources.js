@@ -5,23 +5,10 @@ export const groundFloor = [
 		path: 'models/maison_V2.fbx'
 	},
 	{
-		name: 'clothModel',
-		type: 'objModel',
-		path: 'models/cloth.obj'
+		name: 'bagModel',
+		type: 'fbxModel',
+		path: 'models/bag.fbx'
 	}
-]
-
-export const firstFloor = [
-	{
-		name: 'firstFloorModel',
-		type: 'gltfModel',
-		path: 'models/etageclean.glb'
-	}
-	// {
-	// 	name: 'firstFloorModel',
-	// 	type: 'gltfModel',
-	// 	path: 'models/firstFloor.glb'
-	// }
 ]
 
 export const secondFloor = [

@@ -6,13 +6,13 @@ import Experience from '../Experience.js'
 import Building from './Building.js'
 import Cube from './Cube.js'
 import Cone from './Cone.js'
-// import Cloth from './Cloth.js'
 import Environment from './Environment.js'
 import Sky from '@classes/shared/sky'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
 
 import gsap from 'gsap'
+import { Circ } from 'gsap'
 
 import { groundFloorPath } from '../pathes'
 
@@ -43,10 +43,7 @@ export default class GroundFloor {
 			this.sky = new Sky()
 			this.testCube = new Cube()
 			this.testCone = new Cone()
-			// this.cloth = new Cloth()
 		})
-
-		window.addEventListener('click', this.handle.bind(this))
 	}
 
 	setPostProcessing() {
@@ -90,43 +87,47 @@ export default class GroundFloor {
 		}
 	}
 
-	handle() {
-		if (this.raycaster.currentIntersect) {
-			if (
-				this.raycaster.currentIntersect.object.userData.type ===
-				'cloth1'
-			) {
-				this.experience.selectedItem = true
+	handleClick() {
+		if (this.raycaster.currentIntersect.object.userData.type === 'cloth1') {
+			this.experience.selectedItem = true
 
-				this.experience.savedPosition =
-					this.camera.instance.position.clone()
-				gsap.to(this.camera.instance.position, {
-					duration: 2,
-					x: this.testCube.cube.position.x,
-					y: this.testCube.cube.position.y,
-					z: this.testCube.cube.position.z - 1
-				})
+			this.experience.savedPosition =
+				this.camera.instance.position.clone()
+			gsap.to(this.camera.instance.position, {
+				duration: 2,
+				x: this.testCube.cube.position.x,
+				y: this.testCube.cube.position.y,
+				z: this.testCube.cube.position.z - 1,
+				ease: Circ.easeOut
+			})
 
-				this.testCube.displayInfo('.cloth1')
-				this.experience.infoOpen = true
-				this.experience.parallax.active = false
-			} else if (
-				this.raycaster.currentIntersect.object.userData.type ===
-				'cloth2'
-			) {
-				this.spline.scroll.target = 0.3
+			this.testCube.displayInfo('.cloth1')
+			this.experience.infoOpen = true
+			this.experience.parallax.active = false
+		} else if (
+			this.raycaster.currentIntersect.object.userData.type === 'cloth2'
+		) {
+			this.spline.scroll.target = 0.3
 
-				this.testCone.displayInfo('.cloth2')
-				this.experience.infoOpen = true
-			} else if (
-				this.raycaster.currentIntersect.object.userData.type ===
-				'cloth3'
-			) {
-				this.spline.scroll.target = 0.3
+			this.testCone.displayInfo('.cloth2')
+			this.experience.infoOpen = true
+		} else if (
+			this.raycaster.currentIntersect.object.userData.type === 'cloth3'
+		) {
+			this.experience.selectedItem = true
 
-				this.testCone.displayInfo('.cloth3')
-				this.experience.infoOpen = true
-			}
+			this.experience.savedPosition =
+				this.camera.instance.position.clone()
+			gsap.to(this.camera.instance.position, {
+				duration: 2,
+				x: this.testCone.cone.position.x,
+				y: this.testCone.cone.position.y,
+				z: this.testCone.cone.position.z - 2
+			})
+
+			this.testCone.displayInfo('.cloth3')
+			this.experience.infoOpen = true
+			this.experience.parallax.active = false
 		}
 	}
 

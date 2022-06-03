@@ -13,12 +13,11 @@ import Camera from './Camera.js'
 import Parallax from './Parallax.js'
 import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
-import FirstFloor from '@classes/firstFloor/FirstFloor'
 import SecondFloor from '@classes/secondFloor/SecondFloor.js'
 import GroundFloor from '@classes/groundFloor/GroundFloor.js'
 
 import Anims from './Anims.js'
-import { groundFloor, firstFloor, secondFloor } from './sources.js'
+import { groundFloor, secondFloor } from './sources.js'
 import { Vector3 } from 'three'
 
 export default class Experience {
@@ -161,7 +160,6 @@ export default class Experience {
 		if (this.raycaster) this.raycaster.update()
 
 		if (this.groundFloor) this.groundFloor.update()
-		if (this.firstFloor) this.firstFloor.update()
 		if (this.secondFloor) this.secondFloor.update()
 
 		if (this.renderer) this.renderer.update()
@@ -190,20 +188,24 @@ export default class Experience {
 		this.destroy()
 
 		switch (level) {
+			case 'secondFloor':
+				this.items = []
+				this.timeline1.style.transform = 'scale(1)'
+				this.timeline2.style.transform = 'scale(1)'
+
+				this.groundFloor = null
+
+				this.resources = new Resources(secondFloor)
+				this.secondFloor = new SecondFloor()
+				break
+
 			case 'firstFloor':
 				this.items = []
 				this.timeline1.style.transform = 'scale(1)'
-				this.groundFloor = null
-				this.resources = new Resources(firstFloor)
-				this.firstFloor = new FirstFloor()
-				break
-
-			case 'secondFloor':
-				this.items = []
 				this.timeline2.style.transform = 'scale(1)'
-				this.firstFloor = null
-				this.resources = new Resources(secondFloor)
-				this.secondFloor = new SecondFloor()
+				this.secondFloor = null
+				this.resources = new Resources(groundFloor)
+				this.groundFloor = new GroundFloor()
 				break
 
 			default:

@@ -80,7 +80,7 @@ export default class Spline extends EventEmitter {
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)
-		this.camera.instance.position.set(camPos.x, 2, camPos.z)
+		this.camera.instance.position.set(camPos.x, camPos.y + 2, camPos.z)
 
 		// if (
 		// 	this.camera.instance.position.z.toFixed(0) ==
@@ -94,17 +94,7 @@ export default class Spline extends EventEmitter {
 		// }
 
 		const tangent = this.curve.getTangent(this.scroll.current)
-		// console.log(Math.abs(-tangent.x))
-		// console.log(-tangent.x)
+
 		// this.camera.instance.rotation.y = -tangent.x
 	}
 }
-
-// for (let i = 0; i < this.experience.items.length; i++) {
-// 	const element = this.experience.items[i]
-// 	if (element.userData.type === 'cloth') {
-// 		for (let j = 0; j < this.spline.curve.length; j++) {
-// 			const point = array[j]
-// 		}
-// 	}
-// }

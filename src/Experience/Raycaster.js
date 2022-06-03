@@ -1,7 +1,6 @@
 import { Raycaster as ThreeRaycaster } from 'three'
 import Mouse from './utils/Mouse'
 import Experience from './Experience'
-import gsap, { Power3 } from 'gsap'
 
 export default class Raycaster {
 	constructor() {
@@ -51,49 +50,37 @@ export default class Raycaster {
 				false
 			)
 		})
+
+		window.addEventListener('click', () => {
+			if (this.currentIntersect) {
+				if (this.experience.groundFloor) {
+					this.experience.groundFloor.handleClick()
+				}
+
+				if (this.experience.secondFloor) {
+					this.experience.secondFloor.handleClick()
+				}
+			}
+		})
 	}
 
-	// handleClick() {
-	// 	if (this.currentIntersect) {
-	// 		// console.log('look')
-	// 		// gsap.to('.information', {
-	// 		// 	x: 0,
-	// 		// 	duration: 0.5,
-	// 		// 	ease: 'expo.easeInOut'
-	// 		// })
-	// 		gsap.to(this.camera.instance.position, {
-	// 			duration: 2,
-	// 			x: this.currentIntersect.object.position.x + 3,
-	// 			z: this.currentIntersect.object.position.z,
-	// 			ease: Power3.easeInOut
-	// 		})
-	// 	}
-	// }
-
 	success() {
-		console.log('here')
-		console.log(this.experience)
-
 		if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal1'
 		) {
-			this.experience.switch('firstFloor')
+			this.experience.switch('secondFloor')
 		} else if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal2'
 		) {
-			this.experience.switch('secondFloor')
+			this.experience.switch('firstFloor')
 		} else if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal3'
 		) {
 			window.open('https://opensea.io/', '_blank')
 		}
-	}
-
-	handleClick() {
-		// console.log('HANDLE CLICK')
 	}
 
 	update() {

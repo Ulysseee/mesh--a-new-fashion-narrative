@@ -20,19 +20,27 @@
 			<Cloth2 />
 			<Cloth3 />
 			<Cloth4 />
+			<Cloth5 />
 		</div>
 	</div>
 </template>
 
 <script>
 import Cloth1 from './Cloth-1.vue'
+import Cloth2 from './Cloth-2.vue'
 import Cloth3 from './Cloth-3.vue'
+import Cloth4 from './Cloth-4.vue'
+import Cloth5 from './Cloth-5.vue'
+
 import Experience from '@classes/Experience'
 
 export default {
 	components: {
 		Cloth1,
-		Cloth3
+		Cloth2,
+		Cloth3,
+		Cloth4,
+		Cloth5
 	},
 
 	mounted() {
@@ -87,8 +95,7 @@ export default {
 		background: black;
 		display: inline-block;
 		position: relative;
-		top: 0;
-		left: 0;
+		margin-left: 80%;
 		z-index: 200000;
 		cursor: pointer;
 		border-radius: 50%;

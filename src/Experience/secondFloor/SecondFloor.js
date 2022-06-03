@@ -7,8 +7,11 @@ import Butterfly from './Butterfly.js'
 import Flower from './Flower.js'
 import Particles from './Particles.js'
 import WaterClass from './Water.js'
+import Cube from './Cube.js'
 
 import Spline from '../shared/Spline.js'
+import gsap from 'gsap'
+import { Circ } from 'gsap'
 
 import { secondFloorPath } from '../pathes'
 
@@ -18,6 +21,8 @@ export default class SecondFloor {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
+		this.raycaster = this.experience.raycaster
+
 		this.timeline = document.querySelector('.header__timeline__3--progress')
 		this.dot = document.querySelector('.header__timeline--dot3')
 		this.dot.classList.add('fill')
@@ -32,16 +37,37 @@ export default class SecondFloor {
 			this.sky = new Sky()
 			// this.water = new WaterClass()
 			this.butterfly = new Butterfly()
-			// this.flower = new Flower()
+			this.flower = new Flower()
+			this.cube = new Cube()
 
 			this.spline = new Spline(secondFloorPath)
 
 			this.portal = new Portal()
-			this.portal.mesh.name = 'portal3'
+			this.portal.mesh.name = 'portal2'
 			this.portal.mesh.userData.type = 'portail'
 
 			this.particles = new Particles()
 		})
+	}
+
+	handleClick() {
+		if (this.raycaster.currentIntersect.object.userData.type === 'cloth5') {
+			this.experience.selectedItem = true
+
+			this.experience.savedPosition =
+				this.camera.instance.position.clone()
+			gsap.to(this.camera.instance.position, {
+				duration: 2,
+				x: this.cube.cube.position.x,
+				y: this.cube.cube.position.y,
+				z: this.cube.cube.position.z - 1,
+				ease: Circ.easeOut
+			})
+
+			this.cube.displayInfo('.cloth5')
+			this.experience.infoOpen = true
+			this.experience.parallax.active = false
+		}
 	}
 
 	update() {
@@ -56,10 +82,10 @@ export default class SecondFloor {
 			)
 
 			this.timeline.style.transform = `scaleY(${this.percent})`
-			// console.log(
-			// 	this.spline.curve.getPointAt(this.spline.scroll.current)
-			// )
-			this.spline.update()
+
+			if (!this.experience.selectedItem) {
+				this.spline.update()
+			}
 		}
 	}
 

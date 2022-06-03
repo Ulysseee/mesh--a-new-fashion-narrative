@@ -3,6 +3,7 @@ import Experience from './Experience'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import gsap from 'gsap'
 import config from '@utils/config'
+import { Circ } from 'gsap'
 
 export default class Camera {
 	constructor() {
@@ -48,7 +49,8 @@ export default class Camera {
 			duration: 2,
 			x: this.experience.savedPosition.x,
 			y: this.experience.savedPosition.y,
-			z: this.experience.savedPosition.z
+			z: this.experience.savedPosition.z,
+			ease: Circ.easeOut
 		})
 	}
 

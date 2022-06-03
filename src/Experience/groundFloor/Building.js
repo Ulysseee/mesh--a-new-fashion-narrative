@@ -15,5 +15,6 @@ export default class Building {
 		this.resource.scale.set(0.02, 0.02, 0.02)
 		this.resource.position.set(0, 0, -32)
 		this.scene.add(this.resource)
+		this.experience.items.push(this.resource)
 	}
 }
