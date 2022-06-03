@@ -8,12 +8,13 @@ import Cube from './Cube.js'
 import Cone from './Cone.js'
 // import Cloth from './Cloth.js'
 import Environment from './Environment.js'
-import Mouse from '@utils/Mouse'
 import Sky from '@classes/shared/sky'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
 
-import { goundFloorPath } from '../pathes'
+import gsap from 'gsap'
+
+import { groundFloorPath } from '../pathes'
 
 export default class GroundFloor {
 	constructor() {
@@ -24,16 +25,14 @@ export default class GroundFloor {
 		this.timeline = document.querySelector('.header__timeline__1--progress')
 		this.raycaster = this.experience.raycaster
 		this.dot = document.querySelector('.header__timeline--dot1')
-		this.dot.classList.add('fill')
-		this.mouse = new Mouse()
-
-		// this.setPostProcessing()
-		this.debugComposer()
+		this.dot.classList.add('fill') -
+			// this.setPostProcessing()
+			this.debugComposer()
 
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
-			this.spline = new Spline(goundFloorPath)
+			this.spline = new Spline(groundFloorPath)
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal1'
@@ -92,22 +91,42 @@ export default class GroundFloor {
 	}
 
 	handle() {
-		if (
-			this.raycaster.currentIntersect &&
-			this.raycaster.currentIntersect.object.userData.type === 'cloth1'
-		) {
-			this.spline.scroll.target = 0.8
+		if (this.raycaster.currentIntersect) {
+			if (
+				this.raycaster.currentIntersect.object.userData.type ===
+				'cloth1'
+			) {
+				this.experience.selectedItem = true
 
-			this.testCube.displayInfo('.cloth1')
-			this.experience.infoOpen = true
-		} else if (
-			this.raycaster.currentIntersect &&
-			this.raycaster.currentIntersect.object.userData.type === 'cloth3'
-		) {
-			this.spline.scroll.target = 0.3
+				this.experience.savedPosition =
+					this.camera.instance.position.clone()
+				gsap.to(this.camera.instance.position, {
+					duration: 2,
+					x: this.testCube.cube.position.x,
+					y: this.testCube.cube.position.y,
+					z: this.testCube.cube.position.z - 1
+				})
 
-			this.testCone.displayInfo('.cloth3')
-			this.experience.infoOpen = true
+				this.testCube.displayInfo('.cloth1')
+				this.experience.infoOpen = true
+				this.experience.parallax.active = false
+			} else if (
+				this.raycaster.currentIntersect.object.userData.type ===
+				'cloth2'
+			) {
+				this.spline.scroll.target = 0.3
+
+				this.testCone.displayInfo('.cloth2')
+				this.experience.infoOpen = true
+			} else if (
+				this.raycaster.currentIntersect.object.userData.type ===
+				'cloth3'
+			) {
+				this.spline.scroll.target = 0.3
+
+				this.testCone.displayInfo('.cloth3')
+				this.experience.infoOpen = true
+			}
 		}
 	}
 
@@ -119,7 +138,9 @@ export default class GroundFloor {
 
 			this.timeline.style.transform = `scaleY(${this.percent})`
 
-			this.spline.update()
+			if (!this.experience.selectedItem) {
+				this.spline.update()
+			}
 		}
 	}
 }

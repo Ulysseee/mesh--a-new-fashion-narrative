@@ -82,16 +82,16 @@ export default class Spline extends EventEmitter {
 		const camPos = this.curve.getPoint(this.scroll.current)
 		this.camera.instance.position.set(camPos.x, 2, camPos.z)
 
-		if (
-			this.camera.instance.position.z.toFixed(0) ==
-				this.curve.points[this.curve.points.length - 1].z.toFixed(0) &&
-			this.camera.instance.position.x.toFixed(0) ==
-				this.curve.points[this.curve.points.length - 1].x.toFixed(0)
-		) {
-			this.scroll.current = 0
-			this.scroll.target = 0
-			// this.camera.instance.position.z = 0
-		}
+		// if (
+		// 	this.camera.instance.position.z.toFixed(0) ==
+		// 		this.curve.points[this.curve.points.length - 1].z.toFixed(0) &&
+		// 	this.camera.instance.position.x.toFixed(0) ==
+		// 		this.curve.points[this.curve.points.length - 1].x.toFixed(0)
+		// ) {
+		// 	this.scroll.current = 0
+		// 	this.scroll.target = 0
+		// 	// this.camera.instance.position.z = 0
+		// }
 
 		const tangent = this.curve.getTangent(this.scroll.current)
 		// console.log(Math.abs(-tangent.x))

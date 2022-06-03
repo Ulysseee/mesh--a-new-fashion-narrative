@@ -1,7 +1,7 @@
 import { PerspectiveCamera } from 'three'
 import Experience from './Experience'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-
+import gsap from 'gsap'
 import config from '@utils/config'
 
 export default class Camera {
@@ -35,6 +35,21 @@ export default class Camera {
 		this.controls.minDistance = 0
 		this.controls.enableZoom = false
 		this.controls.enablePan = false
+	}
+
+	resetPosition() {
+		let tl = gsap.timeline({
+			onComplete: () => {
+				this.experience.selectedItem = false
+			}
+		})
+
+		tl.to(this.instance.position, {
+			duration: 2,
+			x: this.experience.savedPosition.x,
+			y: this.experience.savedPosition.y,
+			z: this.experience.savedPosition.z
+		})
 	}
 
 	resize() {

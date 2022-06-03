@@ -18,10 +18,10 @@ export default class Cube extends Cloth {
 		const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
 		this.cube = new THREE.Mesh(geometry, material)
 
-		this.cube.position.x = 8
+		this.cube.position.x = 15
 		this.cube.position.y = 2
 
-		this.cube.position.z = -25
+		this.cube.position.z = -15
 		this.scene.add(this.cube)
 		this.cube.userData.type = 'cloth1'
 		this.experience.items.push(this.cube)

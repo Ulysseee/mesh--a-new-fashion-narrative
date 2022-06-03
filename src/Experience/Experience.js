@@ -10,6 +10,7 @@ import Resources from '@utils/Resources.js'
 import Cursor from '@classes/Cursor.js'
 
 import Camera from './Camera.js'
+import Parallax from './Parallax.js'
 import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
 import FirstFloor from '@classes/firstFloor/FirstFloor'
@@ -18,6 +19,7 @@ import GroundFloor from '@classes/groundFloor/GroundFloor.js'
 
 import Anims from './Anims.js'
 import { groundFloor, firstFloor, secondFloor } from './sources.js'
+import { Vector3 } from 'three'
 
 export default class Experience {
 	constructor(_canvas) {
@@ -39,15 +41,13 @@ export default class Experience {
 		this.resources = new Resources(groundFloor)
 
 		this.camera = new Camera()
+		this.parallax = new Parallax()
 
 		this.items = []
 
 		this.infoOpen = false
-
-		const scroll = new LocomotiveScroll({
-			el: document.querySelector('[data-scroll-container]'),
-			smooth: true
-		})
+		this.selectedItem = false
+		this.savedPosition = null
 
 		this.timeline1 = document.querySelector(
 			'.header__timeline__1--progress'
@@ -156,6 +156,7 @@ export default class Experience {
 	}
 
 	update() {
+		this.parallax.update()
 		this.camera.update()
 		if (this.raycaster) this.raycaster.update()
 
