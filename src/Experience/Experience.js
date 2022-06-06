@@ -7,10 +7,10 @@ import Debug from '@utils/Debug.js'
 import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Resources from '@utils/Resources.js'
+import Mouse from '@utils/Mouse.js'
 import Cursor from '@classes/Cursor.js'
 
 import Camera from './Camera.js'
-import Parallax from './Parallax.js'
 import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
 import SecondFloor from '@classes/secondFloor/SecondFloor.js'
@@ -18,7 +18,6 @@ import GroundFloor from '@classes/groundFloor/GroundFloor.js'
 
 import Anims from './Anims.js'
 import { groundFloor, secondFloor } from './sources.js'
-import { Vector3 } from 'three'
 
 export default class Experience {
 	constructor(_canvas) {
@@ -35,12 +34,12 @@ export default class Experience {
 		// Setup
 		this.sizes = new Sizes()
 		this.time = new Time()
+		this.mouse = new Mouse()
 		this.scene = new THREE.Scene()
 		this.cursor = new Cursor(document.querySelectorAll('.cursor'))
 		this.resources = new Resources(groundFloor)
 
 		this.camera = new Camera()
-		this.parallax = new Parallax()
 
 		this.items = []
 
@@ -97,44 +96,6 @@ export default class Experience {
 		this.overlay.name = 'loader'
 		this.scene.add(this.overlay)
 
-		let duration = 1600,
-			success = (button) => {
-				//Success function
-				// button.classList.add('success')
-				button.style.opacity = 0
-
-				this.switch()
-			}
-
-		document.querySelectorAll('.button-hold').forEach((button) => {
-			button.style.setProperty('--duration', duration + 'ms')
-			;['mousedown', 'touchstart', 'keypress'].forEach((e) => {
-				button.addEventListener(e, (ev) => {
-					if (
-						e != 'keypress' ||
-						(e == 'keypress' &&
-							ev.which == 32 &&
-							!button.classList.contains('process'))
-					) {
-						button.classList.add('process')
-						button.timeout = setTimeout(success, duration, button)
-					}
-				})
-			})
-			;['mouseup', 'mouseout', 'touchend', 'keyup'].forEach((e) => {
-				button.addEventListener(
-					e,
-					(ev) => {
-						if (e != 'keyup' || (e == 'keyup' && ev.which == 32)) {
-							button.classList.remove('process')
-							clearTimeout(button.timeout)
-						}
-					},
-					false
-				)
-			})
-		})
-
 		// Time tick event
 		this.update()
 	}
@@ -155,18 +116,18 @@ export default class Experience {
 	}
 
 	update() {
-		this.parallax.update()
-		this.camera.update()
-		if (this.raycaster) this.raycaster.update()
+		// DOM
+		if (this.cursor) this.cursor.cursorElements.forEach((el) => el.render())
 
+		// WEBGL
+		this.mouse.update()
+		this.camera.update()
+
+		if (this.raycaster) this.raycaster.update()
 		if (this.groundFloor) this.groundFloor.update()
 		if (this.secondFloor) this.secondFloor.update()
-
 		if (this.renderer) this.renderer.update()
-
 		if (this.debug) this.debug.stats.update()
-
-		if (this.cursor) this.cursor.cursorElements.forEach((el) => el.render())
 
 		window.requestAnimationFrame(() => {
 			this.update()
@@ -199,10 +160,10 @@ export default class Experience {
 				this.secondFloor = new SecondFloor()
 				break
 
-			case 'firstFloor':
+			case 'groudFloor':
 				this.items = []
-				this.timeline1.style.transform = 'scale(1)'
-				this.timeline2.style.transform = 'scale(1)'
+				this.timeline1.style.transform = 'scale(0)'
+				this.timeline2.style.transform = 'scale(0)'
 				this.secondFloor = null
 				this.resources = new Resources(groundFloor)
 				this.groundFloor = new GroundFloor()

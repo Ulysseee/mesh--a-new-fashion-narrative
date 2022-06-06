@@ -11,8 +11,7 @@ import Sky from '@classes/shared/sky'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
 
-import gsap from 'gsap'
-import { Circ } from 'gsap'
+import gsap, { Circ, Power3 } from 'gsap'
 
 import { groundFloorPath } from '../pathes'
 
@@ -24,10 +23,12 @@ export default class GroundFloor {
 		this.camera = this.experience.camera
 		this.timeline = document.querySelector('.header__timeline__1--progress')
 		this.raycaster = this.experience.raycaster
+
 		this.dot = document.querySelector('.header__timeline--dot1')
-		this.dot.classList.add('fill') -
-			// this.setPostProcessing()
-			this.debugComposer()
+		this.dot.classList.add('fill')
+
+		// this.setPostProcessing()
+		this.debugComposer()
 
 		// Wait for resources
 		this.resources.on('ready', () => {
@@ -94,16 +95,15 @@ export default class GroundFloor {
 			this.experience.savedPosition =
 				this.camera.instance.position.clone()
 			gsap.to(this.camera.instance.position, {
-				duration: 2,
+				duration: 1.75,
 				x: this.testCube.cube.position.x,
 				y: this.testCube.cube.position.y,
-				z: this.testCube.cube.position.z - 1,
-				ease: Circ.easeOut
+				z: this.testCube.cube.position.z - 3,
+				ease: Power3.easeOut
 			})
 
 			this.testCube.displayInfo('.cloth1')
 			this.experience.infoOpen = true
-			this.experience.parallax.active = false
 		} else if (
 			this.raycaster.currentIntersect.object.userData.type === 'cloth2'
 		) {
@@ -127,11 +127,11 @@ export default class GroundFloor {
 
 			this.testCone.displayInfo('.cloth3')
 			this.experience.infoOpen = true
-			this.experience.parallax.active = false
 		}
 	}
 
 	update() {
+		if (this.testCube) this.testCube.update()
 		if (this.spline) {
 			this.percent = this.spline.curve.getUtoTmapping(
 				this.spline.scroll.current

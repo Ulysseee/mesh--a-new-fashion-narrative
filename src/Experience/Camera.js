@@ -11,6 +11,7 @@ export default class Camera {
 		this.sizes = this.experience.sizes
 		this.scene = this.experience.scene
 		this.canvas = this.experience.canvas
+		this.mouse = this.experience.mouse
 
 		this.setInstance()
 		this.setControls()
@@ -60,6 +61,10 @@ export default class Camera {
 	}
 
 	update() {
-		this.controls.update()
+		if (this.controls) this.controls.update()
+		if (this.experience.infoOpen) {
+			// this.instance.rotation.x += -this.mouse.mouseRotation.x
+			// this.instance.rotation.y += this.mouse.mouseRotation.y
+		}
 	}
 }

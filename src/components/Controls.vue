@@ -24,8 +24,7 @@
 		display: block;
 		margin: auto;
 		width: 1px;
-		height: 3vmax;
-		max-height: 40px;
+		height: 3.5vh;
 		background-color: var(--c-white);
 		opacity: 1;
 	}

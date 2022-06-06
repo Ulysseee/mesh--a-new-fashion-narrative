@@ -1,5 +1,4 @@
 import { Raycaster as ThreeRaycaster } from 'three'
-import Mouse from './utils/Mouse'
 import Experience from './Experience'
 
 export default class Raycaster {
@@ -9,7 +8,7 @@ export default class Raycaster {
 		this.camera = this.experience.camera
 		this.cursor = this.experience.cursor.cursorElements[0].DOM.inner
 
-		this.mouse = new Mouse()
+		this.mouse = this.experience.mouse
 		this.onPortal = null
 		this.currentIntersect = null
 		this.raycaster = new ThreeRaycaster()
@@ -74,7 +73,7 @@ export default class Raycaster {
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal2'
 		) {
-			this.experience.switch('firstFloor')
+			this.experience.switch('groudFloor')
 		} else if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal3'
@@ -84,7 +83,7 @@ export default class Raycaster {
 	}
 
 	update() {
-		this.raycaster.setFromCamera(this.mouse.mouse, this.camera.instance)
+		this.raycaster.setFromCamera(this.mouse.mousePos, this.camera.instance)
 
 		const intersects = this.raycaster.intersectObjects(
 			this.experience.items

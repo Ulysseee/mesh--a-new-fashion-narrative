@@ -23,8 +23,8 @@ export default class SecondFloor {
 		this.camera = this.experience.camera
 		this.raycaster = this.experience.raycaster
 
-		this.timeline = document.querySelector('.header__timeline__3--progress')
-		this.dot = document.querySelector('.header__timeline--dot3')
+		this.timeline = document.querySelector('.header__timeline__2--progress')
+		this.dot = document.querySelector('.header__timeline--dot2')
 		this.dot.classList.add('fill')
 
 		// this.isInfosActive = false

@@ -1,9 +1,5 @@
 <template>
 	<div class="header__timeline__wrapper">
-		<div class="header__timeline--dot4"></div>
-		<div class="header__timeline__3">
-			<div class="header__timeline__3--progress"></div>
-		</div>
 		<div class="header__timeline--dot3"></div>
 		<div class="header__timeline__2">
 			<div class="header__timeline__2--progress"></div>
@@ -16,7 +12,11 @@
 	</div>
 </template>
 
-<script></script>
+<script>
+export default {
+	name: 'ExperienceTimeline'
+}
+</script>
 
 <style scoped lang="scss">
 .header__timeline__wrapper {
@@ -43,8 +43,7 @@
 
 	.header__timeline--dot1,
 	.header__timeline--dot2,
-	.header__timeline--dot3,
-	.header__timeline--dot4 {
+	.header__timeline--dot3 {
 		width: 5px;
 		height: 5px;
 		border-radius: 50%;

@@ -56,7 +56,6 @@ export default {
 				.querySelectorAll('.cloth')
 				.forEach((cloth) => cloth.classList.remove('active'))
 
-			this.experience.parallax.active = false
 			this.experience.infoOpen = false
 			this.experience.camera.resetPosition()
 		}
