@@ -63,8 +63,8 @@ export default class Camera {
 	update() {
 		if (this.controls) this.controls.update()
 		if (this.experience.infoOpen) {
-			// this.instance.rotation.x += -this.mouse.mouseRotation.x
-			// this.instance.rotation.y += this.mouse.mouseRotation.y
+			this.instance.rotation.x += -this.mouse.mouseRotation.x
+			this.instance.rotation.y += -this.mouse.mouseRotation.y - 0.5
 		}
 	}
 }
