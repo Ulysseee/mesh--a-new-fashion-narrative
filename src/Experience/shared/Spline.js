@@ -32,6 +32,7 @@ export default class Spline extends EventEmitter {
 			if (!this.experience.infoOpen) {
 				this.scrollCanvas(e)
 				this.trigger('wheel')
+				this.experience.lastScrollTime = new Date().getTime()
 			}
 		})
 	}
@@ -43,6 +44,8 @@ export default class Spline extends EventEmitter {
 		this.curveGeometry = new BufferGeometry().setFromPoints(points)
 		this.curveMaterial = new LineBasicMaterial({
 			color: 0xffffff
+			// transparent: true,
+			// opacity: 0
 		})
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
@@ -90,16 +93,5 @@ export default class Spline extends EventEmitter {
 		)
 		this.camera.instance.position.set(camPos.x, camPos.y + 2, camPos.z)
 		this.camera.instance.lookAt(this.cameraTarget.position)
-
-		// if (
-		// 	this.camera.instance.position.z.toFixed(0) ==
-		// 		this.curve.points[this.curve.points.length - 1].z.toFixed(0) &&
-		// 	this.camera.instance.position.x.toFixed(0) ==
-		// 		this.curve.points[this.curve.points.length - 1].x.toFixed(0)
-		// ) {
-		// 	this.scroll.current = 0
-		// 	this.scroll.target = 0
-		// 	// this.camera.instance.position.z = 0
-		// }
 	}
 }

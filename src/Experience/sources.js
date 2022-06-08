@@ -1,14 +1,10 @@
 export const groundFloor = [
 	{
 		name: 'rdcModel',
-		type: 'fbxModel',
-		path: 'models/maison_V2.fbx'
+		type: 'gltfModel',
+		path: 'models/dreeeeeeees.glb'
 	},
-	{
-		name: 'bagModel',
-		type: 'fbxModel',
-		path: 'models/bag.fbx'
-	},
+
 	{
 		name: 'floorMatcap',
 		type: 'texture',

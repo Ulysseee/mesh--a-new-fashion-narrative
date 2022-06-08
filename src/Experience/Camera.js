@@ -4,8 +4,6 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import gsap, { Power3 } from 'gsap'
 import config from '@utils/config'
 
-const hdriURL =
-	'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/empty_warehouse_01_1k.hdr'
 export default class Camera {
 	constructor() {
 		this.experience = new Experience()
@@ -28,8 +26,6 @@ export default class Camera {
 			100
 		)
 		this.instance.position.set(0, 0, 10)
-		// const envMap = await loadHDRI(hdriURL, this.renderer)
-		// this.scene.environment = envMap
 		this.scene.add(this.instance)
 	}
 

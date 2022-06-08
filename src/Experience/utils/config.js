@@ -1,5 +1,5 @@
 const config = {
-	controls: true,
+	controls: false,
 	gui: true
 }
 

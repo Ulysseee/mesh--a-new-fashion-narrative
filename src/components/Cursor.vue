@@ -48,7 +48,7 @@ export default {
 }
 
 .cursor--1 .cursor__inner {
-	fill: #27348b;
+	fill: white;
 
 	stroke: var(--c-white);
 	stroke-width: 0.3px;
@@ -66,8 +66,9 @@ export default {
 
 .cursor--2 .cursor__inner {
 	fill: none;
-	stroke: #27348b;
+	stroke: white;
 	stroke-width: 1px;
+	opacity: 0.33;
 }
 
 .hold {
