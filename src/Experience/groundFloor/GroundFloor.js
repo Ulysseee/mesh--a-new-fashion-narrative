@@ -3,15 +3,16 @@ import config from '@utils/config'
 import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
-import Building from './Building.js'
 import Cube from './Cube.js'
 import Cone from './Cone.js'
+import Floor from './Floor.js'
+import Fog from './Fog.js'
 import Environment from './Environment.js'
 import Sky from '@classes/shared/sky'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
 
-import gsap, { Circ, Power3 } from 'gsap'
+import gsap, { Power3 } from 'gsap'
 
 import { groundFloorPath } from '../pathes'
 
@@ -28,22 +29,23 @@ export default class GroundFloor {
 		this.dot.classList.add('fill')
 
 		// this.setPostProcessing()
-		this.debugComposer()
+		// this.debugComposer()
 
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
 			this.spline = new Spline(groundFloorPath)
 
-			this.portal = new Portal()
-			this.portal.mesh.name = 'portal1'
-			this.portal.mesh.userData.type = 'portail'
+			// this.portal = new Portal()
+			// this.portal.mesh.name = 'portal1'
+			// this.portal.mesh.userData.type = 'portail'
 
-			this.rdc = new Building()
 			this.environment = new Environment()
-			this.sky = new Sky()
+			// this.sky = new Sky()
 			this.testCube = new Cube()
 			this.testCone = new Cone()
+			this.floor = new Floor()
+			this.fog = new Fog()
 		})
 	}
 

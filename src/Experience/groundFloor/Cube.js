@@ -10,16 +10,16 @@ export default class Cube extends Cloth {
 		this.experience = new Experience()
 		this.mouse = this.experience.mouse
 		this.scene = this.experience.scene
-		this.resources = this.experience.resources
-		this.resource = this.resources.items.bagModel
+		// this.resources = this.experience.resources
+		// this.resource = this.resources.items.bagModel
 		this.setCube()
 	}
 
 	setCube() {
-		this.resource.scale.set(0.005, 0.005, 0.005)
-		this.resource.position.set(0, 0, -22)
-		this.scene.add(this.resource)
-		this.experience.items.push(this.resource)
+		// this.resource.scale.set(0.005, 0.005, 0.005)
+		// this.resource.position.set(0, 0, -22)
+		// this.scene.add(this.resource)
+		// this.experience.items.push(this.resource)
 
 		const geometry = new THREE.BoxGeometry()
 		const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })

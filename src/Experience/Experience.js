@@ -96,7 +96,6 @@ export default class Experience {
 		this.overlay.name = 'loader'
 		this.scene.add(this.overlay)
 
-		// Time tick event
 		this.update()
 	}
 

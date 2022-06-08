@@ -12,17 +12,18 @@ export default class Renderer {
 		this.camera = this.experience.camera
 
 		this.setInstance()
-		this.setComposer()
+		// this.setComposer()
 	}
 
 	setInstance() {
 		this.instance = new WebGLRenderer({
-			canvas: this.canvas,
-			antialias: true
+			canvas: this.canvas
+			// antialias: true
 		})
 		// IF GLTF MODEL IS USED
 		// this.instance.outputEncoding = sRGBEncoding
-		this.instance.setClearColor('#211d20')
+		this.instance.setClearColor('#262837')
+		// this.instance.setClearColor('#a1948d')
 		this.instance.setSize(this.sizes.width, this.sizes.height)
 		this.instance.setPixelRatio(Math.min(this.sizes.pixelRatio, 2))
 	}
@@ -40,11 +41,11 @@ export default class Renderer {
 		this.instance.setSize(this.sizes.width, this.sizes.height)
 		this.instance.setPixelRatio(Math.min(this.sizes.pixelRatio, 2))
 		// Update effect composer
-		this.effectComposer.setSize(this.sizes.width, this.sizes.height)
+		// this.effectComposer.setSize(this.sizes.width, this.sizes.height)
 	}
 
 	update() {
 		this.instance.render(this.scene, this.camera.instance)
-		this.effectComposer.render()
+		// this.effectComposer.render()
 	}
 }

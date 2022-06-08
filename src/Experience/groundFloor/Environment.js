@@ -9,7 +9,7 @@ export default class Environment {
 	}
 
 	setEnvironment() {
-		const ambientLight = new AmbientLight(0xffffff, 1.3)
+		const ambientLight = new AmbientLight(0xffffff, 1)
 		const axesHelper = new AxesHelper(5)
 		this.scene.add(axesHelper)
 

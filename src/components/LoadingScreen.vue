@@ -1,17 +1,13 @@
 <template>
 	<div ref="loadingScreen" class="loader">
-		<div class="loader__progressUrl">
-			<span ref="progressUrl">{{ progressUrl }}</span>
-		</div>
-
-		<div class="loader__percent">
-			<p ref="percent">{{ progress.toFixed(0) }}%</p>
-		</div>
-
 		<div class="loader__warning">
 			<span v-for="letter in warning" ref="warning" :key="letter">
 				{{ letter }}
 			</span>
+		</div>
+
+		<div class="loader__progress">
+			<div ref="progressBar" class="loader__bar"></div>
 		</div>
 
 		<button ref="button" class="loader__enterCta" @click="launch">
@@ -43,7 +39,7 @@
 import SoundClass from '@classes/SoundClass'
 
 import Experience from '../Experience/Experience'
-import gsap, { Power3 } from 'gsap'
+import gsap, { Power2, Power3 } from 'gsap'
 
 export default {
 	name: 'LoadingScreen',
@@ -53,7 +49,7 @@ export default {
 			progressUrl: '',
 			ready: false,
 			initFlag: false,
-			warning: ['Experience', 'is', 'loading']
+			warning: ['Loading', 'virtual', 'experience', '...']
 		}
 	},
 
@@ -63,25 +59,31 @@ export default {
 
 		this.experience.resources.on('progress', (percent, path) => {
 			this.progress = percent * 100
+			gsap.to(this.$refs.progressBar, {
+				scale: percent,
+				duration: 0.8,
+				ease: Power3.easeInOut
+			})
 			this.progressUrl = path
 		})
 
 		this.experience.resources.on('ready', () => {
 			const tl = gsap.timeline()
 			tl.to(this.$refs.warning, {
-				y: -85,
-				duration: 1.2,
+				y: '-115%',
 				stagger: {
-					each: 0.2
+					each: 0.1
 				},
-				ease: Power3.easeInOut
+				ease: Power2.easeIn
 			})
-			tl.to([this.$refs.progressUrl, this.$refs.percent], {
-				y: -85,
-				duration: 1.2,
-				delay: -0.5,
-				ease: Power3.easeInOut
-			})
+				.to(this.$refs.progressBar, {
+					transformOrigin: 'right'
+				})
+				.to(this.$refs.progressBar, {
+					scale: 0,
+					duration: 0.8,
+					ease: Power3.easeInOut
+				})
 
 			setTimeout(() => {
 				this.ready = true
@@ -91,7 +93,7 @@ export default {
 					duration: 0.8,
 					ease: Power3.easeInOut
 				})
-			}, 1000)
+			}, 1500)
 		})
 	},
 
@@ -144,18 +146,33 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-family: 'Panamera';
+	font-family: 'Brilliant Cut Pro Regular';
+
+	.loader__progress {
+		width: 100%;
+		height: 2px;
+		position: absolute;
+		z-index: 1;
+	}
+
+	.loader__bar {
+		width: 100%;
+		height: 100%;
+		transform-origin: left;
+		background: white;
+		transform: scale(0);
+		opacity: 0.4;
+		// transition: all 300ms ease-in-out;
+	}
 
 	.loader__enterCta {
 		opacity: 0;
 		color: var(--c-white);
-		font-family: 'Panamera';
 
 		font-size: 1rem;
 		padding: 10px 18px 12px;
 		background: transparent;
 		border: none;
-		border-radius: px;
 		text-transform: uppercase;
 		text-align: center;
 		z-index: 2;
@@ -191,9 +208,9 @@ export default {
 		overflow: hidden;
 		z-index: 2;
 		position: absolute;
-		font-size: 1rem;
-		color: gray;
+		font-size: 0.75rem;
 		padding: 4px 0;
+		text-transform: uppercase;
 
 		p {
 			margin: 0;

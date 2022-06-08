@@ -14,7 +14,7 @@ export default class Cone extends Cloth {
 	}
 
 	setCone() {
-		const geometry = new THREE.ConeGeometry(2, 15, 32)
+		const geometry = new THREE.ConeGeometry(2, 5, 5)
 		const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 		this.cone = new THREE.Mesh(geometry, material)
 

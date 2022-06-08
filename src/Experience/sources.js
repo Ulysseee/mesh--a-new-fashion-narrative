@@ -8,6 +8,31 @@ export const groundFloor = [
 		name: 'bagModel',
 		type: 'fbxModel',
 		path: 'models/bag.fbx'
+	},
+	{
+		name: 'floorMatcap',
+		type: 'texture',
+		path: 'textures/2.png'
+	},
+	{
+		name: 'floorNormals',
+		type: 'texture',
+		path: 'textures/floorNormals.jpg'
+	},
+	{
+		name: 'concreteRough',
+		type: 'texture',
+		path: 'textures/concrete_floor_worn_001_arm_1k.png'
+	},
+	{
+		name: 'concreteDiff',
+		type: 'texture',
+		path: 'textures/concrete_floor_worn_001_diff_1k.png'
+	},
+	{
+		name: 'concreteNor',
+		type: 'texture',
+		path: 'textures/concrete_floor_worn_001_nor_gl_1k.png'
 	}
 ]
 

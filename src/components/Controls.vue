@@ -5,7 +5,11 @@
 	</div>
 </template>
 
-<script></script>
+<script>
+export default {
+	name: 'ControlsComponent'
+}
+</script>
 
 <style scoped lang="scss">
 .helper__scroll {

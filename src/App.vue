@@ -2,7 +2,7 @@
 	<ThreeScene />
 	<Header />
 	<LoadingScreen />
-	<Controls />
+	<ControlsComponent />
 	<Information @toggle-information="toggleModal" />
 	<CustomCursor />
 	<ExperienceTimeline />
@@ -13,7 +13,7 @@ import gsap from 'gsap'
 import ThreeScene from './components/ThreeScene.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
 import Header from './components/Header.vue'
-import Controls from './components/Controls.vue'
+import ControlsComponent from './components/Controls.vue'
 import Information from './components/InformationModal.vue'
 import CustomCursor from './components/Cursor.vue'
 import ExperienceTimeline from './components/Timeline.vue'
@@ -25,7 +25,7 @@ export default {
 		ThreeScene,
 		LoadingScreen,
 		Header,
-		Controls,
+		ControlsComponent,
 		Information,
 		CustomCursor,
 		ExperienceTimeline

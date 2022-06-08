@@ -69,8 +69,6 @@ export default class Spline extends EventEmitter {
 	}
 
 	update() {
-		console.log(this.camera.instance.rotation)
-
 		this.scroll.target = gsap.utils.clamp(
 			0,
 			this.scroll.limit,

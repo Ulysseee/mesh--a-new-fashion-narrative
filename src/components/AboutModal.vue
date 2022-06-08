@@ -5,16 +5,23 @@
 		<p class="about__description">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
 			ipsum voluptatum quas ab odit, ea sed cum rerum id possimus aut
-			aperiam distinctio fugit reiciendis eligendi facilis fuga neque
-			accusantium. Vero cum natus dicta mollitia ad tempora ut. Eum quidem
-			qui, nam quia repellat corrupti eaque nesciunt necessitatibus, id
-			adipisci, modi repudiandae hic. Fuga facilis ad asperiores
-			repudiandae consequuntur soluta! Iusto quae accusamus cumque tempore
-			dolor, perferendis, maxime provident ab cum autem dolorum id
+			aperiam distinctio.
 		</p>
 
-		<p class="about__footer">Thank you</p>
-		<img class="about__starIcon" src="/assets/img/star.svg" alt="" />
+		<p class="about__description">
+			Vero cum natus dicta mollitia ad tempora ut. Eum quidem qui, nam
+			quia repellat corrupti eaque nesciunt necessitatibus.
+		</p>
+
+		<p class="about__description">
+			Vero cum natus dicta mollitia ad tempora ut. Eum quidem qui, nam
+			quia repellat corrupti eaque nesciunt necessitatibus.
+		</p>
+
+		<div class="about__footer">
+			<p>Thank you</p>
+			<img class="about__starIcon" src="/assets/img/star.svg" alt="" />
+		</div>
 	</div>
 </template>
 
@@ -27,7 +34,7 @@ export default {
 <style scoped lang="scss">
 .about {
 	background-color: var(--c-transparent);
-	height: 85vh;
+	height: 100vh;
 	position: absolute;
 	z-index: 99;
 	bottom: 0px;
@@ -40,16 +47,23 @@ export default {
 	margin: 0;
 	border-bottom-left-radius: 80px;
 	color: var(--c-white);
-	border: 0.5px solid var(--c-white);
 	transform: translateX(100%);
 	font-family: 'PP Telegraf Light';
+
+	display: flex;
+	flex-direction: column;
 
 	&__close {
 		width: 12px;
 		height: 12px;
 		border-radius: 50%;
-		background-color: var(--c-white);
+		background-color: var(--c-black);
+		transition: all 200ms ease-in;
 		margin: 15px;
+
+		&:hover {
+			background-color: var(--c-transparent);
+		}
 	}
 
 	&__title {
@@ -62,20 +76,25 @@ export default {
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin: auto;
+		margin: 3rem auto 3rem;
 		font-size: 18px;
-		margin-top: 10px;
 		font-family: 'Brilliant Cut Pro';
 	}
 
 	&__description {
 		width: 60%;
-		margin: 50px auto;
+		// margin: 50px auto;
+		margin: 0.5rem auto;
 		color: inherit;
 	}
 
 	&__footer {
 		text-align: center;
+		margin-top: auto;
+		margin-bottom: 2rem;
+		p {
+			margin: 0;
+		}
 	}
 
 	&__starIcon {
