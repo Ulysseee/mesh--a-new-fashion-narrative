@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import gsap, { Power3 } from 'gsap'
-import LocomotiveScroll from 'locomotive-scroll'
 
 import config from '@utils/config'
 import Debug from '@utils/Debug.js'
@@ -13,6 +12,7 @@ import Cursor from '@classes/Cursor.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
+import Overlay from './shared/Overlay.js'
 import SecondFloor from '@classes/secondFloor/SecondFloor.js'
 import GroundFloor from '@classes/groundFloor/GroundFloor.js'
 
@@ -54,10 +54,9 @@ export default class Experience {
 			'.header__timeline__2--progress'
 		)
 		this.raycaster = new Raycaster()
-
 		this.renderer = new Renderer()
-
 		this.groundFloor = new GroundFloor()
+		this.overlay = new Overlay()
 
 		this.setDebug()
 
@@ -65,36 +64,6 @@ export default class Experience {
 		this.sizes.on('resize', () => {
 			this.resize()
 		})
-
-		this.overlayGeometry = new THREE.PlaneGeometry(10, 10, 5, 5)
-		this.overlayMaterial = new THREE.ShaderMaterial({
-			transparent: true,
-			uniforms: {
-				uAlpha: { value: 0 }
-			},
-			vertexShader: `
-				void main()
-				{
-					gl_Position = vec4(position, 1.0);
-				}
-			`,
-			fragmentShader: `
-				uniform float uAlpha;
-
-				void main()
-				{
-					gl_FragColor = vec4(1.0, 1.0, 1.0, uAlpha);
-				}
-			`
-		})
-
-		this.overlayMaterial.needsUpdate = true
-		this.overlay = new THREE.Mesh(
-			this.overlayGeometry,
-			this.overlayMaterial
-		)
-		this.overlay.name = 'loader'
-		this.scene.add(this.overlay)
 
 		this.update()
 	}
@@ -139,7 +108,7 @@ export default class Experience {
 	}
 
 	async switch(level) {
-		await gsap.to(this.overlayMaterial.uniforms.uAlpha, {
+		await gsap.to(this.overlay.material.uniforms.uAlpha, {
 			duration: 1,
 			value: 1,
 			ease: Power3.easeInOut
@@ -172,7 +141,7 @@ export default class Experience {
 				break
 		}
 
-		gsap.to(this.overlayMaterial.uniforms.uAlpha, {
+		await gsap.to(this.overlay.material.uniforms.uAlpha, {
 			duration: 1,
 			value: 0,
 			delay: 2,

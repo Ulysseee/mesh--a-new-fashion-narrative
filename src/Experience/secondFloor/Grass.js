@@ -119,6 +119,7 @@ export default class Grass {
 
 		this.group.add(this.ground)
 		this.group.add(this.grass)
+		this.group.position.set(0, -1, 0)
 
 		this.scene.add(this.group)
 	}

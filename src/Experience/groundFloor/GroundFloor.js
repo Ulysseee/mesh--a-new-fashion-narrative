@@ -36,9 +36,9 @@ export default class GroundFloor {
 			// Setup
 			this.spline = new Spline(groundFloorPath)
 
-			// this.portal = new Portal()
-			// this.portal.mesh.name = 'portal1'
-			// this.portal.mesh.userData.type = 'portail'
+			this.portal = new Portal()
+			this.portal.mesh.name = 'portal1'
+			this.portal.mesh.userData.type = 'portail'
 
 			this.environment = new Environment()
 			// this.sky = new Sky()

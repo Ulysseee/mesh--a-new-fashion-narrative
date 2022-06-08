@@ -10,10 +10,9 @@ import WaterClass from './Water.js'
 import Cube from './Cube.js'
 
 import Spline from '../shared/Spline.js'
-import gsap from 'gsap'
-import { Circ } from 'gsap'
-
 import { secondFloorPath } from '../pathes'
+
+import gsap, { Circ } from 'gsap'
 
 export default class SecondFloor {
 	constructor() {
@@ -29,9 +28,13 @@ export default class SecondFloor {
 
 		// this.isInfosActive = false
 
+		this.scene.fog = null
+
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
+			this.spline = new Spline(secondFloorPath)
+
 			this.environment = new Environment()
 			this.grass = new Grass()
 			this.sky = new Sky()
@@ -39,8 +42,6 @@ export default class SecondFloor {
 			this.butterfly = new Butterfly()
 			this.flower = new Flower()
 			this.cube = new Cube()
-
-			this.spline = new Spline(secondFloorPath)
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal2'
@@ -71,11 +72,6 @@ export default class SecondFloor {
 	}
 
 	update() {
-		if (this.grass) this.grass.update()
-		if (this.butterfly) this.butterfly.update()
-		if (this.flower) this.flower.update()
-		if (this.particles) this.particles.update()
-		if (this.water) this.water.update()
 		if (this.spline) {
 			this.percent = this.spline.curve.getUtoTmapping(
 				this.spline.scroll.current
@@ -87,6 +83,12 @@ export default class SecondFloor {
 				this.spline.update()
 			}
 		}
+
+		if (this.butterfly) this.butterfly.update()
+		if (this.flower) this.flower.update()
+		if (this.particles) this.particles.update()
+		if (this.water) this.water.update()
+		if (this.grass) this.grass.update()
 	}
 
 	destroy() {}

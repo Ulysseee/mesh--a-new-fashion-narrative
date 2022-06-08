@@ -4,8 +4,6 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import gsap, { Power3 } from 'gsap'
 import config from '@utils/config'
 
-const hdriURL =
-	'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/empty_warehouse_01_1k.hdr'
 export default class Camera {
 	constructor() {
 		this.experience = new Experience()
@@ -28,8 +26,6 @@ export default class Camera {
 			100
 		)
 		this.instance.position.set(0, 0, 10)
-		// const envMap = await loadHDRI(hdriURL, this.renderer)
-		// this.scene.environment = envMap
 		this.scene.add(this.instance)
 	}
 
@@ -73,19 +69,5 @@ export default class Camera {
 			// this.instance.rotation.x += -this.mouse.mouseRotation.x
 			// this.instance.rotation.y += -this.mouse.mouseRotation.y - 0.5
 		}
-	}
-
-	loadHDRI(url, renderer) {
-		return new Promise((resolve) => {
-			const loader = new RGBELoader()
-			const pmremGenerator = new THREE.PMREMGenerator(renderer)
-			loader.load(url, (texture) => {
-				const envMap =
-					pmremGenerator.fromEquirectangular(texture).texture
-				texture.dispose()
-				pmremGenerator.dispose()
-				resolve(envMap)
-			})
-		})
 	}
 }

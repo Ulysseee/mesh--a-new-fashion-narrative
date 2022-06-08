@@ -18,13 +18,15 @@ export default class Mouse extends EventEmitter {
 		this.mouseRotation = { x: 0, y: 0 }
 
 		window.addEventListener('mousemove', (e) => this.setMouse(e))
-		if (this.debug) this.setDebug()
+		this.setDebug()
 	}
 
 	setDebug() {
-		this.debugFolder = this.debug.ui.addFolder('Mouse')
-		this.debugFolder.close()
-		this.debugFolder.add(this.debugObject, 'lerpIntensity', 0, 0.5)
+		if (this.debug) {
+			this.debugFolder = this.debug.ui.addFolder('Mouse')
+			this.debugFolder.add(this.debugObject, 'lerpIntensity', 0, 0.5)
+			this.debugFolder.close()
+		}
 	}
 
 	setMouse(e) {
