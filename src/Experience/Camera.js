@@ -70,18 +70,4 @@ export default class Camera {
 			// this.instance.rotation.y += -this.mouse.mouseRotation.y - 0.5
 		}
 	}
-
-	loadHDRI(url, renderer) {
-		return new Promise((resolve) => {
-			const loader = new RGBELoader()
-			const pmremGenerator = new THREE.PMREMGenerator(renderer)
-			loader.load(url, (texture) => {
-				const envMap =
-					pmremGenerator.fromEquirectangular(texture).texture
-				texture.dispose()
-				pmremGenerator.dispose()
-				resolve(envMap)
-			})
-		})
-	}
 }

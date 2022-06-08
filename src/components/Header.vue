@@ -10,20 +10,26 @@
 				</ul>
 			</div>
 
-			<button class="header__about" @click="toggleModal">about</button>
+			<div class="header__controls">
+				<button
+					:class="
+						'header__controls__sound ' +
+						(isSoundActive ? 'is-active' : '')
+					"
+					@click="toggleSound"
+				>
+					<span class="svelte-1rw298u" style="--i: 6"></span>
+					<span class="svelte-1rw298u" style="--i: 11"></span>
+					<span class="svelte-1rw298u" style="--i: 17"></span>
+					<span class="svelte-1rw298u" style="--i: 10"></span>
+					<span class="svelte-1rw298u" style="--i: 15"></span>
+					<span class="svelte-1rw298u" style="--i: 6"></span>
+				</button>
+				<button class="header__controls__about" @click="toggleModal">
+					about
+				</button>
+			</div>
 		</div>
-
-		<button
-			:class="'header__sound ' + (isSoundActive ? 'is-active' : '')"
-			@click="toggleSound"
-		>
-			<span class="svelte-1rw298u" style="--i: 6"></span>
-			<span class="svelte-1rw298u" style="--i: 11"></span>
-			<span class="svelte-1rw298u" style="--i: 17"></span>
-			<span class="svelte-1rw298u" style="--i: 10"></span>
-			<span class="svelte-1rw298u" style="--i: 15"></span>
-			<span class="svelte-1rw298u" style="--i: 6"></span>
-		</button>
 	</header>
 	<AboutModal @toggle-about="toggleModal" />
 </template>
@@ -82,33 +88,32 @@ export default {
 
 <style scoped lang="scss">
 .header {
-	top: 20px;
+	top: 1rem;
 	position: absolute;
 	transform: translate(-50%, -0%);
-	z-index: 10;
+	z-index: 12;
 	display: flex;
 	align-items: center;
-	// justify-content: space-between;
-	width: 96vw;
+	width: 97vw;
 	left: 50%;
 
 	&__wrapper {
+		width: 100%;
 		display: flex;
-		margin-right: 20px;
+		justify-content: space-between;
 	}
 
 	&__logo {
 		position: relative;
-		font-size: 10px;
+		font-size: 0.625rem;
 		color: var(--c-white);
 		font-family: 'Brilliant Cut Pro';
 		text-transform: uppercase;
-		border: 0.5px solid var(--c-white);
-		background-color: #98a8a9;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		border-bottom-left-radius: 30000px;
 		border-top-right-radius: 30000px;
-		padding: 0 40px;
-		margin-right: -30px;
 		z-index: 1;
 
 		&__list {
@@ -118,36 +123,40 @@ export default {
 		}
 
 		&__description {
+			font-family: 'Brilliant Cut Pro Regular';
 			opacity: 0.5;
 			margin-left: 10px;
 		}
 	}
 
-	&__about {
-		border: 0.5px solid var(--c-white);
-		color: var(--c-white);
-		text-transform: uppercase;
-		font-size: 10px;
-		padding: 0 40px 0 60px;
-		border-top-right-radius: 50000px;
+	&__controls {
+		display: flex;
+	}
+
+	&__controls__about {
 		position: relative;
 		background: var(--c-transparent);
-		font-family: 'Brilliant Cut Pro';
+		border: 0.5px solid var(--c-white);
+		padding: 0 14px;
+		border-radius: 30px;
 		cursor: pointer;
+
+		font-family: 'Brilliant Cut Pro Regular';
+		color: var(--c-white);
+		text-transform: uppercase;
+		font-size: 0.625rem;
+
 		transition: all 0.4s ease;
-		backdrop-filter: blur(10px);
-		border-left: none;
 
 		&:hover {
 			background: rgba(239, 239, 239, 0.2);
 		}
 	}
 
-	&__sound {
+	&__controls__sound {
 		cursor: pointer;
 		transition: opacity 0.5s ease-out;
 		margin-right: 15px;
-		background: transparent;
 		display: flex;
 		backdrop-filter: blur(10px);
 
@@ -158,10 +167,9 @@ export default {
 		overflow: hidden;
 		border: 0.5px solid var(--c-white);
 		border-radius: 40px;
-		width: 40px;
+		width: 34px;
+		height: 34px;
 		transition: all 0.4s ease;
-
-		height: 40px;
 
 		span {
 			display: inline-block;
@@ -180,7 +188,7 @@ export default {
 		}
 	}
 
-	&__sound.is-active span {
+	&__controls__sound.is-active span {
 		animation: scaleSound 1s ease infinite alternate;
 		animation-delay: calc(var(--i) * 75ms);
 	}
@@ -191,7 +199,7 @@ export default {
 		transform: scaleY(2);
 	}
 	to {
-		transform: scaleY(15);
+		transform: scaleY(10);
 	}
 }
 </style>

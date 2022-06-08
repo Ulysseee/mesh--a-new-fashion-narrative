@@ -28,7 +28,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	flex: 1;
-	height: 85%;
+	height: 42%;
 	width: 5px;
 
 	.header__timeline__1,

@@ -36,7 +36,7 @@ export default {
 	background-color: var(--c-transparent);
 	height: 100vh;
 	position: absolute;
-	z-index: 99;
+	z-index: 2;
 	bottom: 0px;
 	right: 0px;
 	backdrop-filter: blur(10px);
