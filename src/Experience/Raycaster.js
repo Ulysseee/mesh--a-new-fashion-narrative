@@ -25,7 +25,9 @@ export default class Raycaster {
 				) {
 					if (
 						this.currentIntersect &&
-						this.currentIntersect.object.userData.type === 'portail'
+						this.currentIntersect.object.userData.type ===
+							'portail' &&
+						!this.experience.selectedItem
 					) {
 						this.cursor.classList.add('process')
 						this.cursor.timeout = setTimeout(
@@ -51,7 +53,7 @@ export default class Raycaster {
 		})
 
 		window.addEventListener('click', () => {
-			if (this.currentIntersect) {
+			if (this.currentIntersect && !this.experience.selectedItem) {
 				if (this.experience.groundFloor) {
 					this.experience.groundFloor.handleClick()
 				}
@@ -91,12 +93,16 @@ export default class Raycaster {
 
 		if (intersects.length > 0) {
 			this.currentIntersect = intersects[0]
-			this.experience.cursor.enter()
+
+			if (!this.experience.selectedItem) {
+				this.experience.cursor.enter()
+			}
 
 			if (
-				this.currentIntersect.object.name === 'portal1' ||
-				this.currentIntersect.object.name === 'portal2' ||
-				this.currentIntersect.object.name === 'portal3'
+				(this.currentIntersect.object.name === 'portal1' ||
+					this.currentIntersect.object.name === 'portal2' ||
+					this.currentIntersect.object.name === 'portal3') &&
+				!this.experience.selectedItem
 			) {
 				document.querySelector('.hold').classList.add('active')
 			}

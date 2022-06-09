@@ -29,7 +29,7 @@ export default class Spline extends EventEmitter {
 		if (this.debug) this.setDebug()
 
 		window.addEventListener('wheel', (e) => {
-			if (!this.experience.infoOpen) {
+			if (!this.experience.selectedItem) {
 				this.scrollCanvas(e)
 				this.trigger('wheel')
 				this.experience.lastScrollTime = new Date().getTime()

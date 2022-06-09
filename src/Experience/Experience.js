@@ -123,6 +123,8 @@ export default class Experience {
 				this.timeline2.style.transform = 'scale(1)'
 
 				this.groundFloor = null
+				this.selectedItem = false
+				this.infoOpen = false
 
 				this.resources = new Resources(secondFloor)
 				this.secondFloor = new SecondFloor()
