@@ -66,6 +66,29 @@ export default class Experience {
 		})
 
 		this.update()
+
+		document.addEventListener(
+			'click',
+			(event) => {
+				// If user either clicks X button OR clicks outside the modal window, then close modal
+				if (
+					!event.target.closest('.information') &&
+					this.selectedItem
+				) {
+					document
+						.querySelector('.information')
+						.classList.remove('active')
+
+					document
+						.querySelectorAll('.cloth')
+						.forEach((cloth) => cloth.classList.remove('active'))
+					this.lastScrollTime = new Date().getTime()
+					this.infoOpen = false
+					this.camera.resetPosition()
+				}
+			},
+			false
+		)
 	}
 
 	setDebug() {

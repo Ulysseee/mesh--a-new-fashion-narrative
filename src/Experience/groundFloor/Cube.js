@@ -22,7 +22,6 @@ export default class Cube extends Cloth {
 
 		this.resource.scene.traverse((child) => {
 			if (child.material) {
-				console.log(child.material)
 				// child.material = new THREE.MeshPhongMaterial()
 			}
 		})

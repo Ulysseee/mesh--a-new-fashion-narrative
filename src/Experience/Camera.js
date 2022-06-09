@@ -7,7 +7,6 @@ import config from '@utils/config'
 export default class Camera {
 	constructor() {
 		this.experience = new Experience()
-		// console.log(this.experience)
 		// this.renderer = this.experience.renderer.instance
 		this.sizes = this.experience.sizes
 		this.scene = this.experience.scene
