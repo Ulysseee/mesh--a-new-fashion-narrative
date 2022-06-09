@@ -12,6 +12,7 @@ export default class Cube extends Cloth {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.rdcModel
+
 		this.setCube()
 	}
 

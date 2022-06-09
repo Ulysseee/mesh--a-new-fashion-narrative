@@ -4,7 +4,6 @@ export const groundFloor = [
 		type: 'gltfModel',
 		path: 'models/dreeeeeeees.glb'
 	},
-
 	{
 		name: 'floorMatcap',
 		type: 'texture',
@@ -29,6 +28,11 @@ export const groundFloor = [
 		name: 'concreteNor',
 		type: 'texture',
 		path: 'textures/concrete_floor_worn_001_nor_gl_1k.png'
+	},
+	{
+		name: 'dress',
+		type: 'gltfModel',
+		path: 'models/vetement_2.glb'
 	}
 ]
 
@@ -38,46 +42,49 @@ export const secondFloor = [
 		type: 'gltfModel',
 		path: 'models/flower.glb'
 	},
-
 	{
 		name: 'butterfly',
 		type: 'gltfModel',
 		path: 'models/butterfly.glb'
 	},
-
 	{
 		name: 'bladeAlpha',
 		type: 'texture',
 		path: 'textures/blade_alpha.jpg'
 	},
-
 	{
 		name: 'bladeDiffuse',
 		type: 'texture',
 		path: 'textures/blade_diffuse.jpg'
 	},
-
 	{
 		name: 'waterNormals',
 		type: 'texture',
 		path: 'textures/waternormals.jpg'
 	},
-
 	{
 		name: 'model',
 		type: 'gltfModel',
 		path: 'models/model.glb'
 	},
-
 	{
 		name: 'cloud',
 		type: 'gltfModel',
 		path: 'models/cloud.glb'
 	},
-
 	{
-		name: 'togo',
+		name: 'bonce',
 		type: 'gltfModel',
-		path: 'models/togo.glb'
+		path: 'models/bonce.glb'
+	},
+	{
+		name: 'cute',
+		type: 'gltfModel',
+		path: 'models/cute.glb'
+	},
+	{
+		name: 'mims',
+		type: 'gltfModel',
+		path: 'models/mims.glb'
 	}
 ]
