@@ -5,6 +5,7 @@ import Debug from '@utils/Debug'
 import Experience from '../Experience.js'
 import Cube from './Cube.js'
 import Cone from './Cone.js'
+import Dress from './Dress.js'
 import Floor from './Floor.js'
 import Fog from './Fog.js'
 import Environment from './Environment.js'
@@ -42,6 +43,7 @@ export default class GroundFloor {
 
 			this.environment = new Environment()
 			// this.sky = new Sky()
+			this.dress = new Dress()
 			this.testCube = new Cube()
 			this.testCone = new Cone()
 			this.floor = new Floor()
