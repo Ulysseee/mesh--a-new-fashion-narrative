@@ -13,10 +13,10 @@ export default {
 	mounted() {
 		this.experience = new Experience()
 		this.anims = this.experience.anims
-
+		let seconds
 		setInterval(() => {
 			if (this.experience.lastScrollTime) {
-				const seconds =
+				seconds =
 					(new Date().getTime() - this.experience.lastScrollTime) /
 					1000
 

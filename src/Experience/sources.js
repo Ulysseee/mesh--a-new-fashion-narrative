@@ -2,7 +2,7 @@ export const groundFloor = [
 	{
 		name: 'rdcModel',
 		type: 'gltfModel',
-		path: 'models/dreeeeeeees.glb'
+		path: 'models/09.glb'
 	},
 
 	{

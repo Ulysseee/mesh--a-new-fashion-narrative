@@ -59,6 +59,7 @@ export default {
 				.querySelectorAll('.cloth')
 				.forEach((cloth) => cloth.classList.remove('active'))
 
+			this.experience.lastScrollTime = new Date().getTime()
 			this.experience.infoOpen = false
 			this.experience.camera.resetPosition()
 		}
@@ -95,6 +96,8 @@ export default {
 
 	&__container {
 		position: relative;
+		width: 100%;
+		height: 100%;
 	}
 
 	&__overlay {
@@ -113,7 +116,6 @@ export default {
 		background-color: white;
 		transition: all 200ms ease-in;
 		margin: 15px 0;
-		z-index: 20000;
 
 		&:hover {
 			background-color: var(--c-transparent);
@@ -125,7 +127,10 @@ export default {
 		height: 100%;
 		overflow-y: scroll;
 		z-index: 10000000;
-		background-color: red;
+		position: absolute;
+		padding: 10px 30px;
+		width: 100%;
+		height: 100%;
 	}
 }
 </style>

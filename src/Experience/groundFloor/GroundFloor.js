@@ -45,7 +45,7 @@ export default class GroundFloor {
 			this.testCube = new Cube()
 			this.testCone = new Cone()
 			this.floor = new Floor()
-			this.fog = new Fog()
+			// this.fog = new Fog()
 		})
 	}
 

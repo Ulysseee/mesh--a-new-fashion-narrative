@@ -1,4 +1,4 @@
-import { AmbientLight, AxesHelper } from 'three'
+import { AmbientLight, PointLight, AxesHelper } from 'three'
 import Experience from '../Experience.js'
 export default class Environment {
 	constructor() {
@@ -9,10 +9,8 @@ export default class Environment {
 	}
 
 	setEnvironment() {
-		const ambientLight = new AmbientLight(0xffffff, 1)
-		const axesHelper = new AxesHelper(5)
-		this.scene.add(axesHelper)
+		const ambientLight = new AmbientLight(0xffffff, 2)
 
-		this.scene.add(this.grid, ambientLight)
+		this.scene.add(ambientLight)
 	}
 }
