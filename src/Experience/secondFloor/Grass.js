@@ -98,6 +98,7 @@ export default class Grass {
 		})
 
 		this.grass = new Mesh(this.grassGeometry, this.grassMaterial)
+		this.grass.frustumCulled = false
 		this.scene.add(this.grass)
 
 		const groundGeometry = new Geometry().fromBufferGeometry(

@@ -32,6 +32,8 @@ export default class Experience {
 		this.anims = new Anims()
 
 		// Setup
+		this.closeSound = new Audio('/assets/close.mp3')
+		this.openSound = new Audio('/assets/open.mp3')
 		this.sizes = new Sizes()
 		this.time = new Time()
 		this.mouse = new Mouse()
@@ -47,12 +49,6 @@ export default class Experience {
 		this.selectedItem = false
 		this.savedPosition = null
 
-		this.timeline1 = document.querySelector(
-			'.header__timeline__1--progress'
-		)
-		this.timeline2 = document.querySelector(
-			'.header__timeline__2--progress'
-		)
 		this.raycaster = new Raycaster()
 		this.renderer = new Renderer()
 		this.groundFloor = new GroundFloor()
@@ -67,28 +63,28 @@ export default class Experience {
 
 		this.update()
 
-		document.addEventListener(
-			'click',
-			(event) => {
-				// If user either clicks X button OR clicks outside the modal window, then close modal
-				if (
-					!event.target.closest('.information') &&
-					this.selectedItem
-				) {
-					document
-						.querySelector('.information')
-						.classList.remove('active')
+		// document.addEventListener(
+		// 	'click',
+		// 	(event) => {
+		// 		// If user either clicks X button OR clicks outside the modal window, then close modal
+		// 		if (
+		// 			!event.target.closest('.information') &&
+		// 			this.selectedItem
+		// 		) {
+		// 			document
+		// 				.querySelector('.information')
+		// 				.classList.remove('active')
 
-					document
-						.querySelectorAll('.cloth')
-						.forEach((cloth) => cloth.classList.remove('active'))
-					this.lastScrollTime = new Date().getTime()
-					this.infoOpen = false
-					this.camera.resetPosition()
-				}
-			},
-			false
-		)
+		// 			document
+		// 				.querySelectorAll('.cloth')
+		// 				.forEach((cloth) => cloth.classList.remove('active'))
+		// 			this.lastScrollTime = new Date().getTime()
+		// 			this.infoOpen = false
+		// 			this.camera.resetPosition()
+		// 		}
+		// 	},
+		// 	false
+		// )
 	}
 
 	setDebug() {
@@ -142,8 +138,6 @@ export default class Experience {
 		switch (level) {
 			case 'secondFloor':
 				this.items = []
-				this.timeline1.style.transform = 'scale(1)'
-				this.timeline2.style.transform = 'scale(1)'
 
 				this.groundFloor = null
 				this.selectedItem = false
@@ -155,8 +149,7 @@ export default class Experience {
 
 			case 'groudFloor':
 				this.items = []
-				this.timeline1.style.transform = 'scale(0)'
-				this.timeline2.style.transform = 'scale(0)'
+
 				this.secondFloor = null
 				this.resources = new Resources(groundFloor)
 				this.groundFloor = new GroundFloor()

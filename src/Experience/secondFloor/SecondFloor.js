@@ -22,10 +22,6 @@ export default class SecondFloor {
 		this.camera = this.experience.camera
 		this.raycaster = this.experience.raycaster
 
-		this.timeline = document.querySelector('.header__timeline__2--progress')
-		this.dot = document.querySelector('.header__timeline--dot2')
-		this.dot.classList.add('fill')
-
 		// this.isInfosActive = false
 
 		this.scene.fog = null
@@ -76,8 +72,6 @@ export default class SecondFloor {
 			this.percent = this.spline.curve.getUtoTmapping(
 				this.spline.scroll.current
 			)
-
-			this.timeline.style.transform = `scaleY(${this.percent})`
 
 			if (!this.experience.selectedItem) {
 				this.spline.update()
