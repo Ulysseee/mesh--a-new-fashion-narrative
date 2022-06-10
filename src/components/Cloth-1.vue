@@ -58,7 +58,7 @@ export default {
 			gsap.set(heading.chars, {
 				opacity: 0,
 				y: '100%',
-				rotate: 30
+				rotate: 20
 			})
 		})
 
@@ -89,6 +89,7 @@ export default {
 <style scoped lang="scss">
 .cloth1 {
 	color: inherit;
+	display: none;
 
 	.cloth__title {
 		font-family: 'Brilliant Cut Pro Regular';
@@ -130,8 +131,8 @@ export default {
 		// transform: skewY(-15deg);
 	}
 
-	// &.active {
-	// 	display: block;
-	// }
+	&.active {
+		display: block;
+	}
 }
 </style>

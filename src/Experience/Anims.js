@@ -3,42 +3,17 @@ import gsap, { Power2, Power3 } from 'gsap'
 export default class Anims {
 	constructor() {
 		this.infos = document.querySelector('.navigation__controls__infos')
-		this.overlayPath = document.querySelector('.overlay__path')
-		this.infosBloc = document.querySelector('.informations')
-		this.infosClose = document.querySelector('.informationsClose')
 		this.scroll = document.querySelector('.helper__scroll')
-		this.clothSubtitle = document.querySelectorAll('.cloth__subtitle')
-		this.clothParagraph = document.querySelectorAll('.cloth__paragraph')
 	}
 
-	infoModal() {
-		// gsap.timeline()
-		// 	.to(this.title, {
-		// 		duration: 0.7,
-		// 		ease: 'power3.in',
-		// 		y: '-100%',
-		// 		stagger: 0.05
-		// 	})
-
-		// 	.to(
-		// 		this.overlayPath,
-		// 		{
-		// 			duration: 0.7,
-		// 			ease: 'power2.in',
-		// 			attr: { d: 'M 0 0 V 50 Q 50 0 100 50 V 0 z' }
-		// 		},
-		// 		'-=0.5'
-		// 	)
-		// 	.to(this.overlayPath, {
-		// 		duration: 1.1,
-		// 		ease: 'power4',
-		// 		attr: { d: 'M 0 0 V 0 Q 50 0 100 0 V 0 z' }
-		// 	})
-
-		let timeline = gsap.timeline()
-		timeline
+	showInfoModal(cloth) {
+		this.showTimeline = gsap
+			.timeline()
 			.to('.information', {
 				css: { zIndex: 99 }
+			})
+			.to('.information__wrapper', {
+				opacity: 1
 			})
 			.to('.information__overlay__path', {
 				duration: 0.4,
@@ -58,7 +33,7 @@ export default class Anims {
 				delay: -0.4,
 				ease: Power3.easeIn
 			})
-			.to('.cloth__title .char', {
+			.to(`${cloth} .cloth__title .char`, {
 				opacity: 1,
 				y: 0,
 				rotate: 0,
@@ -70,8 +45,8 @@ export default class Anims {
 				delay: -0.7,
 				ease: Power3.easeInOut
 			})
-		this.clothSubtitle.forEach((el) => {
-			timeline.to(el.querySelectorAll('.word'), {
+		document.querySelectorAll(`${cloth} .cloth__subtitle`).forEach((el) => {
+			this.showTimeline.to(el.querySelectorAll('.word'), {
 				opacity: 1,
 				y: 0,
 				duration: 0.8,
@@ -83,15 +58,45 @@ export default class Anims {
 				ease: Power3.easeInOut
 			})
 		})
-		this.clothParagraph.forEach((el) => {
-			timeline.to(el.querySelectorAll('.word'), {
-				opacity: 1,
+		document
+			.querySelectorAll(`${cloth} .cloth__paragraph`)
+			.forEach((el) => {
+				this.showTimeline.to(el.querySelectorAll('.word'), {
+					opacity: 1,
+					duration: 0.4,
+					stagger: 0.015,
+					delay: -1.8,
+					ease: Power3.easeIn
+				})
+			})
+	}
+
+	hideInfoModal() {
+		this.hideTimeline = gsap
+			.timeline({
+				onComplete: () => {
+					this.showTimeline.progress(0).kill()
+				}
+			})
+			.to('.information__wrapper', {
+				opacity: 0,
 				duration: 0.4,
-				stagger: 0.015,
-				delay: -1.8,
 				ease: Power3.easeIn
 			})
-		})
+			.to('.information__overlay__path', {
+				duration: 0.6,
+				ease: Power3.easeIn,
+				attr: { d: 'M 100 0 L 100 100 L 1 100 Q 60 50 1 0 Z' }
+			})
+			.to('.information__overlay__path', {
+				duration: 0.8,
+				ease: Power2.easeOut,
+				delay: -0.01,
+				attr: { d: 'M 100 0 L 100 100 L 100 100 Q 100 50 100 0 Z' }
+			})
+			.to('.information', {
+				css: { zIndex: -1 }
+			})
 	}
 
 	showScrollHelper() {

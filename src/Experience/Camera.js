@@ -53,6 +53,7 @@ export default class Camera {
 			x: this.experience.savedPosition.x,
 			y: this.experience.savedPosition.y,
 			z: this.experience.savedPosition.z,
+			delay: 1,
 			ease: Power3.easeOut
 		})
 	}
