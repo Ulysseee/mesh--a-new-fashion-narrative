@@ -12,6 +12,7 @@
   "dependencies": {
     "gsap": "^3.9.1",
     "simplex-noise": "^3.0.1",
+    "split-type": "^0.2.5",
     "three": "^0.138.0",
     "three-noise": "^1.1.2",
     "tweakpane": "^3.0.7",

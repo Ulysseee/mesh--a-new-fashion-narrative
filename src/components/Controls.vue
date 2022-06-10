@@ -1,16 +1,26 @@
 <template>
 	<div class="helper__scroll">
-		<p>Scroll to move and tap to discover</p>
+		<p ref="helper">Scroll to move and tap to discover</p>
 	</div>
 </template>
 
 <script>
 import Experience from '@classes/Experience'
+import gsap from 'gsap'
+import SplitType from 'split-type'
 
 export default {
 	name: 'ControlsComponent',
 
 	mounted() {
+		const splitedHelper = new SplitType(this.$refs.helper, {
+			types: 'words',
+			tagName: 'span'
+		})
+		// gsap.set(splitedHelper.words, {
+		// 	opacity: 0
+		// })
+
 		this.experience = new Experience()
 		this.anims = this.experience.anims
 		let seconds
@@ -45,6 +55,7 @@ export default {
 	font-family: 'Brilliant Cut Pro';
 	animation: MoveUpDown 4s linear infinite;
 	pointer-events: none;
+	transform-origin: center;
 
 	font-size: 0.75rem;
 

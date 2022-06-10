@@ -156,7 +156,7 @@ export default {
 	&__controls__sound {
 		cursor: pointer;
 		transition: opacity 0.5s ease-out;
-		margin-right: 15px;
+		margin-right: 10px;
 		display: flex;
 		backdrop-filter: blur(10px);
 

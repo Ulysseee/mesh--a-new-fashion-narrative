@@ -17,13 +17,11 @@ export default class Cube extends Cloth {
 	}
 
 	setCube() {
-		console.log(this.resource)
 		this.resource.scene.scale.set(0.5, 0.5, 0.5)
 		this.resource.scene.position.set(0, 0, -22)
 
 		this.resource.scene.traverse((child) => {
 			if (child.material) {
-				console.log(child.material)
 				// child.material = new THREE.MeshPhongMaterial()
 			}
 		})
