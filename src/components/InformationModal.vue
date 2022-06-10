@@ -11,7 +11,7 @@
 				<path
 					class="information__overlay__path"
 					vector-effect="non-scaling-stroke"
-					d="M 0 0 V 100 Q 50 100 100 100 V 0 z"
+					d="M 100 0 L 100 100 L 100 100 Q 100 50 100 0 Z"
 				/>
 			</svg>
 
@@ -36,6 +36,7 @@ import Cloth4 from './Cloth-4.vue'
 import Cloth5 from './Cloth-5.vue'
 
 import Experience from '@classes/Experience'
+import gsap, { Power2, Power3 } from 'gsap'
 
 export default {
 	components: {
@@ -53,7 +54,28 @@ export default {
 	methods: {
 		onClick() {
 			// CLOSE MODAL
-			document.querySelector('.information').classList.remove('active')
+			gsap.timeline()
+				.to('.information__wrapper', {
+					opacity: 0,
+					duration: 0.4,
+					ease: Power3.easeIn
+				})
+				.to('.information__overlay__path', {
+					duration: 0.6,
+					ease: Power3.easeIn,
+					// delay: 0.1,
+					attr: { d: 'M 100 0 L 100 100 L 1 100 Q 60 50 1 0 Z' }
+				})
+				.to('.information__overlay__path', {
+					duration: 0.8,
+					ease: Power2.easeOut,
+					delay: -0.01,
+					attr: { d: 'M 100 0 L 100 100 L 100 100 Q 100 50 100 0 Z' }
+				})
+				.to('.information', {
+					css: { zIndex: -1 }
+					// delay: 2
+				})
 
 			document
 				.querySelectorAll('.cloth')
@@ -72,27 +94,26 @@ export default {
 	// background-color: var(--c-transparent);
 	height: 100vh;
 	position: absolute;
-	z-index: 99;
+	z-index: -1;
 	bottom: 0px;
 	right: 0px;
 	// backdrop-filter: blur(10px);
 
-	width: 40vw;
+	width: 55vw;
 	overflow: hidden;
 	padding: 0;
 	margin: 0;
 	color: var(--c-white);
-	transform: translateX(100%);
-	font-family: 'PP Telegraf Light';
 	transition: transform 0.8s ease-in;
 	display: flex;
 	flex-direction: column;
-	padding: 0 10px;
 
-	&.active {
-		display: block;
-		transform: translateX(0%);
-	}
+	font-family: 'PP Telegraf Light';
+
+	// &.active {
+	// 	display: block;
+	// 	transform: translateX(0%);
+	// }
 
 	&__container {
 		position: relative;
@@ -113,12 +134,28 @@ export default {
 		width: 12px;
 		height: 12px;
 		border-radius: 50%;
-		background-color: white;
-		transition: all 200ms ease-in;
-		margin: 15px 0;
+		background: white;
+		transition: background 200ms ease-in;
+		margin: 2rem 0 15px;
+		// border: 4px solid black;
+		position: relative;
+		opacity: 0;
+
+		// &::after {
+		// 	content: '';
+		// 	position: absolute;
+		// 	width: calc(100% + 10px);
+		// 	height: calc(100% + 10px);
+		// 	top: calc(-50% + 1px);
+		// 	left: calc(-50% + 1px);
+		// 	background: white;
+		// 	border-radius: 50%;
+		// 	z-index: -1;
+		// 	transition: opacity 200ms ease-in;
+		// }
 
 		&:hover {
-			background-color: var(--c-transparent);
+			background-color: rgba(255, 255, 255, 0.4);
 		}
 	}
 
@@ -128,7 +165,7 @@ export default {
 		overflow-y: scroll;
 		z-index: 10000000;
 		position: absolute;
-		padding: 10px 30px;
+		padding: 0 30px 4rem;
 		width: 100%;
 		height: 100%;
 	}
