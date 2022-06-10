@@ -54,30 +54,10 @@ export default {
 	methods: {
 		onClick() {
 			// CLOSE MODAL
+			this.experience.anims.hideInfoModal()
+
 			this.experience.closeSound.play()
 
-			gsap.timeline()
-				.to('.information__wrapper', {
-					opacity: 0,
-					duration: 0.4,
-					ease: Power3.easeIn
-				})
-				.to('.information__overlay__path', {
-					duration: 0.6,
-					ease: Power3.easeIn,
-					// delay: 0.1,
-					attr: { d: 'M 100 0 L 100 100 L 1 100 Q 60 50 1 0 Z' }
-				})
-				.to('.information__overlay__path', {
-					duration: 0.8,
-					ease: Power2.easeOut,
-					delay: -0.01,
-					attr: { d: 'M 100 0 L 100 100 L 100 100 Q 100 50 100 0 Z' }
-				})
-				.to('.information', {
-					css: { zIndex: -1 }
-					// delay: 2
-				})
 			document
 				.querySelectorAll('.cloth')
 				.forEach((cloth) => cloth.classList.remove('active'))

@@ -10,8 +10,10 @@ export default class Cloth {
 		this.experience.selectedItem = true
 	}
 
-	displayInfo() {
-		this.anims.infoModal()
+	displayInfo(el) {
+		document.querySelector(el).classList.add('active')
+
+		this.anims.showInfoModal(el)
 	}
 
 	// closeInfo() {
