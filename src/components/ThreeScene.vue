@@ -2,8 +2,6 @@
 	<div class="threeScene">
 		<canvas ref="container" class="container"></canvas>
 	</div>
-
-	<div class="loading"></div>
 </template>
 
 <script>

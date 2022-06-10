@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 import Experience from '../Experience.js'
 import Sky from '@classes/shared/sky'
 import Environment from './Environment.js'
@@ -77,6 +79,15 @@ export default class SecondFloor {
 				this.spline.update()
 			}
 		}
+
+		// for (const point of this.points) {
+		// 	const screenPosition = point.position.clone()
+		// 	screenPosition.project(camera)
+
+		// 	const translateX = screenPosition.x * sizes.width * 0.5
+		// 	const translateY = -screenPosition.y * sizes.height * 0.5
+		// 	point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+		// }
 
 		if (this.butterfly) this.butterfly.update()
 		if (this.flower) this.flower.update()

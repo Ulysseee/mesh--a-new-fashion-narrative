@@ -6,6 +6,7 @@
 	<Information @toggle-information="toggleModal" />
 	<CustomCursor />
 	<ExperienceTimeline />
+	<Nft />
 </template>
 
 <script>
@@ -17,6 +18,7 @@ import ControlsComponent from './components/Controls.vue'
 import Information from './components/InformationModal.vue'
 import CustomCursor from './components/Cursor.vue'
 import ExperienceTimeline from './components/Timeline.vue'
+import Nft from './components/Nft.vue'
 
 export default {
 	name: 'App',
@@ -28,7 +30,8 @@ export default {
 		ControlsComponent,
 		Information,
 		CustomCursor,
-		ExperienceTimeline
+		ExperienceTimeline,
+		Nft
 	},
 	emits: ['toggle-information'],
 

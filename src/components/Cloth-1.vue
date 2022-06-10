@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import gsap, { Power3 } from 'gsap'
+import gsap from 'gsap'
 import SplitType from 'split-type'
 
 export default {
