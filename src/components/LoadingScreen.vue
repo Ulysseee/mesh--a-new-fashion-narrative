@@ -165,7 +165,6 @@ export default {
 	.loader__enterCta {
 		opacity: 0;
 		color: var(--c-white);
-
 		font-size: 1rem;
 		padding: 10px 18px 12px;
 		background: transparent;

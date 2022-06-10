@@ -23,11 +23,11 @@ export default class GroundFloor {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
-		this.timeline = document.querySelector('.header__timeline__1--progress')
 		this.raycaster = this.experience.raycaster
 
-		this.dot = document.querySelector('.header__timeline--dot1')
-		this.dot.classList.add('fill')
+		this.school = document.querySelector('.school')
+		this.room = document.querySelector('.lounge')
+		this.court = document.querySelector('.court')
 
 		// this.setPostProcessing()
 		// this.debugComposer()
@@ -137,11 +137,26 @@ export default class GroundFloor {
 	update() {
 		if (this.testCube) this.testCube.update()
 		if (this.spline) {
-			this.percent = this.spline.curve.getUtoTmapping(
-				this.spline.scroll.current
-			)
+			const decimalStr = `0.${
+				this.spline.scroll.current.toString().split('.')[1]
+			}`
+			const decimalNbr = Number(decimalStr)
 
-			this.timeline.style.transform = `scaleY(${this.percent})`
+			this.percent = this.spline.curve.getUtoTmapping(decimalNbr)
+
+			if (this.percent < 0.25) {
+				this.school.classList.add('is-active')
+				this.room.classList.remove('is-active')
+				this.court.classList.remove('is-active')
+			} else if (this.percent < 0.5) {
+				this.school.classList.remove('is-active')
+				this.court.classList.add('is-active')
+				this.room.classList.remove('is-active')
+			} else {
+				this.court.classList.remove('is-active')
+				this.room.classList.add('is-active')
+				this.school.classList.remove('is-active')
+			}
 
 			if (!this.experience.selectedItem) {
 				this.spline.update()

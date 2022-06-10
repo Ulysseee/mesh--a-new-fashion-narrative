@@ -56,6 +56,8 @@ export default {
 			// CLOSE MODAL
 			this.experience.anims.hideInfoModal()
 
+			this.experience.closeSound.play()
+
 			document
 				.querySelectorAll('.cloth')
 				.forEach((cloth) => cloth.classList.remove('active'))

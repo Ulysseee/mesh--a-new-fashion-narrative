@@ -54,6 +54,13 @@ export default class Raycaster {
 
 		window.addEventListener('click', () => {
 			if (this.currentIntersect && !this.experience.selectedItem) {
+				if (
+					this.experience.groundFloor ||
+					this.experience.secondFloor
+				) {
+					this.experience.openSound.play()
+				}
+
 				if (this.experience.groundFloor) {
 					this.experience.groundFloor.handleClick()
 				}
