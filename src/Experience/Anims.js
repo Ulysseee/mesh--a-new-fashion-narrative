@@ -1,9 +1,16 @@
 import gsap, { Power2, Power3 } from 'gsap'
+import Experience from './Experience'
 
 export default class Anims {
 	constructor() {
+		this.experience = new Experience()
+		this.overlay = this.experience.overlay
 		this.infos = document.querySelector('.navigation__controls__infos')
 		this.scroll = document.querySelector('.helper__scroll')
+
+		this.teleporter = document.querySelector('.teleporter')
+		this.groundFloor = document.querySelector('.groundFloor')
+		this.firstFloor = document.querySelector('.firstFloor')
 	}
 
 	showInfoModal(cloth) {
@@ -134,5 +141,76 @@ export default class Anims {
 		// .to(this.scroll, {
 		// 	scaleX: 0
 		// })
+	}
+
+	async switchIn(level) {
+		console.log('SWITCH IN', level)
+
+		let floor = document.querySelector(`.${level}`)
+		let flootIntro = document.querySelectorAll(`.${level}__intro > .word`)
+		this.switchInTl = gsap.timeline({
+			// onComplete: () => {
+			// 	this.switchOutTl.progress(0).kill()
+			// }
+		})
+
+		await this.switchInTl
+			.to(this.overlay.material.uniforms.uAlpha, {
+				duration: 1,
+				value: 1,
+				ease: Power3.easeInOut
+			})
+			.to(this.teleporter, {
+				css: { zIndex: 99 }
+			})
+			.to(floor, {
+				opacity: 1,
+				ease: Power3.easeIn
+			})
+			.to(flootIntro, {
+				opacity: 1,
+				duration: 0.7,
+				stagger: {
+					each: 0.025,
+					from: 'start'
+				},
+				delay: -0.7,
+				ease: Power3.easeInOut
+			})
+	}
+	async switchOut(level) {
+		console.log('SWITCH OUT', level)
+		let floor = document.querySelector(`.${level}`)
+		let flootIntro = document.querySelectorAll(`.${level}__intro > .word`)
+		this.switchOutTl = gsap.timeline({
+			// onComplete: () => {
+			// 	this.switchInTl.progress(0).kill()
+			// }
+		})
+
+		await this.switchOutTl
+			.to(flootIntro, {
+				opacity: 0,
+				duration: 0.4,
+				stagger: {
+					each: 0.015,
+					from: 'start'
+				},
+				// delay: -0.7,
+				ease: Power3.easeIn
+			})
+			.to(floor, {
+				opacity: 0,
+				ease: Power3.easeIn
+			})
+			.to(this.teleporter, {
+				css: { zIndex: -1 }
+			})
+			.to(this.overlay.material.uniforms.uAlpha, {
+				duration: 1,
+				value: 0,
+				// delay: 2,
+				ease: Power3.easeInOut
+			})
 	}
 }

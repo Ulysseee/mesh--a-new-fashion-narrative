@@ -6,10 +6,12 @@
 	<Information @toggle-information="toggleModal" />
 	<CustomCursor />
 	<ExperienceTimeline />
+	<Teleporter />
 </template>
 
 <script>
 import gsap from 'gsap'
+
 import ThreeScene from './components/ThreeScene.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
 import Header from './components/Header.vue'
@@ -17,6 +19,7 @@ import ControlsComponent from './components/Controls.vue'
 import Information from './components/InformationModal.vue'
 import CustomCursor from './components/Cursor.vue'
 import ExperienceTimeline from './components/Timeline.vue'
+import Teleporter from './components/Teleporter.vue'
 
 export default {
 	name: 'App',
@@ -28,7 +31,8 @@ export default {
 		ControlsComponent,
 		Information,
 		CustomCursor,
-		ExperienceTimeline
+		ExperienceTimeline,
+		Teleporter
 	},
 	emits: ['toggle-information'],
 
