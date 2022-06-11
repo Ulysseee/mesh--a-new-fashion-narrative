@@ -1,17 +1,16 @@
 <template>
 	<div ref="loadingScreen" class="loader">
-		<div class="loader__progressUrl">
-			<span ref="progressUrl">{{ progressUrl }}</span>
-		</div>
-
-		<div class="loader__percent">
-			<p ref="percent">{{ progress.toFixed(0) }}%</p>
-		</div>
-
 		<div class="loader__warning">
 			<span v-for="letter in warning" ref="warning" :key="letter">
 				{{ letter }}
 			</span>
+		</div>
+
+		<div ref="progress" class="loader__progress">
+			<div ref="progressBar" class="loader__bar"></div>
+			<div ref="percent" class="loader__percent">
+				{{ progress.toFixed(0) }}%
+			</div>
 		</div>
 
 		<button ref="button" class="loader__enterCta" @click="launch">
@@ -26,14 +25,9 @@
 			preserveAspectRatio="none"
 		>
 			<path
-				ref="overlayTop"
+				ref="overlay"
 				vector-effect="non-scaling-stroke"
-				d="M 0 0 V 51 Q 50 51 100 51 V 0 z"
-			/>
-			<path
-				ref="overlayBottom"
-				vector-effect="non-scaling-stroke"
-				d="M 0 100 V 50 Q 50 50 100 50 V 100 z"
+				d="M 0 100 V 0 Q 50 0 100 0 V 100 z"
 			/>
 		</svg>
 	</div>
@@ -43,7 +37,7 @@
 import SoundClass from '@classes/SoundClass'
 
 import Experience from '../Experience/Experience'
-import gsap, { Power3 } from 'gsap'
+import gsap, { Power2, Power3 } from 'gsap'
 
 export default {
 	name: 'LoadingScreen',
@@ -53,7 +47,7 @@ export default {
 			progressUrl: '',
 			ready: false,
 			initFlag: false,
-			warning: ['Experience', 'is', 'loading']
+			warning: ['Loading', 'virtual', 'experience', '...']
 		}
 	},
 
@@ -69,29 +63,23 @@ export default {
 		this.experience.resources.on('ready', () => {
 			const tl = gsap.timeline()
 			tl.to(this.$refs.warning, {
-				y: -85,
-				duration: 1.2,
+				y: '-115%',
 				stagger: {
-					each: 0.2
+					each: 0.1
 				},
+				ease: Power2.easeIn
+			}).to(this.$refs.progress, {
+				duration: 0.8,
+				opacity: 0,
 				ease: Power3.easeInOut
 			})
-			tl.to([this.$refs.progressUrl, this.$refs.percent], {
-				y: -85,
-				duration: 1.2,
+			this.ready = true
+			tl.to(this.$refs.button, {
+				opacity: 1,
+				duration: 0.8,
 				delay: -0.5,
 				ease: Power3.easeInOut
 			})
-
-			setTimeout(() => {
-				this.ready = true
-
-				tl.to(this.$refs.button, {
-					opacity: 1,
-					duration: 0.8,
-					ease: Power3.easeInOut
-				})
-			}, 1000)
 		})
 	},
 
@@ -101,22 +89,18 @@ export default {
 				.to(this.$refs.button, {
 					opacity: 0,
 					duration: 0.8,
-					ease: Power3.easeInOut
+					ease: Power3.easeOut
 				})
-				.to(this.$refs.overlayTop, {
-					duration: 0.9,
+				.to(this.$refs.overlay, {
+					duration: 1.1,
 					ease: Power3.easeInOut,
 					attr: { d: 'M 0 0 V 0 Q 50 0 100 0 V 0 z' }
 				})
-				.to(this.$refs.overlayBottom, {
-					duration: 0.9,
-					ease: Power3.easeInOut,
-					delay: -0.9,
-					attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' }
-				})
 				.to(this.$refs.loadingScreen, {
 					css: { opacity: '0', pointerEvents: 'none' },
-					ease: Power3.easeOut
+					duration: 0.5,
+					delay: -0.5,
+					ease: Power3.easeIn
 				})
 
 			if (!this.initFlag) {
@@ -144,18 +128,47 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-family: 'Panamera';
+	font-family: 'Brilliant Cut Pro Regular';
+
+	.loader__progress {
+		width: 5rem;
+		position: absolute;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.loader__bar {
+		width: 100%;
+		height: 1px;
+		position: relative;
+		overflow: hidden;
+
+		&::after {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 1px;
+			background: white;
+			animation: loading 1s ease-in-out infinite alternate;
+		}
+	}
+
+	.loader__percent {
+		font-size: 0.625rem;
+		padding: 4px 0;
+		margin-top: 1rem;
+		text-transform: uppercase;
+	}
 
 	.loader__enterCta {
 		opacity: 0;
 		color: var(--c-white);
-		font-family: 'Panamera';
-
 		font-size: 1rem;
 		padding: 10px 18px 12px;
 		background: transparent;
 		border: none;
-		border-radius: px;
 		text-transform: uppercase;
 		text-align: center;
 		z-index: 2;
@@ -186,14 +199,13 @@ export default {
 			display: block;
 		}
 	}
-	.loader__percent,
 	.loader__warning {
 		overflow: hidden;
 		z-index: 2;
 		position: absolute;
-		font-size: 1rem;
-		color: gray;
+		font-size: 0.75rem;
 		padding: 4px 0;
+		text-transform: uppercase;
 
 		p {
 			margin: 0;
@@ -209,12 +221,22 @@ export default {
 		bottom: 2rem;
 		transform: translateX(-50%);
 		display: flex;
+		font-size: 0.625rem;
 
 		span {
 			display: block;
 			padding: 0 2px;
 			will-change: transform;
 		}
+	}
+}
+
+@keyframes loading {
+	0% {
+		transform: translate(-100%);
+	}
+	to {
+		transform: translate(100%);
 	}
 }
 </style>

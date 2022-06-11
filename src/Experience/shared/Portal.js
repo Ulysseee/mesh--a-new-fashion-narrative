@@ -17,7 +17,7 @@ export default class Cube {
 	}
 
 	setMaterial() {
-		this.material = new MeshBasicMaterial({ color: 0xff0000 })
+		this.material = new MeshBasicMaterial({ color: 0x00ff })
 	}
 
 	setMesh() {

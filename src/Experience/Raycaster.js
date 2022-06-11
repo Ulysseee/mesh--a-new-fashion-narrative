@@ -1,7 +1,5 @@
 import { Raycaster as ThreeRaycaster } from 'three'
-import Mouse from './utils/Mouse'
 import Experience from './Experience'
-import gsap, { Power3 } from 'gsap'
 
 export default class Raycaster {
 	constructor() {
@@ -10,7 +8,7 @@ export default class Raycaster {
 		this.camera = this.experience.camera
 		this.cursor = this.experience.cursor.cursorElements[0].DOM.inner
 
-		this.mouse = new Mouse()
+		this.mouse = this.experience.mouse
 		this.onPortal = null
 		this.currentIntersect = null
 		this.raycaster = new ThreeRaycaster()
@@ -27,7 +25,9 @@ export default class Raycaster {
 				) {
 					if (
 						this.currentIntersect &&
-						this.currentIntersect.object.userData.type === 'portail'
+						this.currentIntersect.object.userData.type ===
+							'portail' &&
+						!this.experience.selectedItem
 					) {
 						this.cursor.classList.add('process')
 						this.cursor.timeout = setTimeout(
@@ -51,45 +51,48 @@ export default class Raycaster {
 				false
 			)
 		})
-	}
 
-	// handleClick() {
-	// 	if (this.currentIntersect) {
-	// 		// console.log('look')
-	// 		// gsap.to('.information', {
-	// 		// 	x: 0,
-	// 		// 	duration: 0.5,
-	// 		// 	ease: 'expo.easeInOut'
-	// 		// })
-	// 		gsap.to(this.camera.instance.position, {
-	// 			duration: 2,
-	// 			x: this.currentIntersect.object.position.x + 3,
-	// 			z: this.currentIntersect.object.position.z,
-	// 			ease: Power3.easeInOut
-	// 		})
-	// 	}
-	// }
+		window.addEventListener('click', () => {
+			if (this.currentIntersect && !this.experience.selectedItem) {
+				if (
+					this.experience.groundFloor ||
+					this.experience.secondFloor
+				) {
+					this.experience.openSound.play()
+				}
+
+				if (this.experience.groundFloor) {
+					this.experience.groundFloor.handleClick()
+				}
+
+				if (this.experience.secondFloor) {
+					this.experience.secondFloor.handleClick()
+				}
+			}
+		})
+	}
 
 	success() {
 		if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal1'
 		) {
-			this.experience.switch('firstFloor')
+			this.experience.switch('secondFloor')
 		} else if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal2'
+		) {
+			this.experience.switch('groudFloor')
+		} else if (
+			this.currentIntersect &&
+			this.currentIntersect.object.name === 'portal3'
 		) {
 			window.open('https://opensea.io/', '_blank')
 		}
 	}
 
-	handleClick() {
-		// console.log('HANDLE CLICK')
-	}
-
 	update() {
-		this.raycaster.setFromCamera(this.mouse.mouse, this.camera.instance)
+		this.raycaster.setFromCamera(this.mouse.mousePos, this.camera.instance)
 
 		const intersects = this.raycaster.intersectObjects(
 			this.experience.items
@@ -97,12 +100,16 @@ export default class Raycaster {
 
 		if (intersects.length > 0) {
 			this.currentIntersect = intersects[0]
-			this.experience.cursor.enter()
+
+			if (!this.experience.selectedItem) {
+				this.experience.cursor.enter()
+			}
 
 			if (
-				this.currentIntersect.object.name === 'portal1' ||
-				this.currentIntersect.object.name === 'portal2' ||
-				this.currentIntersect.object.name === 'portal3'
+				(this.currentIntersect.object.name === 'portal1' ||
+					this.currentIntersect.object.name === 'portal2' ||
+					this.currentIntersect.object.name === 'portal3') &&
+				!this.experience.selectedItem
 			) {
 				document.querySelector('.hold').classList.add('active')
 			}

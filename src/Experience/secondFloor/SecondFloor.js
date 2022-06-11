@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 import Experience from '../Experience.js'
 import Sky from '@classes/shared/sky'
 import Environment from './Environment.js'
@@ -7,10 +9,12 @@ import Butterfly from './Butterfly.js'
 import Flower from './Flower.js'
 import Particles from './Particles.js'
 import WaterClass from './Water.js'
+import Cube from './Cube.js'
 
 import Spline from '../shared/Spline.js'
-
 import { secondFloorPath } from '../pathes'
+
+import gsap, { Circ } from 'gsap'
 
 export default class SecondFloor {
 	constructor() {
@@ -18,23 +22,24 @@ export default class SecondFloor {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
-		this.timeline = document.querySelector('.header__timeline__3--progress')
-		this.dot = document.querySelector('.header__timeline--dot3')
-		this.dot.classList.add('fill')
+		this.raycaster = this.experience.raycaster
 
 		// this.isInfosActive = false
+
+		this.scene.fog = null
 
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
+			this.spline = new Spline(secondFloorPath)
+
 			this.environment = new Environment()
 			this.grass = new Grass()
 			this.sky = new Sky()
 			// this.water = new WaterClass()
 			this.butterfly = new Butterfly()
-			// this.flower = new Flower()
-
-			this.spline = new Spline(secondFloorPath)
+			this.flower = new Flower()
+			this.cube = new Cube()
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal2'
@@ -44,23 +49,51 @@ export default class SecondFloor {
 		})
 	}
 
+	handleClick() {
+		if (this.raycaster.currentIntersect.object.userData.type === 'cloth5') {
+			this.experience.selectedItem = true
+
+			this.experience.savedPosition =
+				this.camera.instance.position.clone()
+			gsap.to(this.camera.instance.position, {
+				duration: 2,
+				x: this.cube.cube.position.x,
+				y: this.cube.cube.position.y,
+				z: this.cube.cube.position.z - 1,
+				ease: Circ.easeOut
+			})
+
+			this.cube.displayInfo('.cloth5')
+			this.experience.infoOpen = true
+			this.experience.parallax.active = false
+		}
+	}
+
 	update() {
-		if (this.grass) this.grass.update()
-		if (this.butterfly) this.butterfly.update()
-		if (this.flower) this.flower.update()
-		if (this.particles) this.particles.update()
-		if (this.water) this.water.update()
 		if (this.spline) {
 			this.percent = this.spline.curve.getUtoTmapping(
 				this.spline.scroll.current
 			)
 
-			this.timeline.style.transform = `scaleY(${this.percent})`
-			// console.log(
-			// 	this.spline.curve.getPointAt(this.spline.scroll.current)
-			// )
-			this.spline.update()
+			if (!this.experience.selectedItem) {
+				this.spline.update()
+			}
 		}
+
+		// for (const point of this.points) {
+		// 	const screenPosition = point.position.clone()
+		// 	screenPosition.project(camera)
+
+		// 	const translateX = screenPosition.x * sizes.width * 0.5
+		// 	const translateY = -screenPosition.y * sizes.height * 0.5
+		// 	point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+		// }
+
+		if (this.butterfly) this.butterfly.update()
+		if (this.flower) this.flower.update()
+		if (this.particles) this.particles.update()
+		if (this.water) this.water.update()
+		if (this.grass) this.grass.update()
 	}
 
 	destroy() {}

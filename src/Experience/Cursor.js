@@ -52,7 +52,6 @@ export default class Cursor {
 				this.leave()
 			})
 		})
-		// console.log(this.cursorElements[1].DOM.el)
 	}
 	/**
 	 * Mouseenter event

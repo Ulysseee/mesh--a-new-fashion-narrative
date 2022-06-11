@@ -2,10 +2,11 @@
 	<ThreeScene />
 	<Header />
 	<LoadingScreen />
-	<Controls />
+	<ControlsComponent />
 	<Information @toggle-information="toggleModal" />
 	<CustomCursor />
-	<Timeline />
+	<ExperienceTimeline />
+	<Nft />
 </template>
 
 <script>
@@ -13,10 +14,11 @@ import gsap from 'gsap'
 import ThreeScene from './components/ThreeScene.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
 import Header from './components/Header.vue'
-import Controls from './components/Controls.vue'
+import ControlsComponent from './components/Controls.vue'
 import Information from './components/InformationModal.vue'
 import CustomCursor from './components/Cursor.vue'
-import Timeline from './components/Timeline.vue'
+import ExperienceTimeline from './components/Timeline.vue'
+import Nft from './components/Nft.vue'
 
 export default {
 	name: 'App',
@@ -25,10 +27,11 @@ export default {
 		ThreeScene,
 		LoadingScreen,
 		Header,
-		Controls,
+		ControlsComponent,
 		Information,
 		CustomCursor,
-		Timeline
+		ExperienceTimeline,
+		Nft
 	},
 	emits: ['toggle-information'],
 

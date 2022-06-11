@@ -1,4 +1,4 @@
-import { BufferGeometry, LineBasicMaterial, Line } from 'three'
+import { BufferGeometry, LineBasicMaterial, Line, Object3D } from 'three'
 import EventEmitter from '@utils/EventEmitter.js'
 
 import gsap from 'gsap'
@@ -11,6 +11,7 @@ export default class Spline extends EventEmitter {
 
 		this.experience = new Experience()
 		this.canvas = this.experience.canvas
+		this.mouse = this.experience.mouse
 		this.sizes = this.experience.sizes
 		this.scene = this.experience.scene
 		this.camera = this.experience.camera
@@ -27,11 +28,11 @@ export default class Spline extends EventEmitter {
 		this.setSpline(catmullCurve)
 		if (this.debug) this.setDebug()
 
-		// Resize event
 		window.addEventListener('wheel', (e) => {
-			if (!this.experience.infoOpen) {
+			if (!this.experience.selectedItem) {
 				this.scrollCanvas(e)
 				this.trigger('wheel')
+				this.experience.lastScrollTime = new Date().getTime()
 			}
 		})
 	}
@@ -43,10 +44,14 @@ export default class Spline extends EventEmitter {
 		this.curveGeometry = new BufferGeometry().setFromPoints(points)
 		this.curveMaterial = new LineBasicMaterial({
 			color: 0xffffff
+			// transparent: true,
+			// opacity: 0
 		})
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
-		this.scene.add(this.splineObject)
+		this.cameraTarget = new Object3D()
+
+		this.scene.add(this.splineObject, this.cameraTarget)
 	}
 
 	scrollCanvas({ deltaY }) {
@@ -80,31 +85,14 @@ export default class Spline extends EventEmitter {
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)
-		this.camera.instance.position.set(camPos.x, 2, camPos.z)
 
-		if (
-			this.camera.instance.position.z.toFixed(0) ==
-				this.curve.points[this.curve.points.length - 1].z.toFixed(0) &&
-			this.camera.instance.position.x.toFixed(0) ==
-				this.curve.points[this.curve.points.length - 1].x.toFixed(0)
-		) {
-			this.scroll.current = 0
-			this.scroll.target = 0
-			// this.camera.instance.position.z = 0
-		}
-
-		const tangent = this.curve.getTangent(this.scroll.current)
-		// console.log(Math.abs(-tangent.x))
-		// console.log(-tangent.x)
-		// this.camera.instance.rotation.y = -tangent.x
+		const targetPos = this.curve.getPoint(this.scroll.current + 0.1)
+		this.cameraTarget.position.set(
+			targetPos.x,
+			targetPos.y + 2,
+			targetPos.z
+		)
+		this.camera.instance.position.set(camPos.x, camPos.y + 2, camPos.z)
+		this.camera.instance.lookAt(this.cameraTarget.position)
 	}
 }
-
-// for (let i = 0; i < this.experience.items.length; i++) {
-// 	const element = this.experience.items[i]
-// 	if (element.userData.type === 'cloth') {
-// 		for (let j = 0; j < this.spline.curve.length; j++) {
-// 			const point = array[j]
-// 		}
-// 	}
-// }

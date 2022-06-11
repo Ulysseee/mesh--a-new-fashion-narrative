@@ -1,17 +1,18 @@
 import * as THREE from 'three'
 import gsap, { Power3 } from 'gsap'
-import LocomotiveScroll from 'locomotive-scroll'
 
 import config from '@utils/config'
 import Debug from '@utils/Debug.js'
 import Sizes from '@utils/Sizes.js'
 import Time from '@utils/Time.js'
 import Resources from '@utils/Resources.js'
+import Mouse from '@utils/Mouse.js'
 import Cursor from '@classes/Cursor.js'
 
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
+import Overlay from './shared/Overlay.js'
 import SecondFloor from '@classes/secondFloor/SecondFloor.js'
 import GroundFloor from '@classes/groundFloor/GroundFloor.js'
 
@@ -31,8 +32,11 @@ export default class Experience {
 		this.anims = new Anims()
 
 		// Setup
+		this.closeSound = new Audio('/assets/close.mp3')
+		this.openSound = new Audio('/assets/open.mp3')
 		this.sizes = new Sizes()
 		this.time = new Time()
+		this.mouse = new Mouse()
 		this.scene = new THREE.Scene()
 		this.cursor = new Cursor(document.querySelectorAll('.cursor'))
 		this.resources = new Resources(groundFloor)
@@ -42,23 +46,13 @@ export default class Experience {
 		this.items = []
 
 		this.infoOpen = false
+		this.selectedItem = false
+		this.savedPosition = null
 
-		const scroll = new LocomotiveScroll({
-			el: document.querySelector('[data-scroll-container]'),
-			smooth: true
-		})
-
-		this.timeline1 = document.querySelector(
-			'.header__timeline__1--progress'
-		)
-		this.timeline2 = document.querySelector(
-			'.header__timeline__2--progress'
-		)
 		this.raycaster = new Raycaster()
-
 		this.renderer = new Renderer()
-
 		this.groundFloor = new GroundFloor()
+		this.overlay = new Overlay()
 
 		this.setDebug()
 
@@ -67,76 +61,30 @@ export default class Experience {
 			this.resize()
 		})
 
-		this.overlayGeometry = new THREE.PlaneGeometry(10, 10, 5, 5)
-		this.overlayMaterial = new THREE.ShaderMaterial({
-			transparent: true,
-			uniforms: {
-				uAlpha: { value: 0 }
-			},
-			vertexShader: `
-				void main()
-				{
-					gl_Position = vec4(position, 1.0);
-				}
-			`,
-			fragmentShader: `
-				uniform float uAlpha;
-
-				void main()
-				{
-					gl_FragColor = vec4(1.0, 1.0, 1.0, uAlpha);
-				}
-			`
-		})
-
-		this.overlayMaterial.needsUpdate = true
-		this.overlay = new THREE.Mesh(
-			this.overlayGeometry,
-			this.overlayMaterial
-		)
-		this.overlay.name = 'loader'
-		this.scene.add(this.overlay)
-
-		let duration = 1600,
-			success = (button) => {
-				//Success function
-				// button.classList.add('success')
-				button.style.opacity = 0
-
-				this.switch()
-			}
-
-		document.querySelectorAll('.button-hold').forEach((button) => {
-			button.style.setProperty('--duration', duration + 'ms')
-			;['mousedown', 'touchstart', 'keypress'].forEach((e) => {
-				button.addEventListener(e, (ev) => {
-					if (
-						e != 'keypress' ||
-						(e == 'keypress' &&
-							ev.which == 32 &&
-							!button.classList.contains('process'))
-					) {
-						button.classList.add('process')
-						button.timeout = setTimeout(success, duration, button)
-					}
-				})
-			})
-			;['mouseup', 'mouseout', 'touchend', 'keyup'].forEach((e) => {
-				button.addEventListener(
-					e,
-					(ev) => {
-						if (e != 'keyup' || (e == 'keyup' && ev.which == 32)) {
-							button.classList.remove('process')
-							clearTimeout(button.timeout)
-						}
-					},
-					false
-				)
-			})
-		})
-
-		// Time tick event
 		this.update()
+
+		// document.addEventListener(
+		// 	'click',
+		// 	(event) => {
+		// 		// If user either clicks X button OR clicks outside the modal window, then close modal
+		// 		if (
+		// 			!event.target.closest('.information') &&
+		// 			this.selectedItem
+		// 		) {
+		// 			document
+		// 				.querySelector('.information')
+		// 				.classList.remove('active')
+
+		// 			document
+		// 				.querySelectorAll('.cloth')
+		// 				.forEach((cloth) => cloth.classList.remove('active'))
+		// 			this.lastScrollTime = new Date().getTime()
+		// 			this.infoOpen = false
+		// 			this.camera.resetPosition()
+		// 		}
+		// 	},
+		// 	false
+		// )
 	}
 
 	setDebug() {
@@ -155,17 +103,18 @@ export default class Experience {
 	}
 
 	update() {
-		this.camera.update()
-		if (this.raycaster) this.raycaster.update()
+		// DOM
+		if (this.cursor) this.cursor.cursorElements.forEach((el) => el.render())
 
+		// WEBGL
+		this.mouse.update()
+		this.camera.update()
+
+		if (this.raycaster) this.raycaster.update()
 		if (this.groundFloor) this.groundFloor.update()
 		if (this.secondFloor) this.secondFloor.update()
-
 		if (this.renderer) this.renderer.update()
-
 		if (this.debug) this.debug.stats.update()
-
-		if (this.cursor) this.cursor.cursorElements.forEach((el) => el.render())
 
 		window.requestAnimationFrame(() => {
 			this.update()
@@ -178,7 +127,7 @@ export default class Experience {
 	}
 
 	async switch(level) {
-		await gsap.to(this.overlayMaterial.uniforms.uAlpha, {
+		await gsap.to(this.overlay.material.uniforms.uAlpha, {
 			duration: 1,
 			value: 1,
 			ease: Power3.easeInOut
@@ -187,23 +136,30 @@ export default class Experience {
 		this.destroy()
 
 		switch (level) {
-			case 'firstFloor':
+			case 'secondFloor':
 				this.items = []
-				this.timeline2.style.transform = 'scale(1)'
+
 				this.groundFloor = null
+				this.selectedItem = false
+				this.infoOpen = false
+
 				this.resources = new Resources(secondFloor)
-				this.secondFloor = await new SecondFloor()
+				this.secondFloor = new SecondFloor()
 				break
 
-			case 'secondFloor':
-				console.log('toto')
+			case 'groudFloor':
+				this.items = []
+
+				this.secondFloor = null
+				this.resources = new Resources(groundFloor)
+				this.groundFloor = new GroundFloor()
 				break
 
 			default:
 				break
 		}
 
-		gsap.to(this.overlayMaterial.uniforms.uAlpha, {
+		await gsap.to(this.overlay.material.uniforms.uAlpha, {
 			duration: 1,
 			value: 0,
 			delay: 2,

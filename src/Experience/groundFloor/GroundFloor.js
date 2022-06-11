@@ -3,17 +3,19 @@ import config from '@utils/config'
 import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
-import Building from './Building.js'
 import Cube from './Cube.js'
 import Cone from './Cone.js'
-// import Cloth from './Cloth.js'
+import Dress from './Dress.js'
+import Floor from './Floor.js'
+import Fog from './Fog.js'
 import Environment from './Environment.js'
-import Mouse from '@utils/Mouse'
 import Sky from '@classes/shared/sky'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
 
-import { goundFloorPath } from '../pathes'
+import gsap, { Power3 } from 'gsap'
+
+import { groundFloorPath } from '../pathes'
 
 export default class GroundFloor {
 	constructor() {
@@ -21,33 +23,32 @@ export default class GroundFloor {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
-		this.timeline = document.querySelector('.header__timeline__1--progress')
 		this.raycaster = this.experience.raycaster
-		this.dot = document.querySelector('.header__timeline--dot1')
-		this.dot.classList.add('fill')
-		this.mouse = new Mouse()
+
+		this.school = document.querySelector('.school')
+		this.room = document.querySelector('.lounge')
+		this.court = document.querySelector('.court')
 
 		// this.setPostProcessing()
-		this.debugComposer()
+		// this.debugComposer()
 
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
-			this.spline = new Spline(goundFloorPath)
+			this.spline = new Spline(groundFloorPath)
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal1'
 			this.portal.mesh.userData.type = 'portail'
 
-			this.rdc = new Building()
 			this.environment = new Environment()
-			this.sky = new Sky()
+			// this.sky = new Sky()
+			this.dress = new Dress()
 			this.testCube = new Cube()
 			this.testCone = new Cone()
-			// this.cloth = new Cloth()
+			this.floor = new Floor()
+			// this.fog = new Fog()
 		})
-
-		window.addEventListener('click', this.handle.bind(this))
 	}
 
 	setPostProcessing() {
@@ -91,20 +92,42 @@ export default class GroundFloor {
 		}
 	}
 
-	handle() {
-		if (
-			this.raycaster.currentIntersect &&
-			this.raycaster.currentIntersect.object.userData.type === 'cloth1'
-		) {
-			this.spline.scroll.target = 0.8
+	handleClick() {
+		if (this.raycaster.currentIntersect.object.userData.type === 'cloth1') {
+			this.experience.selectedItem = true
+
+			this.experience.savedPosition =
+				this.camera.instance.position.clone()
+			gsap.to(this.camera.instance.position, {
+				duration: 1.75,
+				x: this.testCube.cube.position.x,
+				y: this.testCube.cube.position.y,
+				z: this.testCube.cube.position.z - 3,
+				ease: Power3.easeOut
+			})
 
 			this.testCube.displayInfo('.cloth1')
 			this.experience.infoOpen = true
 		} else if (
-			this.raycaster.currentIntersect &&
-			this.raycaster.currentIntersect.object.userData.type === 'cloth3'
+			this.raycaster.currentIntersect.object.userData.type === 'cloth2'
 		) {
 			this.spline.scroll.target = 0.3
+
+			this.testCone.displayInfo('.cloth2')
+			this.experience.infoOpen = true
+		} else if (
+			this.raycaster.currentIntersect.object.userData.type === 'cloth3'
+		) {
+			this.experience.selectedItem = true
+
+			this.experience.savedPosition =
+				this.camera.instance.position.clone()
+			gsap.to(this.camera.instance.position, {
+				duration: 2,
+				x: this.testCone.cone.position.x,
+				y: this.testCone.cone.position.y,
+				z: this.testCone.cone.position.z - 2
+			})
 
 			this.testCone.displayInfo('.cloth3')
 			this.experience.infoOpen = true
@@ -112,14 +135,32 @@ export default class GroundFloor {
 	}
 
 	update() {
+		if (this.testCube) this.testCube.update()
 		if (this.spline) {
-			this.percent = this.spline.curve.getUtoTmapping(
-				this.spline.scroll.current
-			)
+			const decimalStr = `0.${
+				this.spline.scroll.current.toString().split('.')[1]
+			}`
+			const decimalNbr = Number(decimalStr)
 
-			this.timeline.style.transform = `scaleY(${this.percent})`
+			this.percent = this.spline.curve.getUtoTmapping(decimalNbr)
 
-			this.spline.update()
+			if (this.percent < 0.25) {
+				this.school.classList.add('is-active')
+				this.room.classList.remove('is-active')
+				this.court.classList.remove('is-active')
+			} else if (this.percent < 0.5) {
+				this.school.classList.remove('is-active')
+				this.court.classList.add('is-active')
+				this.room.classList.remove('is-active')
+			} else {
+				this.court.classList.remove('is-active')
+				this.room.classList.add('is-active')
+				this.school.classList.remove('is-active')
+			}
+
+			if (!this.experience.selectedItem) {
+				this.spline.update()
+			}
 		}
 	}
 }
