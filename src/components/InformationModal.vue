@@ -55,6 +55,7 @@ export default {
 		onClick() {
 			// CLOSE MODAL
 			this.experience.anims.hideInfoModal()
+			this.experience.parallax.active = false
 
 			this.experience.closeSound.play()
 

@@ -12,7 +12,6 @@ export default class Cloth {
 
 	displayInfo(el) {
 		document.querySelector(el).classList.add('active')
-
 		this.anims.showInfoModal(el)
 	}
 

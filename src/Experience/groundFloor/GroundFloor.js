@@ -98,7 +98,13 @@ export default class GroundFloor {
 
 			this.experience.savedPosition =
 				this.camera.instance.position.clone()
-			gsap.to(this.camera.instance.position, {
+			const timeline = gsap.timeline({
+				onComplete: () => {
+					this.experience.parallax.active = true
+				}
+			})
+
+			timeline.to(this.camera.instance.position, {
 				duration: 1.75,
 				x: this.testCube.cube.position.x,
 				y: this.testCube.cube.position.y,

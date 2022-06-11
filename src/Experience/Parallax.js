@@ -1,5 +1,4 @@
 import Experience from './Experience.js'
-import Mouse from './utils/Mouse'
 
 export default class CamParallax {
 	constructor() {
@@ -9,23 +8,19 @@ export default class CamParallax {
 		this.scene = this.experience.scene
 		this.camera = this.experience.camera
 		this.debug = this.experience.debug
-		this.mouse = new Mouse()
+		this.mouse = this.experience.mouse
 
 		this.active = false
-		this.mousePos = { x: 0, y: 0 }
 		this.params = {
-			intensity: 0.008,
-			ease: 0.08
+			max: this.camera.instance.position.x + 1,
+			min: this.camera.instance.position.x - 1
 		}
 	}
 
 	update() {
 		if (!this.active) return
-		this.camera.instance.position.x +=
-			(this.mouse.mouse.x - this.camera.instance.position.x) *
-			this.params.ease
-		this.camera.instance.position.y +=
-			(this.mouse.mouse.y - this.camera.instance.position.y) *
-			this.params.ease
+
+		this.camera.instance.position.x += this.mouse.mousePos.x * 0.005
+		this.camera.instance.position.y += -this.mouse.mousePos.y * 0.005
 	}
 }
