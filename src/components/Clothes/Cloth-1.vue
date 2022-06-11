@@ -12,10 +12,10 @@
 
 		<div class="cloth__infos">
 			<p class="cloth__paragraph">
-				La culture du coton est la plus polluante de la planète. Afin de
-				protéger cette ressource des dangers extérieurs, un quart des
-				pesticides utilisés dans le monde est destiné à cette culture
-				qui requiert également 4 % des fertilisants à l’azote et au
+				La culture du coton est la plus polluante de la planète. Afin de
+				protéger cette ressource des dangers extérieurs, un quart des
+				pesticides utilisés dans le monde est destiné à cette culture
+				qui requiert également 4 % des fertilisants à l’azote et au
 				phosphore dans le monde. Les pesticides contiennent des dérivés
 				de l’arsenic qui mettent la santé des travailleurs en danger et
 				polluent les sols, les eaux et la biodiversité.
@@ -23,7 +23,7 @@
 			<p class="cloth__paragraph">
 				Cette matière nécessite une exposition de 120 jours de soleil
 				par an et une forte quantité d’eau. Une étude menée par l’UNESCO
-				dévoile que 10 000 litres d’eau sont nécessaires pour produire 1
+				dévoile que 10 000 litres d’eau sont nécessaires pour produire 1
 				kg de coton, dont 33 % d’eau potable. À titre d’exemple, un
 				t-shirt représente 2 700 litres, l’équivalent de 70 douches, ou
 				la quantité totale d’eau consommée par un français pendant 17

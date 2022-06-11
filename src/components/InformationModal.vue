@@ -29,14 +29,13 @@
 </template>
 
 <script>
-import Cloth1 from './Cloth-1.vue'
-import Cloth2 from './Cloth-2.vue'
-import Cloth3 from './Cloth-3.vue'
-import Cloth4 from './Cloth-4.vue'
-import Cloth5 from './Cloth-5.vue'
+import Cloth1 from './Clothes/Cloth-1.vue'
+import Cloth2 from './Clothes/Cloth-2.vue'
+import Cloth3 from './Clothes/Cloth-3.vue'
+import Cloth4 from './Clothes/Cloth-4.vue'
+import Cloth5 from './Clothes/Cloth-5.vue'
 
 import Experience from '@classes/Experience'
-import gsap, { Power2, Power3 } from 'gsap'
 
 export default {
 	components: {

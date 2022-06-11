@@ -82,7 +82,7 @@ export default class Raycaster {
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal2'
 		) {
-			this.experience.switch('groudFloor')
+			this.experience.switch('groundFloor')
 		} else if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal3'

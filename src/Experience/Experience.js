@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import gsap, { Power3 } from 'gsap'
 
 import config from '@utils/config'
 import Debug from '@utils/Debug.js'
@@ -29,7 +28,6 @@ export default class Experience {
 
 		// Options
 		this.canvas = _canvas
-		this.anims = new Anims()
 
 		// Setup
 		this.closeSound = new Audio('/assets/close.mp3')
@@ -53,6 +51,7 @@ export default class Experience {
 		this.renderer = new Renderer()
 		this.groundFloor = new GroundFloor()
 		this.overlay = new Overlay()
+		this.anims = new Anims()
 
 		this.setDebug()
 
@@ -109,6 +108,7 @@ export default class Experience {
 		// WEBGL
 		this.mouse.update()
 		this.camera.update()
+		this.overlay.update()
 
 		if (this.raycaster) this.raycaster.update()
 		if (this.groundFloor) this.groundFloor.update()
@@ -127,11 +127,8 @@ export default class Experience {
 	}
 
 	async switch(level) {
-		await gsap.to(this.overlay.material.uniforms.uAlpha, {
-			duration: 1,
-			value: 1,
-			ease: Power3.easeInOut
-		})
+		console.log(level)
+		await this.anims.switchIn(level)
 
 		this.destroy()
 
@@ -147,7 +144,7 @@ export default class Experience {
 				this.secondFloor = new SecondFloor()
 				break
 
-			case 'groudFloor':
+			case 'groundFloor':
 				this.items = []
 
 				this.secondFloor = null
@@ -159,12 +156,7 @@ export default class Experience {
 				break
 		}
 
-		await gsap.to(this.overlay.material.uniforms.uAlpha, {
-			duration: 1,
-			value: 0,
-			delay: 2,
-			ease: Power3.easeInOut
-		})
+		await this.anims.switchOut(level)
 	}
 
 	destroy() {

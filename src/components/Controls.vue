@@ -6,20 +6,16 @@
 
 <script>
 import Experience from '@classes/Experience'
-import gsap from 'gsap'
 import SplitType from 'split-type'
 
 export default {
 	name: 'ControlsComponent',
 
 	mounted() {
-		const splitedHelper = new SplitType(this.$refs.helper, {
+		new SplitType(this.$refs.helper, {
 			types: 'words',
 			tagName: 'span'
 		})
-		// gsap.set(splitedHelper.words, {
-		// 	opacity: 0
-		// })
 
 		this.experience = new Experience()
 		this.anims = this.experience.anims
