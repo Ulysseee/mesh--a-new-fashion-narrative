@@ -36,6 +36,7 @@ import Cloth4 from './Clothes/Cloth-4.vue'
 import Cloth5 from './Clothes/Cloth-5.vue'
 
 import Experience from '@classes/Experience'
+import gsap, { Power2, Power3 } from 'gsap'
 
 export default {
 	components: {
@@ -54,6 +55,7 @@ export default {
 		onClick() {
 			// CLOSE MODAL
 			this.experience.anims.hideInfoModal()
+			this.experience.parallax.active = false
 
 			this.experience.closeSound.play()
 

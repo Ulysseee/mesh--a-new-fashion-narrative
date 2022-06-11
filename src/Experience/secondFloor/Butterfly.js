@@ -22,12 +22,12 @@ export default class Butterfly {
 
 	setModel() {
 		this.group = new THREE.Group()
-		for (let i = 0; i < 1; i++) {
+		for (let i = 0; i < 13; i++) {
 			let butterfly
 			butterfly = SkeletonUtils.clone(this.resource.scene)
 			butterfly.scale.multiplyScalar(3)
-			butterfly.position.y = THREE.MathUtils.randFloat(10, 15)
-			butterfly.position.x = THREE.MathUtils.randFloat(-10, 10)
+			butterfly.position.y = THREE.MathUtils.randFloat(8, 15)
+			butterfly.position.x = THREE.MathUtils.randFloat(-5, 5)
 			butterfly.rotation.y = this.offset
 
 			butterfly.rotation.y = Math.PI / 4
@@ -52,12 +52,15 @@ export default class Butterfly {
 
 		this.group.rotation.y -= this.time.delta * 0.001
 
-		this.group.position.set(0, this.fbm.get2(this.vec) * 10, 0)
+		// this.group.position.set(0, this.fbm.get2(this.vec) * 10, 0)
 
 		for (let i = 0; i < this.group.children.length; i++) {
-			// this.group.children[i].position.y = this.offset
+			this.group.children[i].position.y = this.fbm.get2(this.vec) * 10
+			// this.group.position.set(0, this.fbm.get2(this.vec) * 10, 0)
 
-			this.mixers[i].update(this.time.delta * 0.0018 * Math.random())
+			this.mixers[i].update(
+				this.time.delta * 0.00008 * (Math.random() * 20)
+			)
 		}
 	}
 }

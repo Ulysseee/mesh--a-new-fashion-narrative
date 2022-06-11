@@ -7,7 +7,7 @@ import Time from '@utils/Time.js'
 import Resources from '@utils/Resources.js'
 import Mouse from '@utils/Mouse.js'
 import Cursor from '@classes/Cursor.js'
-
+import CamParallax from './Parallax.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
@@ -52,6 +52,7 @@ export default class Experience {
 		this.groundFloor = new GroundFloor()
 		this.overlay = new Overlay()
 		this.anims = new Anims()
+		this.parallax = new CamParallax()
 
 		this.setDebug()
 
@@ -109,6 +110,7 @@ export default class Experience {
 		this.mouse.update()
 		this.camera.update()
 		this.overlay.update()
+		if (this.parallax) this.parallax.update()
 
 		if (this.raycaster) this.raycaster.update()
 		if (this.groundFloor) this.groundFloor.update()
@@ -127,7 +129,6 @@ export default class Experience {
 	}
 
 	async switch(level) {
-		console.log(level)
 		await this.anims.switchIn(level)
 
 		this.destroy()

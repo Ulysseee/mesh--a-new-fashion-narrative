@@ -88,13 +88,13 @@ export default {
 
 <style scoped lang="scss">
 .header {
-	top: 1rem;
+	top: 1.2rem;
 	position: absolute;
 	transform: translate(-50%, -0%);
 	z-index: 12;
 	display: flex;
 	align-items: center;
-	width: 97vw;
+	width: 95vw;
 	left: 50%;
 
 	&__wrapper {
@@ -135,7 +135,6 @@ export default {
 
 	&__controls__about {
 		position: relative;
-		background: var(--c-transparent);
 		border: 0.5px solid var(--c-white);
 		padding: 0 14px;
 		border-radius: 30px;
@@ -156,16 +155,13 @@ export default {
 	&__controls__sound {
 		cursor: pointer;
 		transition: opacity 0.5s ease-out;
-		margin-right: 10px;
+		margin-right: 15px;
 		display: flex;
-		backdrop-filter: blur(10px);
 
 		align-items: center;
 		justify-content: center;
-		background: var(--c-transparent);
-
+		border: none;
 		overflow: hidden;
-		border: 0.5px solid var(--c-white);
 		border-radius: 40px;
 		width: 34px;
 		height: 34px;
@@ -181,10 +177,6 @@ export default {
 
 		span:not(:last-child) {
 			margin-right: 3px;
-		}
-
-		&:hover {
-			background: rgba(239, 239, 239, 0.2);
 		}
 	}
 
