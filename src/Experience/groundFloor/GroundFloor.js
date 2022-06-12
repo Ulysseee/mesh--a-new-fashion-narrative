@@ -43,7 +43,7 @@ export default class GroundFloor {
 			this.portal.mesh.userData.type = 'portail'
 
 			this.environment = new Environment()
-			this.sky = new Sky()
+			// this.sky = new Sky()
 			this.Building = new Building()
 			// this.dress = new Dress()
 			this.testCube = new Cube()
@@ -58,7 +58,7 @@ export default class GroundFloor {
 		this.effectComposer = this.experience.renderer.effectComposer
 		this.effectComposer.addPass(this.unrealBloomPass)
 
-		this.unrealBloomPass.strength = 0.35
+		this.unrealBloomPass.strength = 0.25
 		this.unrealBloomPass.radius = 0.5
 		this.unrealBloomPass.threshold = 0.98
 	}
@@ -71,8 +71,6 @@ export default class GroundFloor {
 				title: 'Composer',
 				expanded: true
 			})
-
-			f.addInput(this.unrealBloomPass, 'enabled')
 
 			f.addInput(this.unrealBloomPass, 'enabled')
 			f.addInput(this.unrealBloomPass, 'strength', {

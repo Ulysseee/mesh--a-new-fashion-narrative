@@ -44,6 +44,8 @@ export default class SecondFloor {
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal2'
 			this.portal.mesh.userData.type = 'portail'
+			this.portal.mesh.position.set(0, 5, 14)
+			this.portal.mesh.rotation.set(0, 0, 0)
 
 			this.particles = new Particles()
 		})

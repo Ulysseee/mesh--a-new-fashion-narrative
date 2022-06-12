@@ -7,11 +7,26 @@
 			</div>
 		</div>
 
+		<h1 class="loader__title">
+			<div ref="titleTop"><span>Mesh</span>: A new</div>
+			<div ref="titleBottom">fashion narrative</div>
+		</h1>
+
+		<h2 class="loader__subtitle">
+			<div ref="subtitleTop">A deep dive into the consequences</div>
+			<div ref="subtitleBottom">of our consumption patterns</div>
+		</h2>
+
+		<h3 ref="paragraph" class="loader__paragraph">
+			End-of-year interractive museum project at Gobelins 2022.
+		</h3>
+
 		<button ref="button" class="loader__enterCta">
 			<svg class="progress" viewBox="0 0 32 32">
 				<circle r="8" cx="16" cy="16" />
 			</svg>
-			Enter the experience
+
+			<div>Enter the experience</div>
 		</button>
 	</div>
 </template>
@@ -44,16 +59,50 @@ export default {
 		})
 
 		this.experience.resources.on('ready', () => {
-			const tl = gsap.timeline().to(this.$refs.progress, {
-				duration: 0.8,
-				opacity: 0,
-				ease: Power3.easeInOut
-			})
+			const tl = gsap
+				.timeline()
+				.to(this.$refs.progress, {
+					duration: 0.8,
+					opacity: 0,
+					ease: Power3.easeInOut
+				})
+				.to(this.$refs.titleTop, {
+					duration: 2.5,
+					opacity: 1,
+					x: -220,
+					ease: Power3.easeInOut
+				})
+				.to(this.$refs.titleBottom, {
+					duration: 2.5,
+					opacity: 1,
+					x: 180,
+					delay: -2.5,
+					ease: Power3.easeInOut
+				})
+				.to([this.$refs.titleTop, this.$refs.titleBottom], {
+					duration: 0.8,
+					opacity: 0,
+					ease: Power3.easeOut
+				})
+				.to(
+					[
+						this.$refs.subtitleTop,
+						this.$refs.subtitleBottom,
+						this.$refs.paragraph
+					],
+					{
+						duration: 0.8,
+						opacity: 1,
+						y: -15,
+						stagger: 0.15,
+						ease: Power3.easeInOut
+					}
+				)
 			this.ready = true
 			tl.to(this.$refs.button, {
 				opacity: 1,
-				duration: 0.8,
-				delay: -0.5,
+				duration: 0.6,
+				// delay: -0.4,
 				ease: Power3.easeInOut
 			})
 		})
@@ -185,6 +234,50 @@ export default {
 		text-transform: uppercase;
 	}
 
+	.loader__title {
+		font-family: 'History Pro';
+		text-align: center;
+		font-size: 4rem;
+		line-height: 4.5rem;
+
+		div {
+			opacity: 0;
+		}
+	}
+
+	.loader__subtitle {
+		// width: 47%;
+		position: absolute;
+		top: 8rem;
+		font-family: 'History Pro';
+		text-align: center;
+		font-size: 2rem;
+		line-height: 2.5rem;
+
+		div {
+			opacity: 0;
+		}
+		// div:first-child {
+		// 	// transform: translateX(-17.6%);
+		// 	text-align: left;
+		// }
+		// div:last-child {
+		// 	// transform: translateX(-17.6%);
+		// 	text-align: right;
+		// }
+	}
+
+	.loader__paragraph {
+		width: 18%;
+		position: absolute;
+		top: 16rem;
+		font-family: 'Brilliant Cut Pro Regular';
+		text-align: center;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		opacity: 0;
+	}
+
 	.loader__enterCta {
 		opacity: 0;
 		color: #323232;
@@ -196,9 +289,42 @@ export default {
 		text-align: center;
 		z-index: 2;
 		position: absolute;
-		bottom: 50%;
+		bottom: 45%;
 		left: 50%;
 		transform: translate(-50%, 50%);
+
+		&:after,
+		&:before {
+			content: '';
+			border: 1px solid rgba(50, 50, 50, 0.1);
+			border-radius: 50%;
+			display: block;
+			position: absolute;
+		}
+
+		&:after {
+			left: 50%;
+			top: 45%;
+			width: 140px;
+			height: 140px;
+			transform: translate(-50%, -50%);
+			transition: transform 0.5s cubic-bezier(0.08, 0.57, 0.44, 0.91);
+		}
+
+		&:before {
+			width: 120px;
+			height: 120px;
+			background-color: transparent;
+			left: 50%;
+			top: 45%;
+			transform: translate(-50%, -50%);
+
+			opacity: 0.5;
+			transition: transform 0.5s cubic-bezier(0.08, 0.57, 0.44, 0.91),
+				border-color 0.5s cubic-bezier(0.08, 0.57, 0.44, 0.91),
+				background-color 0.5s cubic-bezier(0.08, 0.57, 0.44, 0.91);
+			z-index: -1;
+		}
 	}
 
 	.loader__progressUrl {

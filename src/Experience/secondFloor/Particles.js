@@ -59,6 +59,6 @@ export default class Particles {
 	}
 
 	update() {
-		this.firefliesMaterial.uniforms.uTime.value = this.time.elapsed * 0.001
+		this.firefliesMaterial.uniforms.uTime.value = this.time.elapsed * 0.005
 	}
 }

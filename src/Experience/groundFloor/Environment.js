@@ -46,7 +46,7 @@ export default class Environment {
 	}
 
 	setEnvironment() {
-		const ambientLight = new AmbientLight(0xffffff, 0.6)
+		const ambientLight = new AmbientLight(0xffffff, 0.3)
 
 		const directionalLight = new DirectionalLight(0xffffff, 1)
 		directionalLight.position.set(0, 40, 0.866)

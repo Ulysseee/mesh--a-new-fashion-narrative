@@ -99,7 +99,5 @@ export default class Spline extends EventEmitter {
 
 		this.camera.instance.position.set(camPos.x, camPos.y + 2, camPos.z)
 		this.camera.instance.lookAt(this.cameraTarget.position)
-
-		console.log(this.cameraTarget.position)
 	}
 }
