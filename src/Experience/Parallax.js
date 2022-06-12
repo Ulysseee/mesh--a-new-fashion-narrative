@@ -16,7 +16,7 @@ export default class CamParallax {
 	update() {
 		if (!this.active) return
 
-		this.camera.instance.position.x += this.mouse.mousePos.x * 0.005
-		this.camera.instance.position.y += -this.mouse.mousePos.y * 0.005
+		// this.camera.instance.position.x += this.mouse.mousePos.x * 0.005
+		// this.camera.instance.position.y += -this.mouse.mousePos.y * 0.005
 	}
 }
