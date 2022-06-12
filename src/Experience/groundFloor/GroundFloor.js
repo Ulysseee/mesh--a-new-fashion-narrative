@@ -30,8 +30,8 @@ export default class GroundFloor {
 		this.room = document.querySelector('.lounge')
 		this.court = document.querySelector('.court')
 
-		// this.setPostProcessing()
-		// this.debugComposer()
+		this.setPostProcessing()
+		this.debugComposer()
 
 		// Wait for resources
 		this.resources.on('ready', () => {
@@ -58,9 +58,9 @@ export default class GroundFloor {
 		this.effectComposer = this.experience.renderer.effectComposer
 		this.effectComposer.addPass(this.unrealBloomPass)
 
-		this.unrealBloomPass.strength = 0.783
-		this.unrealBloomPass.radius = 0.0
-		this.unrealBloomPass.threshold = 0.989
+		this.unrealBloomPass.strength = 0.35
+		this.unrealBloomPass.radius = 0.5
+		this.unrealBloomPass.threshold = 0.98
 	}
 
 	debugComposer() {
