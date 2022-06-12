@@ -15,11 +15,7 @@ export default class CamParallax {
 	update() {
 		if (!this.active) return
 
-		// this.camera.instance.lookAt(this.experience.testCube.position)
-		this.camera.instance.position.x += this.mouse.delayedMousePos.x * 0.005
-		this.camera.instance.position.y += -this.mouse.delayedMousePos.y * 0.005
-
-		// this.camera.instance.rotation.x = this.mouse.mouseRotation.x
-		// this.camera.instance.rotation.y = this.mouse.mouseRotation.y
+		// this.camera.instance.position.x += this.mouse.mousePos.x * 0.005
+		// this.camera.instance.position.y += -this.mouse.mousePos.y * 0.005
 	}
 }

@@ -1,11 +1,5 @@
 <template>
 	<div ref="loadingScreen" class="loader">
-		<div class="loader__warning">
-			<span v-for="letter in warning" ref="warning" :key="letter">
-				{{ letter }}
-			</span>
-		</div>
-
 		<div ref="progress" class="loader__progress">
 			<div ref="progressBar" class="loader__bar"></div>
 			<div ref="percent" class="loader__percent">
@@ -13,23 +7,12 @@
 			</div>
 		</div>
 
-		<button ref="button" class="loader__enterCta" @click="launch">
-			Explore
+		<button ref="button" class="loader__enterCta">
+			<svg class="progress" viewBox="0 0 32 32">
+				<circle r="8" cx="16" cy="16" />
+			</svg>
+			Enter the experience
 		</button>
-
-		<svg
-			class="loader__overlay"
-			width="100%"
-			height="100%"
-			viewBox="0 0 100 100"
-			preserveAspectRatio="none"
-		>
-			<path
-				ref="overlay"
-				vector-effect="non-scaling-stroke"
-				d="M 0 100 V 0 Q 50 0 100 0 V 100 z"
-			/>
-		</svg>
 	</div>
 </template>
 
@@ -46,14 +29,14 @@ export default {
 			progress: 0,
 			progressUrl: '',
 			ready: false,
-			initFlag: false,
-			warning: ['Loading', 'virtual', 'experience', '...']
+			initFlag: false
 		}
 	},
 
 	mounted() {
 		this.experience = new Experience()
 		this.audio = new SoundClass('/assets/music.mp3')
+		this.button = document.querySelector('.loader__enterCta')
 
 		this.experience.resources.on('progress', (percent, path) => {
 			this.progress = percent * 100
@@ -61,14 +44,7 @@ export default {
 		})
 
 		this.experience.resources.on('ready', () => {
-			const tl = gsap.timeline()
-			tl.to(this.$refs.warning, {
-				y: '-115%',
-				stagger: {
-					each: 0.1
-				},
-				ease: Power2.easeIn
-			}).to(this.$refs.progress, {
+			const tl = gsap.timeline().to(this.$refs.progress, {
 				duration: 0.8,
 				opacity: 0,
 				ease: Power3.easeInOut
@@ -81,26 +57,58 @@ export default {
 				ease: Power3.easeInOut
 			})
 		})
+
+		this.duration = 1400
+
+		this.button.addEventListener(
+			'mousedown',
+			() => {
+				if (!this.button.classList.contains('process')) {
+					this.button.classList.add('process')
+					this.button.timeout = setTimeout(
+						this.launch.bind(this),
+						this.duration,
+						this.button
+					)
+				}
+			},
+			false
+		)
+		;['mouseup', 'mouseout'].forEach((e) => {
+			this.button.addEventListener(
+				e,
+				() => {
+					this.button.classList.remove('process')
+					clearTimeout(this.button.timeout)
+				},
+				false
+			)
+		})
 	},
 
 	methods: {
 		launch() {
-			gsap.timeline()
+			gsap.timeline({
+				onComplete: () => {
+					this.experience.isLoading = false
+				}
+			})
 				.to(this.$refs.button, {
 					opacity: 0,
 					duration: 0.8,
 					ease: Power3.easeOut
 				})
-				.to(this.$refs.overlay, {
-					duration: 1.1,
-					ease: Power3.easeInOut,
-					attr: { d: 'M 0 0 V 0 Q 50 0 100 0 V 0 z' }
-				})
+
 				.to(this.$refs.loadingScreen, {
 					css: { opacity: '0', pointerEvents: 'none' },
-					duration: 0.5,
-					delay: -0.5,
+					duration: 1.5,
+					delay: -0.75,
 					ease: Power3.easeIn
+				})
+				.to(this.experience.camera.instance.position, {
+					delay: -1.25,
+					duration: 3,
+					z: -10
 				})
 
 			if (!this.initFlag) {
@@ -121,7 +129,8 @@ export default {
 	top: 0;
 	left: 0;
 	z-index: 100;
-	color: var(--c-white);
+	color: #323232;
+	background: #f4f1eb;
 	font-size: 2em;
 	transition: opacity 0.5s;
 	display: flex;
@@ -130,8 +139,22 @@ export default {
 	align-items: center;
 	font-family: 'Brilliant Cut Pro Regular';
 
+	&.progress {
+		width: 20px;
+		height: 20px;
+		transform: rotate(-90deg) scale(var(--progress-scale, 1));
+		transition: transform 0.5s ease;
+		circle {
+			stroke-dashoffset: 1;
+			stroke-dasharray: var(--progress-array, 0) 52;
+			stroke-width: 16;
+			stroke: var(--progress-active);
+			transition: stroke-dasharray var(--duration) linear;
+		}
+	}
+
 	.loader__progress {
-		width: 5rem;
+		width: 10rem;
 		position: absolute;
 		z-index: 1;
 		display: flex;
@@ -141,7 +164,7 @@ export default {
 
 	.loader__bar {
 		width: 100%;
-		height: 1px;
+		height: 2px;
 		position: relative;
 		overflow: hidden;
 
@@ -149,14 +172,14 @@ export default {
 			content: '';
 			position: absolute;
 			width: 100%;
-			height: 1px;
-			background: white;
+			height: 2px;
+			background: #323232;
 			animation: loading 1s ease-in-out infinite alternate;
 		}
 	}
 
 	.loader__percent {
-		font-size: 0.625rem;
+		font-size: 0.725rem;
 		padding: 4px 0;
 		margin-top: 1rem;
 		text-transform: uppercase;
@@ -164,7 +187,7 @@ export default {
 
 	.loader__enterCta {
 		opacity: 0;
-		color: var(--c-white);
+		color: #323232;
 		font-size: 1rem;
 		padding: 10px 18px 12px;
 		background: transparent;
@@ -176,15 +199,6 @@ export default {
 		bottom: 50%;
 		left: 50%;
 		transform: translate(-50%, 50%);
-	}
-
-	.loader__overlay {
-		position: absolute;
-		pointer-events: none;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
 	}
 
 	.loader__progressUrl {
@@ -199,18 +213,7 @@ export default {
 			display: block;
 		}
 	}
-	.loader__warning {
-		overflow: hidden;
-		z-index: 2;
-		position: absolute;
-		font-size: 0.75rem;
-		padding: 4px 0;
-		text-transform: uppercase;
 
-		p {
-			margin: 0;
-		}
-	}
 	.loader__percent {
 		left: 50%;
 		bottom: 4rem;

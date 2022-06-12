@@ -26,7 +26,11 @@ export default {
 					(new Date().getTime() - this.experience.lastScrollTime) /
 					1000
 
-				if (this.experience.infoOpen || seconds < 5) {
+				if (
+					this.experience.infoOpen ||
+					seconds < 5 ||
+					this.experience.isLoading
+				) {
 					this.anims.hideScrollHelper()
 				} else {
 					this.anims.showScrollHelper()
@@ -42,8 +46,8 @@ export default {
 	position: absolute;
 	left: 50%;
 	z-index: 99;
-	color: var(--c-white);
-	background: rgba(0, 0, 0, 0.3);
+	color: var(--c-dark);
+	border: 5px solid transparent;
 	padding: 5px 30px;
 	border-radius: 30px;
 	text-transform: uppercase;
@@ -52,6 +56,8 @@ export default {
 	animation: MoveUpDown 4s linear infinite;
 	pointer-events: none;
 	transform-origin: center;
+	outline: 1px solid black;
+	box-shadow: inset 0 0 0 1px black;
 
 	font-size: 0.75rem;
 

@@ -85,7 +85,7 @@ export default {
 	overflow: hidden;
 	padding: 0;
 	margin: 0;
-	color: var(--c-white);
+	color: #323232;
 	transition: transform 0.8s ease-in;
 	display: flex;
 	flex-direction: column;
@@ -109,6 +109,7 @@ export default {
 		width: 100%;
 		height: 100%;
 		top: 0;
+		fill: #f4f1eb;
 		left: 0;
 	}
 
@@ -116,7 +117,7 @@ export default {
 		width: 12px;
 		height: 12px;
 		border-radius: 50%;
-		background: white;
+		background: #323232;
 		transition: background 200ms ease-in;
 		margin: 2rem 0 15px;
 		// border: 4px solid black;

@@ -1,0 +1,8 @@
+Model Information:
+* title:	Art Gallery
+* source:	https://sketchfab.com/3d-models/art-gallery-720b507d814740278c713d100def4c99
+* author:	Janis Zeps (https://sketchfab.com/zeps9001)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

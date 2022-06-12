@@ -70,12 +70,14 @@ export default class SecondFloor {
 	}
 
 	update() {
+		if (this.portal) this.portal.update()
+
 		if (this.spline) {
 			this.percent = this.spline.curve.getUtoTmapping(
 				this.spline.scroll.current
 			)
 
-			if (!this.experience.selectedItem) {
+			if (!this.experience.selectedItem && !this.experience.isLoading) {
 				this.spline.update()
 			}
 		}
@@ -90,7 +92,6 @@ export default class SecondFloor {
 		// }
 
 		if (this.butterfly) this.butterfly.update()
-		if (this.flower) this.flower.update()
 		if (this.particles) this.particles.update()
 		if (this.water) this.water.update()
 		if (this.grass) this.grass.update()

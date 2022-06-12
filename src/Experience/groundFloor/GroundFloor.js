@@ -144,6 +144,7 @@ export default class GroundFloor {
 
 	update() {
 		if (this.testCube) this.testCube.update()
+		if (this.portal) this.portal.update()
 		if (this.spline) {
 			const decimalStr = `0.${
 				this.spline.scroll.current.toString().split('.')[1]
@@ -166,7 +167,7 @@ export default class GroundFloor {
 				this.school.classList.remove('is-active')
 			}
 
-			if (!this.experience.selectedItem) {
+			if (!this.experience.selectedItem && !this.experience.isLoading) {
 				this.spline.update()
 			}
 		}

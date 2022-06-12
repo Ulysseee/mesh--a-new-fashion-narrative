@@ -17,6 +17,7 @@ import GroundFloor from '@classes/groundFloor/GroundFloor.js'
 
 import Anims from './Anims.js'
 import { groundFloor, secondFloor } from './sources.js'
+import { Vector3 } from 'three'
 
 export default class Experience {
 	constructor(_canvas) {
@@ -28,6 +29,7 @@ export default class Experience {
 
 		// Options
 		this.canvas = _canvas
+		this.isLoading = true
 
 		// Setup
 		this.closeSound = new Audio('/assets/close.mp3')
@@ -129,6 +131,7 @@ export default class Experience {
 	}
 
 	async switch(level) {
+		this.isLoading = true
 		await this.anims.switchIn(level)
 
 		this.destroy()
@@ -138,6 +141,8 @@ export default class Experience {
 				this.renderer.instance.outputEncoding = THREE.sRGBEncoding
 
 				this.items = []
+				this.camera.instance.position.set(0, 5, 14)
+				this.camera.instance.lookAt(-3, 5, -10)
 
 				this.groundFloor = null
 				this.selectedItem = false
@@ -151,7 +156,12 @@ export default class Experience {
 				this.renderer.instance.outputEncoding = THREE.LinearEncoding
 
 				this.items = []
-
+				this.camera.instance.position.set(-3, 2, -6)
+				this.camera.instance.lookAt(
+					-9.399626503666468,
+					2,
+					-23.568109233185595
+				)
 				this.secondFloor = null
 				this.resources = new Resources(groundFloor)
 				this.groundFloor = new GroundFloor()
