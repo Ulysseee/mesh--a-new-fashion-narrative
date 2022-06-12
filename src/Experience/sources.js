@@ -5,11 +5,6 @@ export const groundFloor = [
 		path: 'models/art_gallery/scene.gltf'
 	},
 	{
-		name: 'envMap',
-		type: 'texture',
-		path: 'textures/equirectangular.png'
-	},
-	{
 		name: 'floorMatcap',
 		type: 'texture',
 		path: 'textures/2.png'
@@ -38,7 +33,24 @@ export const groundFloor = [
 		name: 'dress',
 		type: 'gltfModel',
 		path: 'models/vetement_2.glb'
+	},
+	{
+		name: 'environment',
+		type: 'cubeTexture',
+		path: [
+			'textures/env/px.jpg',
+			'textures/env/nx.jpg',
+			'textures/env/py.jpg',
+			'textures/env/ny.jpg',
+			'textures/env/pz.jpg',
+			'textures/env/nz.jpg'
+		]
 	}
+	// {
+	// 	name: 'environment',
+	// 	type: 'envmap',
+	// 	path: 'textures/venice_sunset_1k.pic'
+	// }
 ]
 
 export const secondFloor = [

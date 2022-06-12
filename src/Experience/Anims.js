@@ -173,7 +173,6 @@ export default class Anims {
 			})
 	}
 	async switchOut(level) {
-		console.log(level)
 		const header = document.querySelector('.header')
 		const timeline = document.querySelector('.timeline__wrapper')
 

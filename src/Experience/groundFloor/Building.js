@@ -11,7 +11,6 @@ export default class Building {
 	}
 
 	setModel() {
-		console.log(this.resource)
 		this.resource.scene.scale.set(2, 2, 2)
 		this.resource.scene.position.set(0, 0, 0)
 

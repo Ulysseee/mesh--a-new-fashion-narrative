@@ -11,6 +11,11 @@ const groundFloorPath = new CatmullRomCurve3(
 		new Vector3(14, 0, -34),
 		new Vector3(10, 0, -25),
 		new Vector3(3, 0, -10)
+
+		// new Vector3(34, -4, 12),
+		// new Vector3(35, -4, 0)
+		// new Vector3(37, -4, 5)
+		// new Vector3(25, 0, 0)
 	],
 	true
 )

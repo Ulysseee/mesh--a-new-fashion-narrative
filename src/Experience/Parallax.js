@@ -7,8 +7,7 @@ export default class CamParallax {
 		this.camera = this.experience.camera
 		this.debug = this.experience.debug
 		this.mouse = this.experience.mouse
-		console.log(this.experience.groundFloor)
-		console.log(this.experience.groundFloor.portal)
+
 		this.active = false
 	}
 
