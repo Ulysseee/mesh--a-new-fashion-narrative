@@ -2,7 +2,10 @@ import {
 	AmbientLight,
 	DirectionalLight,
 	DirectionalLightHelper,
-	AxesHelper
+	AxesHelper,
+	sRGBEncoding,
+	Mesh,
+	MeshStandardMaterial
 } from 'three'
 import Experience from '../Experience.js'
 export default class Environment {
@@ -10,15 +13,35 @@ export default class Environment {
 		this.experience = new Experience()
 		this.debug = this.experience.debug
 		this.scene = this.experience.scene
+		this.resources = this.experience.resources
+
+		this.environmentMap = {}
+		this.environmentMap.intensity = 0.9
+		this.environmentMap.texture = this.resources.items.environment
 
 		this.setDebug()
 		this.setEnvironment()
+		this.setEnvironmentMap()
 	}
 
 	setDebug() {
 		if (this.debug) {
 			const axesHelper = new AxesHelper(5)
 			this.scene.add(axesHelper)
+
+			const f = this.debug.gui.addFolder({
+				title: 'Environment',
+				expanded: true
+			})
+
+			f.addInput(this.environmentMap, 'intensity', {
+				min: 0,
+				max: 1,
+				step: 0.1
+			}).on('change', ({ value }) => {
+				this.environmentMap.intensity = value
+				this.environmentMap.texture.envMapIntensity = value
+			})
 		}
 	}
 
@@ -34,5 +57,26 @@ export default class Environment {
 
 		this.scene.add(ambientLight, directionalLight, directionalLightHelper)
 		// this.scene.add(ambientLight)
+	}
+
+	setEnvironmentMap() {
+		this.environmentMap.texture.encoding = sRGBEncoding
+
+		this.scene.environment = this.environmentMap.texture
+
+		this.environmentMap.updateMaterials = () => {
+			this.scene.traverse((child) => {
+				if (
+					child instanceof Mesh &&
+					child.material instanceof MeshStandardMaterial
+				) {
+					child.material.envMap = this.environmentMap.texture
+					child.material.envMapIntensity =
+						this.environmentMap.intensity
+					child.material.needsUpdate = true
+				}
+			})
+		}
+		this.environmentMap.updateMaterials()
 	}
 }

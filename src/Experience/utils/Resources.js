@@ -3,7 +3,8 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { TextureLoader } from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
-
+import { CubeTextureLoader } from 'three'
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
 import EventEmitter from './EventEmitter.js'
 
 export default class Resources extends EventEmitter {
@@ -29,6 +30,8 @@ export default class Resources extends EventEmitter {
 		this.loaders.fbxLoader = new FBXLoader()
 		this.loaders.gltfLoader.setDRACOLoader(this.dracoLoader)
 		this.loaders.textureLoader = new TextureLoader()
+		this.loaders.rgbeLoader = new RGBELoader()
+		this.loaders.cubeTextureLoader = new CubeTextureLoader()
 
 		this.loaders.objLoader = new OBJLoader()
 	}
@@ -50,6 +53,15 @@ export default class Resources extends EventEmitter {
 				})
 			} else if (source.type === 'texture') {
 				this.loaders.textureLoader.load(source.path, (file) => {
+					this.sourceLoaded(source, file)
+				})
+				// } else if (source.type === 'envmap') {
+				// 	this.loaders.rgbeLoader.load(source.path, (file) => {
+				// 		this.sourceLoaded(source, file)
+				// 	})
+				// }
+			} else if (source.type === 'cubeTexture') {
+				this.loaders.cubeTextureLoader.load(source.path, (file) => {
 					this.sourceLoaded(source, file)
 				})
 			}

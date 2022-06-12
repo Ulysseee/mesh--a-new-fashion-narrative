@@ -37,10 +37,10 @@ export default class Experience {
 		this.sizes = new Sizes()
 		this.time = new Time()
 		this.mouse = new Mouse()
-		this.scene = new THREE.Scene()
 		this.cursor = new Cursor(document.querySelectorAll('.cursor'))
 		this.resources = new Resources(groundFloor)
 
+		this.scene = new THREE.Scene()
 		this.camera = new Camera()
 
 		this.items = []
@@ -64,29 +64,6 @@ export default class Experience {
 		})
 
 		this.update()
-
-		// document.addEventListener(
-		// 	'click',
-		// 	(event) => {
-		// 		// If user either clicks X button OR clicks outside the modal window, then close modal
-		// 		if (
-		// 			!event.target.closest('.information') &&
-		// 			this.selectedItem
-		// 		) {
-		// 			document
-		// 				.querySelector('.information')
-		// 				.classList.remove('active')
-
-		// 			document
-		// 				.querySelectorAll('.cloth')
-		// 				.forEach((cloth) => cloth.classList.remove('active'))
-		// 			this.lastScrollTime = new Date().getTime()
-		// 			this.infoOpen = false
-		// 			this.camera.resetPosition()
-		// 		}
-		// 	},
-		// 	false
-		// )
 	}
 
 	setDebug() {
@@ -138,7 +115,7 @@ export default class Experience {
 
 		switch (level) {
 			case 'secondFloor':
-				this.renderer.instance.outputEncoding = THREE.sRGBEncoding
+				this.renderer.instance.outputEncoding = THREE.LinearEncoding
 
 				this.items = []
 				this.camera.instance.position.set(0, 5, 14)
@@ -153,7 +130,7 @@ export default class Experience {
 				break
 
 			case 'groundFloor':
-				this.renderer.instance.outputEncoding = THREE.LinearEncoding
+				this.renderer.instance.outputEncoding = THREE.sRGBEncoding
 
 				this.items = []
 				this.camera.instance.position.set(-3, 2, -6)
