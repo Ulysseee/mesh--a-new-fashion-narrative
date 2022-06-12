@@ -1,4 +1,5 @@
-import * as THREE from 'three'
+import { sRGBEncoding } from 'three'
+import { WebGLRenderer } from 'three'
 import Experience from './Experience'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
@@ -16,14 +17,18 @@ export default class Renderer {
 	}
 
 	setInstance() {
-		this.instance = new THREE.WebGLRenderer({
+		this.instance = new WebGLRenderer({
 			canvas: this.canvas
 			// antialias: true
 		})
 		// IF GLTF MODEL IS USED
+		this.instance.outputEncoding = sRGBEncoding
+
 		this.instance.setClearColor('#262837')
 		this.instance.setSize(this.sizes.width, this.sizes.height)
 		this.instance.setPixelRatio(Math.min(this.sizes.pixelRatio, 2))
+
+		// console.log(this.instance.outputEncoding)
 	}
 
 	setComposer() {

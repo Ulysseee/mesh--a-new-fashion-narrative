@@ -17,7 +17,7 @@ export default class Sky {
 
 	setSky() {
 		this.effectController = {
-			turbidity: 4,
+			turbidity: 2,
 			rayleigh: 3,
 			mieCoefficient: 0.005,
 			mieDirectionalG: 0.7,

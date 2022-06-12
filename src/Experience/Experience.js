@@ -133,11 +133,11 @@ export default class Experience {
 				this.renderer.instance.outputEncoding = THREE.sRGBEncoding
 
 				this.items = []
-				this.camera.instance.position.set(-3, 2, -6)
+				this.camera.instance.position.set(5, 2, -6)
 				this.camera.instance.lookAt(
-					-9.399626503666468,
-					2,
-					-23.568109233185595
+					17.139502685754966,
+					2.161829353166156,
+					11.209875427574616
 				)
 				this.secondFloor = null
 				this.resources = new Resources(groundFloor)

@@ -18,7 +18,7 @@ export default class Portal {
 	}
 
 	setGeometry() {
-		this.geometry = new THREE.PlaneGeometry(10, 10)
+		this.geometry = new THREE.PlaneGeometry(11, 5)
 	}
 
 	setMaterial() {
@@ -37,10 +37,11 @@ export default class Portal {
 
 	setMesh() {
 		this.mesh = new THREE.Mesh(this.geometry, this.material)
-		this.mesh.rotation.x = -Math.PI * 0.5
 		this.mesh.receiveShadow = true
-		this.mesh.position.set(0, 3, -7)
-		this.mesh.rotation.x = 4
+		this.mesh.position.set(-0.6, 2.9, 0)
+		// this.mesh.position.set(20.5, 3, 0)
+		this.mesh.rotation.y = Math.PI / 2
+		// this.mesh.rotation.x = 4
 
 		this.experience.items.push(this.mesh)
 		this.scene.add(this.mesh)

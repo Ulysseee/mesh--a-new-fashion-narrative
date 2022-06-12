@@ -1,7 +1,7 @@
 import Experience from '../Experience.js'
 import Cloth from '../shared/Cloth.js'
 
-export default class Cube extends Cloth {
+export default class Shoes extends Cloth {
 	constructor() {
 		super()
 		this.experience = new Experience()

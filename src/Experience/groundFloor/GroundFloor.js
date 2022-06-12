@@ -3,8 +3,11 @@ import config from '@utils/config'
 import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
-import Cube from './Cube.js'
+import Bag from './Bag.js'
 import Shoes from './Shoes.js'
+import Shirt from './Shirt.js'
+import Jacket from './Jacket.js'
+import Jogging from './Jogging.js'
 import Building from './Building.js'
 import Environment from './Environment.js'
 import Portal from '../shared/Portal'
@@ -34,14 +37,17 @@ export default class GroundFloor {
 			// Setup
 			this.spline = new Spline(groundFloorPath)
 
-			// this.portal = new Portal()
-			// this.portal.mesh.name = 'portal1'
-			// this.portal.mesh.userData.type = 'portail'
+			this.portal = new Portal()
+			this.portal.mesh.name = 'portal1'
+			this.portal.mesh.userData.type = 'portail'
 
 			this.environment = new Environment()
 			this.Building = new Building()
-			this.testCube = new Cube()
+			this.bag = new Bag()
 			this.shoes = new Shoes()
+			this.shirt = new Shirt()
+			this.jogging = new Jogging()
+			this.jacket = new Jacket()
 		})
 	}
 
@@ -50,7 +56,7 @@ export default class GroundFloor {
 		this.effectComposer = this.experience.renderer.effectComposer
 		this.effectComposer.addPass(this.unrealBloomPass)
 
-		this.unrealBloomPass.strength = 0.35
+		this.unrealBloomPass.strength = 0.25
 		this.unrealBloomPass.radius = 0.5
 		this.unrealBloomPass.threshold = 0.98
 	}
@@ -63,8 +69,6 @@ export default class GroundFloor {
 				title: 'Composer',
 				expanded: true
 			})
-
-			f.addInput(this.unrealBloomPass, 'enabled')
 
 			f.addInput(this.unrealBloomPass, 'enabled')
 			f.addInput(this.unrealBloomPass, 'strength', {
@@ -100,13 +104,13 @@ export default class GroundFloor {
 
 			timeline.to(this.camera.instance.position, {
 				duration: 1.75,
-				x: this.testCube.cube.position.x,
-				y: this.testCube.cube.position.y,
-				z: this.testCube.cube.position.z - 3,
+				x: this.bag.cube.position.x,
+				y: this.bag.cube.position.y,
+				z: this.bag.cube.position.z - 3,
 				ease: Power3.easeOut
 			})
 
-			this.testCube.displayInfo('.cloth1')
+			this.bag.displayInfo('.cloth1')
 			this.experience.infoOpen = true
 		} else if (
 			this.raycaster.currentIntersect.object.userData.type === 'cloth2'
@@ -135,7 +139,7 @@ export default class GroundFloor {
 	}
 
 	update() {
-		if (this.testCube) this.testCube.update()
+		if (this.bag) this.bag.update()
 		if (this.portal) this.portal.update()
 		if (this.spline) {
 			const decimalStr = `0.${

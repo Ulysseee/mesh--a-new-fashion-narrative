@@ -18,6 +18,24 @@ export const groundFloor = [
 	},
 
 	{
+		name: 'joggingModel',
+		type: 'gltfModel',
+		path: 'models/jogging/scene.gltf'
+	},
+
+	{
+		name: 'jacketModel',
+		type: 'gltfModel',
+		path: 'models/jacket/scene.gltf'
+	},
+
+	{
+		name: 'shirtModel',
+		type: 'gltfModel',
+		path: 'models/t-shirt/scene.gltf'
+	},
+
+	{
 		name: 'environment',
 		type: 'cubeTexture',
 		path: [
