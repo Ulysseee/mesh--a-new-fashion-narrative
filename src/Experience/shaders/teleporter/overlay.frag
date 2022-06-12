@@ -1,6 +1,4 @@
 
-uniform float uAlpha;
-uniform vec2 uResolution;
 uniform float uTime;
 
 varying vec2 vUv;
@@ -67,12 +65,8 @@ float border(vec2 uv) {
 
 void main( void )
 {
-    // Normalized pixel coordinates (from 0 to 1)
-    // vec2 uv = fragCoord/uResolution.xy;
-    // vec2 uv = -1.0 + 2.0 * vUv;
-	vec3 resolution = vec3(1.);
-    vec2 uv = -1.0 + 2.0 * vUv;
-    uv.x *= resolution.x / resolution.y;
+
+    vec2 uv = vUv;
 
     float noise = smoothNoise(uv * 9.0) * 0.05;
     uv += noise;
@@ -98,12 +92,6 @@ void main( void )
     vec3 color = dark+(borders + cells);
     color += dark * 0.1;
 
-    gl_FragColor = vec4(color, uAlpha);
+    gl_FragColor = vec4(color, 1);
 }
 
-// uniform float uAlpha;
-
-// void main()
-// {
-// 	gl_FragColor = vec4(1.0, 1.0, 1.0, uAlpha);
-// }

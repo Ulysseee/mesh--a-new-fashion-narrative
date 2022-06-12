@@ -24,7 +24,8 @@ export default class Camera {
 			0.1,
 			100
 		)
-		this.instance.position.set(0, 0, 10)
+		this.instance.position.set(-3, 2, -6)
+		this.instance.lookAt(-9.399626503666468, 2, -23.568109233185595)
 		this.scene.add(this.instance)
 	}
 

@@ -25,10 +25,20 @@ export default class SoundClass {
 		this.audioSource.connect(this.analyser)
 		this.audioSource.connect(this.ctx.destination)
 		this.fdata = new Uint8Array(this.analyser.frequencyBinCount)
+
+		this.audio.addEventListener(
+			'ended',
+			function () {
+				this.currentTime = 0
+				this.play()
+			},
+			false
+		)
 	}
 
 	play() {
 		this.audio.play()
+
 		this.flag = true
 	}
 

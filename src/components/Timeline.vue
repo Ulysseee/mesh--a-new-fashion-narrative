@@ -1,5 +1,5 @@
 <template>
-	<div class="header__timeline__wrapper">
+	<div class="timeline__wrapper">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 40">
 			<path
 				class="room lounge"
@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.header__timeline__wrapper {
+.timeline__wrapper {
 	position: absolute;
 	bottom: 1rem;
 	left: 1rem;

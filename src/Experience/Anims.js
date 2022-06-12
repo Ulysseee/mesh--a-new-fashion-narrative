@@ -4,6 +4,7 @@ import Experience from './Experience'
 export default class Anims {
 	constructor() {
 		this.experience = new Experience()
+		this.camera = this.experience.camera
 		this.overlay = this.experience.overlay
 		this.infos = document.querySelector('.navigation__controls__infos')
 		this.scroll = document.querySelector('.helper__scroll')
@@ -144,73 +145,92 @@ export default class Anims {
 	}
 
 	async switchIn(level) {
-		console.log('SWITCH IN', level)
+		const header = document.querySelector('.header')
+		const timeline = document.querySelector('.timeline__wrapper')
 
-		let floor = document.querySelector(`.${level}`)
-		let flootIntro = document.querySelectorAll(`.${level}__intro > .word`)
-		this.switchInTl = gsap.timeline({
-			// onComplete: () => {
-			// 	this.switchOutTl.progress(0).kill()
-			// }
-		})
+		this.switchInTl = gsap.timeline()
 
 		await this.switchInTl
 			.to(this.overlay.material.uniforms.uAlpha, {
-				duration: 1,
+				duration: 3,
 				value: 1,
 				ease: Power3.easeInOut
 			})
-			.to(this.teleporter, {
-				css: { zIndex: 99 }
+			.to(header, {
+				duration: 1,
+				delay: -2,
+				opacity: 0
 			})
-			.to(floor, {
-				opacity: 1,
-				ease: Power3.easeIn
+			.to(timeline, {
+				duration: 1,
+				delay: -3,
+				opacity: 0
 			})
-			.to(flootIntro, {
-				opacity: 1,
-				duration: 0.7,
-				stagger: {
-					each: 0.025,
-					from: 'start'
-				},
-				delay: -0.7,
-				ease: Power3.easeInOut
+			.to(this.camera.instance.position, {
+				duration: 3.5,
+				delay: -3,
+				z: -14
 			})
 	}
 	async switchOut(level) {
-		console.log('SWITCH OUT', level)
-		let floor = document.querySelector(`.${level}`)
-		let flootIntro = document.querySelectorAll(`.${level}__intro > .word`)
+		console.log(level)
+		const header = document.querySelector('.header')
+		const timeline = document.querySelector('.timeline__wrapper')
+
 		this.switchOutTl = gsap.timeline({
-			// onComplete: () => {
-			// 	this.switchInTl.progress(0).kill()
-			// }
+			onComplete: () => {
+				this.experience.isLoading = false
+			}
 		})
 
-		await this.switchOutTl
-			.to(flootIntro, {
-				opacity: 0,
-				duration: 0.4,
-				stagger: {
-					each: 0.015,
-					from: 'start'
-				},
-				// delay: -0.7,
-				ease: Power3.easeIn
-			})
-			.to(floor, {
-				opacity: 0,
-				ease: Power3.easeIn
-			})
-			.to(this.teleporter, {
-				css: { zIndex: -1 }
-			})
-			.to(this.overlay.material.uniforms.uAlpha, {
-				duration: 1,
-				value: 0,
-				// delay: 2,
-				ease: Power3.easeInOut
-			})
+		if (level === 'secondFloor') {
+			await this.switchOutTl
+				.to(this.overlay.material.uniforms.uAlpha, {
+					duration: 1,
+					value: 0,
+					delay: 2,
+					ease: Power3.easeInOut
+				})
+
+				.to(this.camera.instance.position, {
+					duration: 2,
+					delay: -1,
+					z: 10
+				})
+
+				.to(header, {
+					duration: 1,
+					opacity: 1
+				})
+				.to(timeline, {
+					duration: 1,
+					opacity: 1,
+					delay: -1
+				})
+		} else {
+			await this.switchOutTl
+				.to(this.overlay.material.uniforms.uAlpha, {
+					duration: 1,
+					value: 0,
+					delay: 2,
+					ease: Power3.easeInOut
+				})
+
+				.to(this.experience.camera.instance.position, {
+					delay: -1.25,
+					duration: 3,
+					z: -10
+				})
+
+				.to(header, {
+					duration: 1,
+					opacity: 1
+				})
+				.to(timeline, {
+					duration: 1,
+					opacity: 1,
+					delay: -1
+				})
+		}
 	}
 }
