@@ -44,7 +44,7 @@ export default class GroundFloor {
 
 			this.environment = new Environment()
 			this.sky = new Sky()
-			// this.Building = new Building()
+			this.Building = new Building()
 			// this.dress = new Dress()
 			this.testCube = new Cube()
 			this.testCone = new Cone()

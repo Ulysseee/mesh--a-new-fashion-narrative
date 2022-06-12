@@ -1,13 +1,8 @@
 export const groundFloor = [
-	// {
-	// 	name: 'rdcModel',
-	// 	type: 'gltfModel',
-	// 	path: 'models/09.glb'
-	// },
 	{
 		name: 'rdcModel',
 		type: 'gltfModel',
-		path: 'models/etage_test.glb'
+		path: 'models/art_gallery/scene.gltf'
 	},
 	{
 		name: 'envMap',
