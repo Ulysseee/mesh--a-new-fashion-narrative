@@ -108,7 +108,7 @@ export default {
 				.to(this.experience.camera.instance.position, {
 					delay: -1.25,
 					duration: 3,
-					z: -10
+					z: 0
 				})
 
 			if (!this.initFlag) {
@@ -167,6 +167,7 @@ export default {
 		height: 2px;
 		position: relative;
 		overflow: hidden;
+		background: #cecbc6;
 
 		&::after {
 			content: '';
@@ -218,19 +219,6 @@ export default {
 		left: 50%;
 		bottom: 4rem;
 		transform: translateX(-50%);
-	}
-	.loader__warning {
-		left: 50%;
-		bottom: 2rem;
-		transform: translateX(-50%);
-		display: flex;
-		font-size: 0.625rem;
-
-		span {
-			display: block;
-			padding: 0 2px;
-			will-change: transform;
-		}
 	}
 }
 

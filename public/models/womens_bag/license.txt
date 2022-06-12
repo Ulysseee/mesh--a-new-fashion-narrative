@@ -1,0 +1,11 @@
+Model Information:
+* title:	Women's bag
+* source:	https://sketchfab.com/3d-models/womens-bag-f5bef92473d94fc5b2b01c16a02154aa
+* author:	emelyarules (https://sketchfab.com/emelyarules)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Women's bag" (https://sketchfab.com/3d-models/womens-bag-f5bef92473d94fc5b2b01c16a02154aa) by emelyarules (https://sketchfab.com/emelyarules) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

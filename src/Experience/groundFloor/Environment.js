@@ -26,9 +26,6 @@ export default class Environment {
 
 	setDebug() {
 		if (this.debug) {
-			const axesHelper = new AxesHelper(5)
-			this.scene.add(axesHelper)
-
 			const f = this.debug.gui.addFolder({
 				title: 'Environment',
 				expanded: true
@@ -50,13 +47,8 @@ export default class Environment {
 
 		const directionalLight = new DirectionalLight(0xffffff, 1)
 		directionalLight.position.set(0, 40, 0.866)
-		const directionalLightHelper = new DirectionalLightHelper(
-			directionalLight,
-			0.8 * Math.PI
-		)
 
-		this.scene.add(ambientLight, directionalLight, directionalLightHelper)
-		// this.scene.add(ambientLight)
+		this.scene.add(ambientLight, directionalLight)
 	}
 
 	setEnvironmentMap() {

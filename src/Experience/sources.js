@@ -4,36 +4,19 @@ export const groundFloor = [
 		type: 'gltfModel',
 		path: 'models/art_gallery/scene.gltf'
 	},
+
 	{
-		name: 'floorMatcap',
-		type: 'texture',
-		path: 'textures/2.png'
-	},
-	{
-		name: 'floorNormals',
-		type: 'texture',
-		path: 'textures/floorNormals.jpg'
-	},
-	{
-		name: 'concreteRough',
-		type: 'texture',
-		path: 'textures/concrete_floor_worn_001_arm_1k.png'
-	},
-	{
-		name: 'concreteDiff',
-		type: 'texture',
-		path: 'textures/concrete_floor_worn_001_diff_1k.png'
-	},
-	{
-		name: 'concreteNor',
-		type: 'texture',
-		path: 'textures/concrete_floor_worn_001_nor_gl_1k.png'
-	},
-	{
-		name: 'dress',
+		name: 'bagModel',
 		type: 'gltfModel',
-		path: 'models/vetement_2.glb'
+		path: 'models/womens_bag/scene.gltf'
 	},
+
+	{
+		name: 'shoesModel',
+		type: 'gltfModel',
+		path: 'models/air_jordan_1/scene.gltf'
+	},
+
 	{
 		name: 'environment',
 		type: 'cubeTexture',
@@ -46,11 +29,6 @@ export const groundFloor = [
 			'textures/env/nz.jpg'
 		]
 	}
-	// {
-	// 	name: 'environment',
-	// 	type: 'envmap',
-	// 	path: 'textures/venice_sunset_1k.pic'
-	// }
 ]
 
 export const secondFloor = [

@@ -191,7 +191,7 @@ export default {
 		transform: scaleY(2);
 	}
 	to {
-		transform: scaleY(10);
+		transform: scaleY(15);
 	}
 }
 </style>

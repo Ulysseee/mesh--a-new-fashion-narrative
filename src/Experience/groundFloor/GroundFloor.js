@@ -4,13 +4,9 @@ import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
 import Cube from './Cube.js'
-import Cone from './Cone.js'
-import Dress from './Dress.js'
-import Floor from './Floor.js'
+import Shoes from './Shoes.js'
 import Building from './Building.js'
-import Fog from './Fog.js'
 import Environment from './Environment.js'
-import Sky from '@classes/shared/sky'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
 
@@ -26,9 +22,9 @@ export default class GroundFloor {
 		this.camera = this.experience.camera
 		this.raycaster = this.experience.raycaster
 
-		this.school = document.querySelector('.school')
-		this.room = document.querySelector('.lounge')
-		this.court = document.querySelector('.court')
+		// this.school = document.querySelector('.school')
+		// this.room = document.querySelector('.lounge')
+		// this.court = document.querySelector('.court')
 
 		this.setPostProcessing()
 		this.debugComposer()
@@ -38,18 +34,14 @@ export default class GroundFloor {
 			// Setup
 			this.spline = new Spline(groundFloorPath)
 
-			this.portal = new Portal()
-			this.portal.mesh.name = 'portal1'
-			this.portal.mesh.userData.type = 'portail'
+			// this.portal = new Portal()
+			// this.portal.mesh.name = 'portal1'
+			// this.portal.mesh.userData.type = 'portail'
 
 			this.environment = new Environment()
-			this.sky = new Sky()
 			this.Building = new Building()
-			// this.dress = new Dress()
 			this.testCube = new Cube()
-			this.testCone = new Cone()
-			// this.floor = new Floor()
-			// this.fog = new Fog()
+			this.shoes = new Shoes()
 		})
 	}
 
@@ -153,19 +145,19 @@ export default class GroundFloor {
 
 			this.percent = this.spline.curve.getUtoTmapping(decimalNbr)
 
-			if (this.percent < 0.25) {
-				this.school.classList.add('is-active')
-				this.room.classList.remove('is-active')
-				this.court.classList.remove('is-active')
-			} else if (this.percent < 0.5) {
-				this.school.classList.remove('is-active')
-				this.court.classList.add('is-active')
-				this.room.classList.remove('is-active')
-			} else {
-				this.court.classList.remove('is-active')
-				this.room.classList.add('is-active')
-				this.school.classList.remove('is-active')
-			}
+			// if (this.percent < 0.25) {
+			// 	this.school.classList.add('is-active')
+			// 	this.room.classList.remove('is-active')
+			// 	this.court.classList.remove('is-active')
+			// } else if (this.percent < 0.5) {
+			// 	this.school.classList.remove('is-active')
+			// 	this.court.classList.add('is-active')
+			// 	this.room.classList.remove('is-active')
+			// } else {
+			// 	this.court.classList.remove('is-active')
+			// 	this.room.classList.add('is-active')
+			// 	this.school.classList.remove('is-active')
+			// }
 
 			if (!this.experience.selectedItem && !this.experience.isLoading) {
 				this.spline.update()

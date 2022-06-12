@@ -1,4 +1,4 @@
-import { WebGLRenderer, sRGBEncoding } from 'three'
+import * as THREE from 'three'
 import Experience from './Experience'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
@@ -16,7 +16,7 @@ export default class Renderer {
 	}
 
 	setInstance() {
-		this.instance = new WebGLRenderer({
+		this.instance = new THREE.WebGLRenderer({
 			canvas: this.canvas
 			// antialias: true
 		})
