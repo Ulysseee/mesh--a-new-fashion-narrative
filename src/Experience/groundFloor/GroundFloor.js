@@ -7,6 +7,7 @@ import Cube from './Cube.js'
 import Cone from './Cone.js'
 import Dress from './Dress.js'
 import Floor from './Floor.js'
+import Building from './Building.js'
 import Fog from './Fog.js'
 import Environment from './Environment.js'
 import Sky from '@classes/shared/sky'
@@ -42,11 +43,12 @@ export default class GroundFloor {
 			this.portal.mesh.userData.type = 'portail'
 
 			this.environment = new Environment()
-			// this.sky = new Sky()
-			this.dress = new Dress()
+			this.sky = new Sky()
+			// this.Building = new Building()
+			// this.dress = new Dress()
 			this.testCube = new Cube()
 			this.testCone = new Cone()
-			this.floor = new Floor()
+			// this.floor = new Floor()
 			// this.fog = new Fog()
 		})
 	}

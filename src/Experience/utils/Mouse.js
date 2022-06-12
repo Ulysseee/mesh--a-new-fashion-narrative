@@ -33,7 +33,7 @@ export default class Mouse extends EventEmitter {
 		this.clientMousePos.x = e.clientX
 		this.clientMousePos.y = e.clientY
 		this.mousePos.x = e.clientX / (this.sizes.width / 2) - 1
-		this.mousePos.y = e.clientY / (this.sizes.height / 2) - 1
+		this.mousePos.y = -e.clientY / (this.sizes.height / 2) + 1
 	}
 
 	update() {

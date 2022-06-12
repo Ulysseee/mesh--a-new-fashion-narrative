@@ -1,8 +1,18 @@
 export const groundFloor = [
+	// {
+	// 	name: 'rdcModel',
+	// 	type: 'gltfModel',
+	// 	path: 'models/09.glb'
+	// },
 	{
 		name: 'rdcModel',
 		type: 'gltfModel',
-		path: 'models/09.glb'
+		path: 'models/etage_test.glb'
+	},
+	{
+		name: 'envMap',
+		type: 'texture',
+		path: 'textures/equirectangular.png'
 	},
 	{
 		name: 'floorMatcap',
@@ -63,11 +73,6 @@ export const secondFloor = [
 		path: 'textures/waternormals.jpg'
 	},
 	{
-		name: 'model',
-		type: 'gltfModel',
-		path: 'models/model.glb'
-	},
-	{
 		name: 'cloud',
 		type: 'gltfModel',
 		path: 'models/cloud.glb'
@@ -76,11 +81,6 @@ export const secondFloor = [
 		name: 'bonce',
 		type: 'gltfModel',
 		path: 'models/bonce.glb'
-	},
-	{
-		name: 'cute',
-		type: 'gltfModel',
-		path: 'models/cute.glb'
 	},
 	{
 		name: 'mims',

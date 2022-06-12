@@ -135,6 +135,8 @@ export default class Experience {
 
 		switch (level) {
 			case 'secondFloor':
+				this.renderer.instance.outputEncoding = THREE.sRGBEncoding
+
 				this.items = []
 
 				this.groundFloor = null
@@ -146,6 +148,8 @@ export default class Experience {
 				break
 
 			case 'groundFloor':
+				this.renderer.instance.outputEncoding = THREE.LinearEncoding
+
 				this.items = []
 
 				this.secondFloor = null
