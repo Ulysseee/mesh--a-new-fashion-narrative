@@ -1,12 +1,9 @@
-import * as THREE from 'three'
-
 import Experience from '../Experience.js'
 import Sky from '@classes/shared/sky'
 import Environment from './Environment.js'
 import Grass from './Grass.js'
 import Portal from '../shared/Portal.js'
 import Butterfly from './Butterfly.js'
-import Flower from './Flower.js'
 import Particles from './Particles.js'
 import WaterClass from './Water.js'
 import Cube from './Cube.js'
@@ -38,7 +35,6 @@ export default class SecondFloor {
 			this.sky = new Sky()
 			// this.water = new WaterClass()
 			this.butterfly = new Butterfly()
-			this.flower = new Flower()
 			this.cube = new Cube()
 
 			this.portal = new Portal()

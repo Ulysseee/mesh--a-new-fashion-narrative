@@ -99,7 +99,6 @@ export default class Raycaster {
 		)
 
 		if (intersects.length > 0 && !this.experience.isLoading) {
-			console.log(intersects)
 			this.currentIntersect = intersects[0]
 
 			if (!this.experience.selectedItem) {

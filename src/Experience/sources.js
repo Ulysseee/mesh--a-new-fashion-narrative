@@ -18,6 +18,12 @@ export const groundFloor = [
 	},
 
 	{
+		name: 'sweatModel',
+		type: 'gltfModel',
+		path: 'models/sweat.glb'
+	},
+
+	{
 		name: 'joggingModel',
 		type: 'gltfModel',
 		path: 'models/jogging/scene.gltf'
@@ -51,11 +57,6 @@ export const groundFloor = [
 
 export const secondFloor = [
 	{
-		name: 'flower',
-		type: 'gltfModel',
-		path: 'models/flower.glb'
-	},
-	{
 		name: 'butterfly',
 		type: 'gltfModel',
 		path: 'models/butterfly.glb'
@@ -75,11 +76,7 @@ export const secondFloor = [
 		type: 'texture',
 		path: 'textures/waternormals.jpg'
 	},
-	{
-		name: 'cloud',
-		type: 'gltfModel',
-		path: 'models/cloud.glb'
-	},
+
 	{
 		name: 'bonce',
 		type: 'gltfModel',

@@ -21,8 +21,8 @@ export default class Camera {
 		this.instance = new PerspectiveCamera(
 			75,
 			this.sizes.width / this.sizes.height,
-			0.1,
-			140
+			0.8,
+			80
 		)
 		this.instance.position.set(35, -2, 4)
 		this.instance.lookAt(

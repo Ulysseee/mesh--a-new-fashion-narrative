@@ -1,5 +1,5 @@
 import Experience from '../Experience.js'
-
+import * as THREE from 'three'
 export default class Building {
 	constructor() {
 		this.experience = new Experience()

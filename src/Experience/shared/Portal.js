@@ -18,7 +18,7 @@ export default class Portal {
 	}
 
 	setGeometry() {
-		this.geometry = new THREE.PlaneGeometry(11, 5)
+		this.geometry = new THREE.SphereGeometry(1, 32, 16)
 	}
 
 	setMaterial() {
@@ -38,7 +38,7 @@ export default class Portal {
 	setMesh() {
 		this.mesh = new THREE.Mesh(this.geometry, this.material)
 		this.mesh.receiveShadow = true
-		this.mesh.position.set(-0.6, 2.9, 0)
+		this.mesh.position.set(5, 4, 0)
 		// this.mesh.position.set(20.5, 3, 0)
 		this.mesh.rotation.y = Math.PI / 2
 		// this.mesh.rotation.x = 4
