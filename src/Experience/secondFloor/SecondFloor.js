@@ -7,8 +7,8 @@ import Butterfly from './Butterfly.js'
 import Particles from './Particles.js'
 import WaterClass from './Water.js'
 import Cube from './Cube.js'
-
 import Spline from '../shared/Spline.js'
+
 import { secondFloorPath } from '../pathes'
 
 import gsap, { Circ } from 'gsap'
@@ -16,6 +16,7 @@ import gsap, { Circ } from 'gsap'
 export default class SecondFloor {
 	constructor() {
 		this.experience = new Experience()
+		this.sizes = this.experience.sizes
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.camera = this.experience.camera
@@ -80,14 +81,16 @@ export default class SecondFloor {
 			}
 		}
 
-		// for (const point of this.points) {
+		// for (const point of this.points.points) {
 		// 	const screenPosition = point.position.clone()
-		// 	screenPosition.project(camera)
+		// 	screenPosition.project(this.camera)
 
-		// 	const translateX = screenPosition.x * sizes.width * 0.5
-		// 	const translateY = -screenPosition.y * sizes.height * 0.5
+		// 	const translateX = screenPosition.x * this.sizes.width * 0.5
+		// 	const translateY = -screenPosition.y * this.sizes.height * 0.5
 		// 	point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
 		// }
+
+		// if (this.stamps) this.stamps.update()
 
 		if (this.butterfly) this.butterfly.update()
 		if (this.particles) this.particles.update()

@@ -11,7 +11,7 @@ export default class Cube extends Cloth {
 	}
 
 	setCube() {
-		const geometry = new THREE.BoxGeometry()
+		const geometry = new THREE.BoxGeometry(5, 5)
 		const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
 		this.cube = new THREE.Mesh(geometry, material)
 

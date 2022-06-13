@@ -12,6 +12,7 @@ import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
 import Overlay from './shared/Overlay.js'
+import Stamps from './Stamps.js'
 import SecondFloor from '@classes/secondFloor/SecondFloor.js'
 import GroundFloor from '@classes/groundFloor/GroundFloor.js'
 
@@ -49,6 +50,7 @@ export default class Experience {
 		this.selectedItem = false
 		this.savedPosition = null
 
+		this.stamps = new Stamps()
 		this.raycaster = new Raycaster()
 		this.renderer = new Renderer()
 		this.groundFloor = new GroundFloor()

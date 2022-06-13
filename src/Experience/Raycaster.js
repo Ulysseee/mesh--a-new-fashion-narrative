@@ -4,9 +4,12 @@ import Experience from './Experience'
 export default class Raycaster {
 	constructor() {
 		this.experience = new Experience()
+		this.stamps = this.experience.stamps
+		this.sizes = this.experience.sizes
 		this.scene = this.experience.scene
 		this.camera = this.experience.camera
-		this.cursor = this.experience.cursor.cursorElements[0].DOM.inner
+		this.cursor = this.experience.cursor.cursorElements[1].DOM.inner
+		this.star = this.experience.cursor.cursorElements[0].DOM.el
 
 		this.mouse = this.experience.mouse
 		this.onPortal = null
@@ -98,6 +101,36 @@ export default class Raycaster {
 			this.experience.items
 		)
 
+		if (this.experience.secondFloor) {
+			for (const point of this.stamps.points) {
+				// Get 2D screen position
+				const screenPosition = point.position.clone()
+				screenPosition.project(this.camera.instance)
+
+				// if (intersects.length === 0) {
+				point.element.classList.add('visible')
+				// } else {
+				// 	// Get the distance of the intersection and the distance of the point
+				// 	const intersectionDistance = intersects[0].distance
+				// 	const pointDistance = point.position.distanceTo(
+				// 		this.camera.instance.position
+				// 	)
+
+				// 	// Intersection is close than the point
+				// 	if (intersectionDistance < pointDistance) {
+				// 		point.element.classList.remove('visible')
+				// 	} else {
+				// 		// Intersection is further than the point
+				// 		point.element.classList.add('visible')
+				// 	}
+				// }
+
+				const translateX = screenPosition.x * this.sizes.width * 0.5
+				const translateY = -screenPosition.y * this.sizes.height * 0.5
+				point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+			}
+		}
+
 		if (intersects.length > 0 && !this.experience.isLoading) {
 			this.currentIntersect = intersects[0]
 
@@ -112,9 +145,11 @@ export default class Raycaster {
 				!this.experience.selectedItem
 			) {
 				document.querySelector('.hold').classList.add('active')
+				this.star.classList.add('hide')
 			}
 		} else {
 			document.querySelector('.hold').classList.remove('active')
+			this.star.classList.remove('hide')
 
 			this.experience.cursor.leave()
 			this.currentIntersect = null
