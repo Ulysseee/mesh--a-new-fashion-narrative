@@ -69,7 +69,7 @@ export default {
 		width: 50%;
 		font-family: 'PP Telegraf';
 		text-align: center;
-		color: white;
+		color: black;
 	}
 
 	.groundFloor {

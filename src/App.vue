@@ -4,10 +4,10 @@
 	<LoadingScreen />
 	<ControlsComponent />
 	<Information @toggle-information="toggleModal" />
-	<CustomCursor />
 	<ExperienceTimeline />
 	<Nft />
 	<Teleporter />
+	<CustomCursor />
 </template>
 
 <script>
