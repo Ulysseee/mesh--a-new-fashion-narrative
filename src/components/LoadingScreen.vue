@@ -109,7 +109,7 @@ export default {
 			})
 		})
 
-		this.duration = 1400
+		this.duration = 1700
 
 		this.button.addEventListener(
 			'mousedown',
@@ -139,29 +139,31 @@ export default {
 
 	methods: {
 		launch() {
-			gsap.timeline({
-				onComplete: () => {
-					this.experience.isLoading = false
-				}
-			})
-				.to(this.$refs.button, {
-					opacity: 0,
-					duration: 0.8,
-					ease: Power3.easeOut
-				})
+			this.button.classList.add('complete'),
+				gsap
+					.timeline({
+						onComplete: () => {
+							this.experience.isLoading = false
+						}
+					})
+					.to(this.$refs.button, {
+						opacity: 0,
+						duration: 0.8,
+						ease: Power3.easeOut
+					})
 
-				.to(this.$refs.loadingScreen, {
-					css: { opacity: '0', pointerEvents: 'none' },
-					duration: 1.5,
-					delay: -0.75,
-					ease: Power3.easeIn
-				})
-				.to(this.experience.camera.instance.position, {
-					delay: -1.25,
-					duration: 3,
-					z: 9,
-					ease: Power3.easeOut
-				})
+					.to(this.$refs.loadingScreen, {
+						css: { opacity: '0', pointerEvents: 'none' },
+						duration: 1.5,
+						delay: -0.75,
+						ease: Power3.easeIn
+					})
+					.to(this.experience.camera.instance.position, {
+						delay: -1.25,
+						duration: 3,
+						z: 9,
+						ease: Power3.easeOut
+					})
 
 			if (!this.initFlag) {
 				this.audio.init()
@@ -293,6 +295,7 @@ export default {
 		text-align: center;
 		z-index: 2;
 		position: relative;
+		transition: 0.5s all ease-in-out;
 		bottom: 5rem;
 		// left: 50%;
 		// transform: translate(-50%, 50%);
@@ -337,6 +340,7 @@ export default {
 		}
 
 		&:hover {
+			transform: scale(1.03);
 			&::before {
 				background-color: #fff;
 				border-color: #fff;
@@ -373,6 +377,12 @@ export default {
 	.loader__enterCta.process {
 		circle {
 			stroke-dashoffset: 0;
+		}
+	}
+
+	.loader__enterCta.complete {
+		circle {
+			stroke-dashoffset: 1.5;
 		}
 	}
 

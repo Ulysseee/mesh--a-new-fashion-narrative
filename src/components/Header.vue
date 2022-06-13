@@ -149,7 +149,7 @@ export default {
 		border-radius: 30px;
 		cursor: pointer;
 
-		font-family: 'Brilliant Cut Pro Regular';
+		font-family: 'Brilliant Cut Pro';
 		color: var(--c-white);
 		text-transform: uppercase;
 		font-size: 0.625rem;

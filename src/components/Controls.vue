@@ -52,7 +52,7 @@ export default {
 	border-radius: 30px;
 	text-transform: uppercase;
 	transform: translateX(-50%);
-	font-family: 'Brilliant Cut Pro Regular';
+	font-family: 'Brilliant Cut Pro';
 	animation: MoveUpDown 4s linear infinite;
 	pointer-events: none;
 	transform-origin: center;

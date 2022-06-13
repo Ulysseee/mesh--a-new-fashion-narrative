@@ -22,7 +22,6 @@ export default class Portal {
 	}
 
 	setMaterial() {
-		// this.material = new THREE.MeshNormalMaterial()
 		this.material = new THREE.ShaderMaterial({
 			uniforms: {
 				uTime: { type: 'f', value: 0 }
@@ -38,10 +37,8 @@ export default class Portal {
 	setMesh() {
 		this.mesh = new THREE.Mesh(this.geometry, this.material)
 		this.mesh.receiveShadow = true
-		this.mesh.position.set(5, 4, 0)
-		// this.mesh.position.set(20.5, 3, 0)
+		this.mesh.position.set(15, 4, 0)
 		this.mesh.rotation.y = Math.PI / 2
-		// this.mesh.rotation.x = 4
 
 		this.experience.items.push(this.mesh)
 		this.scene.add(this.mesh)
