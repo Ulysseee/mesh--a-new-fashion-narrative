@@ -22,8 +22,8 @@
 		</h3>
 
 		<button ref="button" class="loader__enterCta">
-			<svg class="progress" viewBox="0 0 32 32">
-				<circle r="8" cx="16" cy="16" />
+			<svg class="progress" fill="none" viewBox="0 0 82 82">
+				<circle stroke-width="0.5px" r="40" cx="41" cy="41" />
 			</svg>
 
 			<div>Enter the experience</div>
@@ -67,16 +67,17 @@ export default {
 					ease: Power3.easeInOut
 				})
 				.to(this.$refs.titleTop, {
-					duration: 2.5,
+					duration: 3,
 					opacity: 1,
-					x: -220,
+					x: -240,
+					delay: 0.15,
 					ease: Power3.easeInOut
 				})
 				.to(this.$refs.titleBottom, {
-					duration: 2.5,
+					duration: 3,
 					opacity: 1,
-					x: 180,
-					delay: -2.5,
+					x: 200,
+					delay: -3,
 					ease: Power3.easeInOut
 				})
 				.to([this.$refs.titleTop, this.$refs.titleBottom], {
@@ -95,6 +96,7 @@ export default {
 						opacity: 1,
 						y: -15,
 						stagger: 0.15,
+						delay: 0.85,
 						ease: Power3.easeInOut
 					}
 				)
@@ -289,12 +291,18 @@ export default {
 		text-transform: uppercase;
 		text-align: center;
 		z-index: 2;
-		position: absolute;
-		bottom: 45%;
-		left: 50%;
-		transform: translate(-50%, 50%);
+		position: relative;
+		bottom: 5rem;
+		// left: 50%;
+		// transform: translate(-50%, 50%);
+		// transform: translateY(-50%);
+		width: 150px;
+		height: 150px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-		&:after,
+		&::after,
 		&:before {
 			content: '';
 			border: 1px solid rgba(50, 50, 50, 0.1);
@@ -303,21 +311,21 @@ export default {
 			position: absolute;
 		}
 
-		&:after {
+		&::after {
 			left: 50%;
-			top: 45%;
-			width: 140px;
-			height: 140px;
+			top: 49.5%;
+			width: 98%;
+			height: 98%;
 			transform: translate(-50%, -50%);
 			transition: transform 0.5s cubic-bezier(0.08, 0.57, 0.44, 0.91);
 		}
 
-		&:before {
-			width: 120px;
-			height: 120px;
+		&::before {
+			width: 85%;
+			height: 85%;
 			background-color: transparent;
 			left: 50%;
-			top: 45%;
+			top: 50%;
 			transform: translate(-50%, -50%);
 
 			opacity: 0.5;
@@ -325,6 +333,45 @@ export default {
 				border-color 0.5s cubic-bezier(0.08, 0.57, 0.44, 0.91),
 				background-color 0.5s cubic-bezier(0.08, 0.57, 0.44, 0.91);
 			z-index: -1;
+		}
+
+		&:hover {
+			&::before {
+				background-color: #fff;
+				border-color: #fff;
+			}
+		}
+
+		svg {
+			stroke: #323232;
+			stroke-opacity: 0.8;
+			height: 100%;
+			width: 100%;
+			pointer-events: none;
+			position: absolute;
+			transform: rotate(-90deg);
+			transition: transform 0.5s cubic-bezier(0.08, 0.57, 0.44, 0.91);
+
+			circle {
+				stroke-dasharray: 251.327, 251.327;
+				stroke-dashoffset: 251.327;
+				transform-origin: center;
+				transition: stroke-dashoffset ease 1.6s;
+
+				// stroke-dasharray: 1.1;
+				// stroke-dashoffset: 0;
+			}
+		}
+
+		div {
+			position: absolute;
+			font-size: 0.825rem;
+		}
+	}
+
+	.loader__enterCta.process {
+		circle {
+			stroke-dashoffset: 0;
 		}
 	}
 
