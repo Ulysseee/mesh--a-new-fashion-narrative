@@ -172,8 +172,8 @@ export default {
 .timeline__wrapper {
 	position: absolute;
 	bottom: 32rem;
-	left: 1.8rem;
-	width: 42px;
+	left: 2.5rem;
+	width: 45px;
 	height: 30px;
 
 	svg {
@@ -182,10 +182,10 @@ export default {
 }
 
 .room {
-	transition: fill 0.5s ease-in;
+	transition: fill 0.4s ease-in-out;
 }
 
 .room.is-active {
-	fill: black;
+	fill: #323232;
 }
 </style>
