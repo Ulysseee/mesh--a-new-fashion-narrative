@@ -45,8 +45,8 @@ export default class GroundFloor {
 			this.portal.mesh.position.set(15, 4, 0)
 
 			this.environment = new Environment()
-			this.Building = new Building()
 			this.plane = new Plane()
+			this.Building = new Building()
 			// this.bag = new Bag()
 			// this.shoes = new Shoes()
 			// this.shirt = new Shirt()
@@ -145,21 +145,27 @@ export default class GroundFloor {
 			}`
 			const decimalNbr = Number(decimalStr)
 
+			console.log(this.percent)
+
 			this.percent = this.spline.curve.getUtoTmapping(decimalNbr)
 
 			if (this.percent)
-				if (this.percent < 0.35) {
+				if (this.percent < 0.35 || this.percent > 0.76) {
 					this.step1.classList.remove('is-active')
-					this.step4.classList.add('is-active')
-				} else if (this.percent < 0.375) {
-					this.step4.classList.remove('is-active')
-					this.step3.classList.add('is-active')
-				} else if (this.percent < 0.42) {
-					this.step3.classList.remove('is-active')
-					this.step2.classList.add('is-active')
-				} else if (this.percent < 58) {
-					this.step2.classList.remove('is-active')
+				} else if (this.percent < 0.373) {
 					this.step1.classList.add('is-active')
+				} else if (this.percent < 0.4) {
+					this.step3.classList.add('is-active')
+					this.step1.classList.remove('is-active')
+				} else if (this.percent < 0.43) {
+					this.step4.classList.add('is-active')
+					this.step3.classList.remove('is-active')
+				} else if (this.percent < 0.55) {
+					this.step2.classList.add('is-active')
+					this.step4.classList.remove('is-active')
+				} else if (this.percent < 0.7) {
+					this.step1.classList.add('is-active')
+					this.step2.classList.remove('is-active')
 				}
 
 			if (!this.experience.selectedItem && !this.experience.isLoading) {
