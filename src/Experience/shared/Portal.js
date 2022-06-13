@@ -18,7 +18,7 @@ export default class Portal {
 	}
 
 	setGeometry() {
-		this.geometry = new THREE.SphereGeometry(1, 32, 16)
+		this.geometry = new THREE.TetrahedronGeometry(1, 1)
 	}
 
 	setMaterial() {
@@ -36,15 +36,15 @@ export default class Portal {
 
 	setMesh() {
 		this.mesh = new THREE.Mesh(this.geometry, this.material)
-		this.mesh.receiveShadow = true
-		this.mesh.position.set(15, 4, 0)
 		this.mesh.rotation.y = Math.PI / 2
-
 		this.experience.items.push(this.mesh)
 		this.scene.add(this.mesh)
 	}
 
 	update() {
+		this.mesh.rotation.z = this.time.elapsed * 0.00005
+		this.mesh.rotation.x = this.time.elapsed * 0.00005
+
 		this.material.uniforms.uTime.value = this.time.elapsed * 0.001
 		this.material.uniformsNeedUpdate = true
 	}

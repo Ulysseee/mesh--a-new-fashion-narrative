@@ -8,6 +8,7 @@ import Shoes from './Shoes.js'
 import Shirt from './Shirt.js'
 import Jacket from './Jacket.js'
 import Sweat from './Sweat.js'
+import Plane from './Plane.js'
 
 import Jogging from './Jogging.js'
 import Building from './Building.js'
@@ -41,15 +42,17 @@ export default class GroundFloor {
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal1'
 			this.portal.mesh.userData.type = 'portail'
+			this.portal.mesh.position.set(15, 4, 0)
 
 			this.environment = new Environment()
 			this.Building = new Building()
-			this.bag = new Bag()
-			this.shoes = new Shoes()
-			this.shirt = new Shirt()
-			this.jogging = new Jogging()
-			this.sweat = new Sweat()
-			this.jacket = new Jacket()
+			this.plane = new Plane()
+			// this.bag = new Bag()
+			// this.shoes = new Shoes()
+			// this.shirt = new Shirt()
+			// this.jogging = new Jogging()
+			// this.sweat = new Sweat()
+			// this.jacket = new Jacket()
 		})
 	}
 
@@ -58,7 +61,7 @@ export default class GroundFloor {
 		this.effectComposer = this.experience.renderer.effectComposer
 		this.effectComposer.addPass(this.unrealBloomPass)
 
-		this.unrealBloomPass.strength = 0.37
+		this.unrealBloomPass.strength = 0.31
 		this.unrealBloomPass.radius = 0.413
 		this.unrealBloomPass.threshold = 0.576
 	}

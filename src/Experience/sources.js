@@ -6,6 +6,12 @@ export const groundFloor = [
 	},
 
 	{
+		name: 'about',
+		type: 'texture',
+		path: 'textures/about.png'
+	},
+
+	{
 		name: 'bagModel',
 		type: 'gltfModel',
 		path: 'models/womens_bag/scene.gltf'

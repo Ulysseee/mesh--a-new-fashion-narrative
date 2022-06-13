@@ -36,7 +36,7 @@ export default {
 					this.anims.showScrollHelper()
 				}
 			}
-		}, 500)
+		}, 1000)
 	}
 }
 </script>

@@ -131,7 +131,7 @@ export default class Anims {
 		const parahraph = this.scroll.querySelectorAll('p > .word')
 		gsap.timeline()
 			.to(parahraph, {
-				stagger: 0,
+				stagger: 0.047,
 				ease: Power2.easeIn,
 				opacity: 0,
 				delay: -0.2
@@ -139,12 +139,9 @@ export default class Anims {
 			.to(this.scroll, {
 				duration: 0.5,
 				ease: Power3.easeIn,
-				delay: -0.4,
+				delay: -0.38,
 				opacity: 0
 			})
-		// .to(this.scroll, {
-		// 	scaleX: 0
-		// })
 	}
 
 	async switchIn(level) {
