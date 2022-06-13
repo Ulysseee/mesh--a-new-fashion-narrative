@@ -17,6 +17,7 @@ export default class Jacket extends Cloth {
 		this.resource.scene.position.set(-16, 0, -9)
 		this.resource.scene.userData.type = 'cloth2'
 		this.experience.items.push(this.resource.scene)
+
 		this.scene.add(this.resource.scene)
 	}
 
