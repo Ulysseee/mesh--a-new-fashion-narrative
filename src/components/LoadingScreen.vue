@@ -159,7 +159,8 @@ export default {
 				.to(this.experience.camera.instance.position, {
 					delay: -1.25,
 					duration: 3,
-					z: 0
+					z: 9,
+					ease: Power3.easeOut
 				})
 
 			if (!this.initFlag) {

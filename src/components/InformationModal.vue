@@ -36,7 +36,6 @@ import Cloth4 from './Clothes/Cloth-4.vue'
 import Cloth5 from './Clothes/Cloth-5.vue'
 
 import Experience from '@classes/Experience'
-import gsap, { Power2, Power3 } from 'gsap'
 
 export default {
 	components: {
@@ -58,10 +57,6 @@ export default {
 			this.experience.parallax.active = false
 
 			this.experience.closeSound.play()
-
-			document
-				.querySelectorAll('.cloth')
-				.forEach((cloth) => cloth.classList.remove('active'))
 
 			this.experience.lastScrollTime = new Date().getTime()
 			this.experience.infoOpen = false

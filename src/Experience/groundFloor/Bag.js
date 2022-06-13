@@ -17,7 +17,7 @@ export default class Bag extends Cloth {
 		this.resource.scene.scale.set(0.8, 0.8, 0.8)
 		this.resource.scene.position.set(2, 0, 0)
 
-		this.resource.scene.userData.type = 'cloth1'
+		// this.resource.scene.userData.type = 'cloth1'
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
 	}

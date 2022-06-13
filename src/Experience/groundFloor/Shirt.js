@@ -15,7 +15,7 @@ export default class Shirt extends Cloth {
 	setCube() {
 		this.resource.scene.scale.set(0.03, 0.03, 0.03)
 		this.resource.scene.position.set(2, 1.5, 6)
-		this.resource.scene.userData.type = 'cloth1'
+		// this.resource.scene.userData.type = 'cloth1'
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
 	}

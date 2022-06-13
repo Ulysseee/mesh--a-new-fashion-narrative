@@ -3,19 +3,22 @@
 		<div class="about__close" @click="$emit('toggle-about')"></div>
 		<h2 class="about__title">About</h2>
 		<p class="about__description">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-			ipsum voluptatum quas ab odit, ea sed cum rerum id possimus aut
-			aperiam distinctio.
+			Comment pérenniser l’industrie de la mode à travers une consommation
+			numérisée plus viable pour l’environnement ?
 		</p>
 
 		<p class="about__description">
-			Vero cum natus dicta mollitia ad tempora ut. Eum quidem qui, nam
-			quia repellat corrupti eaque nesciunt necessitatibus.
+			C’est la question que nous nous sommes posée lors de la mise en
+			place de Mesh, une expérience interactive, immersive et didactique
+			qui porte une réflexion sur les enjeux environnementaux actuels
+			auxquels la Mode doit se confronter.
 		</p>
 
 		<p class="about__description">
-			Vero cum natus dicta mollitia ad tempora ut. Eum quidem qui, nam
-			quia repellat corrupti eaque nesciunt necessitatibus.
+			C’est la question que nous nous sommes posée lors de la mise en
+			place de Mesh, une expérience interactive, immersive et didactique
+			qui porte une réflexion sur les enjeux environnementaux actuels
+			auxquels la Mode doit se confronter.
 		</p>
 
 		<div class="about__footer">
@@ -33,21 +36,21 @@ export default {
 
 <style scoped lang="scss">
 .about {
-	background-color: var(--c-transparent);
+	// background-color: var(--c-transparent);
+	background-color: rgba(0, 0, 0, 1);
 	height: 100vh;
 	position: absolute;
-	z-index: 2;
+	z-index: -1;
 	bottom: 0px;
 	right: 0px;
-	backdrop-filter: blur(10px);
+	// backdrop-filter: blur(10px);
 
-	width: 35vw;
+	width: 100vw;
 	overflow: hidden;
 	padding: 0;
 	margin: 0;
-	border-bottom-left-radius: 80px;
+	// border-bottom-left-radius: 80px;
 	color: var(--c-white);
-	transform: translateX(100%);
 	font-family: 'PP Telegraf Light';
 
 	display: flex;
@@ -57,13 +60,14 @@ export default {
 		width: 12px;
 		height: 12px;
 		border-radius: 50%;
-		background-color: var(--c-black);
+		// background-color: var(--c-black);
+		background-color: var(--c-white);
 		transition: all 200ms ease-in;
 		margin: 15px;
 
-		&:hover {
-			background-color: var(--c-transparent);
-		}
+		// &:hover {
+		// 	background-color: var(--c-transparent);
+		// }
 	}
 
 	&__title {

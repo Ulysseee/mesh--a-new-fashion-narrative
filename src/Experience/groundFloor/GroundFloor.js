@@ -48,7 +48,7 @@ export default class GroundFloor {
 			this.shirt = new Shirt()
 			this.jogging = new Jogging()
 			this.jacket = new Jacket()
-			console.log('hzgyfgzy', this.jacket)
+			// console.log('hzgyfgzy', this.jacket)
 		})
 	}
 
@@ -92,47 +92,44 @@ export default class GroundFloor {
 	}
 
 	handleClick() {
-		if (this.raycaster.currentIntersect.object.userData.type === 'cloth1') {
+		// console.log(this.raycaster.currentIntersect.object)
+		this.experience.savedPosition = this.camera.instance.position.clone()
+
+		if (this.raycaster.currentIntersect.object.userData.name === 'cloth1') {
+			console.log(this.raycaster.currentIntersect.object)
+
 			this.experience.selectedItem = true
 
-			this.experience.savedPosition =
-				this.camera.instance.position.clone()
-			const timeline = gsap.timeline({
-				onComplete: () => {
-					this.experience.parallax.active = true
-				}
-			})
-
-			timeline.to(this.camera.instance.position, {
-				duration: 1.75,
-				x: this.bag.cube.position.x,
-				y: this.bag.cube.position.y,
-				z: this.bag.cube.position.z - 3,
-				ease: Power3.easeOut
-			})
+			this.experience.anims.reviewModel(
+				this.camera.instance,
+				this.raycaster.currentIntersect.object
+			)
 
 			this.bag.displayInfo('.cloth1')
 			this.experience.infoOpen = true
 		} else if (
-			this.raycaster.currentIntersect.object.userData.type === 'cloth2'
+			this.raycaster.currentIntersect.object.userData.name === 'cloth2'
 		) {
-			this.spline.scroll.target = 0.3
+			console.log(this.raycaster.currentIntersect.object)
+			this.experience.selectedItem = true
+			// this.spline.scroll.target = 0.3
 
-			this.testCone.displayInfo('.cloth2')
+			this.experience.anims.reviewModel(
+				this.camera.instance,
+				this.raycaster.currentIntersect.object
+			)
+
+			this.jacket.displayInfo('.cloth2')
 			this.experience.infoOpen = true
 		} else if (
-			this.raycaster.currentIntersect.object.userData.type === 'cloth3'
+			this.raycaster.currentIntersect.object.userData.name === 'cloth3'
 		) {
 			this.experience.selectedItem = true
 
-			this.experience.savedPosition =
-				this.camera.instance.position.clone()
-			gsap.to(this.camera.instance.position, {
-				duration: 2,
-				x: this.testCone.cone.position.x,
-				y: this.testCone.cone.position.y,
-				z: this.testCone.cone.position.z - 2
-			})
+			this.experience.anims.leaveModel(
+				this.camera.instance,
+				this.raycaster.currentIntersect.object
+			)
 
 			this.testCone.displayInfo('.cloth3')
 			this.experience.infoOpen = true

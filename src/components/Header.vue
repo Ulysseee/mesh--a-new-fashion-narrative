@@ -66,18 +66,27 @@ export default {
 		},
 
 		toggleModal() {
+			console.log('hqsdkhjqsk')
 			if (!this.isAboutActive) {
-				gsap.to('.about', {
-					x: 0,
-					duration: 0.5,
-					ease: 'expo.easeInOut'
-				})
+				gsap.timeline()
+					.to('.about', {
+						css: { zIndex: 150 }
+					})
+					.to('.about', {
+						opacity: 1,
+						duration: 0.5,
+						ease: 'expo.easeInOut'
+					})
 			} else {
-				gsap.to('.about', {
-					x: '100%',
-					duration: 0.5,
-					ease: 'expo.easeInOut'
-				})
+				gsap.timeline()
+					.to('.about', {
+						opacity: 0,
+						duration: 0.5,
+						ease: 'expo.easeInOut'
+					})
+					.to('.about', {
+						css: { zIndex: -1 }
+					})
 			}
 
 			this.isAboutActive = !this.isAboutActive

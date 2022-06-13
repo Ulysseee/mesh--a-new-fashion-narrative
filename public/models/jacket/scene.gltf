@@ -1,236 +1,191 @@
 {
-  "accessors": [
-    {
-      "bufferView": 2,
-      "componentType": 5126,
-      "count": 6713,
-      "max": [
-        2.7781450748443604,
-        0.7983819842338562,
-        7.2521891593933105
-      ],
-      "min": [
-        -2.77693510055542,
-        -0.6166239976882935,
-        4.308647155761719
-      ],
-      "type": "VEC3"
-    },
-    {
-      "bufferView": 2,
-      "byteOffset": 80556,
-      "componentType": 5126,
-      "count": 6713,
-      "max": [
-        0.9999921321868896,
-        0.9997729063034058,
-        0.999684751033783
-      ],
-      "min": [
-        -0.9999978542327881,
-        -0.9999380111694336,
-        -0.9985188841819763
-      ],
-      "type": "VEC3"
-    },
-    {
-      "bufferView": 3,
-      "componentType": 5126,
-      "count": 6713,
-      "max": [
-        0.9999982118606567,
-        0.999999463558197,
-        0.9999849796295166,
-        1.0
-      ],
-      "min": [
-        -0.9999722838401794,
-        -0.9999343752861023,
-        -0.9999213218688965,
-        -1.0
-      ],
-      "type": "VEC4"
-    },
-    {
-      "bufferView": 1,
-      "componentType": 5126,
-      "count": 6713,
-      "max": [
-        0.9999989867210388,
-        0.9936220049858093
-      ],
-      "min": [
-        0.0,
-        0.0
-      ],
-      "type": "VEC2"
-    },
-    {
-      "bufferView": 0,
-      "componentType": 5125,
-      "count": 29637,
-      "type": "SCALAR"
-    }
-  ],
-  "asset": {
-    "extras": {
-      "author": "whitson.art (https://sketchfab.com/whitson.art)",
-      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/whitson-jesse-clothing-0931f9240a7f482893203f3a09b788fb",
-      "title": "Whitson Jesse Clothing"
-    },
-    "generator": "Sketchfab-12.68.0",
-    "version": "2.0"
-  },
-  "bufferViews": [
-    {
-      "buffer": 0,
-      "byteLength": 118548,
-      "name": "floatBufferViews",
-      "target": 34963
-    },
-    {
-      "buffer": 0,
-      "byteLength": 53704,
-      "byteOffset": 118548,
-      "byteStride": 8,
-      "name": "floatBufferViews",
-      "target": 34962
-    },
-    {
-      "buffer": 0,
-      "byteLength": 161112,
-      "byteOffset": 172252,
-      "byteStride": 12,
-      "name": "floatBufferViews",
-      "target": 34962
-    },
-    {
-      "buffer": 0,
-      "byteLength": 107408,
-      "byteOffset": 333364,
-      "byteStride": 16,
-      "name": "floatBufferViews",
-      "target": 34962
-    }
-  ],
-  "buffers": [
-    {
-      "byteLength": 440772,
-      "uri": "scene.bin"
-    }
-  ],
-  "images": [
-    {
-      "uri": "textures/Retopo_Blinn_baseColor.png"
-    },
-    {
-      "uri": "textures/Retopo_Blinn_metallicRoughness.png"
-    },
-    {
-      "uri": "textures/Retopo_Blinn_normal.png"
-    }
-  ],
-  "materials": [
-    {
-      "doubleSided": true,
-      "name": "Retopo_Blinn",
-      "normalTexture": {
-        "index": 2
-      },
-      "pbrMetallicRoughness": {
-        "baseColorTexture": {
-          "index": 0
-        },
-        "metallicRoughnessTexture": {
-          "index": 1
-        }
-      }
-    }
-  ],
-  "meshes": [
-    {
-      "name": "Object_0",
-      "primitives": [
-        {
-          "attributes": {
-            "NORMAL": 1,
-            "POSITION": 0,
-            "TANGENT": 2,
-            "TEXCOORD_0": 3
-          },
-          "indices": 4,
-          "material": 0,
-          "mode": 4
-        }
-      ]
-    }
-  ],
-  "nodes": [
-    {
-      "children": [
-        1
-      ],
-      "matrix": [
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        2.220446049250313e-16,
-        -1.0,
-        0.0,
-        0.0,
-        1.0,
-        2.220446049250313e-16,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.0
-      ],
-      "name": "Sketchfab_model"
-    },
-    {
-      "children": [
-        2
-      ],
-      "name": "Whitson_Jesse_Clothing.obj.cleaner.materialmerger.gles"
-    },
-    {
-      "mesh": 0,
-      "name": "Object_2"
-    }
-  ],
-  "samplers": [
-    {
-      "magFilter": 9729,
-      "minFilter": 9987,
-      "wrapS": 10497,
-      "wrapT": 10497
-    }
-  ],
-  "scene": 0,
-  "scenes": [
-    {
-      "name": "Sketchfab_Scene",
-      "nodes": [
-        0
-      ]
-    }
-  ],
-  "textures": [
-    {
-      "sampler": 0,
-      "source": 0
-    },
-    {
-      "sampler": 0,
-      "source": 1
-    },
-    {
-      "sampler": 0,
-      "source": 2
-    }
-  ]
+	"accessors": [
+		{
+			"bufferView": 2,
+			"componentType": 5126,
+			"count": 6713,
+			"max": [2.7781450748443604, 0.7983819842338562, 7.2521891593933105],
+			"min": [-2.77693510055542, -0.6166239976882935, 4.308647155761719],
+			"type": "VEC3"
+		},
+		{
+			"bufferView": 2,
+			"byteOffset": 80556,
+			"componentType": 5126,
+			"count": 6713,
+			"max": [0.9999921321868896, 0.9997729063034058, 0.999684751033783],
+			"min": [
+				-0.9999978542327881, -0.9999380111694336, -0.9985188841819763
+			],
+			"type": "VEC3"
+		},
+		{
+			"bufferView": 3,
+			"componentType": 5126,
+			"count": 6713,
+			"max": [
+				0.9999982118606567, 0.999999463558197, 0.9999849796295166, 1.0
+			],
+			"min": [
+				-0.9999722838401794, -0.9999343752861023, -0.9999213218688965,
+				-1.0
+			],
+			"type": "VEC4"
+		},
+		{
+			"bufferView": 1,
+			"componentType": 5126,
+			"count": 6713,
+			"max": [0.9999989867210388, 0.9936220049858093],
+			"min": [0.0, 0.0],
+			"type": "VEC2"
+		},
+		{
+			"bufferView": 0,
+			"componentType": 5125,
+			"count": 29637,
+			"type": "SCALAR"
+		}
+	],
+	"asset": {
+		"extras": {
+			"author": "whitson.art (https://sketchfab.com/whitson.art)",
+			"license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+			"source": "https://sketchfab.com/3d-models/whitson-jesse-clothing-0931f9240a7f482893203f3a09b788fb",
+			"title": "Whitson Jesse Clothing"
+		},
+		"generator": "Sketchfab-12.68.0",
+		"version": "2.0"
+	},
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 118548,
+			"name": "floatBufferViews",
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 53704,
+			"byteOffset": 118548,
+			"byteStride": 8,
+			"name": "floatBufferViews",
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 161112,
+			"byteOffset": 172252,
+			"byteStride": 12,
+			"name": "floatBufferViews",
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 107408,
+			"byteOffset": 333364,
+			"byteStride": 16,
+			"name": "floatBufferViews",
+			"target": 34962
+		}
+	],
+	"buffers": [
+		{
+			"byteLength": 440772,
+			"uri": "scene.bin"
+		}
+	],
+	"images": [
+		{
+			"uri": "textures/Retopo_Blinn_baseColor.png"
+		},
+		{
+			"uri": "textures/Retopo_Blinn_metallicRoughness.png"
+		},
+		{
+			"uri": "textures/Retopo_Blinn_normal.png"
+		}
+	],
+	"materials": [
+		{
+			"doubleSided": true,
+			"name": "Retopo_Blinn",
+			"normalTexture": {
+				"index": 2
+			},
+			"pbrMetallicRoughness": {
+				"baseColorTexture": {
+					"index": 0
+				},
+				"metallicRoughnessTexture": {
+					"index": 1
+				}
+			}
+		}
+	],
+	"meshes": [
+		{
+			"name": "Object_0",
+			"primitives": [
+				{
+					"attributes": {
+						"NORMAL": 1,
+						"POSITION": 0,
+						"TANGENT": 2,
+						"TEXCOORD_0": 3
+					},
+					"indices": 4,
+					"material": 0,
+					"mode": 4
+				}
+			]
+		}
+	],
+	"nodes": [
+		{
+			"children": [1],
+			"matrix": [
+				1.0, 0.0, 0.0, 0.0, 0.0, 2.220446049250313e-16, -1.0, 0.0, 0.0,
+				1.0, 2.220446049250313e-16, 0.0, 0.0, 0.0, 0.0, 1.0
+			],
+			"name": "Sketchfab_model"
+		},
+		{
+			"children": [2],
+			"name": "Whitson_Jesse_Clothing.obj.cleaner.materialmerger.gles"
+		},
+		{
+			"mesh": 0,
+			"name": "cloth2"
+		}
+	],
+	"samplers": [
+		{
+			"magFilter": 9729,
+			"minFilter": 9987,
+			"wrapS": 10497,
+			"wrapT": 10497
+		}
+	],
+	"scene": 0,
+	"scenes": [
+		{
+			"name": "Sketchfab_Scene",
+			"nodes": [0]
+		}
+	],
+	"textures": [
+		{
+			"sampler": 0,
+			"source": 0
+		},
+		{
+			"sampler": 0,
+			"source": 1
+		},
+		{
+			"sampler": 0,
+			"source": 2
+		}
+	]
 }

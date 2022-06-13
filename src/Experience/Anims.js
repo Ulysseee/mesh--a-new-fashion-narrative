@@ -84,11 +84,14 @@ export default class Anims {
 			.timeline({
 				onComplete: () => {
 					this.showTimeline.progress(0).kill()
+					document
+						.querySelectorAll('.cloth')
+						.forEach((cloth) => cloth.classList.remove('active'))
 				}
 			})
 			.to('.information__wrapper', {
 				opacity: 0,
-				duration: 0.4,
+				duration: 0.9,
 				ease: Power3.easeIn
 			})
 			.to('.information__overlay__path', {
@@ -231,5 +234,36 @@ export default class Anims {
 					delay: -1
 				})
 		}
+	}
+	reviewModel(camera, model) {
+		const timeline = gsap.timeline({
+			onComplete: () => {
+				this.experience.parallax.active = true
+			}
+		})
+
+		timeline.to(camera.position, {
+			duration: 1.75,
+			x: model.position.x,
+			y: model.position.y,
+			z: model.position.z - 3,
+			ease: Power3.easeOut
+		})
+	}
+
+	leaveModel(camera, model) {
+		const timeline = gsap.timeline({
+			onComplete: () => {
+				this.experience.parallax.active = true
+			}
+		})
+
+		timeline.to(camera.position, {
+			duration: 1.75,
+			x: model.position.x,
+			y: model.position.y,
+			z: model.position.z - 3,
+			ease: Power3.easeOut
+		})
 	}
 }

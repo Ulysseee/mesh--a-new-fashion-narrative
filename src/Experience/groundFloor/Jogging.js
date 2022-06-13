@@ -15,7 +15,7 @@ export default class Jogging extends Cloth {
 	setCube() {
 		this.resource.scene.scale.set(1, 1, 1)
 		this.resource.scene.position.set(2, 0, 8)
-		this.resource.scene.userData.type = 'cloth1'
+		// this.resource.scene.userData.type = 'cloth1'
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
 	}
