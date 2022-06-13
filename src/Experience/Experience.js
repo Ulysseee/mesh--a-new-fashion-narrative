@@ -121,6 +121,10 @@ export default class Experience {
 				this.camera.instance.position.set(0, 5, 14)
 				this.camera.instance.lookAt(-3, 5, -10)
 
+				this.groundFloor.unrealBloomPass.strength = 0
+				this.groundFloor.unrealBloomPass.radius = 0
+				this.groundFloor.unrealBloomPass.threshold = 0
+
 				this.groundFloor = null
 				this.selectedItem = false
 				this.infoOpen = false

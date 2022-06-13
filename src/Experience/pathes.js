@@ -2,7 +2,7 @@ import { CatmullRomCurve3, Vector3 } from 'three'
 
 const groundFloorPath = new CatmullRomCurve3(
 	[
-		new Vector3(35, -4, 9), //first
+		new Vector3(35, -4, 9),
 		new Vector3(35, -4, -9),
 		new Vector3(33, -3, -11),
 		new Vector3(30, -2, -11),
@@ -26,17 +26,14 @@ const groundFloorPath = new CatmullRomCurve3(
 
 const secondFloorPath = new CatmullRomCurve3(
 	[
-		new Vector3(0, 3, 10),
-		// new Vector3(0, 0, 0),
-		new Vector3(-3, 3, -10),
-		new Vector3(-10, 3, -25),
-		new Vector3(-14, 3, -34),
-		new Vector3(-12, 3, -40),
-		new Vector3(0, 3, -47),
-		new Vector3(12, 3, -40),
-		new Vector3(14, 3, -34),
-		new Vector3(10, 3, -25),
-		new Vector3(3, 3, -10)
+		new Vector3(0, 3, 0),
+		new Vector3(-3, 3, -5),
+		new Vector3(-10, 3, -9),
+		new Vector3(-14, 3, -10),
+		new Vector3(-12, 3, -15),
+		new Vector3(-9, 3, -10),
+		new Vector3(-4, 3, -8),
+		new Vector3(0, 3, -4)
 	],
 	true
 )

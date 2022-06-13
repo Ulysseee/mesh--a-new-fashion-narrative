@@ -104,6 +104,7 @@ export default {
 	display: flex;
 	align-items: center;
 	width: 95vw;
+
 	left: 50%;
 
 	&__wrapper {
@@ -114,7 +115,7 @@ export default {
 
 	&__logo {
 		position: relative;
-		font-size: 0.625rem;
+		font-size: 0.675rem;
 		color: var(--c-white);
 		font-family: 'Brilliant Cut Pro';
 		text-transform: uppercase;
@@ -152,8 +153,7 @@ export default {
 		font-family: 'Brilliant Cut Pro';
 		color: var(--c-white);
 		text-transform: uppercase;
-		font-size: 0.625rem;
-
+		font-size: 0.675rem;
 		transition: all 0.4s ease;
 
 		&:hover {

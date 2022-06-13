@@ -1,6 +1,6 @@
 <template>
 	<div class="helper__scroll">
-		<p ref="helper">Scroll to explore</p>
+		<p ref="helper">Scroll to explore and tap to discoverxxx</p>
 	</div>
 </template>
 
@@ -46,8 +46,7 @@ export default {
 	position: absolute;
 	left: 50%;
 	z-index: 99;
-	color: var(--c-dark);
-	background: white;
+	color: var(--c-white);
 	padding: 5px 30px;
 	border-radius: 30px;
 	text-transform: uppercase;
@@ -55,9 +54,8 @@ export default {
 	font-family: 'Brilliant Cut Pro';
 	animation: MoveUpDown 4s linear infinite;
 	pointer-events: none;
+	border: 0.5px solid var(--c-white);
 	transform-origin: center;
-	box-shadow: inset 0 0 0 4px black;
-	box-shadow: inset 0 0 0 2px red;
 
 	font-size: 0.75rem;
 

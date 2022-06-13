@@ -83,8 +83,10 @@ export default {
 				.to([this.$refs.titleTop, this.$refs.titleBottom], {
 					duration: 0.8,
 					opacity: 0,
+
 					ease: Power3.easeOut
 				})
+
 				.to(
 					[
 						this.$refs.subtitleTop,
@@ -183,6 +185,8 @@ export default {
 	top: 0;
 	left: 0;
 	z-index: 100;
+	text-transform: uppercase;
+
 	color: #323232;
 	background: #f4f1eb;
 	font-size: 2em;
@@ -241,7 +245,7 @@ export default {
 	}
 
 	.loader__title {
-		font-family: 'History Pro';
+		font-family: 'Brilliant Cut Pro';
 		text-align: center;
 		font-size: 4rem;
 		line-height: 4.5rem;
@@ -255,7 +259,7 @@ export default {
 		// width: 47%;
 		position: absolute;
 		top: 8rem;
-		font-family: 'History Pro';
+		font-family: 'Brilliant Cut Pro';
 		text-align: center;
 		font-size: 2rem;
 		line-height: 2.5rem;
@@ -287,15 +291,18 @@ export default {
 	.loader__enterCta {
 		opacity: 0;
 		color: #323232;
-		font-size: 1rem;
+		font-size: 10px;
 		padding: 10px 18px 12px;
 		background: transparent;
+		margin-top: 20px;
 		border: none;
 		text-transform: uppercase;
 		text-align: center;
 		z-index: 2;
 		position: relative;
 		transition: 0.5s all ease-in-out;
+		font-family: 'Brilliant Cut Pro';
+
 		bottom: 5rem;
 		// left: 50%;
 		// transform: translate(-50%, 50%);

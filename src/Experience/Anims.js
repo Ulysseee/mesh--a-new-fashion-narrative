@@ -204,11 +204,6 @@ export default class Anims {
 					duration: 1,
 					opacity: 1
 				})
-				.to(timeline, {
-					duration: 1,
-					opacity: 1,
-					delay: -1
-				})
 		} else {
 			await this.switchOutTl
 				.to(this.overlay.material.uniforms.uAlpha, {

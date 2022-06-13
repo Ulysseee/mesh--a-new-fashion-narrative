@@ -48,7 +48,7 @@ export default {
 }
 
 .cursor--1 .cursor__inner {
-	fill: orange;
+	fill: grey;
 	stroke: var(--c-white);
 	stroke-width: 0.3px;
 	stroke-dasharray: 1.1;

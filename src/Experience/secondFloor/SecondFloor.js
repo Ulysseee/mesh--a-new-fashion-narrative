@@ -33,8 +33,8 @@ export default class SecondFloor {
 			this.environment = new Environment()
 			this.grass = new Grass()
 			this.sky = new Sky()
-			// this.water = new WaterClass()
-			this.butterfly = new Butterfly()
+			this.water = new WaterClass()
+			// this.butterfly = new Butterfly()
 			this.cube = new Cube()
 
 			this.portal = new Portal()
