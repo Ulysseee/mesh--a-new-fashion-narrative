@@ -243,7 +243,7 @@ export default {
 		text-align: center;
 		font-size: 4rem;
 		line-height: 4.5rem;
-
+		position: absolute;
 		div {
 			opacity: 0;
 		}
@@ -293,7 +293,7 @@ export default {
 		text-align: center;
 		z-index: 2;
 		position: relative;
-		bottom: 5rem;
+		bottom: 0;
 		// left: 50%;
 		// transform: translate(-50%, 50%);
 		// transform: translateY(-50%);

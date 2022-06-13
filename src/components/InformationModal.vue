@@ -74,13 +74,12 @@ export default {
 	z-index: -1;
 	bottom: 0px;
 	right: 0px;
-	// backdrop-filter: blur(10px);
 
 	width: 55vw;
 	overflow: hidden;
 	padding: 0;
 	margin: 0;
-	color: #323232;
+	color: #fff;
 	transition: transform 0.8s ease-in;
 	display: flex;
 	flex-direction: column;
@@ -105,6 +104,7 @@ export default {
 		height: 100%;
 		top: 0;
 		fill: #f4f1eb;
+		fill: rgba(0, 0, 0, 0.4);
 		left: 0;
 	}
 

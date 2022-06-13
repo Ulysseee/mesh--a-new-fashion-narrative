@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="nft">
 		<div class="point point-0">
 			<div class="label">1</div>
 			<div class="text">
@@ -35,6 +35,7 @@ export default {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	z-index: 1000;
 	/* pointer-events: none; */
 }
 

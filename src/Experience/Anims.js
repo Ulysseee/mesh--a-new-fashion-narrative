@@ -150,34 +150,57 @@ export default class Anims {
 	async switchIn(level) {
 		const header = document.querySelector('.header')
 		const timeline = document.querySelector('.timeline__wrapper')
+		let floor = document.querySelector(`.${level}`)
+		let flootIntro = document.querySelectorAll(`.${level}__intro > .word`)
 
 		this.switchInTl = gsap.timeline()
 
 		await this.switchInTl
 			.to(this.overlay.material.uniforms.uAlpha, {
-				duration: 3,
+				duration: 2,
 				value: 1,
-				ease: Power3.easeInOut
+				ease: Power3.easeIn
 			})
 			.to(header, {
 				duration: 1,
-				delay: -2,
+				delay: -1,
 				opacity: 0
 			})
 			.to(timeline, {
 				duration: 1,
-				delay: -3,
+				delay: -1,
 				opacity: 0
 			})
 			.to(this.camera.instance.position, {
-				duration: 3.5,
+				duration: 3,
 				delay: -3,
-				z: -14
+				z: -14,
+				ease: Power3.easeIn
+			})
+			.to(this.teleporter, {
+				css: { zIndex: 99 }
+			})
+			.to(floor, {
+				opacity: 1,
+				delay: -1,
+				ease: Power3.easeIn
+			})
+			.to(flootIntro, {
+				opacity: 1,
+				duration: 0.7,
+				stagger: {
+					each: 0.03,
+					from: 'start'
+				},
+				// delay: -0.7,
+				ease: Power3.easeInOut
 			})
 	}
 	async switchOut(level) {
 		const header = document.querySelector('.header')
 		const timeline = document.querySelector('.timeline__wrapper')
+		let floor = document.querySelector(`.${level}`)
+		let flootIntro = document.querySelectorAll(`.${level}__intro > .word`)
 
 		this.switchOutTl = gsap.timeline({
 			onComplete: () => {
@@ -187,19 +210,33 @@ export default class Anims {
 
 		if (level === 'secondFloor') {
 			await this.switchOutTl
+				.to(flootIntro, {
+					opacity: 0,
+					duration: 0.4,
+					stagger: {
+						each: 0.03,
+						from: 'start'
+					},
+					// delay: -0.7,
+					ease: Power3.easeInOut
+				})
+				.to(floor, {
+					opacity: 0,
+					ease: Power3.easeOut
+				})
+				.to(this.teleporter, {
+					css: { zIndex: -1 }
+				})
 				.to(this.overlay.material.uniforms.uAlpha, {
 					duration: 1,
 					value: 0,
-					delay: 2,
-					ease: Power3.easeInOut
+					ease: Power3.easeOut
 				})
-
 				.to(this.camera.instance.position, {
 					duration: 2,
 					delay: -1,
 					z: 10
 				})
-
 				.to(header, {
 					duration: 1,
 					opacity: 1
@@ -211,19 +248,33 @@ export default class Anims {
 				})
 		} else {
 			await this.switchOutTl
+				.to(flootIntro, {
+					opacity: 0,
+					duration: 0.4,
+					stagger: {
+						each: 0.03,
+						from: 'start'
+					},
+					// delay: -0.7,
+					ease: Power3.easeIn
+				})
+				.to(floor, {
+					opacity: 0,
+					ease: Power3.easeIn
+				})
+				.to(this.teleporter, {
+					css: { zIndex: -1 }
+				})
 				.to(this.overlay.material.uniforms.uAlpha, {
 					duration: 1,
 					value: 0,
-					delay: 2,
 					ease: Power3.easeInOut
 				})
-
 				.to(this.experience.camera.instance.position, {
+					duration: 2,
 					delay: -1.25,
-					duration: 3,
 					z: 0
 				})
-
 				.to(header, {
 					duration: 1,
 					opacity: 1
