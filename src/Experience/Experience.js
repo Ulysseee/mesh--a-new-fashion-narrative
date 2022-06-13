@@ -118,7 +118,7 @@ export default class Experience {
 				this.renderer.instance.outputEncoding = THREE.LinearEncoding
 
 				this.items = []
-				this.camera.instance.position.set(0, 5, 14)
+				this.camera.instance.position.set(0, 5, 5)
 				this.camera.instance.lookAt(-3, 5, -10)
 
 				this.groundFloor.unrealBloomPass.strength = 0

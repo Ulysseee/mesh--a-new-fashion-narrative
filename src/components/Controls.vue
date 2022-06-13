@@ -1,6 +1,6 @@
 <template>
 	<div class="helper__scroll">
-		<p ref="helper">Scroll to explore and tap to discoverxxx</p>
+		<p ref="helper">Scroll to explore and tap to discover</p>
 	</div>
 </template>
 

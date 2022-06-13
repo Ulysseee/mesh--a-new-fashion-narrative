@@ -9,6 +9,7 @@ export default class WaterClass {
 		this.scene = this.experience.scene
 		this.debug = this.experience.debug
 		this.resources = this.experience.resources
+		this.time = this.experience.time
 
 		this.setWater()
 
@@ -57,6 +58,6 @@ export default class WaterClass {
 	}
 
 	update() {
-		this.water.material.uniforms['time'].value += 1.0 / 60.0
+		this.water.material.uniforms['time'].value = this.time.elapsed * 0.0004
 	}
 }

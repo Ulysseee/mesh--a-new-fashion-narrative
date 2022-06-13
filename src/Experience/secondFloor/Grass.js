@@ -120,7 +120,7 @@ export default class Grass {
 
 		this.group.add(this.ground)
 		this.group.add(this.grass)
-		this.group.position.set(0, -1, 0)
+		this.group.position.set(0, 0, 0)
 
 		this.scene.add(this.group)
 	}
@@ -231,7 +231,7 @@ export default class Grass {
 
 	getYPosition(x, z) {
 		var y = 2 * simplex.noise2D(x / 50, z / 50)
-		y += 2 * simplex.noise2D(x / 100, z / 100)
+		y += 3 * simplex.noise2D(x / 100, z / 100)
 		y += 0.2 * simplex.noise2D(x / 10, z / 10)
 		return y
 	}
