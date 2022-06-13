@@ -48,6 +48,7 @@ export default class GroundFloor {
 			this.shirt = new Shirt()
 			this.jogging = new Jogging()
 			this.jacket = new Jacket()
+			console.log('hzgyfgzy', this.jacket)
 		})
 	}
 

@@ -1,8 +1,6 @@
 import {
 	AmbientLight,
 	DirectionalLight,
-	DirectionalLightHelper,
-	AxesHelper,
 	sRGBEncoding,
 	Mesh,
 	MeshStandardMaterial
