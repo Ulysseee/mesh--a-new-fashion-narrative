@@ -86,7 +86,6 @@ export default class Spline extends EventEmitter {
 	}
 
 	update(percent) {
-		// console.log(percent)
 		this.scroll.target = gsap.utils.clamp(
 			0,
 			this.scroll.limit,
@@ -103,13 +102,12 @@ export default class Spline extends EventEmitter {
 
 		this.camera.instance.position.set(camPos.x, camPos.y, camPos.z)
 
-		console.log(this.cameraTarget.position)
-
 		this.camera.instance.lookAt(this.cameraTarget.position)
 
 		let timeline = gsap.timeline()
 
 		if (percent) {
+			console.log(percent)
 			if (percent < 0.25) {
 				timeline.to(this.cameraTarget.position, {
 					duration: 1,
@@ -153,7 +151,6 @@ export default class Spline extends EventEmitter {
 					z: cameraTargetPositions[5].z
 				})
 			} else if (percent < 0.75) {
-				console.log('kljhsdkqjhs')
 				timeline.to(this.cameraTarget.position, {
 					duration: 1,
 					x: cameraTargetPositions[5].x,

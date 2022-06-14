@@ -66,7 +66,6 @@ export default {
 		},
 
 		toggleModal() {
-			console.log('hqsdkhjqsk')
 			if (!this.isAboutActive) {
 				gsap.timeline()
 					.to('.about', {

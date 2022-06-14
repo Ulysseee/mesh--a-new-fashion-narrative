@@ -120,8 +120,7 @@ export default class Experience {
 				this.renderer.instance.outputEncoding = THREE.LinearEncoding
 
 				this.items = []
-				this.camera.instance.position.set(0, 5, 5)
-				this.camera.instance.lookAt(-3, 5, -10)
+				this.camera.instance.position.set(-15, 3, -15)
 
 				this.gallery.unrealBloomPass.strength = 0
 				this.gallery.unrealBloomPass.radius = 0
@@ -142,12 +141,8 @@ export default class Experience {
 				this.renderer.instance.outputEncoding = THREE.sRGBEncoding
 
 				this.items = []
-				this.camera.instance.position.set(35, -2, 4)
-				this.camera.instance.lookAt(
-					33.47678508431356,
-					-1.2076348846877,
-					-10.775930657439488
-				)
+				this.camera.instance.position.set(35, -1.5, 9)
+				this.camera.instance.lookAt(21, 2.5, 0)
 				this.metavers = null
 				this.resources = new Resources(gallery)
 				this.gallery = new Gallery()

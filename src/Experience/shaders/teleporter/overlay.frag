@@ -86,7 +86,7 @@ void main( void )
 
     float borders = border(1.05 - uv) + border(uv);
 
-    vec3 dark = vec3(0.,0.,0.);
+    vec3 dark = vec3(0.1,0.1,0.1);
 
     // vec3 color = dark*(borders + cells);
     vec3 color = dark+(borders + cells);

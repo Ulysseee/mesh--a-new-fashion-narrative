@@ -174,12 +174,7 @@ export default class Anims {
 				delay: -1,
 				opacity: 0
 			})
-			.to(this.camera.instance.position, {
-				duration: 3,
-				delay: -3,
-				z: -14,
-				ease: Power3.easeIn
-			})
+
 			.to(this.teleporter, {
 				css: { zIndex: 99 }
 			})
@@ -236,11 +231,7 @@ export default class Anims {
 					value: 0,
 					ease: Power3.easeOut
 				})
-				.to(this.camera.instance.position, {
-					duration: 2,
-					delay: -1,
-					z: 10
-				})
+
 				.to(header, {
 					duration: 1,
 					delay: -1.5,

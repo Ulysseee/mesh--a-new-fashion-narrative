@@ -159,12 +159,34 @@ export default {
 				onComplete: () => {
 					this.experience.isLoading = false
 				}
-			}).to(this.$refs.loadingScreen, {
-				css: { opacity: '0', pointerEvents: 'none' },
-				duration: 1.5,
-				delay: -0.75,
-				ease: Power3.easeIn
 			})
+				.to(
+					[
+						this.$refs.subtitleTop,
+						this.$refs.subtitleBottom,
+						this.$refs.paragraph
+					],
+					{
+						duration: 0.8,
+						opacity: 0,
+						stagger: 0.15,
+
+						ease: Power3.easeInOut
+					}
+				)
+				.to(this.$refs.button, {
+					opacity: 0,
+					duration: 0.6,
+					delay: -0.4,
+					ease: Power3.easeInOut
+				})
+				.to(this.$refs.loadingScreen, {
+					css: { opacity: '0', pointerEvents: 'none' },
+					duration: 1.5,
+					delay: -0.3,
+					ease: Power3.easeIn
+				})
+
 			// .to(this.experience.camera.instance.position, {
 			// 	delay: -1.25,
 			// 	duration: 3,

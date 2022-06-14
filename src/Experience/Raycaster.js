@@ -83,11 +83,6 @@ export default class Raycaster {
 			this.currentIntersect.object.name === 'portal2'
 		) {
 			this.experience.switch('gallery')
-		} else if (
-			this.currentIntersect &&
-			this.currentIntersect.object.name === 'portal3'
-		) {
-			window.open('https://opensea.io/', '_blank')
 		}
 	}
 

@@ -18,7 +18,7 @@ export default class Portal {
 	}
 
 	setGeometry() {
-		this.geometry = new THREE.TetrahedronGeometry(1, 1)
+		this.geometry = new THREE.SphereGeometry(0.7, 32, 16)
 	}
 
 	setMaterial() {

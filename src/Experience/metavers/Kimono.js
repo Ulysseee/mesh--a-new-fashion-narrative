@@ -12,7 +12,6 @@ export default class Kimono extends Clothes {
 	}
 
 	setKimono() {
-		console.log(this.resource)
 		this.resource.scale.set(0.04, 0.04, 0.04)
 		this.resource.position.set(10, 5, -7)
 		this.resource.userData.type = 'cloth2'

@@ -34,13 +34,13 @@ export default class Metavers {
 			this.spline = new Spline(metaversPath)
 
 			this.environment = new Environment()
-			// this.grass = new Grass()
+			this.grass = new Grass()
 			this.sky = new Sky()
 			// this.water = new WaterClass()
 			this.butterfly = new Butterfly()
-			this.dess = new Dress()
-			this.latex = new Latex()
-			this.kimono = new Kimono()
+			// this.dess = new Dress()
+			// this.latex = new Latex()
+			// this.kimono = new Kimono()
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal2'

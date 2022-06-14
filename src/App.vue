@@ -8,8 +8,8 @@
 	<NftComponent />
 	<Teleporter />
 	<CustomCursor />
-	<!--
-	<div class="video__container">
+
+	<!-- <div class="video__container">
 		<video id="video" autoplay="autoplay">
 			<source src="/assets/img/movie.mp4" type="video/mp4" />
 			Your browser does not support the video tag.
