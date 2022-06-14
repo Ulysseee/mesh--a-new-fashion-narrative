@@ -9,7 +9,6 @@ import Shirt from './Shirt.js'
 import Jacket from './Jacket.js'
 import Sweat from './Sweat.js'
 import Plane from './Plane.js'
-
 import Jogging from './Jogging.js'
 import Building from './Building.js'
 import Environment from './Environment.js'
@@ -121,18 +120,6 @@ export default class GroundFloor {
 
 			this.jacket.displayInfo('.cloth2')
 			this.experience.infoOpen = true
-		} else if (
-			this.raycaster.currentIntersect.object.userData.name === 'cloth3'
-		) {
-			this.experience.selectedItem = true
-
-			this.experience.anims.leaveModel(
-				this.camera.instance,
-				this.raycaster.currentIntersect.object
-			)
-
-			this.testCone.displayInfo('.cloth3')
-			this.experience.infoOpen = true
 		}
 	}
 
@@ -154,16 +141,20 @@ export default class GroundFloor {
 					this.step1.classList.remove('is-active')
 				} else if (this.percent < 0.373) {
 					this.step1.classList.add('is-active')
+					this.step3.classList.remove('is-active')
 				} else if (this.percent < 0.4) {
 					this.step3.classList.add('is-active')
 					this.step1.classList.remove('is-active')
+					this.step4.classList.remove('is-active')
 				} else if (this.percent < 0.43) {
 					this.step4.classList.add('is-active')
 					this.step3.classList.remove('is-active')
+					this.step2.classList.remove('is-active')
 				} else if (this.percent < 0.55) {
 					this.step2.classList.add('is-active')
 					this.step4.classList.remove('is-active')
-				} else if (this.percent < 0.7) {
+					this.step1.classList.remove('is-active')
+				} else if (this.percent < 0.76) {
 					this.step1.classList.add('is-active')
 					this.step2.classList.remove('is-active')
 				}

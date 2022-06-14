@@ -126,7 +126,10 @@ export default class Experience {
 				this.groundFloor.unrealBloomPass.strength = 0
 				this.groundFloor.unrealBloomPass.radius = 0
 				this.groundFloor.unrealBloomPass.threshold = 0
-
+				this.groundFloor.step1.classList.remove('is-active')
+				this.groundFloor.step2.classList.remove('is-active')
+				this.groundFloor.step3.classList.remove('is-active')
+				this.groundFloor.step4.classList.remove('is-active')
 				this.groundFloor = null
 				this.selectedItem = false
 				this.infoOpen = false

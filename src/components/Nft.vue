@@ -44,6 +44,7 @@ export default {
 	top: 50%;
 	left: 50%;
 	z-index: 1000;
+	opacity: 0;
 	/* pointer-events: none; */
 
 	.label {

@@ -149,6 +149,7 @@ export default class Anims {
 		const timeline = document.querySelector('.timeline__wrapper')
 		let floor = document.querySelector(`.${level}`)
 		let flootIntro = document.querySelectorAll(`.${level}__intro > .word`)
+		let points = document.querySelectorAll('.point')
 
 		this.switchInTl = gsap.timeline()
 
@@ -159,6 +160,11 @@ export default class Anims {
 				ease: Power3.easeIn
 			})
 			.to(header, {
+				duration: 1,
+				delay: -1,
+				opacity: 0
+			})
+			.to(points, {
 				duration: 1,
 				delay: -1,
 				opacity: 0
@@ -198,6 +204,7 @@ export default class Anims {
 		const timeline = document.querySelector('.timeline__wrapper')
 		let floor = document.querySelector(`.${level}`)
 		let flootIntro = document.querySelectorAll(`.${level}__intro > .word`)
+		let points = document.querySelectorAll('.point')
 
 		this.switchOutTl = gsap.timeline({
 			onComplete: () => {
@@ -236,6 +243,12 @@ export default class Anims {
 				})
 				.to(header, {
 					duration: 1,
+					delay: -1.5,
+					opacity: 1
+				})
+				.to(points, {
+					duration: 1,
+					delay: -1.5,
 					opacity: 1
 				})
 		} else {
