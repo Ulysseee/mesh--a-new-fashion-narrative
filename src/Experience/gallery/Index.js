@@ -15,9 +15,9 @@ import Environment from './Environment.js'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
 
-import { groundFloorPath } from '../pathes'
+import { galleryPath } from '../pathes'
 
-export default class GroundFloor {
+export default class Gallery {
 	constructor() {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
@@ -36,7 +36,7 @@ export default class GroundFloor {
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
-			this.spline = new Spline(groundFloorPath)
+			this.spline = new Spline(galleryPath)
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal1'

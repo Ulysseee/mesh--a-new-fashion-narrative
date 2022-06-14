@@ -1,4 +1,4 @@
-export const groundFloor = [
+export const gallery = [
 	{
 		name: 'rdcModel',
 		type: 'gltfModel',
@@ -61,7 +61,7 @@ export const groundFloor = [
 	}
 ]
 
-export const secondFloor = [
+export const metavers = [
 	{
 		name: 'butterfly',
 		type: 'gltfModel',

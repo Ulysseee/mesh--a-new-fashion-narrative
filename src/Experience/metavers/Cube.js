@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
-import Cloth from '../shared/Cloth.js'
+import Clothes from '../shared/Clothes.js'
 
-export default class Cube extends Cloth {
+export default class Cube extends Clothes {
 	constructor() {
 		super()
 		this.experience = new Experience()

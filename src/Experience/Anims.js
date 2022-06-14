@@ -212,7 +212,7 @@ export default class Anims {
 			}
 		})
 
-		if (level === 'secondFloor') {
+		if (level === 'metavers') {
 			await this.switchOutTl
 				.to(flootIntro, {
 					opacity: 0,

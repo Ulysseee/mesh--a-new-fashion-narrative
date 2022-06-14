@@ -12,7 +12,7 @@ export default class Plane {
 	}
 
 	setCube() {
-		this.material = new THREE.MeshStandardMaterial({
+		this.material = new THREE.MeshBasicMaterial({
 			map: this.resource,
 			transparent: true,
 			depthWrite: false,
@@ -22,6 +22,7 @@ export default class Plane {
 		this.mesh = new THREE.Mesh(this.geometry, this.material)
 		this.mesh.position.set(20.5, 1.5, 0)
 		this.mesh.rotation.y = Math.PI / 2
+		this.mesh.frustumCulled = false
 
 		this.scene.add(this.mesh)
 	}

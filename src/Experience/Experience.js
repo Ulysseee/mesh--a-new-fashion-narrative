@@ -13,11 +13,11 @@ import Renderer from './Renderer.js'
 import Raycaster from './Raycaster'
 import Overlay from './shared/Overlay.js'
 import Stamps from './Stamps.js'
-import SecondFloor from '@classes/secondFloor/SecondFloor.js'
-import GroundFloor from '@classes/groundFloor/GroundFloor.js'
+import Metavers from '@classes/metavers/Index.js'
+import Gallery from '@classes/gallery/Index.js'
 
 import Anims from './Anims.js'
-import { groundFloor, secondFloor } from './sources.js'
+import { gallery, metavers } from './sources.js'
 import { Vector3 } from 'three'
 
 export default class Experience {
@@ -39,7 +39,7 @@ export default class Experience {
 		this.time = new Time()
 		this.mouse = new Mouse()
 		this.cursor = new Cursor(document.querySelectorAll('.cursor'))
-		this.resources = new Resources(groundFloor)
+		this.resources = new Resources(gallery)
 
 		this.scene = new THREE.Scene()
 		this.camera = new Camera()
@@ -53,7 +53,7 @@ export default class Experience {
 		this.stamps = new Stamps()
 		this.raycaster = new Raycaster()
 		this.renderer = new Renderer()
-		this.groundFloor = new GroundFloor()
+		this.gallery = new Gallery()
 		this.overlay = new Overlay()
 		this.anims = new Anims()
 		this.parallax = new CamParallax()
@@ -94,8 +94,8 @@ export default class Experience {
 		if (this.parallax) this.parallax.update()
 
 		if (this.raycaster) this.raycaster.update()
-		if (this.groundFloor) this.groundFloor.update()
-		if (this.secondFloor) this.secondFloor.update()
+		if (this.gallery) this.gallery.update()
+		if (this.metavers) this.metavers.update()
 		if (this.renderer) this.renderer.update()
 		if (this.debug) this.debug.stats.update()
 
@@ -116,29 +116,29 @@ export default class Experience {
 		this.destroy()
 
 		switch (level) {
-			case 'secondFloor':
+			case 'metavers':
 				this.renderer.instance.outputEncoding = THREE.LinearEncoding
 
 				this.items = []
 				this.camera.instance.position.set(0, 5, 5)
 				this.camera.instance.lookAt(-3, 5, -10)
 
-				this.groundFloor.unrealBloomPass.strength = 0
-				this.groundFloor.unrealBloomPass.radius = 0
-				this.groundFloor.unrealBloomPass.threshold = 0
-				this.groundFloor.step1.classList.remove('is-active')
-				this.groundFloor.step2.classList.remove('is-active')
-				this.groundFloor.step3.classList.remove('is-active')
-				this.groundFloor.step4.classList.remove('is-active')
-				this.groundFloor = null
+				this.gallery.unrealBloomPass.strength = 0
+				this.gallery.unrealBloomPass.radius = 0
+				this.gallery.unrealBloomPass.threshold = 0
+				this.gallery.step1.classList.remove('is-active')
+				this.gallery.step2.classList.remove('is-active')
+				this.gallery.step3.classList.remove('is-active')
+				this.gallery.step4.classList.remove('is-active')
+				this.gallery = null
 				this.selectedItem = false
 				this.infoOpen = false
 
-				this.resources = new Resources(secondFloor)
-				this.secondFloor = new SecondFloor()
+				this.resources = new Resources(metavers)
+				this.metavers = new Metavers()
 				break
 
-			case 'groundFloor':
+			case 'gallery':
 				this.renderer.instance.outputEncoding = THREE.sRGBEncoding
 
 				this.items = []
@@ -148,9 +148,9 @@ export default class Experience {
 					2.161829353166156,
 					11.209875427574616
 				)
-				this.secondFloor = null
-				this.resources = new Resources(groundFloor)
-				this.groundFloor = new GroundFloor()
+				this.metavers = null
+				this.resources = new Resources(gallery)
+				this.gallery = new Gallery()
 				break
 
 			default:

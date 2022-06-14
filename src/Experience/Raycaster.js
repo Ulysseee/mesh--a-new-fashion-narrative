@@ -57,19 +57,16 @@ export default class Raycaster {
 
 		window.addEventListener('click', () => {
 			if (this.currentIntersect && !this.experience.selectedItem) {
-				if (
-					this.experience.groundFloor ||
-					this.experience.secondFloor
-				) {
+				if (this.experience.gallery || this.experience.metavers) {
 					this.experience.openSound.play()
 				}
 
-				if (this.experience.groundFloor) {
-					this.experience.groundFloor.handleClick()
+				if (this.experience.gallery) {
+					this.experience.gallery.handleClick()
 				}
 
-				if (this.experience.secondFloor) {
-					this.experience.secondFloor.handleClick()
+				if (this.experience.metavers) {
+					this.experience.metavers.handleClick()
 				}
 			}
 		})
@@ -80,12 +77,12 @@ export default class Raycaster {
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal1'
 		) {
-			this.experience.switch('secondFloor')
+			this.experience.switch('metavers')
 		} else if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal2'
 		) {
-			this.experience.switch('groundFloor')
+			this.experience.switch('gallery')
 		} else if (
 			this.currentIntersect &&
 			this.currentIntersect.object.name === 'portal3'
@@ -101,7 +98,7 @@ export default class Raycaster {
 			this.experience.items
 		)
 
-		if (this.experience.secondFloor) {
+		if (this.experience.metavers) {
 			for (const point of this.stamps.points) {
 				// Get 2D screen position
 				const screenPosition = point.position.clone()

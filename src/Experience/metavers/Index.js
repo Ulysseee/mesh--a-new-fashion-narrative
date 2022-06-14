@@ -9,11 +9,11 @@ import WaterClass from './Water.js'
 import Cube from './Cube.js'
 import Spline from '../shared/Spline.js'
 
-import { secondFloorPath } from '../pathes'
+import { metaversPath } from '../pathes'
 
 import gsap, { Circ } from 'gsap'
 
-export default class SecondFloor {
+export default class Metavers {
 	constructor() {
 		this.experience = new Experience()
 		this.sizes = this.experience.sizes
@@ -29,7 +29,7 @@ export default class SecondFloor {
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
-			this.spline = new Spline(secondFloorPath)
+			this.spline = new Spline(metaversPath)
 
 			this.environment = new Environment()
 			this.grass = new Grass()

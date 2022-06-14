@@ -61,7 +61,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	pointerevents: none;
+	pointer-events: none;
 
 	.groundFloor,
 	.secondFloor {

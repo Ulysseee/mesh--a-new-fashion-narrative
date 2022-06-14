@@ -1,6 +1,6 @@
 import { CatmullRomCurve3, Vector3 } from 'three'
 
-const groundFloorPath = new CatmullRomCurve3(
+const galleryPath = new CatmullRomCurve3(
 	[
 		new Vector3(35, -4, 9),
 		new Vector3(35, -4, -9),
@@ -24,7 +24,7 @@ const groundFloorPath = new CatmullRomCurve3(
 	true
 )
 
-const secondFloorPath = new CatmullRomCurve3(
+const metaversPath = new CatmullRomCurve3(
 	[
 		new Vector3(0, 3, 0),
 		new Vector3(-3, 3, -5),
@@ -38,4 +38,4 @@ const secondFloorPath = new CatmullRomCurve3(
 	true
 )
 
-export { groundFloorPath, secondFloorPath }
+export { galleryPath, metaversPath }

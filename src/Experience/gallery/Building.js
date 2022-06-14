@@ -14,15 +14,12 @@ export default class Building {
 		this.resource = this.resources.items.rdcModel
 		this.setModel()
 
-		this.setPostproccess()
+		// this.setPostproccess()
 	}
 
 	setModel() {
-		// this.resource.scene.children[0].children[0].children[0].children[6].children[0].material =
-		// 	new MeshStandardMaterial({ color: 0xff0000 })
 		this.resource.scene.scale.set(2, 2, 2)
 		this.resource.scene.position.set(0, 0, 0)
-
 		this.scene.add(this.resource.scene)
 	}
 

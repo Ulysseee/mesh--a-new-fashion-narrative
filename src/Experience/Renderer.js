@@ -18,8 +18,8 @@ export default class Renderer {
 
 	setInstance() {
 		this.instance = new WebGLRenderer({
-			canvas: this.canvas
-			// antialias: true
+			canvas: this.canvas,
+			antialias: true
 		})
 		// IF GLTF MODEL IS USED
 		this.instance.outputEncoding = sRGBEncoding
