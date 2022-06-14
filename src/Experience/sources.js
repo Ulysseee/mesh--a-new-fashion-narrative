@@ -36,9 +36,27 @@ export const gallery = [
 	},
 
 	{
-		name: 'sweatModel',
+		name: 'sweatModel', // adidas
 		type: 'gltfModel',
 		path: 'models/sweat.glb'
+	},
+
+	{
+		name: 'jeans',
+		type: 'gltfModel',
+		path: 'models/jean.glb'
+	},
+
+	{
+		name: 'mocassin',
+		type: 'gltfModel',
+		path: 'models/mocassin.glb'
+	},
+
+	{
+		name: 'jacquemus',
+		type: 'gltfModel',
+		path: 'models/jacquemus.glb'
 	},
 
 	{
@@ -54,33 +72,21 @@ export const gallery = [
 	},
 
 	{
-		name: 'shoesModel',
+		name: 'firstGucciBag',
 		type: 'gltfModel',
-		path: 'models/air_jordan_1/scene.gltf'
+		path: 'models/sac_gucci_1.glb'
+	},
+
+	{
+		name: 'secondGucciBag',
+		type: 'gltfModel',
+		path: 'models/sac_gucci_2.glb'
 	},
 
 	{
 		name: 'sweatModel',
 		type: 'gltfModel',
 		path: 'models/sweat.glb'
-	},
-
-	{
-		name: 'joggingModel',
-		type: 'gltfModel',
-		path: 'models/jogging/scene.gltf'
-	},
-
-	{
-		name: 'jacketModel',
-		type: 'gltfModel',
-		path: 'models/jacket/scene.gltf'
-	},
-
-	{
-		name: 'shirtModel',
-		type: 'gltfModel',
-		path: 'models/t-shirt/scene.gltf'
 	},
 
 	{

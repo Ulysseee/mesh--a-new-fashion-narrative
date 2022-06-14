@@ -276,7 +276,7 @@ export default {
 		text-transform: uppercase;
 
 		text-align: center;
-		font-size: 2rem;
+		font-size: 1.75rem;
 		line-height: 2.5rem;
 
 		div {
@@ -295,10 +295,10 @@ export default {
 	.loader__paragraph {
 		width: 18%;
 		position: absolute;
-		top: 19rem;
+		top: 18rem;
 		font-family: 'Brilliant Cut Pro Regular';
 		text-align: center;
-		font-size: 0.875rem;
+		font-size: 0.825rem;
 		line-height: 1.25rem;
 		opacity: 0;
 	}

@@ -49,7 +49,7 @@ export default class Plane {
 			this.geometry,
 			this.conceptionMaterial
 		)
-		this.conceptionPlane.position.set(-13.5, 1.5, 15)
+		this.conceptionPlane.position.set(-13.5, 1.5, 14.75)
 		this.conceptionPlane.rotation.y = Math.PI
 
 		this.transportMaterial = new THREE.MeshBasicMaterial({
@@ -68,7 +68,7 @@ export default class Plane {
 			alphaTest: 0.4
 		})
 		this.consoPlane = new THREE.Mesh(this.geometry, this.consoMaterial)
-		this.consoPlane.position.set(-13.5, 1.5, -15)
+		this.consoPlane.position.set(-13.5, 1.5, -14.75)
 
 		this.scene.add(
 			this.aboutPlane,

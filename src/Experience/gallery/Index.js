@@ -5,11 +5,14 @@ import Debug from '@utils/Debug'
 import Experience from '../Experience.js'
 import Bag from './Bag.js'
 import Shoes from './Shoes.js'
-import Shirt from './Shirt.js'
-import Jacket from './Jacket.js'
 import Sweat from './Sweat.js'
+import Jeans from './Jeans.js'
+import Mocassin from './Mocassin.js'
+import Marron from './Marron.js'
+import Jacquemus from './Jacquemus.js'
+import SecondGucciBag from './SecondGucciBag.js'
+import FirstGucciBag from './FirstGucciBag.js'
 import Plane from './Plane.js'
-import Jogging from './Jogging.js'
 import Building from './Building.js'
 import Environment from './Environment.js'
 import Portal from '../shared/Portal'
@@ -46,12 +49,15 @@ export default class Gallery {
 			this.environment = new Environment()
 			this.plane = new Plane()
 			this.Building = new Building()
-			this.bag = new Bag()
+			// this.bag = new Bag()
 			// this.shoes = new Shoes()
-			// this.shirt = new Shirt()
-			// this.jogging = new Jogging()
-			// this.sweat = new Sweat()
-			// this.jacket = new Jacket()
+			this.sweat = new Sweat()
+			this.jeans = new Jeans()
+			this.mocassin = new Mocassin()
+			this.marron = new Marron()
+			this.jacquemus = new Jacquemus()
+			this.secondGucciBag = new SecondGucciBag()
+			this.firstGucciBag = new FirstGucciBag()
 		})
 	}
 
