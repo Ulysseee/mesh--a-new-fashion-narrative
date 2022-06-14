@@ -38,4 +38,37 @@ const metaversPath = new CatmullRomCurve3(
 	true
 )
 
-export { galleryPath, metaversPath }
+const cameraTargetPositions = [
+	{
+		x: 21,
+		y: 2.5,
+		z: 0
+	},
+	{
+		x: 0,
+		y: 1.5,
+		z: 0
+	},
+	{
+		x: -18,
+		y: 1.5,
+		z: 7
+	},
+	{
+		x: -3,
+		y: 1.5,
+		z: 0
+	},
+	{
+		x: -18,
+		y: 1.5,
+		z: -7
+	},
+	{
+		x: 15,
+		y: 4.25,
+		z: 0
+	}
+]
+
+export { galleryPath, metaversPath, cameraTargetPositions }

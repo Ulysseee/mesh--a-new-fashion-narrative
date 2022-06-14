@@ -132,8 +132,6 @@ export default class Gallery {
 			}`
 			const decimalNbr = Number(decimalStr)
 
-			console.log(this.percent)
-
 			this.percent = this.spline.curve.getUtoTmapping(decimalNbr)
 
 			if (this.percent)
@@ -160,7 +158,7 @@ export default class Gallery {
 				}
 
 			if (!this.experience.selectedItem && !this.experience.isLoading) {
-				this.spline.update()
+				this.spline.update(this.percent)
 			}
 		}
 	}
