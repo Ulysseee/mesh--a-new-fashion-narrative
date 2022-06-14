@@ -4,12 +4,14 @@ import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
 import Bag from './Bag.js'
-import Shoes from './Shoes.js'
 import Shirt from './Shirt.js'
-import Jacket from './Jacket.js'
+
 import Sweat from './Sweat.js'
+import Converse from './Converse.js'
+import Jupe from './Jupe.js'
+import Airmax from './Airmax.js'
+import Novembre from './Novembre.js'
 import Plane from './Plane.js'
-import Jogging from './Jogging.js'
 import Building from './Building.js'
 import Environment from './Environment.js'
 import Portal from '../shared/Portal'
@@ -47,6 +49,10 @@ export default class Gallery {
 			this.plane = new Plane()
 			this.Building = new Building()
 			this.bag = new Bag()
+			this.airmax = new Airmax()
+			this.converse = new Converse()
+			this.jupe = new Jupe()
+			this.novembre = new Novembre()
 			// this.shoes = new Shoes()
 			// this.shirt = new Shirt()
 			// this.jogging = new Jogging()

@@ -48,6 +48,24 @@ export const gallery = [
 	},
 
 	{
+		name: 'converseModel',
+		type: 'gltfModel',
+		path: 'models/converse.glb'
+	},
+
+	{
+		name: 'airmaxModel',
+		type: 'gltfModel',
+		path: 'models/airmax.glb'
+	},
+
+	{
+		name: 'jupeModel',
+		type: 'gltfModel',
+		path: 'models/jupe.glb'
+	},
+
+	{
 		name: 'marronModel',
 		type: 'gltfModel',
 		path: 'models/marron.glb'
