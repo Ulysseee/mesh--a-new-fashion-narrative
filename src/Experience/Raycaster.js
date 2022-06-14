@@ -92,11 +92,14 @@ export default class Raycaster {
 	}
 
 	update() {
+		// console.log(this.experience.items)
 		this.raycaster.setFromCamera(this.mouse.mousePos, this.camera.instance)
 
 		const intersects = this.raycaster.intersectObjects(
 			this.experience.items
 		)
+
+		// console.log(intersects)
 
 		if (this.experience.metavers) {
 			for (const point of this.stamps.points) {

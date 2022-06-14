@@ -19,6 +19,11 @@ export default class Airmax extends Clothes {
 		this.resource.scene.position.set(-3.26, 1.8, 4.0)
 		this.resource.scene.rotation.y = 3
 
+		this.resource.scene.userData.name = 'cloth3'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth3'
+		})
+
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
 	}

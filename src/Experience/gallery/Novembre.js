@@ -45,6 +45,11 @@ export default class Novembre extends Clothes {
 		this.resource.scene.position.set(-3.26, 2.61, -3.26)
 		this.resource.scene.rotation.y = 0
 
+		this.resource.scene.userData.name = 'cloth3'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth3'
+		})
+
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
 	}

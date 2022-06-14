@@ -103,8 +103,6 @@ export default class Spline extends EventEmitter {
 
 		this.camera.instance.position.set(camPos.x, camPos.y, camPos.z)
 
-		console.log(this.cameraTarget.position)
-
 		this.camera.instance.lookAt(this.cameraTarget.position)
 
 		let timeline = gsap.timeline()

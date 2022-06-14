@@ -44,6 +44,11 @@ export default class Cargo extends Clothes {
 		this.resource.scene.position.set(-3.26, 2.31, 0.65)
 		this.resource.scene.rotation.y = 0
 
+		this.resource.scene.userData.name = 'cloth3'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth3'
+		})
+
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
 	}

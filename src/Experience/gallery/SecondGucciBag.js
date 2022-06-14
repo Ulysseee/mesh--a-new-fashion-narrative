@@ -16,7 +16,12 @@ export default class SecondGucciBag extends Clothes {
 	setGucci() {
 		this.resource.scene.scale.set(2.75, 2.75, 2.75)
 		this.resource.scene.position.set(-17.5, 2.5, -11.5)
+
 		this.resource.scene.userData.type = 'cloth4'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth4'
+		})
+
 		this.resource.scene.rotation.y = Math.PI / 2
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)

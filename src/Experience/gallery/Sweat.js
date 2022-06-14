@@ -15,7 +15,12 @@ export default class Sweat extends Clothes {
 	setSweat() {
 		this.resource.scene.scale.set(2.25, 2.25, 2.25)
 		this.resource.scene.position.set(-17, 2.5, 10.5)
-		this.resource.scene.userData.type = 'cloth2'
+
+		this.resource.scene.userData.name = 'cloth2'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth2'
+		})
+
 		this.resource.scene.rotation.y = Math.PI / 2
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)

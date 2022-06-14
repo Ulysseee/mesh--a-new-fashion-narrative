@@ -3,6 +3,9 @@ import config from '@utils/config'
 import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
+import Clothes from '../shared/Clothes.js'
+import Bag from './Bag.js'
+import Shoes from './Shoes.js'
 import Sweat from './Sweat.js'
 import Converse from './Converse.js'
 import Jupe from './Jupe.js'
@@ -21,6 +24,8 @@ import Building from './Building.js'
 import Environment from './Environment.js'
 import Portal from '../shared/Portal'
 import Spline from '../shared/Spline'
+
+import * as THREE from 'three'
 
 import { galleryPath } from '../pathes'
 
@@ -59,6 +64,9 @@ export default class Gallery {
 			this.jupe = new Jupe()
 			this.novembre = new Novembre()
 			this.pull = new Pull()
+
+			this.clothes = new Clothes()
+
 			this.sweat = new Sweat()
 			this.jeans = new Jeans()
 			this.mocassin = new Mocassin()
@@ -66,6 +74,16 @@ export default class Gallery {
 			this.jacquemus = new Jacquemus()
 			this.secondGucciBag = new SecondGucciBag()
 			this.firstGucciBag = new FirstGucciBag()
+
+			const geometry = new THREE.BoxGeometry(1, 1, 1)
+			const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+			const cube = new THREE.Mesh(geometry, material)
+			cube.userData.name = 'cloth2'
+			this.experience.items.push(cube)
+
+			console.log(this.experience.items)
+
+			this.scene.add(cube)
 		})
 	}
 
@@ -119,11 +137,12 @@ export default class Gallery {
 				this.raycaster.currentIntersect.object
 			)
 
-			this.bag.displayInfo('.cloth1')
+			this.clothes.displayInfo('.cloth1')
 			this.experience.infoOpen = true
 		} else if (
 			this.raycaster.currentIntersect.object.userData.name === 'cloth2'
 		) {
+			console.log('cloth 2')
 			this.experience.selectedItem = true
 			// this.spline.scroll.target = 0.3
 
@@ -132,8 +151,16 @@ export default class Gallery {
 				this.raycaster.currentIntersect.object
 			)
 
-			this.jacket.displayInfo('.cloth2')
+			this.clothes.displayInfo('.cloth2')
 			this.experience.infoOpen = true
+		} else if (
+			this.raycaster.currentIntersect.object.userData.name === 'cloth3'
+		) {
+			console.log('cloth 3')
+		} else if (
+			this.raycaster.currentIntersect.object.userData.name === 'cloth4'
+		) {
+			console.log('cloth 4')
 		}
 	}
 
