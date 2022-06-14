@@ -12,31 +12,6 @@ export default class Cargo extends Clothes {
 		this.debug = this.experience.debug
 
 		this.setCargo()
-		if (this.debug) this.setDebug()
-	}
-	setDebug() {
-		const f = this.debug.gui.addFolder({
-			title: 'jupe',
-			expanded: true
-		})
-
-		f.addInput(this.resource.scene.position, 'x', {
-			min: -30,
-			max: 30,
-			step: 0.01
-		})
-
-		f.addInput(this.resource.scene.position, 'y', {
-			min: -30,
-			max: 30,
-			step: 0.01
-		})
-
-		f.addInput(this.resource.scene.position, 'z', {
-			min: -30,
-			max: 30,
-			step: 0.01
-		})
 	}
 
 	setCargo() {

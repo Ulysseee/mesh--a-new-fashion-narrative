@@ -17,8 +17,10 @@ export default class Sweat extends Clothes {
 		this.resource.scene.position.set(-17, 2.5, 10.5)
 
 		this.resource.scene.userData.name = 'cloth2'
+		this.resource.scene.userData.type = '2_1'
 		this.resource.scene.traverse((child) => {
 			child.userData.name = 'cloth2'
+			child.userData.type = '2_1'
 		})
 
 		this.resource.scene.rotation.y = Math.PI / 2

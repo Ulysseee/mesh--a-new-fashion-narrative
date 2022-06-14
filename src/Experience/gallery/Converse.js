@@ -19,8 +19,10 @@ export default class Converse extends Clothes {
 		this.resource.scene.position.set(1.25, 1.8, -3.95)
 
 		this.resource.scene.userData.name = 'cloth1'
+		this.resource.scene.userData.type = '1_1'
 		this.resource.scene.traverse((child) => {
 			child.userData.name = 'cloth1'
+			child.userData.type = '1_1'
 		})
 
 		this.experience.items.push(this.resource.scene)

@@ -61,6 +61,7 @@ export default {
 			this.experience.lastScrollTime = new Date().getTime()
 			this.experience.infoOpen = false
 			this.experience.camera.resetPosition()
+			this.experience.gallery.spline.resetPosition()
 		}
 	}
 }

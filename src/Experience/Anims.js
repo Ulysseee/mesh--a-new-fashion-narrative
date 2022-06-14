@@ -4,7 +4,7 @@ import Experience from './Experience'
 export default class Anims {
 	constructor() {
 		this.experience = new Experience()
-		this.camera = this.experience.camera
+		this.camera = this.experience.camera.instance
 		this.overlay = this.experience.overlay
 		this.infos = document.querySelector('.navigation__controls__infos')
 		this.scroll = document.querySelector('.helper__scroll')
@@ -292,35 +292,53 @@ export default class Anims {
 				})
 		}
 	}
-	reviewModel(camera, model) {
+	reviewModel(target, position, targetPosition) {
 		const timeline = gsap.timeline({
 			onComplete: () => {
 				this.experience.parallax.active = true
 			}
 		})
 
-		timeline.to(camera.position, {
-			duration: 1.75,
-			x: model.position.x,
-			y: model.position.y,
-			z: model.position.z - 3,
-			ease: Power3.easeOut
-		})
+		timeline
+			.to(target.position, {
+				duration: 1.25,
+				x: targetPosition.x,
+				y: targetPosition.y,
+				z: targetPosition.z - 2,
+				ease: Power3.easeOut
+			})
+			.to(this.camera.position, {
+				duration: 1.75,
+				x: position.x,
+				y: position.y,
+				z: position.z,
+				delay: -1,
+				ease: Power3.easeOut
+			})
 	}
 
-	leaveModel(camera, model) {
-		const timeline = gsap.timeline({
-			onComplete: () => {
-				this.experience.parallax.active = true
-			}
-		})
+	// 	leaveModel(target, position, targetPosition) {
+	// 		const timeline = gsap.timeline({
+	// 			onComplete: () => {
+	// 				this.experience.parallax.active = true
+	// 			}
+	// 		})
 
-		timeline.to(camera.position, {
-			duration: 1.75,
-			x: model.position.x,
-			y: model.position.y,
-			z: model.position.z - 3,
-			ease: Power3.easeOut
-		})
-	}
+	// 		timeline
+	// 			.to(this.camera.position, {
+	// 				duration: 1.75,
+	// 				x: position.x,
+	// 				y: position.y,
+	// 				z: position.z,
+	// 				ease: Power3.easeOut
+	// 			})
+	// 			.to(target.position, {
+	// 				duration: 1.75,
+	// 				x: targetPosition.x,
+	// 				y: targetPosition.y,
+	// 				z: targetPosition.z,
+	// 				dalay: -1.75,
+	// 				ease: Power3.easeOut
+	// 			})
+	// 	}
 }

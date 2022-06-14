@@ -27,7 +27,11 @@ import Spline from '../shared/Spline'
 
 import * as THREE from 'three'
 
-import { galleryPath } from '../pathes'
+import {
+	galleryPath,
+	cameraPositionMat,
+	cameraPositionConcept
+} from '../pathes'
 
 export default class Gallery {
 	constructor() {
@@ -77,13 +81,29 @@ export default class Gallery {
 
 			const geometry = new THREE.BoxGeometry(1, 1, 1)
 			const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-			const cube = new THREE.Mesh(geometry, material)
-			cube.userData.name = 'cloth2'
-			this.experience.items.push(cube)
+			this.cube = new THREE.Mesh(geometry, material)
+			this.cube.position.set(-14.5, 2.5, 9.5)
+			this.scene.add(this.cube)
 
-			console.log(this.experience.items)
-
-			this.scene.add(cube)
+			const fe = this.debug.gui.addFolder({
+				title: 'cloth',
+				expanded: true
+			})
+			fe.addInput(this.cube.position, 'x', {
+				min: -20,
+				max: 20,
+				step: 0.5
+			})
+			fe.addInput(this.cube.position, 'y', {
+				min: -20,
+				max: 20,
+				step: 0.5
+			})
+			fe.addInput(this.cube.position, 'z', {
+				min: -20,
+				max: 20,
+				step: 0.5
+			})
 		})
 	}
 
@@ -128,39 +148,101 @@ export default class Gallery {
 
 	handleClick() {
 		this.experience.savedPosition = this.camera.instance.position.clone()
+		this.experience.savedtargetPosition =
+			this.spline.cameraTarget.position.clone()
 
 		if (this.raycaster.currentIntersect.object.userData.name === 'cloth1') {
 			this.experience.selectedItem = true
 
-			this.experience.anims.reviewModel(
-				this.camera.instance,
-				this.raycaster.currentIntersect.object
-			)
+			switch (this.raycaster.currentIntersect.object.userData.type) {
+				case '1_1':
+					this.experience.anims.reviewModel(
+						this.spline.cameraTarget,
+						cameraPositionMat[0],
+						this.raycaster.currentIntersect.object.parent.parent
+							.parent.position
+					)
+					break
+				case '1_2':
+					this.experience.anims.reviewModel(
+						this.spline.cameraTarget,
+						cameraPositionMat[1],
+						this.raycaster.currentIntersect.object.parent.parent
+							.parent.position
+					)
+					break
+				case '1_3':
+					this.experience.anims.reviewModel(
+						this.spline.cameraTarget,
+						cameraPositionMat[2],
+						this.raycaster.currentIntersect.object.parent.parent
+							.parent.position
+					)
+					break
+				default:
+					break
+			}
 
 			this.clothes.displayInfo('.cloth1')
 			this.experience.infoOpen = true
 		} else if (
 			this.raycaster.currentIntersect.object.userData.name === 'cloth2'
 		) {
-			console.log('cloth 2')
 			this.experience.selectedItem = true
-			// this.spline.scroll.target = 0.3
 
-			this.experience.anims.reviewModel(
-				this.camera.instance,
-				this.raycaster.currentIntersect.object
-			)
+			switch (this.raycaster.currentIntersect.object.userData.type) {
+				case '2_1':
+					this.experience.anims.reviewModel(
+						this.spline.cameraTarget,
+						cameraPositionConcept[0],
+						this.raycaster.currentIntersect.object.parent.parent
+							.parent.position
+					)
+					break
+				case '2_2':
+					this.experience.anims.reviewModel(
+						this.spline.cameraTarget,
+						cameraPositionConcept[1],
+						this.raycaster.currentIntersect.object.parent.parent
+							.parent.position
+					)
+					break
+				case '2_3':
+					this.experience.anims.reviewModel(
+						this.spline.cameraTarget,
+						cameraPositionConcept[2],
+						this.raycaster.currentIntersect.object.parent.parent
+							.parent.position
+					)
+					break
+				case '2_4':
+					this.experience.anims.reviewModel(
+						this.spline.cameraTarget,
+						cameraPositionConcept[3],
+						this.raycaster.currentIntersect.object.parent.parent
+							.parent.position
+					)
+					break
+				default:
+					break
+			}
 
 			this.clothes.displayInfo('.cloth2')
 			this.experience.infoOpen = true
 		} else if (
 			this.raycaster.currentIntersect.object.userData.name === 'cloth3'
 		) {
-			console.log('cloth 3')
+			this.experience.selectedItem = true
+
+			this.clothes.displayInfo('.cloth3')
+			this.experience.infoOpen = true
 		} else if (
 			this.raycaster.currentIntersect.object.userData.name === 'cloth4'
 		) {
-			console.log('cloth 4')
+			this.experience.selectedItem = true
+
+			this.clothes.displayInfo('.cloth4')
+			this.experience.infoOpen = true
 		}
 	}
 
@@ -198,7 +280,7 @@ export default class Gallery {
 					this.step2.classList.remove('is-active')
 				}
 
-			if (!this.experience.selectedItem && !this.experience.isLoading) {
+			if (!this.experience.isLoading) {
 				this.spline.update(this.percent)
 			}
 		}
