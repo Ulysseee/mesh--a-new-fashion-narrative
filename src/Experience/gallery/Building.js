@@ -11,7 +11,7 @@ export default class Building {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
-		this.resource = this.resources.items.rdcModel
+		this.resource = this.resources.items.gallery
 		this.setModel()
 
 		// this.setPostproccess()
