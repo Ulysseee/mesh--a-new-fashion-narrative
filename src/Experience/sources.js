@@ -12,6 +12,30 @@ export const gallery = [
 	},
 
 	{
+		name: 'materials',
+		type: 'texture',
+		path: 'textures/matieres_wall.png'
+	},
+
+	{
+		name: 'conception',
+		type: 'texture',
+		path: 'textures/conception_wall.png'
+	},
+
+	{
+		name: 'transport',
+		type: 'texture',
+		path: 'textures/transport_wall.png'
+	},
+
+	{
+		name: 'consommation',
+		type: 'texture',
+		path: 'textures/consommation_wall.png'
+	},
+
+	{
 		name: 'bagModel',
 		type: 'gltfModel',
 		path: 'models/womens_bag/scene.gltf'

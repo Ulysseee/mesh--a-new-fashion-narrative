@@ -13,12 +13,12 @@
 		</h1>
 
 		<h2 class="loader__subtitle">
-			<div ref="subtitleTop">A deep dive into the consequences</div>
-			<div ref="subtitleBottom">of our consumption patterns</div>
+			<div ref="subtitleTop">Une exploration approfondie des enjeux</div>
+			<div ref="subtitleBottom">de nos modes de consommation</div>
 		</h2>
 
 		<h3 ref="paragraph" class="loader__paragraph">
-			End-of-year interractive museum project at Gobelins 2022.
+			Projet de gallerie interractive de fin d'année, Gobelins 2022.
 		</h3>
 
 		<button ref="button" class="loader__enterCta">
@@ -29,7 +29,11 @@
 			<div>Enter the experience</div>
 		</button>
 
-		<img class="loader__logo" src="/assets/img/mesh.svg" />
+		<img
+			class="loader__logo"
+			src="/assets/img/mesh.svg"
+			draggable="false"
+		/>
 	</div>
 </template>
 
@@ -154,12 +158,6 @@ export default {
 					this.experience.isLoading = false
 				}
 			})
-				.to(this.$refs.button, {
-					opacity: 0,
-					duration: 0.8,
-					ease: Power3.easeOut
-				})
-
 				.to(this.$refs.loadingScreen, {
 					css: { opacity: '0', pointerEvents: 'none' },
 					duration: 1.5,
@@ -297,7 +295,7 @@ export default {
 	.loader__paragraph {
 		width: 18%;
 		position: absolute;
-		top: 18rem;
+		top: 19rem;
 		font-family: 'Brilliant Cut Pro Regular';
 		text-align: center;
 		font-size: 0.875rem;

@@ -52,7 +52,7 @@ const cameraTargetPositions = [
 	{
 		x: -18,
 		y: 1.5,
-		z: 7
+		z: 11
 	},
 	{
 		x: -3,
@@ -62,7 +62,7 @@ const cameraTargetPositions = [
 	{
 		x: -18,
 		y: 1.5,
-		z: -7
+		z: -11
 	},
 	{
 		x: 15,
