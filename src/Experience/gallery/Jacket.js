@@ -9,10 +9,10 @@ export default class Jacket extends Clothes {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.jacketModel
-		this.setCube()
+		this.setJacket()
 	}
 
-	setCube() {
+	setJacket() {
 		this.resource.scene.scale.set(1, 1, 1)
 		this.resource.scene.position.set(-16, 0, -9)
 		this.resource.scene.userData.type = 'cloth2'

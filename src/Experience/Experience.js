@@ -142,11 +142,11 @@ export default class Experience {
 				this.renderer.instance.outputEncoding = THREE.sRGBEncoding
 
 				this.items = []
-				this.camera.instance.position.set(5, 2, -6)
+				this.camera.instance.position.set(35, -2, 4)
 				this.camera.instance.lookAt(
-					17.139502685754966,
-					2.161829353166156,
-					11.209875427574616
+					33.47678508431356,
+					-1.2076348846877,
+					-10.775930657439488
 				)
 				this.metavers = null
 				this.resources = new Resources(gallery)

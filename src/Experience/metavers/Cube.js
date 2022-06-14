@@ -1,26 +1,22 @@
-import * as THREE from 'three'
 import Experience from '../Experience.js'
 import Clothes from '../shared/Clothes.js'
 
-export default class Cube extends Clothes {
+export default class Dress extends Clothes {
 	constructor() {
 		super()
 		this.experience = new Experience()
 		this.scene = this.experience.scene
-		this.setCube()
+		this.resources = this.experience.resources
+		this.resource = this.resources.items.dressModel
+		this.setDress()
 	}
 
-	setCube() {
-		const geometry = new THREE.BoxGeometry(5, 5)
-		const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-		this.cube = new THREE.Mesh(geometry, material)
-
-		this.cube.position.x = 15
-		this.cube.position.y = 2
-
-		this.cube.position.z = -15
-		this.scene.add(this.cube)
-		this.cube.userData.type = 'cloth5'
-		this.experience.items.push(this.cube)
+	setDress() {
+		console.log(this.resource)
+		this.resource.scale.set(0.04, 0.04, 0.04)
+		this.resource.position.set(6, 5, -4)
+		this.resource.userData.type = 'cloth2'
+		this.experience.items.push(this.resource)
+		this.scene.add(this.resource)
 	}
 }

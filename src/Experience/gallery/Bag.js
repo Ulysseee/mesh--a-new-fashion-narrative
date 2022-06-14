@@ -10,10 +10,10 @@ export default class Bag extends Clothes {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.bagModel
-		this.setCube()
+		this.setBag()
 	}
 
-	setCube() {
+	setBag() {
 		this.resource.scene.scale.set(0.8, 0.8, 0.8)
 		this.resource.scene.position.set(2, 0, 0)
 

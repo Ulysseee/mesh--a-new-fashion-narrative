@@ -29,7 +29,7 @@ export default class Camera {
 			33.47678508431356,
 			-1.2076348846877,
 			-10.775930657439488
-		) // bizarre
+		)
 
 		this.scene.add(this.instance)
 	}

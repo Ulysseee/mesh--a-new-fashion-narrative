@@ -278,8 +278,9 @@ export default class Anims {
 				.to(this.experience.camera.instance.position, {
 					duration: 2,
 					delay: -1.25,
-					z: 0
+					z: 9
 				})
+
 				.to(header, {
 					duration: 1,
 					opacity: 1

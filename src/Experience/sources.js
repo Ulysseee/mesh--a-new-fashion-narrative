@@ -62,10 +62,16 @@ export const gallery = [
 ]
 
 export const metavers = [
+	// {
+	// 	name: 'butterfly',
+	// 	type: 'gltfModel',
+	// 	path: 'models/butterfly.glb'
+	// },
+
 	{
-		name: 'butterfly',
-		type: 'gltfModel',
-		path: 'models/butterfly.glb'
+		name: 'dressModel',
+		type: 'fbxModel',
+		path: 'models/dress/dress.fbx'
 	},
 	{
 		name: 'bladeAlpha',
@@ -81,16 +87,5 @@ export const metavers = [
 		name: 'waterNormals',
 		type: 'texture',
 		path: 'textures/waternormals.jpg'
-	},
-
-	{
-		name: 'bonce',
-		type: 'gltfModel',
-		path: 'models/bonce.glb'
-	},
-	{
-		name: 'mims',
-		type: 'gltfModel',
-		path: 'models/mims.glb'
 	}
 ]
