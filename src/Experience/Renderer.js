@@ -48,7 +48,7 @@ export default class Renderer {
 	}
 
 	update() {
-		this.instance.render(this.scene, this.camera.instance)
+		// this.instance.render(this.scene, this.camera.instance)
 		this.effectComposer.render()
 	}
 }

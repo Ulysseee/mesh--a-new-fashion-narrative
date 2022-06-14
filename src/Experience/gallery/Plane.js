@@ -8,22 +8,18 @@ export default class Plane {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.about
-		this.setCube()
+		this.setPlane()
 	}
 
-	setCube() {
+	setPlane() {
 		this.material = new THREE.MeshBasicMaterial({
 			map: this.resource,
-			transparent: true,
-			depthWrite: false,
-			depthTest: false
+			alphaTest: 0.4
 		})
 		this.geometry = new THREE.PlaneGeometry(14, 14)
 		this.mesh = new THREE.Mesh(this.geometry, this.material)
 		this.mesh.position.set(20.5, 1.5, 0)
 		this.mesh.rotation.y = Math.PI / 2
-		this.mesh.frustumCulled = false
-
 		this.scene.add(this.mesh)
 	}
 
