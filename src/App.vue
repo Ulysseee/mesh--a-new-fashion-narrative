@@ -8,6 +8,13 @@
 	<NftComponent />
 	<Teleporter />
 	<CustomCursor />
+	<!--
+	<div class="video__container">
+		<video id="video" autoplay="autoplay">
+			<source src="/assets/img/movie.mp4" type="video/mp4" />
+			Your browser does not support the video tag.
+		</video>
+	</div> -->
 </template>
 
 <script>
@@ -45,6 +52,10 @@ export default {
 		}
 	},
 
+	mounted() {
+		// document.querySelector('#video').play()
+	},
+
 	methods: {
 		toggleModal() {
 			if (!this.isAboutActive) {
@@ -68,6 +79,16 @@ export default {
 </script>
 
 <style lang="scss">
+#video {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	height: 100%;
+	overflow: hidden;
+	z-index: 200000;
+}
 body {
 	width: 100vw;
 	height: 100vh;

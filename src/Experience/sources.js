@@ -36,9 +36,21 @@ export const gallery = [
 	},
 
 	{
-		name: 'bagModel',
+		name: 'sweatModel',
 		type: 'gltfModel',
-		path: 'models/womens_bag/scene.gltf'
+		path: 'models/sweat.glb'
+	},
+
+	{
+		name: 'novembreModel',
+		type: 'gltfModel',
+		path: 'models/novembre.glb'
+	},
+
+	{
+		name: 'marronModel',
+		type: 'gltfModel',
+		path: 'models/marron.glb'
 	},
 
 	{
@@ -91,6 +103,12 @@ export const metavers = [
 		type: 'gltfModel',
 		path: 'models/butterfly.glb'
 	},
+
+	{
+		name: 'dressModel',
+		type: 'fbxModel',
+		path: 'models/dress/dress.fbx'
+	},
 	{
 		name: 'bladeAlpha',
 		type: 'texture',
@@ -105,16 +123,5 @@ export const metavers = [
 		name: 'waterNormals',
 		type: 'texture',
 		path: 'textures/waternormals.jpg'
-	},
-
-	{
-		name: 'bonce',
-		type: 'gltfModel',
-		path: 'models/bonce.glb'
-	},
-	{
-		name: 'mims',
-		type: 'gltfModel',
-		path: 'models/mims.glb'
 	}
 ]

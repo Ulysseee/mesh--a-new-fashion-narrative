@@ -1,33 +1,49 @@
 <template>
 	<div class="nft">
 		<div class="point point-0">
-			<div class="label">
-				<!-- <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-					<path
-						fill="#FFFFFF"
-						d="M67.5,-41.6C78.5,-20,72.1,9,58,29.8C43.8,50.6,21.9,63.3,0,63.4C-21.9,63.4,-43.8,50.7,-56.5,30.7C-69.2,10.6,-72.7,-16.7,-61.8,-38.3C-50.8,-59.9,-25.4,-75.7,1.4,-76.6C28.3,-77.4,56.6,-63.2,67.5,-41.6Z"
-						transform="translate(100 100)"
-					/>
-				</svg> -->
-
+			<a
+				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423410916039327745"
+				target="_blank"
+				class="label"
+			>
 				<img class="fit-picture" src="/assets/img/qr_code.png" />
-			</div>
-			<div class="text">NFT available for sale</div>
+			</a>
+			<div class="text">GET NFT</div>
 		</div>
-		<!-- <div class="point point-1">
-			<div class="label">2</div>
-			<div class="text">
-				Ventilation with air purifier and detection of environment
-				toxicity.
-			</div>
+
+		<div class="point point-1">
+			<a
+				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423410916039327745"
+				target="_blank"
+				class="label"
+			>
+				<img class="fit-picture" src="/assets/img/qr_code.png" />
+			</a>
+			<div class="text">GET NFT</div>
 		</div>
+
 		<div class="point point-2">
-			<div class="label">3</div>
-			<div class="text">
-				Cameras supporting night vision and heat vision with automatic
-				adjustment.
-			</div>
-		</div> -->
+			<a
+				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423410916039327745"
+				target="_blank"
+				class="label"
+			>
+				<img class="fit-picture" src="/assets/img/qr_code.png" />
+			</a>
+			<div class="text">GET NFT</div>
+		</div>
+
+		<div class="point point-3">
+			<a
+				w
+				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423410916039327745"
+				target="_blank"
+				class="label"
+			>
+				<img class="fit-picture" src="/assets/img/qr_code.png" />
+			</a>
+			<div class="text">GET NFT</div>
+		</div>
 	</div>
 </template>
 
@@ -49,13 +65,13 @@ export default {
 
 	.label {
 		position: relative;
+		display: block;
 		top: -35px;
 		left: -35px;
 		width: 70px;
 		height: 70px;
 		border-radius: 50%;
 		background: #fff;
-		// cursor: help;
 		transform: scale(0, 0);
 		transition: transform 0.3s;
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

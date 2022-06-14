@@ -4,7 +4,7 @@ import {
 	Group,
 	Vector3,
 	Vector4,
-	PlaneGeometry,
+	CircleGeometry,
 	PlaneBufferGeometry,
 	InstancedBufferGeometry,
 	InstancedBufferAttribute,
@@ -40,7 +40,7 @@ export default class Grass {
 	}
 
 	setGrass() {
-		const attributeData = this.getAttributeData(70000, 150)
+		const attributeData = this.getAttributeData(2000, 20)
 		const bladeGeom = new PlaneBufferGeometry(0.12, 1, 1, 5).translate(
 			0,
 			1 / 2,
@@ -102,7 +102,7 @@ export default class Grass {
 		this.scene.add(this.grass)
 
 		const groundGeometry = new Geometry().fromBufferGeometry(
-			new PlaneGeometry(150, 150, 32, 32)
+			new CircleGeometry(20, 32)
 		)
 		groundGeometry.verticesNeedUpdate = true
 		groundGeometry.lookAt(new Vector3(0, 1, 0))
@@ -230,9 +230,11 @@ export default class Grass {
 	}
 
 	getYPosition(x, z) {
-		var y = 2 * simplex.noise2D(x / 50, z / 50)
-		y += 3 * simplex.noise2D(x / 100, z / 100)
-		y += 0.2 * simplex.noise2D(x / 10, z / 10)
+		let y = 0
 		return y
+		// var y = 2 * simplex.noise2D(x / 50, z / 50)
+		// y += 3 * simplex.noise2D(x / 100, z / 100)
+		// y += 0.2 * simplex.noise2D(x / 10, z / 10)
+		// return y
 	}
 }

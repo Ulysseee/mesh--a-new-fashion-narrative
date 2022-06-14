@@ -35,7 +35,7 @@ export default class Metavers {
 			this.grass = new Grass()
 			this.sky = new Sky()
 			this.water = new WaterClass()
-			// this.butterfly = new Butterfly()
+			this.butterfly = new Butterfly()
 			this.cube = new Cube()
 
 			this.portal = new Portal()

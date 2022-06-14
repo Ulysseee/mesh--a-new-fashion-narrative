@@ -26,14 +26,10 @@ const galleryPath = new CatmullRomCurve3(
 
 const metaversPath = new CatmullRomCurve3(
 	[
-		new Vector3(0, 3, 0),
-		new Vector3(-3, 3, -5),
-		new Vector3(-10, 3, -9),
-		new Vector3(-14, 3, -10),
-		new Vector3(-12, 3, -15),
-		new Vector3(-9, 3, -10),
-		new Vector3(-4, 3, -8),
-		new Vector3(0, 3, -4)
+		new Vector3(-15, 3, -15),
+		new Vector3(15, 3, -15),
+		new Vector3(15, 3, 15),
+		new Vector3(-15, 3, 15)
 	],
 	true
 )
