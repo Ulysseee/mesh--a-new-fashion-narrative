@@ -1,8 +1,8 @@
 export const gallery = [
 	{
-		name: 'rdcModel',
+		name: 'gallery',
 		type: 'gltfModel',
-		path: 'models/scenefinale.glb'
+		path: 'models/gallery.glb'
 	},
 
 	{
