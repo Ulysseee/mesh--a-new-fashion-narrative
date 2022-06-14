@@ -32,18 +32,6 @@
 			</a>
 			<div class="text">GET NFT</div>
 		</div>
-
-		<div class="point point-3">
-			<a
-				w
-				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423410916039327745"
-				target="_blank"
-				class="label"
-			>
-				<img class="fit-picture" src="/assets/img/qr_code.png" />
-			</a>
-			<div class="text">GET NFT</div>
-		</div>
 	</div>
 </template>
 

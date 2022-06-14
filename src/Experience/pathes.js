@@ -2,24 +2,24 @@ import { CatmullRomCurve3, Vector3 } from 'three'
 
 const galleryPath = new CatmullRomCurve3(
 	[
-		new Vector3(35, -4, 9),
-		new Vector3(35, -4, -9),
-		new Vector3(33, -3, -11),
-		new Vector3(30, -2, -11),
-		new Vector3(25, -2, -11),
-		new Vector3(20, 0, -11),
-		new Vector3(10, 0, -11),
-		new Vector3(0, 0, 11),
-		new Vector3(-10, 0, 5),
-		new Vector3(-8, 0, -4),
-		new Vector3(-8, 0, -11),
-		new Vector3(0, 0, -11),
-		new Vector3(5, 0, -11),
-		new Vector3(5, 0, 0),
-		new Vector3(6, 0, 11),
-		new Vector3(20, 0, 11),
-		new Vector3(30, -2, 11),
-		new Vector3(33, -3, 11)
+		new Vector3(35, -1.5, 9),
+		new Vector3(35, -1.5, -9),
+		new Vector3(33, -0.5, -11),
+		new Vector3(30, 0.5, -11),
+		new Vector3(25, 0.5, -11),
+		new Vector3(20, 2.5, -11),
+		new Vector3(10, 2.5, -11),
+		new Vector3(0, 2.5, 11),
+		new Vector3(-10, 2.5, 5),
+		new Vector3(-8, 2.5, -4),
+		new Vector3(-8, 2.5, -11),
+		new Vector3(0, 2.5, -11),
+		new Vector3(5, 2.5, -11),
+		new Vector3(5, 2.5, 0),
+		new Vector3(6, 2.5, 11),
+		new Vector3(20, 2.5, 11),
+		new Vector3(30, 0.5, 11),
+		new Vector3(33, -0.5, 11)
 	],
 	true
 )

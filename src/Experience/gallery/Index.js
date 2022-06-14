@@ -3,14 +3,19 @@ import config from '@utils/config'
 import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
-import Bag from './Bag.js'
-import Shirt from './Shirt.js'
-
 import Sweat from './Sweat.js'
 import Converse from './Converse.js'
 import Jupe from './Jupe.js'
 import Airmax from './Airmax.js'
 import Novembre from './Novembre.js'
+import Pull from './Pull.js'
+import Cargo from './Cargo.js'
+import Jeans from './Jeans.js'
+import Mocassin from './Mocassin.js'
+import Marron from './Marron.js'
+import Jacquemus from './Jacquemus.js'
+import SecondGucciBag from './SecondGucciBag.js'
+import FirstGucciBag from './FirstGucciBag.js'
 import Plane from './Plane.js'
 import Building from './Building.js'
 import Environment from './Environment.js'
@@ -48,16 +53,19 @@ export default class Gallery {
 			this.environment = new Environment()
 			this.plane = new Plane()
 			this.Building = new Building()
-			this.bag = new Bag()
 			this.airmax = new Airmax()
+			this.cargo = new Cargo()
 			this.converse = new Converse()
 			this.jupe = new Jupe()
 			this.novembre = new Novembre()
-			// this.shoes = new Shoes()
-			// this.shirt = new Shirt()
-			// this.jogging = new Jogging()
-			// this.sweat = new Sweat()
-			// this.jacket = new Jacket()
+			this.pull = new Pull()
+			this.sweat = new Sweat()
+			this.jeans = new Jeans()
+			this.mocassin = new Mocassin()
+			this.marron = new Marron()
+			this.jacquemus = new Jacquemus()
+			this.secondGucciBag = new SecondGucciBag()
+			this.firstGucciBag = new FirstGucciBag()
 		})
 	}
 

@@ -123,7 +123,7 @@ export default {
 			})
 		})
 
-		this.duration = 1400
+		this.duration = 1500
 
 		this.button.addEventListener(
 			'mousedown',
@@ -153,23 +153,24 @@ export default {
 
 	methods: {
 		launch() {
+			this.button.classList.add('complete')
+
 			gsap.timeline({
 				onComplete: () => {
 					this.experience.isLoading = false
 				}
+			}).to(this.$refs.loadingScreen, {
+				css: { opacity: '0', pointerEvents: 'none' },
+				duration: 1.5,
+				delay: -0.75,
+				ease: Power3.easeIn
 			})
-				.to(this.$refs.loadingScreen, {
-					css: { opacity: '0', pointerEvents: 'none' },
-					duration: 1.5,
-					delay: -0.75,
-					ease: Power3.easeIn
-				})
-				.to(this.experience.camera.instance.position, {
-					delay: -1.25,
-					duration: 3,
-					z: 9,
-					ease: Power3.easeOut
-				})
+			// .to(this.experience.camera.instance.position, {
+			// 	delay: -1.25,
+			// 	duration: 3,
+			// 	z: 9,
+			// 	ease: Power3.easeOut
+			// })
 
 			if (!this.initFlag) {
 				this.audio.init()
@@ -276,7 +277,7 @@ export default {
 		text-transform: uppercase;
 
 		text-align: center;
-		font-size: 2rem;
+		font-size: 1.75rem;
 		line-height: 2.5rem;
 
 		div {
@@ -295,10 +296,10 @@ export default {
 	.loader__paragraph {
 		width: 18%;
 		position: absolute;
-		top: 19rem;
+		top: 18rem;
 		font-family: 'Brilliant Cut Pro Regular';
 		text-align: center;
-		font-size: 0.875rem;
+		font-size: 0.825rem;
 		line-height: 1.25rem;
 		opacity: 0;
 	}
@@ -394,6 +395,12 @@ export default {
 	.loader__enterCta.process {
 		circle {
 			stroke-dashoffset: 0;
+		}
+	}
+
+	.loader__enterCta.complete {
+		circle {
+			stroke-dashoffset: 1.5;
 		}
 	}
 

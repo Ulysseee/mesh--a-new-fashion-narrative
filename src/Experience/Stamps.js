@@ -25,11 +25,6 @@ export default class Stamps {
 			{
 				position: new Vector3(-6, 5, 10),
 				element: document.querySelector('.point-2')
-			},
-
-			{
-				position: new Vector3(12, 5, -10),
-				element: document.querySelector('.point-3')
 			}
 		]
 	}

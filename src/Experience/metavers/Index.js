@@ -6,7 +6,9 @@ import Portal from '../shared/Portal.js'
 import Butterfly from './Butterfly.js'
 import Particles from './Particles.js'
 import WaterClass from './Water.js'
-import Cube from './Cube.js'
+import Dress from './Dress.js'
+import Kimono from './Kimono.js'
+import Latex from './Latex.js'
 import Spline from '../shared/Spline.js'
 
 import { metaversPath } from '../pathes'
@@ -32,11 +34,13 @@ export default class Metavers {
 			this.spline = new Spline(metaversPath)
 
 			this.environment = new Environment()
-			this.grass = new Grass()
+			// this.grass = new Grass()
 			this.sky = new Sky()
-			this.water = new WaterClass()
+			// this.water = new WaterClass()
 			this.butterfly = new Butterfly()
-			this.cube = new Cube()
+			this.dess = new Dress()
+			this.latex = new Latex()
+			this.kimono = new Kimono()
 
 			this.portal = new Portal()
 			this.portal.mesh.name = 'portal2'

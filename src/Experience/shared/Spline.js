@@ -54,16 +54,16 @@ export default class Spline extends EventEmitter {
 		this.curveGeometry = new BufferGeometry().setFromPoints(points)
 		this.curveMaterial = new LineBasicMaterial({
 			color: 0xffffff,
-			// transparent: true,
+			transparent: true,
 			opacity: 0
 		})
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
-		// this.cameraTarget = new Object3D()
-		this.cameraTarget = new Mesh(
-			new BoxGeometry(1, 1, 1),
-			new MeshBasicMaterial({ color: 0xffff00 })
-		)
+		this.cameraTarget = new Object3D()
+		// this.cameraTarget = new Mesh(
+		// 	new BoxGeometry(1, 1, 1),
+		// 	new MeshBasicMaterial({ color: 0xffff00 })
+		// )
 		this.cameraTarget.position.set(21, 2.5, 0)
 		this.scene.add(this.splineObject, this.cameraTarget)
 	}
@@ -100,17 +100,12 @@ export default class Spline extends EventEmitter {
 		)
 
 		const camPos = this.curve.getPoint(this.scroll.current)
-		const targetPos = this.curve.getPoint(this.scroll.current + 0.1)
-		// this.cameraTarget.position.set(
-		// 	targetPos.x,
-		// 	targetPos.y + 2.5,
-		// 	targetPos.z
-		// )
 
-		this.camera.instance.position.set(camPos.x, camPos.y + 2.5, camPos.z)
+		this.camera.instance.position.set(camPos.x, camPos.y, camPos.z)
+
+		console.log(this.cameraTarget.position)
 
 		this.camera.instance.lookAt(this.cameraTarget.position)
-		// this.camera.instance.lookAt(21, 2.5, 0)
 
 		let timeline = gsap.timeline()
 

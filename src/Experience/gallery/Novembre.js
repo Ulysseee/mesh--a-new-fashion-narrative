@@ -14,6 +14,7 @@ export default class Novembre extends Clothes {
 		this.setNovembre()
 		if (this.debug) this.setDebug()
 	}
+
 	setDebug() {
 		const f = this.debug.gui.addFolder({
 			title: 'jupe',
@@ -41,8 +42,8 @@ export default class Novembre extends Clothes {
 
 	setNovembre() {
 		this.resource.scene.scale.set(2.2, 2.2, 2.2)
-		this.resource.scene.position.set(1.1, 2.61, 2.61)
-		this.resource.scene.rotation.y = 1
+		this.resource.scene.position.set(-3.26, 2.61, -3.26)
+		this.resource.scene.rotation.y = 0
 
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
