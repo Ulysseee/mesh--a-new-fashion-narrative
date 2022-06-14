@@ -79,31 +79,31 @@ export default class Gallery {
 			this.secondGucciBag = new SecondGucciBag()
 			this.firstGucciBag = new FirstGucciBag()
 
-			const geometry = new THREE.BoxGeometry(1, 1, 1)
-			const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-			this.cube = new THREE.Mesh(geometry, material)
-			this.cube.position.set(-14.5, 2.5, 9.5)
-			this.scene.add(this.cube)
+			// const geometry = new THREE.BoxGeometry(1, 1, 1)
+			// const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+			// this.cube = new THREE.Mesh(geometry, material)
+			// this.cube.position.set(-14.5, 2.5, 9.5)
+			// this.scene.add(this.cube)
 
-			const fe = this.debug.gui.addFolder({
-				title: 'cloth',
-				expanded: true
-			})
-			fe.addInput(this.cube.position, 'x', {
-				min: -20,
-				max: 20,
-				step: 0.5
-			})
-			fe.addInput(this.cube.position, 'y', {
-				min: -20,
-				max: 20,
-				step: 0.5
-			})
-			fe.addInput(this.cube.position, 'z', {
-				min: -20,
-				max: 20,
-				step: 0.5
-			})
+			// const fe = this.debug.gui.addFolder({
+			// 	title: 'cloth',
+			// 	expanded: true
+			// })
+			// fe.addInput(this.cube.position, 'x', {
+			// 	min: -20,
+			// 	max: 20,
+			// 	step: 0.5
+			// })
+			// fe.addInput(this.cube.position, 'y', {
+			// 	min: -20,
+			// 	max: 20,
+			// 	step: 0.5
+			// })
+			// fe.addInput(this.cube.position, 'z', {
+			// 	min: -20,
+			// 	max: 20,
+			// 	step: 0.5
+			// })
 		})
 	}
 

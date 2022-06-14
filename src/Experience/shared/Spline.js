@@ -59,11 +59,11 @@ export default class Spline extends EventEmitter {
 		})
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
-		// this.cameraTarget = new Object3D()
-		this.cameraTarget = new Mesh(
-			new BoxGeometry(1, 1, 1),
-			new MeshBasicMaterial({ color: 0xffff00 })
-		)
+		this.cameraTarget = new Object3D()
+		// this.cameraTarget = new Mesh(
+		// 	new BoxGeometry(1, 1, 1),
+		// 	new MeshBasicMaterial({ color: 0xffff00 })
+		// )
 		this.cameraTarget.position.set(21, 2.5, 0)
 		this.scene.add(this.splineObject, this.cameraTarget)
 	}
