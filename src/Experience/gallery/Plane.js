@@ -14,8 +14,6 @@ export default class Plane {
 		this.transport = this.resources.items.transport
 		this.consommation = this.resources.items.consommation
 
-		console.log(this.consommation)
-
 		this.setPlane()
 	}
 

@@ -15,7 +15,14 @@ export default class Jeans extends Clothes {
 	setJeans() {
 		this.resource.scene.scale.set(2.75, 2.75, 2.75)
 		this.resource.scene.position.set(-17, 2.5, 7.5)
-		this.resource.scene.userData.type = 'cloth2'
+
+		this.resource.scene.userData.name = 'cloth2'
+		this.resource.scene.userData.type = '2_1'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth2'
+			child.userData.type = '2_2'
+		})
+
 		this.resource.scene.rotation.y = Math.PI / 2
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)

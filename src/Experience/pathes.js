@@ -67,4 +67,51 @@ const cameraTargetPositions = [
 	}
 ]
 
-export { galleryPath, metaversPath, cameraTargetPositions }
+const cameraPositionMat = [
+	{
+		x: 4.5,
+		y: 2,
+		z: -6.5
+	},
+	{
+		x: 4.0,
+		y: 2.5,
+		z: -3.5
+	},
+	{
+		x: 4.0,
+		y: 3.0,
+		z: 0.5
+	}
+]
+
+const cameraPositionConcept = [
+	{
+		x: -14.0,
+		y: 2.5,
+		z: 8.5
+	},
+	{
+		x: -14.0,
+		y: 2.5,
+		z: 8
+	},
+	{
+		x: -15.5,
+		y: 2,
+		z: 4.25
+	},
+	{
+		x: -15.5,
+		y: 2.0,
+		z: 3.25
+	}
+]
+
+export {
+	galleryPath,
+	metaversPath,
+	cameraTargetPositions,
+	cameraPositionMat,
+	cameraPositionConcept
+}

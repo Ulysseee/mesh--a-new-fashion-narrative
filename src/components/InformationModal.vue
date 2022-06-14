@@ -61,6 +61,7 @@ export default {
 			this.experience.lastScrollTime = new Date().getTime()
 			this.experience.infoOpen = false
 			this.experience.camera.resetPosition()
+			this.experience.gallery.spline.resetPosition()
 		}
 	}
 }
@@ -79,7 +80,8 @@ export default {
 	overflow: hidden;
 	padding: 0;
 	margin: 0;
-	color: #fff;
+	// color: #fff;
+	color: #000;
 	transition: transform 0.8s ease-in;
 	display: flex;
 	flex-direction: column;
@@ -104,7 +106,7 @@ export default {
 		height: 100%;
 		top: 0;
 		fill: #f4f1eb;
-		fill: rgba(0, 0, 0, 0.4);
+		// fill: rgba(0, 0, 0, 0.4);
 		left: 0;
 	}
 
@@ -133,7 +135,8 @@ export default {
 		// }
 
 		&:hover {
-			background-color: rgba(255, 255, 255, 0.4);
+			// background-color: rgba(255, 255, 255, 0.4);
+			background-color: rgba(0, 0, 0, 0.4);
 		}
 	}
 

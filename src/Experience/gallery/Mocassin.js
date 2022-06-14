@@ -16,7 +16,14 @@ export default class Mocassin extends Clothes {
 	setMocassin() {
 		this.resource.scene.scale.set(1, 1, 1)
 		this.resource.scene.position.set(-18, 1.725, 4.35)
-		this.resource.scene.userData.type = 'cloth2'
+
+		this.resource.scene.userData.name = 'cloth2'
+		this.resource.scene.userData.type = '2_3'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth2'
+			child.userData.type = '2_3'
+		})
+
 		this.resource.scene.rotation.y = Math.PI / 2
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)

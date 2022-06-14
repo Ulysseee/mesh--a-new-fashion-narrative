@@ -19,6 +19,13 @@ export default class Jupe extends Clothes {
 		this.resource.scene.position.set(1.3, 1.96, 2.61)
 		this.resource.scene.rotation.y = 0
 
+		this.resource.scene.userData.name = 'cloth1'
+		this.resource.scene.userData.type = '1_3'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth1'
+			child.userData.type = '1_3'
+		})
+
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
 	}

@@ -9,7 +9,7 @@ import {
 } from 'three'
 import EventEmitter from '@utils/EventEmitter.js'
 
-import gsap from 'gsap'
+import gsap, { Power3 } from 'gsap'
 
 import Experience from '../Experience'
 
@@ -59,11 +59,11 @@ export default class Spline extends EventEmitter {
 		})
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
-		this.cameraTarget = new Object3D()
-		// this.cameraTarget = new Mesh(
-		// 	new BoxGeometry(1, 1, 1),
-		// 	new MeshBasicMaterial({ color: 0xffff00 })
-		// )
+		// this.cameraTarget = new Object3D()
+		this.cameraTarget = new Mesh(
+			new BoxGeometry(1, 1, 1),
+			new MeshBasicMaterial({ color: 0xffff00 })
+		)
 		this.cameraTarget.position.set(21, 2.5, 0)
 		this.scene.add(this.splineObject, this.cameraTarget)
 	}
@@ -85,6 +85,23 @@ export default class Spline extends EventEmitter {
 		})
 	}
 
+	resetPosition() {
+		let tl = gsap.timeline({
+			onComplete: () => {
+				this.experience.selectedItem = false
+			}
+		})
+
+		tl.to(this.cameraTarget.position, {
+			duration: 2,
+			x: this.experience.savedtargetPosition.x,
+			y: this.experience.savedtargetPosition.y,
+			z: this.experience.savedtargetPosition.z,
+			delay: 1,
+			ease: Power3.easeOut
+		})
+	}
+
 	update(percent) {
 		this.scroll.target = gsap.utils.clamp(
 			0,
@@ -100,14 +117,14 @@ export default class Spline extends EventEmitter {
 
 		const camPos = this.curve.getPoint(this.scroll.current)
 
-		this.camera.instance.position.set(camPos.x, camPos.y, camPos.z)
+		if (!this.experience.selectedItem)
+			this.camera.instance.position.set(camPos.x, camPos.y, camPos.z)
 
 		this.camera.instance.lookAt(this.cameraTarget.position)
 
 		let timeline = gsap.timeline()
 
-		if (percent) {
-			console.log(percent)
+		if (percent && !this.experience.selectedItem) {
 			if (percent < 0.25) {
 				timeline.to(this.cameraTarget.position, {
 					duration: 1,

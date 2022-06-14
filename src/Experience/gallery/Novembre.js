@@ -12,38 +12,17 @@ export default class Novembre extends Clothes {
 		this.debug = this.experience.debug
 
 		this.setNovembre()
-		if (this.debug) this.setDebug()
-	}
-
-	setDebug() {
-		const f = this.debug.gui.addFolder({
-			title: 'jupe',
-			expanded: true
-		})
-
-		f.addInput(this.resource.scene.position, 'x', {
-			min: -30,
-			max: 30,
-			step: 0.01
-		})
-
-		f.addInput(this.resource.scene.position, 'y', {
-			min: -30,
-			max: 30,
-			step: 0.01
-		})
-
-		f.addInput(this.resource.scene.position, 'z', {
-			min: -30,
-			max: 30,
-			step: 0.01
-		})
 	}
 
 	setNovembre() {
 		this.resource.scene.scale.set(2.2, 2.2, 2.2)
 		this.resource.scene.position.set(-3.26, 2.61, -3.26)
 		this.resource.scene.rotation.y = 0
+
+		this.resource.scene.userData.name = 'cloth3'
+		this.resource.scene.traverse((child) => {
+			child.userData.name = 'cloth3'
+		})
 
 		this.experience.items.push(this.resource.scene)
 		this.scene.add(this.resource.scene)
