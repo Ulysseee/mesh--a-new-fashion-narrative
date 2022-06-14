@@ -12,9 +12,21 @@ export const gallery = [
 	},
 
 	{
-		name: 'bagModel',
+		name: 'sweatModel',
 		type: 'gltfModel',
-		path: 'models/womens_bag/scene.gltf'
+		path: 'models/sweat.glb'
+	},
+
+	{
+		name: 'novembreModel',
+		type: 'gltfModel',
+		path: 'models/novembre.glb'
+	},
+
+	{
+		name: 'marronModel',
+		type: 'gltfModel',
+		path: 'models/marron.glb'
 	},
 
 	{
@@ -62,11 +74,11 @@ export const gallery = [
 ]
 
 export const metavers = [
-	// {
-	// 	name: 'butterfly',
-	// 	type: 'gltfModel',
-	// 	path: 'models/butterfly.glb'
-	// },
+	{
+		name: 'butterfly',
+		type: 'gltfModel',
+		path: 'models/butterfly.glb'
+	},
 
 	{
 		name: 'dressModel',

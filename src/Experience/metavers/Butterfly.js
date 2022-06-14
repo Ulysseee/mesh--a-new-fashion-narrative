@@ -22,11 +22,11 @@ export default class Butterfly {
 
 	setModel() {
 		this.group = new THREE.Group()
-		for (let i = 0; i < 13; i++) {
+		for (let i = 0; i < 1; i++) {
 			let butterfly
 			butterfly = SkeletonUtils.clone(this.resource.scene)
 			butterfly.scale.multiplyScalar(3)
-			butterfly.position.y = THREE.MathUtils.randFloat(8, 15)
+			butterfly.position.y = THREE.MathUtils.randFloat(20, 30)
 			butterfly.position.x = THREE.MathUtils.randFloat(-5, 5)
 			butterfly.rotation.y = this.offset
 

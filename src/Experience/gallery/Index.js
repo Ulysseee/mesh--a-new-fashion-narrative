@@ -46,7 +46,7 @@ export default class Gallery {
 			this.environment = new Environment()
 			this.plane = new Plane()
 			this.Building = new Building()
-			// this.bag = new Bag()
+			this.bag = new Bag()
 			// this.shoes = new Shoes()
 			// this.shirt = new Shirt()
 			// this.jogging = new Jogging()

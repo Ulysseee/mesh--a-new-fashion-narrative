@@ -22,7 +22,7 @@ export default class Camera {
 			75,
 			this.sizes.width / this.sizes.height,
 			0.8,
-			80
+			200
 		)
 		this.instance.position.set(35, -2, 4)
 		this.instance.lookAt(

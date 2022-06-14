@@ -1,4 +1,5 @@
-import { PlaneGeometry, Vector3, RepeatWrapping, TextureLoader } from 'three'
+import * as THREE from 'three'
+
 import { Water } from 'three/examples/jsm/objects/Water.js'
 
 import Experience from '../Experience'
@@ -8,7 +9,6 @@ export default class WaterClass {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.debug = this.experience.debug
-		this.resources = this.experience.resources
 		this.time = this.experience.time
 
 		this.setWater()
@@ -17,18 +17,20 @@ export default class WaterClass {
 	}
 
 	setWater() {
-		const waterGeometry = new PlaneGeometry(150, 150)
+		const waterGeometry = new THREE.RingGeometry(100, 20, 30)
 
 		this.water = new Water(waterGeometry, {
 			textureWidth: 512,
 			textureHeight: 512,
-			waterNormals: new TextureLoader().load(
+			side: THREE.DoubleSide,
+			waterNormals: new THREE.TextureLoader().load(
 				'textures/waternormals.jpg',
 				function (texture) {
-					return (texture.wrapS = texture.wrapT = RepeatWrapping)
+					return (texture.wrapS = texture.wrapT =
+						THREE.RepeatWrapping)
 				}
 			),
-			sunDirection: new Vector3(),
+			sunDirection: new THREE.Vector3(),
 			sunColor: 0xffffff,
 			waterColor: 0x001e0f,
 			distortionScale: 3.7
