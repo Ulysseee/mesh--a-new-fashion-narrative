@@ -28,6 +28,8 @@
 
 			<div>Enter the experience</div>
 		</button>
+
+		<img class="loader__logo" src="/assets/img/mesh.svg" />
 	</div>
 </template>
 
@@ -69,24 +71,30 @@ export default {
 				.to(this.$refs.titleTop, {
 					duration: 3,
 					opacity: 1,
-					x: -240,
-					delay: 0.15,
-					ease: Power3.easeInOut
+					x: 0,
+					ease: Power3.easeOut
 				})
 				.to(this.$refs.titleBottom, {
 					duration: 3,
 					opacity: 1,
-					x: 200,
+					x: 0,
 					delay: -3,
-					ease: Power3.easeInOut
-				})
-				.to([this.$refs.titleTop, this.$refs.titleBottom], {
-					duration: 0.8,
-					opacity: 0,
-
 					ease: Power3.easeOut
 				})
-
+				.to(this.$refs.titleTop, {
+					duration: 2,
+					opacity: 0,
+					x: 640,
+					delay: -0.75,
+					ease: Power3.easeIn
+				})
+				.to(this.$refs.titleBottom, {
+					duration: 2,
+					opacity: 0,
+					x: -600,
+					delay: -2,
+					ease: Power3.easeIn
+				})
 				.to(
 					[
 						this.$refs.subtitleTop,
@@ -111,7 +119,7 @@ export default {
 			})
 		})
 
-		this.duration = 1700
+		this.duration = 1400
 
 		this.button.addEventListener(
 			'mousedown',
@@ -141,31 +149,29 @@ export default {
 
 	methods: {
 		launch() {
-			this.button.classList.add('complete'),
-				gsap
-					.timeline({
-						onComplete: () => {
-							this.experience.isLoading = false
-						}
-					})
-					.to(this.$refs.button, {
-						opacity: 0,
-						duration: 0.8,
-						ease: Power3.easeOut
-					})
+			gsap.timeline({
+				onComplete: () => {
+					this.experience.isLoading = false
+				}
+			})
+				.to(this.$refs.button, {
+					opacity: 0,
+					duration: 0.8,
+					ease: Power3.easeOut
+				})
 
-					.to(this.$refs.loadingScreen, {
-						css: { opacity: '0', pointerEvents: 'none' },
-						duration: 1.5,
-						delay: -0.75,
-						ease: Power3.easeIn
-					})
-					.to(this.experience.camera.instance.position, {
-						delay: -1.25,
-						duration: 3,
-						z: 9,
-						ease: Power3.easeOut
-					})
+				.to(this.$refs.loadingScreen, {
+					css: { opacity: '0', pointerEvents: 'none' },
+					duration: 1.5,
+					delay: -0.75,
+					ease: Power3.easeIn
+				})
+				.to(this.experience.camera.instance.position, {
+					delay: -1.25,
+					duration: 3,
+					z: 9,
+					ease: Power3.easeOut
+				})
 
 			if (!this.initFlag) {
 				this.audio.init()
@@ -185,8 +191,6 @@ export default {
 	top: 0;
 	left: 0;
 	z-index: 100;
-	text-transform: uppercase;
-
 	color: #323232;
 	background: #f4f1eb;
 	font-size: 2em;
@@ -245,7 +249,10 @@ export default {
 	}
 
 	.loader__title {
+		// font-family: 'History Pro';
 		font-family: 'Brilliant Cut Pro';
+		text-transform: uppercase;
+
 		text-align: center;
 		font-size: 4rem;
 		line-height: 4.5rem;
@@ -253,13 +260,23 @@ export default {
 		div {
 			opacity: 0;
 		}
+
+		div:first-child {
+			transform: translate(-540px);
+		}
+		div:last-child {
+			transform: translate(500px);
+		}
 	}
 
 	.loader__subtitle {
 		// width: 47%;
 		position: absolute;
-		top: 8rem;
+		top: 11rem;
+		// font-family: 'History Pro';
 		font-family: 'Brilliant Cut Pro';
+		text-transform: uppercase;
+
 		text-align: center;
 		font-size: 2rem;
 		line-height: 2.5rem;
@@ -280,7 +297,7 @@ export default {
 	.loader__paragraph {
 		width: 18%;
 		position: absolute;
-		top: 16rem;
+		top: 18rem;
 		font-family: 'Brilliant Cut Pro Regular';
 		text-align: center;
 		font-size: 0.875rem;
@@ -291,18 +308,14 @@ export default {
 	.loader__enterCta {
 		opacity: 0;
 		color: #323232;
-		font-size: 10px;
+		font-size: 1rem;
 		padding: 10px 18px 12px;
 		background: transparent;
-		margin-top: 20px;
 		border: none;
 		text-transform: uppercase;
 		text-align: center;
 		z-index: 2;
 		position: relative;
-		transition: 0.5s all ease-in-out;
-		font-family: 'Brilliant Cut Pro';
-
 		bottom: 0;
 		// left: 50%;
 		// transform: translate(-50%, 50%);
@@ -347,7 +360,6 @@ export default {
 		}
 
 		&:hover {
-			transform: scale(1.03);
 			&::before {
 				background-color: #fff;
 				border-color: #fff;
@@ -387,12 +399,6 @@ export default {
 		}
 	}
 
-	.loader__enterCta.complete {
-		circle {
-			stroke-dashoffset: 1.5;
-		}
-	}
-
 	.loader__progressUrl {
 		color: gray;
 		font-size: 0.5em;
@@ -410,6 +416,15 @@ export default {
 		left: 50%;
 		bottom: 4rem;
 		transform: translateX(-50%);
+	}
+
+	.loader__logo {
+		position: absolute;
+		top: 3rem;
+		width: 250px;
+		height: auto;
+
+		filter: drop-shadow(5px 5px 15px rgba(100, 100, 111, 0.2));
 	}
 }
 
