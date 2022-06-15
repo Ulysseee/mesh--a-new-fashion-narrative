@@ -12,10 +12,14 @@ export default class Latex extends Clothes {
 	}
 
 	setLatex() {
-		this.resource.scale.set(0.04, 0.04, 0.04)
-		this.resource.position.set(6, 5, 0)
-		this.resource.userData.type = 'cloth2'
-		this.experience.items.push(this.resource)
-		this.scene.add(this.resource)
+		this.resource.scene.scale.set(5, 5, 5)
+		this.resource.scene.position.set(6, 5, 0)
+		this.resource.scene.userData.type = 'cloth2'
+		this.resource.scene.traverse((child) => {
+			child.frustumCulled = false
+		})
+		console.log(this.resource.scene)
+		this.experience.items.push(this.resource.scene)
+		this.scene.add(this.resource.scene)
 	}
 }

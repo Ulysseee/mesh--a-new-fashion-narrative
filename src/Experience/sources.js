@@ -148,8 +148,8 @@ export const metavers = [
 	},
 	{
 		name: 'latexModel',
-		type: 'fbxModel',
-		path: 'models/latex/latex.fbx'
+		type: 'gltfModel',
+		path: 'models/latex.glb'
 	},
 	{
 		name: 'kimonoModel',

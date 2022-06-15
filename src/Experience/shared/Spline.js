@@ -54,16 +54,16 @@ export default class Spline extends EventEmitter {
 		this.curveGeometry = new BufferGeometry().setFromPoints(points)
 		this.curveMaterial = new LineBasicMaterial({
 			color: 0xffffff,
-			transparent: true,
+			// transparent: true,
 			opacity: 0
 		})
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
-		this.cameraTarget = new Object3D()
-		// this.cameraTarget = new Mesh(
-		// 	new BoxGeometry(1, 1, 1),
-		// 	new MeshBasicMaterial({ color: 0xffff00 })
-		// )
+		// this.cameraTarget = new Object3D()
+		this.cameraTarget = new Mesh(
+			new BoxGeometry(1, 1, 1),
+			new MeshBasicMaterial({ color: 0xffff00 })
+		)
 		this.cameraTarget.position.set(21, 2.5, 0)
 		this.scene.add(this.splineObject, this.cameraTarget)
 	}
@@ -118,13 +118,19 @@ export default class Spline extends EventEmitter {
 		const camPos = this.curve.getPoint(this.scroll.current)
 
 		if (!this.experience.selectedItem)
-			this.camera.instance.position.set(camPos.x, camPos.y, camPos.z)
+			this.camera.instance.position.set(camPos.x, camPos.y + 2, camPos.z)
 
 		this.camera.instance.lookAt(this.cameraTarget.position)
 
 		let timeline = gsap.timeline()
 
-		if (percent && !this.experience.selectedItem) {
+		if (this.experience.metavers) this.cameraTarget.position.set(0, 3, 0)
+
+		if (
+			percent &&
+			this.experience.gallery &&
+			!this.experience.selectedItem
+		) {
 			if (percent < 0.25) {
 				timeline.to(this.cameraTarget.position, {
 					duration: 1,
