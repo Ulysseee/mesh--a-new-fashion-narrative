@@ -146,11 +146,7 @@ export const metavers = [
 		type: 'fbxModel',
 		path: 'models/dress/dress.fbx'
 	},
-	{
-		name: 'latexModel',
-		type: 'gltfModel',
-		path: 'models/latex.glb'
-	},
+
 	{
 		name: 'kimonoModel',
 		type: 'fbxModel',

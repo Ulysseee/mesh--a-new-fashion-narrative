@@ -8,6 +8,7 @@ export default class Kimono extends Clothes {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.kimonoModel
+		this.debug = this.experience.debug
 
 		if (this.debug) this.setDebug()
 
@@ -42,7 +43,7 @@ export default class Kimono extends Clothes {
 
 	setKimono() {
 		this.resource.scale.set(0.04, 0.04, 0.04)
-		this.resource.position.set(10, 5, -7)
+		this.resource.position.set(0, 1, 0)
 		this.resource.userData.type = 'cloth2'
 		this.experience.items.push(this.resource)
 		this.scene.add(this.resource)

@@ -16,7 +16,7 @@ export default class Dress extends Clothes {
 
 	setDebug() {
 		const f = this.debug.gui.addFolder({
-			title: 'uhfufuhfuh',
+			title: 'dress',
 			expanded: true
 		})
 
@@ -41,7 +41,7 @@ export default class Dress extends Clothes {
 
 	setDress() {
 		this.resource.scale.set(0.04, 0.04, 0.04)
-		this.resource.position.set(6, 5, -4)
+		this.resource.position.set(0, 1, 0)
 		this.resource.userData.type = 'cloth2'
 		this.experience.items.push(this.resource)
 		this.scene.add(this.resource)

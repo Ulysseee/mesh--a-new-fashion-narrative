@@ -8,7 +8,6 @@ import Particles from './Particles.js'
 import WaterClass from './Water.js'
 import Dress from './Dress.js'
 import Kimono from './Kimono.js'
-import Latex from './Latex.js'
 import Spline from '../shared/Spline.js'
 
 import { metaversPath } from '../pathes'
@@ -37,9 +36,7 @@ export default class Metavers {
 			this.grass = new Grass()
 			this.sky = new Sky()
 			this.water = new WaterClass()
-			// this.butterfly = new Butterfly()
 			this.dess = new Dress()
-			this.latex = new Latex()
 			this.kimono = new Kimono()
 
 			this.portal = new Portal()
