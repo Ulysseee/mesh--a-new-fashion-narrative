@@ -2,33 +2,33 @@
 	<div class="nft">
 		<div class="point point-0">
 			<a
-				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423410916039327745"
+				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423414214574211073"
 				target="_blank"
 				class="label"
 			>
-				<img class="fit-picture" src="/assets/img/qr_code.png" />
+				<img class="fit-picture" src="/assets/img/qr_1.png" />
 			</a>
 			<div class="text">GET NFT</div>
 		</div>
 
 		<div class="point point-1">
 			<a
-				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423410916039327745"
+				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423413115062583297"
 				target="_blank"
 				class="label"
 			>
-				<img class="fit-picture" src="/assets/img/qr_code.png" />
+				<img class="fit-picture" src="/assets/img/qr_2.png" />
 			</a>
 			<div class="text">GET NFT</div>
 		</div>
 
 		<div class="point point-2">
 			<a
-				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423410916039327745"
+				href="https://opensea.io/assets/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/86611962038610490963641179866893364690666313135465894002853423412015550955521"
 				target="_blank"
 				class="label"
 			>
-				<img class="fit-picture" src="/assets/img/qr_code.png" />
+				<img class="fit-picture" src="/assets/img/qr_3.png" />
 			</a>
 			<div class="text">GET NFT</div>
 		</div>

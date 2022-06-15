@@ -4,8 +4,7 @@ import Debug from '@utils/Debug'
 
 import Experience from '../Experience.js'
 import Clothes from '../shared/Clothes.js'
-import Bag from './Bag.js'
-import Shoes from './Shoes.js'
+
 import Sweat from './Sweat.js'
 import Converse from './Converse.js'
 import Jupe from './Jupe.js'
