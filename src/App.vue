@@ -1,7 +1,7 @@
 <template>
 	<ThreeScene />
 	<Header />
-	<LoadingScreen />
+	<LoadingScreen @toggle-video="toggleVideo" />
 	<ControlsComponent />
 	<Information @toggle-information="toggleModal" />
 	<ExperienceTimeline />
@@ -9,16 +9,18 @@
 	<Teleporter />
 	<CustomCursor />
 
-	<!-- <div class="video__container">
-		<video id="video" autoplay="autoplay">
+	<div class="video__container">
+		<video id="video">
 			<source src="/assets/img/movie.mp4" type="video/mp4" />
 			Your browser does not support the video tag.
 		</video>
-	</div> -->
+	</div>
 </template>
 
 <script>
-import gsap from 'gsap'
+import gsap, { Power3 } from 'gsap'
+
+import Experience from './Experience/Experience.js'
 
 import ThreeScene from './components/ThreeScene.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
@@ -54,6 +56,7 @@ export default {
 
 	mounted() {
 		// document.querySelector('#video').play()
+		this.experience = new Experience()
 	},
 
 	methods: {
@@ -73,25 +76,51 @@ export default {
 			}
 
 			this.isAboutActive = !this.isAboutActive
+		},
+		toggleVideo() {
+			document.querySelector('#video').play()
+			document.getElementById('video').addEventListener(
+				'ended',
+				() => {
+					gsap.timeline()
+						.to(document.querySelector('#video'), {
+							duration: 1.6,
+							opacity: 0,
+							ease: Power3.easeIn
+						})
+						.to('.video__container', {
+							css: { display: 'none' }
+						})
+					this.experience.isLoading = false
+				},
+				false
+			)
 		}
 	}
 }
 </script>
 
 <style lang="scss">
-#video {
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.video__container {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	width: 100%;
 	left: 0;
 	height: 100%;
-	overflow: hidden;
-	z-index: 200000;
+	display: flex;
 }
-body {
-	width: 100vw;
-	height: 100vh;
+#video {
+	// opacity: 0;
 	overflow: hidden;
+	object-fit: cover;
+	z-index: 99;
+	pointer-events: none;
 }
 </style>

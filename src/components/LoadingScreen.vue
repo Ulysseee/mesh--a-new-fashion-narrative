@@ -157,7 +157,7 @@ export default {
 
 			gsap.timeline({
 				onComplete: () => {
-					this.experience.isLoading = false
+					this.$parent.toggleVideo()
 				}
 			})
 				.to(
