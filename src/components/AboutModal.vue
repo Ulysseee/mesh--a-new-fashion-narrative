@@ -1,6 +1,6 @@
 <template>
 	<div ref="aboutModal" class="about">
-		<div class="about__close" @click="$emit('toggle-about')"></div>
+		<!-- <div class="about__close" @click="$emit('toggle-about')"></div>
 		<h2 class="about__title">About</h2>
 		<p class="about__description">
 			Comment pérenniser l’industrie de la mode à travers une consommation
@@ -24,7 +24,7 @@
 		<div class="about__footer">
 			<p>Thank you</p>
 			<img class="about__starIcon" src="/assets/img/star.svg" alt="" />
-		</div>
+		</div> -->
 	</div>
 </template>
 

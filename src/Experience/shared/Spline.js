@@ -118,7 +118,7 @@ export default class Spline extends EventEmitter {
 		const camPos = this.curve.getPoint(this.scroll.current)
 
 		if (!this.experience.selectedItem)
-			this.camera.instance.position.set(camPos.x, camPos.y + 2, camPos.z)
+			this.camera.instance.position.set(camPos.x, camPos.y, camPos.z)
 
 		this.camera.instance.lookAt(this.cameraTarget.position)
 

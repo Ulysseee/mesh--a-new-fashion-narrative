@@ -120,7 +120,8 @@ export default class Experience {
 				this.renderer.instance.outputEncoding = THREE.LinearEncoding
 
 				this.items = []
-				this.camera.instance.position.set(-15, 3, -15)
+				this.camera.instance.position.set(-15, 7, -15)
+				this.camera.instance.lookAt(0, 3, 0)
 
 				this.gallery.unrealBloomPass.strength = 0
 				this.gallery.unrealBloomPass.radius = 0

@@ -24,7 +24,7 @@ export default class Renderer {
 		// IF GLTF MODEL IS USED
 		this.instance.outputEncoding = sRGBEncoding
 
-		this.instance.setClearColor('#262837')
+		this.instance.setClearColor('#ffffff')
 		this.instance.setSize(this.sizes.width, this.sizes.height)
 		this.instance.setPixelRatio(Math.min(this.sizes.pixelRatio, 2))
 	}

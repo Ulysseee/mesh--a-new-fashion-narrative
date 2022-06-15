@@ -6,7 +6,6 @@ export default class Stamps {
 		this.experience = new Experience()
 		this.sizes = this.experience.sizes
 		this.camera = this.experience.camera
-		this.raycaster = this.experience.raycaster
 
 		this.setPoints()
 	}

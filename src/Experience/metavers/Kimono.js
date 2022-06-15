@@ -8,7 +8,36 @@ export default class Kimono extends Clothes {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.kimonoModel
+
+		if (this.debug) this.setDebug()
+
 		this.setKimono()
+	}
+
+	setDebug() {
+		console.log('tototototo')
+		const f = this.debug.gui.addFolder({
+			title: 'kimo',
+			expanded: true
+		})
+
+		f.addInput(this.resource.position, 'x', {
+			min: -30,
+			max: 30,
+			step: 0.01
+		})
+
+		f.addInput(this.resource.position, 'y', {
+			min: -30,
+			max: 30,
+			step: 0.01
+		})
+
+		f.addInput(this.resource.position, 'z', {
+			min: -30,
+			max: 30,
+			step: 0.01
+		})
 	}
 
 	setKimono() {

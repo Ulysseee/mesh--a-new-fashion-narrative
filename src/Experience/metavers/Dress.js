@@ -8,7 +8,35 @@ export default class Dress extends Clothes {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.dressModel
+
+		if (this.debug) this.setDebug()
 		this.setDress()
+	}
+
+	setDebug() {
+		console.log('tototototo')
+		const f = this.debug.gui.addFolder({
+			title: 'uhfufuhfuh',
+			expanded: true
+		})
+
+		f.addInput(this.resource.position, 'x', {
+			min: -30,
+			max: 30,
+			step: 0.01
+		})
+
+		f.addInput(this.resource.position, 'y', {
+			min: -30,
+			max: 30,
+			step: 0.01
+		})
+
+		f.addInput(this.resource.position, 'z', {
+			min: -30,
+			max: 30,
+			step: 0.01
+		})
 	}
 
 	setDress() {
