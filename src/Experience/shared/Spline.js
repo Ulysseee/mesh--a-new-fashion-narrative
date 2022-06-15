@@ -119,12 +119,11 @@ export default class Spline extends EventEmitter {
 
 		if (!this.experience.selectedItem)
 			this.camera.instance.position.set(camPos.x, camPos.y, camPos.z)
+		if (this.experience.metavers) this.cameraTarget.position.set(0, 3, 0)
 
 		this.camera.instance.lookAt(this.cameraTarget.position)
 
 		let timeline = gsap.timeline()
-
-		if (this.experience.metavers) this.cameraTarget.position.set(0, 3, 0)
 
 		if (
 			percent &&

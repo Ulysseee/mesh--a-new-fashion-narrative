@@ -13,17 +13,12 @@ export default class Stamps {
 	setPoints() {
 		this.points = [
 			{
-				position: new Vector3(6, 5, -10),
+				position: new Vector3(3.3, 3.2, 1),
 				element: document.querySelector('.point-0')
 			},
 			{
-				position: new Vector3(12, 5, 10),
+				position: new Vector3(-5.3, 3.2, -1),
 				element: document.querySelector('.point-1')
-			},
-
-			{
-				position: new Vector3(-6, 5, 10),
-				element: document.querySelector('.point-2')
 			}
 		]
 	}

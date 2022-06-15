@@ -41,7 +41,9 @@ export default class Dress extends Clothes {
 
 	setDress() {
 		this.resource.scale.set(0.04, 0.04, 0.04)
-		this.resource.position.set(0, 1, 0)
+		this.resource.position.set(3.3, 5.2, 1)
+		this.resource.rotation.y = -Math.PI / 2
+
 		this.resource.userData.type = 'cloth2'
 		this.experience.items.push(this.resource)
 		this.scene.add(this.resource)
