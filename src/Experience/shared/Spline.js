@@ -53,17 +53,17 @@ export default class Spline extends EventEmitter {
 		const points = this.curve.getPoints(50)
 		this.curveGeometry = new BufferGeometry().setFromPoints(points)
 		this.curveMaterial = new LineBasicMaterial({
-			color: 0xffffff,
-			// transparent: true,
+			// color: 0xffffff,
+			transparent: true,
 			opacity: 0
 		})
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
-		// this.cameraTarget = new Object3D()
-		this.cameraTarget = new Mesh(
-			new BoxGeometry(1, 1, 1),
-			new MeshBasicMaterial({ color: 0xffff00 })
-		)
+		this.cameraTarget = new Object3D()
+		// this.cameraTarget = new Mesh(
+		// 	new BoxGeometry(1, 1, 1),
+		// 	new MeshBasicMaterial({ color: 0xffff00 })
+		// )
 		this.cameraTarget.position.set(21, 2.5, 0)
 		this.scene.add(this.splineObject, this.cameraTarget)
 	}

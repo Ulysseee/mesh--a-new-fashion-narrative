@@ -102,23 +102,23 @@ export default class Raycaster {
 				const screenPosition = point.position.clone()
 				screenPosition.project(this.camera.instance)
 
-				if (!this.currentIntersect) {
-					point.element.classList.add('visible')
-				} else {
-					// 	// Get the distance of the intersection and the distance of the point
-					const intersectionDistance = this.currentIntersect.distance
-					const pointDistance = point.position.distanceTo(
-						this.camera.instance.position
-					)
+				// if (intersects.length === 0) {
+				point.element.classList.add('visible')
+				// } else {
+				// 	// Get the distance of the intersection and the distance of the point
+				// 	const intersectionDistance = intersects[0].distance
+				// 	const pointDistance = point.position.distanceTo(
+				// 		this.camera.instance.position
+				// 	)
 
-					// Intersection is close than the point
-					if (intersectionDistance < pointDistance) {
-						point.element.classList.remove('visible')
-					} else {
-						// Intersection is further than the point
-						point.element.classList.add('visible')
-					}
-				}
+				// 	// Intersection is close than the point
+				// 	if (intersectionDistance < pointDistance) {
+				// 		point.element.classList.remove('visible')
+				// 	} else {
+				// 		// Intersection is further than the point
+				// 		point.element.classList.add('visible')
+				// 	}
+				// }
 
 				const translateX = screenPosition.x * this.sizes.width * 0.5
 				const translateY = -screenPosition.y * this.sizes.height * 0.5
