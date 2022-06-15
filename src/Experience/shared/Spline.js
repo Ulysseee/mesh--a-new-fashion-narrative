@@ -59,11 +59,11 @@ export default class Spline extends EventEmitter {
 		})
 		this.splineObject = new Line(this.curveGeometry, this.curveMaterial)
 
-		this.cameraTarget = new Object3D()
-		// this.cameraTarget = new Mesh(
-		// 	new BoxGeometry(1, 1, 1),
-		// 	new MeshBasicMaterial({ color: 0xffff00 })
-		// )
+		// this.cameraTarget = new Object3D()
+		this.cameraTarget = new Mesh(
+			new BoxGeometry(1, 1, 1),
+			new MeshBasicMaterial({ color: 0xffff00 })
+		)
 		this.cameraTarget.position.set(21, 2.5, 0)
 		this.scene.add(this.splineObject, this.cameraTarget)
 	}
@@ -125,6 +125,8 @@ export default class Spline extends EventEmitter {
 
 		let timeline = gsap.timeline()
 
+		console.log(percent)
+
 		if (
 			percent &&
 			this.experience.gallery &&
@@ -151,9 +153,9 @@ export default class Spline extends EventEmitter {
 					y: cameraTargetPositions[2].y,
 					z: cameraTargetPositions[2].z
 				})
-			} else if (percent < 0.47) {
+			} else if (percent < 0.46) {
 				timeline.to(this.cameraTarget.position, {
-					duration: 1,
+					duration: 2,
 					x: cameraTargetPositions[3].x,
 					y: cameraTargetPositions[3].y,
 					z: cameraTargetPositions[3].z
