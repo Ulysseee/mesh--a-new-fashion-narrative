@@ -37,7 +37,7 @@ export default class Metavers {
 			this.grass = new Grass()
 			this.sky = new Sky()
 			this.water = new WaterClass()
-			this.butterfly = new Butterfly()
+			// this.butterfly = new Butterfly()
 			this.dess = new Dress()
 			this.latex = new Latex()
 			this.kimono = new Kimono()
