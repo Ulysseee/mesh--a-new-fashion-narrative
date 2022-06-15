@@ -5,6 +5,7 @@ export default class Dress extends Clothes {
 	constructor() {
 		super()
 		this.experience = new Experience()
+		this.debug = this.experience.debug
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.dressModel
@@ -14,7 +15,6 @@ export default class Dress extends Clothes {
 	}
 
 	setDebug() {
-		console.log('tototototo')
 		const f = this.debug.gui.addFolder({
 			title: 'uhfufuhfuh',
 			expanded: true
